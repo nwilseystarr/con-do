@@ -2,10 +2,14 @@ import React from "react";
 import "./style.css"
 
 
-function Schedules(props) {
+function Schedules() {
     return (
         <div>
-
+            {/*
+            Show schedule based on position and 
+            
+            
+            */}
         </div>
     );
 }
