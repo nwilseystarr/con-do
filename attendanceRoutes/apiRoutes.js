@@ -11,6 +11,9 @@ module.exports = function (app) {
         })
     })
 
-    //
+    //faculty
+    app.get("api/attendance/faculty", function (req, res) {
+        db.conDO_db.findAll({where:{}})
+    })
 }
 
