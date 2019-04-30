@@ -1,17 +1,12 @@
-const Sequelize = require("sequelize");
-const Committee = require("./committee");
-const School = require("./school");
-const sequelize = require("../config/connection.js");
-
-const Delegate = sequelize.define("delegate", {
-    name = Sequelize.STRING,
-    email = Sequelize.STRING,
-    country = Sequelize.STRING
-})
-
-Delegate.belongsTo(School);
-Delegate.belongsTo(Committee);
-
-Delegate.sync();
-
-module.exports = Delegate;
+module.exports = function (sequelize, DataTypes) {
+    const Delegate = sequelize.define("delegate", {
+        name = DataTypes.STRING,
+        email = DataTypes.STRING,
+        country = DataTypes.STRING
+    })
+    Delegate.associate = function (models) {
+        Delegate.belongsTo(models.School);
+        Delegate.belongsTo(models.Committee);
+    }
+    return Delegate;
+}

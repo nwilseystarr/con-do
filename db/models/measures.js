@@ -1,13 +1,10 @@
-const Sequelize = require("sequelize");
-const Committee = require("./committee");
-const sequelize = require("../config/connection.js");
+module.exports = function (sequelize, DataTypes) {
+    const Measure = sequelize.define("measure", {
+        total_votes = DataTypes.INTEGER
+    })
 
-const Measure = sequelize.define("measure", {
-    total_votes = Sequelize.INTEGER
-})
-
-Measure.belongsTo(Committee);
-
-Measure.sync();
-
-module.exports = Measure;
+    Measure.associate = function (models) {
+        Measure.belongsTo(models.Committee);
+    }
+    return Measure;
+}
