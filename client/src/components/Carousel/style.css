@@ -14,10 +14,15 @@
     font-weight: 700;
 }
 
+h2 {
+    font-weight: bold;
+}
+
 .youtubeVid {
     color: red;
 }
 
-h2 {
-    font-weight: bold;
+.youtubeVid:hover {
+    color: red;
+    opacity: 0.7;
 }
