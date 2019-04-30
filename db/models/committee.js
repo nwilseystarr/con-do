@@ -6,7 +6,7 @@ const Committee = sequelize.define("committee", {
     name: Sequelize.STRING
 });
 
-// Committee.hasMany(Event);
+// Committee.hasMany(Delegate);
 
 Committee.sync();
 
