@@ -1,8 +1,8 @@
 {
     "development": {
       "username": "root",
-      "password": null,
-      "database": "blogger",
+      "password": "password",
+      "database": "condo_db",
       "host": "localhost",
       "port": 5432,
       "dialect": "postgres"
@@ -10,7 +10,7 @@
     "test": {
       "username": "root",
       "password": null,
-      "database": "database_test",
+      "database": "condo_db",
       "host": "localhost",
       "port": 5432,
       "dialect": "postgres"
@@ -18,7 +18,7 @@
     "production": {
       "username": "root",
       "password": null,
-      "database": "database_production",
+      "database": "condo_db",
       "host": "localhost",
       "port": 5432,
       "dialect": "postgres"

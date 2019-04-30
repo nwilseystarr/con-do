@@ -1,7 +1,7 @@
 const db = require("../db/models");
 const path = require("path");
 
-module.exports = function (app) {
+module.exports = (app)=> {
     
 //admin route to pull all attendance
     app.get("/api/attendance/admin", function (req, res) {
