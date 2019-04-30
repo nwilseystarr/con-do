@@ -8,6 +8,7 @@ class LandingPage extends Component {
         return (
             <div>
                 <LandingNavbar />
+                <Carousel />
                 <FeatureCard />
                 <ContactForm />
             </div>
