@@ -1,14 +1,12 @@
-const Sequelize = require("sequelize");
-const School = require("./school");
-const sequelize = require("../config/connection.js");
+module.exports = function (sequelize, DataTypes) {
+    const Advisor = sequelize.define("advisor", {
+        name = DataTypes.STRING,
+        email = DataTypes.STRING
+    }) 
 
-const Advisor = sequelize.define("advisor", {
-    name = Sequelize.STRING,
-    email = Sequelize.STRING
-})
 
-Advisor.belongsTo(School);
-
-Advisor.sync();
-
-module.exports = Advisor;
+    Advisor.associate = function (models) {
+        Advisor.belongsTo(models.School);
+    }
+    return Advisor
+}

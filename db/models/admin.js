@@ -1,9 +1,7 @@
-module.exports = function (sequelize, DataTypes) {
-    const Admin = sequlize.define("admin", {
-        name = Sequelize.STRING,
-        email = Sequelize.STRING
+module.exports = function (sequelize) {
+    const Admin = sequelize.define("admin", {
     })
-
+    return Admin;
 }
 
 
