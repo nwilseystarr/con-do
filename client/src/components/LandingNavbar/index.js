@@ -1,32 +1,36 @@
 import React, { Component } from "react";
+import logo from "./logo_transparent.png";
+import "./style.css";
 
 class LandingNavbar extends Component {
     render() {
         return (
-            <nav class="navbar navbar-expand-md border-bottom">
-                <a class="navbar-brand" href="#"></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+            <nav className="navbar navbar-expand-md navbar-light sticky-top border-bottom p-1 pr-3">
+                <a className="navbar-brand py-0" href="/">
+                <img src={logo} width="70" height="70" class="d-inline-block align-top" alt="Company Logo" />
+                </a>
+                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon navbar-dark"></span>
                 </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Home</a>
+                <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul className="navbar-nav ml-2">
+                        <li className="nav-item">
+                            <a className="nav-link" href="/">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">About Us</a>
+                        <li className="nav-item">
+                            <a className="nav-link" href="/aboutus">About Us</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Features</a>
+                        <li className="nav-item">
+                            <a className="nav-link" href="#features">Features</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">How To</a>
+                        <li className="nav-item">
+                            <a className="nav-link" href="/howto">How To</a>
                         </li>
-                        <li class="nav-item mr-2">
-                            <a class="nav-link" href="#">Contact</a>
+                        <li className="nav-item mr-2">
+                            <a className="nav-link" href="#contact">Contact</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link btn btn-danger px-3" href="#" role="button">Login</a>
+                        <li className="nav-item">
+                            <a className="nav-link btn btn-danger px-4 py-2 text-white" href="/login" role="button">Login</a>
                         </li>
                     </ul>
                 </div>
