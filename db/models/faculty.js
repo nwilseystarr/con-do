@@ -1,7 +1,5 @@
-module.exports = function (sequelize, DataTypes) {
+module.exports = function (sequelize) {
     const Advisor = sequelize.define("advisor", {
-        name = DataTypes.STRING,
-        email = DataTypes.STRING
     }) 
 
 
