@@ -1,11 +1,11 @@
 module.exports = function (sequelize) {
-    const Committee_Staff = sequelize.define("committee_staff", {
+    const Staff = sequelize.define("Staff", {
     })
 
 
-Committee_Staff.associate = function (models) {
-    Committee_Staff.belongsTo(models.Committee_Staff);
+Staff.associate = function (models) {
+    Staff.belongsTo(models.Committee);
 }
-    return Committee_Staff;
+    return Staff;
 
 }

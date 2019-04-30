@@ -1,5 +1,5 @@
 module.exports = function (sequelize) {
-    const Advisor = sequelize.define("advisor", {
+    const Advisor = sequelize.define("Advisor", {
     }) 
 
 
