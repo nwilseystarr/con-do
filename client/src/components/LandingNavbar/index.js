@@ -30,7 +30,7 @@ class LandingNavbar extends Component {
                             <a className="nav-link" href="#contact">Contact</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link btn btn-danger px-4 py-2 text-white" href="/login" role="button">Login</a>
+                            <a className="nav-link btn btn-outline-danger px-4 py-2" href="/login" role="button">Login</a>
                         </li>
                     </ul>
                 </div>

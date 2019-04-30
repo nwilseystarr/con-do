@@ -1,0 +1,23 @@
+.carousel-caption {
+    position: absolute;
+    right: 15%;
+    bottom: 182px;
+    left: 15%;
+    z-index: 10;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #fff;
+    text-align: center;
+}
+
+.display-2 {
+    font-weight: 700;
+}
+
+.youtubeVid {
+    color: red;
+}
+
+h2 {
+    font-weight: bold;
+}
