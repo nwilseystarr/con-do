@@ -8,7 +8,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-var db = require("./models");
+const db = require("./db/models");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

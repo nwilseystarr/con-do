@@ -1,6 +1,6 @@
 module.exports = function (sequelize, DataTypes) {
-    const School = sequelize.define("school", {
-        name = DataTypes.STRING 
+    const School = sequelize.define("School", {
+        name: DataTypes.STRING 
     })
     return School;
 }
