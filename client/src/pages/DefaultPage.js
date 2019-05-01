@@ -3,22 +3,15 @@ import API from "../utils/API"
 import { Link } from "react-router-dom";
 
 class DefaultPage extends Component {
-  state = {
-    email: "",
-    name: "",
-    userType: "",
+  constructor(){
+    super()
+    this.state = {
+      email: "",
+      name: "",
+      userType: "",
+    }
   }
-  componentDidMount(){
-    this.loadUser();
-  };
 
-  loadUser = ()=>{
-    API.getUser()
-      .then(res =>{
-        console.log("response ", res.data);
-        this.setState({email: res.data.email, name: res.data.name, userType: res.data.userType});
-      });
-  }
     render(){
         return(
             <div className="App">
@@ -30,9 +23,9 @@ class DefaultPage extends Component {
               To get started, edit <code>src/App.js</code> and save to reload.
             </p>
             <p>
-              {this.state.email}
-              {this.state.name}
-              {this.state.userType}
+              {this.props.email}
+              {this.props.name}
+              {this.props.userType}
             </p>
           </div>
         )

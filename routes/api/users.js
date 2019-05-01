@@ -3,6 +3,9 @@ const userController = require("../../controllers/userController")
 const passport = require("../../db/config/passport");
 const isAuthenticated = require("../../db/config/middleware/isAuthenticated");
 
+router.route("/")
+    .get(userController.getUserById)
+    
 router.route("/signup")
     .post(userController.create)
 
@@ -12,8 +15,6 @@ router.route("/login")
 router.route("/status")
     .get(userController.status)
 
-router
-    .route("/")
-    .get(userController.getUserById)
+
 
 module.exports = router;

@@ -1,12 +1,20 @@
 import React, {Component} from "react";
 import { Link } from "react-router-dom";
 import API from "../utils/API"
+import { derToJose } from "ecdsa-sig-formatter";
 
 class Login extends Component {
-    state = {
-        email: "",
-        password: "",
+    constructor() {
+        super()
+        this.state = {
+            email: "",
+            password: "",
+            redirectTo: null
+        }
+        this.handleInputChange.bind(this)
+        this.handleFormSubmit.bind(this)
     }
+
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
@@ -20,7 +28,17 @@ class Login extends Component {
                 email: this.state.email,
                 password: this.state.password,
             })
-                .then(res => window.location.assign("/"));
+                .then(res => {
+                    console.log(res)
+                    if (res.status === 200){
+                        this.props.updateUser({
+                            loggedIn: true,
+                            email: res.data.email,
+                            name: res.data.name,
+                            userType: res.data.userType
+                        })
+                    }
+                });
         }
     }
     render(){
