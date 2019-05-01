@@ -16,11 +16,11 @@ if (process.env.NODE_ENV === "production") {
 }
 
 const bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use(express.json());
 
-app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true,
-  cookie : { secure : false, maxAge : (4 * 60 * 60 * 1000) }}));
+app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 // passport.serializeUser(function(user, cb) {
@@ -34,13 +34,13 @@ app.use(passport.session());
 // });
 
 app.use(routes);
-app.use( (req, res, next) => {
-  console.log('req.session', req.session);
-  next()
-});
+// app.use( (req, res, next) => {
+//   console.log('req.session', req.session);
+//   next()
+// });
 
 
-require("./attendanceRoutes/apiRoutes")(app);
+// require("./attendanceRoutes/apiRoutes")(app);
 // require("./attendanceRoutes/htmlRoutes")(app);
 
 db.sequelize.sync({ force: false }).then(function () {

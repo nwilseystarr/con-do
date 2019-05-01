@@ -17,13 +17,50 @@ const PrivateRoute = ({ component: Component, ...rest })=> (
   )} />
 )
 class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      loggedIn: false,
+      email: null,
+      name: null,
+      userType: null
+    }
+
+    this.getUser = this.getUser.bind(this)
+    this.componentDidMount = this.componentDidMount.bind(this)
+    this.updateUser = this.updateUser.bind(this)
+  }
+
+  componentDidMount = ()=>{
+    this.getUser()
+  }
+
+  updateUser = (userObject)=>{
+    this.setState(userObject)
+  }
+
+  getUser = ()=>{
+    API.getUser()
+    .then(res =>{
+      if (res.status === 200){
+        this.setState({
+          email: res.data.email,
+          name: res.data.name,
+          userType: res.data.userType,
+          loggedIn: true
+        });
+      }
+
+      
+    });
+  }
   render() {
     return (
       <Router>
         <div>
           <Switch>
-            <Route exact path="/" component={DefaultPage}/>
-            <Route exact path="/login" component={Login} />
+            <Route exact path="/" component={()=> <DefaultPage email={this.state.email} name={this.state.name} userType={this.state.userType}/>}/>
+            <Route exact path="/login" component={()=> <Login updateUser={this.updateUser}/>} />
             <Route exact path="/signup" component={Signup} />
             <PrivateRoute exact path="/protected" component={ProtectedPage} />
           </Switch>
