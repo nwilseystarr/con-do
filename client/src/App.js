@@ -64,17 +64,16 @@ class App extends Component {
             <Route component={ErrorPage} />
           </Switch>
       </Router>
-      <Router>
-        <div>
-          <Switch>
-            <Route exact path="/" component={()=> <DefaultPage email={this.state.email} name={this.state.name} userType={this.state.userType}/>}/>
-            <Route exact path="/login" component={()=> <Login updateUser={this.updateUser}/>} />
-            <Route exact path="/signup" component={Signup} />
-            <PrivateRoute exact path="/protected" component={ProtectedPage} />
-          </Switch>
-        </div>
-      </Router>
-
+      // <Router>
+      //   <div>
+      //     <Switch>
+      //       <Route exact path="/" component={()=> <DefaultPage email={this.state.email} name={this.state.name} userType={this.state.userType}/>}/>
+      //       <Route exact path="/login" component={()=> <Login updateUser={this.updateUser}/>} />
+      //       <Route exact path="/signup" component={Signup} />
+      //       <PrivateRoute exact path="/protected" component={ProtectedPage} />
+      //     </Switch>
+      //   </div>
+      // </Router>
     );
   }
 }

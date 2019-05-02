@@ -20,12 +20,6 @@
     "nodemon": "^1.18.7"
   },
   "dependencies": {
-<<<<<<< HEAD
-    "create-react-context": "^0.2.3",
-    "express": "^4.16.3",
-    "if-env": "^1.0.4",
-    "react-router-dom": "^5.0.0"
-=======
     "axios": "^0.18.0",
     "bcrypt-nodejs": "^0.0.3",
     "body-parser": "^1.19.0",
@@ -41,6 +35,5 @@
     "react": "^16.8.6",
     "react-router-dom": "^5.0.0",
     "sequelize": "^5.8.0"
->>>>>>> 1cdb4d82e9c83f839b227c2a12981707b938bb70
   }
 }
