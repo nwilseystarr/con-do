@@ -1,18 +1,17 @@
 import React, { Component } from "react";
-import LandingNavbar from "./components/LandingNavbar";
-import FeatureCard from "./components/FeatureCard";
-import ContactForm from "./components/ContactForm";
-import Carousel from "./components/Carousel";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import LandingPage from "./pages/LandingPage";
+import ErrorPage from "./pages/ErrorPage";
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <LandingNavbar />
-        <Carousel />
-        <FeatureCard />
-        <ContactForm />
-      </div>
+      <Router>
+        <Switch>
+            <Route exact path="/" component={LandingPage} />
+            <Route component={ErrorPage} />
+          </Switch>
+      </Router>
     );
   }
 }
