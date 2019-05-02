@@ -1,14 +1,11 @@
-const Sequelize = require("sequelize");
-const Committee = require("./committee");
-const sequelize = require("../config/connection.js");
+module.exports = function (sequelize) {
 
-const Committee_Staff = sequelize.define("committee_staff", {
-    name = Sequelize.STRING,
-    email = Sequelize.STRING,
+const Staff = sequelize.define("Staff", {
+
 })
 
-Committee_Staff.belongsTo(Committee);
-
-Committee_Staff.sync();
-
-module.exports = Committee_Staff;
+Staff.associate = function (models) {
+    Staff.belongsTo(models.Committee);
+}
+    return Staff;
+}

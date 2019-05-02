@@ -1,11 +1,8 @@
-const Sequelize = require("sequelize");
-const sequelize = require("../config/connection.js");
+module.exports = function (sequelize) {
+    const Admin = sequelize.define("Admin", {
+    })
+    return Admin;
+}
 
-const Admin = sequlize.define("admin", {
-    name = Sequelize.STRING,
-    email = Sequelize.STRING
-})
 
-Admin.sync();
 
-module.exports = Admin;

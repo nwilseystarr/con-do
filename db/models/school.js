@@ -1,13 +1,9 @@
-const Sequelize = require("sequelize");
-const School = require("./school");
-const sequelize = require("../config/connection.js");
+module.exports = function (sequelize, DataTypes) {
+    const School = sequelize.define("School", {
+        name: DataTypes.STRING 
+    })
+    return School;
+}
 
-const School = sequelize.define("school", {
-    name = Sequelize.STRING 
-})
 
 // School.hasMany(); - can reverse link to other tables
-
-School.sync();
-
-module.exports = School;
