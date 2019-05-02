@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export default {
+    //User Axios Calls
     createUser: function(userData){
         return axios.post("/api/users/signup", userData);
     },
@@ -12,5 +13,14 @@ export default {
     },
     getUser: function(){
         return axios.get("/api/users")
+    },
+
+    //Committee Axios Calls
+    getCommitteeByName: function(name){
+        return axios.get("/api/committees/" + name)
+    },
+    //School Axios Calls
+    getSchoolByName: function(name){
+        return axios.get("/api/schools/" + name)
     }
 }
