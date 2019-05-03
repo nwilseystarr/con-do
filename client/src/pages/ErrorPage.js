@@ -5,9 +5,9 @@ class ErrorPage extends Component {
         return (
             <div className="container">
                 <div className="row">
-                    <div className="col">
+                    <div className="col text-center mt-5">
                         <h1>404</h1>
-                        <h2>Page Not Found</h2>
+                        <h3>Page Not Found</h3>
                     </div>
                 </div>
             </div>
