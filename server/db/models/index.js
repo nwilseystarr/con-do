@@ -4,7 +4,7 @@ const Measures = require("./measures");
 const School = require("./school");
 const User = require("./user");
 
-module.export = {
+module.exports = {
     Committee,
     Events,
     Measures,
