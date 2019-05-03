@@ -1,2 +1,0 @@
-DROP DATABASE IF EXISTS `condo_db`;
-CREATE DATABASE `condo_db`;
