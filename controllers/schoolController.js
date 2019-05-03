@@ -1,6 +1,6 @@
-const db = require("../db/models");
-const passport = require("../db/config/passport");
-const isAuthenticated = require("../db/config/middleware/isAuthenticated");
+const db = require("../server/db/models");
+const passport = require("../server/db/config/passport");
+const isAuthenticated = require("../server/db/config/middleware/isAuthenticated");
 
 module.exports ={
     all: function(req, res){

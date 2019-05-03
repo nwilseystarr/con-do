@@ -2,12 +2,12 @@ const express = require("express");
 const path = require("path");
 const session = require("express-session");
 // Our passport implementation
-const passport = require("./db/config/passport")
+const passport = require("./server/db/config/passport")
 // PORT and Models
 const PORT = process.env.PORT || 3001;
-const db = require("./db/models");
+const db = require("./server/db/db");
 // Routes
-const routes = require("./routes");
+const routes = require("./server/routes");
 
 let app = express();
 
@@ -33,7 +33,7 @@ app.use(routes);
 // require("./attendanceRoutes/apiRoutes")(app);
 // require("./attendanceRoutes/htmlRoutes")(app);
 
-db.sequelize.sync({ force: false }).then(function () {
+db.sync({ force: true}).then(function () {
   app.listen(PORT, function () {
     console.log(`🌎 ==> API server now on port ${PORT}!`);
   });
