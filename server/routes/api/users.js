@@ -2,9 +2,9 @@
 //it uses the userController to relate to our database
 
 const router = require("express").Router();
-const userController = require("../../controllers/userController")
-const passport = require("../../db/config/passport");
-const isAuthenticated = require("../../db/config/middleware/isAuthenticated");
+const userController = require("../../../controllers/userController")
+const passport = require("../../../server/db/config/passport");
+const isAuthenticated = require("../../../server/db/config/middleware/isAuthenticated");
 
 // /api/users
 router.route("/")

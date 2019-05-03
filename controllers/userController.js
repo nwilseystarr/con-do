@@ -1,8 +1,8 @@
-const db = require("../db/models");
-const passport = require("../db/config/passport");
-const isAuthenticated = require("../db/config/middleware/isAuthenticated");
+const db = require("../server/db/models");
+const passport = require("../server/db/config/passport");
+const isAuthenticated = require("../server/db/config/middleware/isAuthenticated");
 const JWT = require("jsonwebtoken");
-const Mailer = require("../db/config/mailer")
+const Mailer = require("../server/db/config/mailer")
 
 
 module.exports ={
