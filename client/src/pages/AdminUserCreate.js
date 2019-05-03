@@ -43,19 +43,19 @@ class CreateDelegate extends Component {
         });
     };
     //on submit we attempt to create a new user with the given values via the API that hits a route that queries our database
-    handleFormSubmit = async event =>{
+    handleFormSubmit = event =>{
         event.preventDefault();
       
-        if (this.state.email && this.state.password && this.state.name && this.state.userType){
+        if (this.state.email && this.state.name && this.state.userType){
           //getting the committeId and schoolId from the database which users will be related to via a foreign key
-          let committeeId = await API.getCommitteeByName(this.state.committee).then(res=> {
-           return res.data.id
-          })
-          let schoolId = await API.getSchoolByName(this.state.school).then(res=> {
-           return res.data.id
-          })
+          // let committeeId = await API.getCommitteeByName(this.state.committee).then(res=> {
+          //  return res.data.id
+          // })
+          // let schoolId = await API.getSchoolByName(this.state.school).then(res=> {
+          //  return res.data.id
+          // })
           //creating the new user
-          await API.createUser({
+          API.createUser({
               email: this.state.email,
               name: this.state.name,
               userType: this.state.userType,
