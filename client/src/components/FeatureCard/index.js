@@ -3,10 +3,10 @@ import React, { Component } from "react";
 class FeatureCard extends Component {
     render() {
         return (
-            <div className="mt-5">
+            <div className="container-fluid mt-5">
                 <div className="row text-center">
                     <div className="col">
-                        <p className="display-4">Features</p>
+                        <h1 className="display-4">Features</h1>
                     </div>
                 </div>
                 <div className="row justify-content-center">
