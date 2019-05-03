@@ -6,9 +6,10 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import DefaultPage from "./pages/DefaultPage";
 import ProtectedPage from "./pages/ProtectedPage";
-import CreateDelegates from "./pages/CreateDelegate";
+import VerifyUser from "./pages/Verify"
 import API from "./utils/API";
-import CreateDelegate from "./pages/CreateDelegate";
+import AdminUserCreate from "./pages/AdminUserCreate";
+import { Verify } from "crypto";
 // import isAuthenticated from "../db/config/middleware/isAuthenticated"
 console.log(API.isAuthenticated)
 let getAuth = async()=>{
@@ -72,11 +73,12 @@ class App extends Component {
       <Router>
         <div>
           <Switch>
-            <Route exact path="/" component={()=> <DefaultPage email={this.state.email} name={this.state.name} userType={this.state.userType}/>}/>
+            <Route exact path="/" component={()=> <DefaultPage updateUser={this.updateUser} email={this.state.email} name={this.state.name} userType={this.state.userType}/>}/>
             <Route exact path="/login" component={()=> <Login updateUser={this.updateUser}/>} />
             <Route exact path="/signup" component={Signup} />
-            <Route exact path="/createdelegate" component={CreateDelegate} />
-            <PrivateRoute exact path="/protected" component={ProtectedPage} />
+            <Route exact path="/createuser" component={AdminUserCreate} />
+            <Route path="/verify/:token" component={VerifyUser}/>
+            <PrivateRoute exact path="/protected" component={()=><ProtectedPage updateUser={this.updateUser}/>} />
           </Switch>
         </div>
       </Router>

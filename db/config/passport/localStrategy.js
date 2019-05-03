@@ -11,7 +11,6 @@ const strategy = new LocalStrategy(
   },
   function(email, password, done) {
     // When a user tries to sign in this code runs
-    console.log(email, " ", password)
     db.User.findOne({
       where: {
         email: email
@@ -26,7 +25,6 @@ const strategy = new LocalStrategy(
       }
       // If there is a user with the given email, but the password the user gives us is incorrect
       else if (!dbUser.validPassword(password)) {
-        // console.log(dbUser);
         return done(null, false, {
           message: "Incorrect password."
         });

@@ -9,12 +9,17 @@ const isAuthenticated = require("../../db/config/middleware/isAuthenticated");
 // /api/users
 router.route("/")
     .get(userController.getUserById)
+    
 // /api/users/signup    
 router.route("/signup")
     .post(userController.create)
+
 // /api/users/login
 router.route("/login")
     .post(passport.authenticate("local"), userController.login)
+router.route("/login/:token")
+    .get(userController.linkLogin)
+
 // /api/users/status
 router.route("/status")
     .get(userController.status)

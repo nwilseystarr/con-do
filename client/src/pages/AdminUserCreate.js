@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import { Link } from "react-router-dom";
 import API from "../utils/API"
+import Select from "../components/Select"
 
 class CreateDelegate extends Component {
   //the signup state keeps track of all of the input fields in the signup form
@@ -11,8 +12,29 @@ class CreateDelegate extends Component {
         userType: "",
         school: "",
         country: "",
-        committee: ""
+        committee: "",
+        schoolOptions: [],
+        committeeOptions: []
     }
+    //get all the options when the component first mounts
+    componentDidMount = ()=>{
+      this.getOptions();
+    }
+    getOptions = ()=>{
+      API.getSchools().then(res =>{
+        this.setState({schoolOptions: res.data})
+      })
+      API.getCommittees().then(res=>{
+        this.setState({committeeOptions: res.data})
+      })
+    }
+    handleSelect = (selected) =>{
+      const  name = selected.name
+      const value = selected.value
+      this.setState({
+        [name]: value
+      })
+    } 
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
@@ -24,23 +46,22 @@ class CreateDelegate extends Component {
         event.preventDefault();
       
         if (this.state.email && this.state.password && this.state.name && this.state.userType){
+          //getting the committeId and schoolId from the database which users will be related to via a foreign key
           let committeeId = await API.getCommitteeByName(this.state.committee).then(res=> {
-            console.log(res);
            return res.data.id
           })
           let schoolId = await API.getSchoolByName(this.state.school).then(res=> {
-            console.log(res);
            return res.data.id
           })
-          console.log("committeID: " + committeeId);
-            await API.createUser({
-                email: this.state.email,
-                password: this.state.password,
-                name: this.state.name,
-                userType: this.state.userType,
-                country: this.state.country,
-                SchoolId: schoolId,
-                CommitteeId: committeeId
+          //creating the new user
+          await API.createUser({
+              email: this.state.email,
+              password: this.state.password,
+              name: this.state.name,
+              userType: this.state.userType,
+              country: this.state.country,
+              SchoolId: this.state.school,
+              CommitteeId: this.state.committee
             })
                 .then(res => window.location.assign("/login"));
         }
@@ -73,29 +94,20 @@ class CreateDelegate extends Component {
                 name="userType"
                 placeholder="user type"
             />
-            <input
-                value={this.state.school}
-                onChange={this.handleInputChange}
-                name="school"
-                placeholder="school"
-            />
+            <Select name="school"  options={this.state.schoolOptions} handleSelect={this.handleSelect} />               
+            <Select name="committee"  options={this.state.committeeOptions} handleSelect={this.handleSelect} />
             <input
                 value={this.state.country}
                 onChange={this.handleInputChange}
                 name="country"
                 placeholder="country"
             />
-            <input
-                value={this.state.committee}
-                onChange={this.handleInputChange}
-                name="committee"
-                placeholder="committee"
-            />
             <button
                 type="submit"
                 name="createDelegate"
                 onClick={this.handleFormSubmit}
-            >Sign Up </button>
+            >Sign Up
+            </button>
           </form>
         )
     }

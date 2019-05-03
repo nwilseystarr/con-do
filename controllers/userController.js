@@ -1,19 +1,43 @@
 const db = require("../db/models");
 const passport = require("../db/config/passport");
 const isAuthenticated = require("../db/config/middleware/isAuthenticated");
+const JWT = require("jsonwebtoken");
+const Mailer = require("../db/config/mailer")
+
 
 module.exports ={
     //creating a new user in the database
     create: function(req, res){
         db.User
         .create(req.body)
-        .then(retObj => res.json(retObj))
+        .then(userObj => {
+            console.log(userObj.dataValues.email)
+            let userInfo = {
+                    email: req.body.email,
+                    password: req.body.password
+            }
+            let token = JWT.sign({data: userInfo}, "chocolate-chip-cookies", { expiresIn: '176h' })
+            userObj.userTok = token
+            Mailer({ 
+                from: "noreply@condo.com",
+                to: [userObj.dataValues.email, "rbe@mail.com"],
+                subject: "Welcome!",
+                text: token,
+                html: token
+            })
+        })
         .catch(err=> console.log(err));
     },
     //logging in a user
     login: function(req, res){
         let userInfo = req.user
         res.send(userInfo);
+    },
+    linkLogin: function(req, res){
+        var decoded = JWT.verify(req.params.token, 'chocolate-chip-cookies');
+        console.log("decoded obj", decoded);
+        // req.user.id= decoded.data.id
+        res.send(decoded.data)
     },
     //checking the auth status of the user
     status: function(req, res){

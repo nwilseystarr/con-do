@@ -1,5 +1,6 @@
 const passport = require('passport')
 const LocalStrategy = require("./localStrategy")
+
 var db = require("../../models");
 
 //boilerplate code for keeping track of the user's auth status with the session
