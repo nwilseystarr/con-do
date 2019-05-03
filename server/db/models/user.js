@@ -1,5 +1,7 @@
 const bcrypt = require("bcrypt-nodejs");
 const Sequelize = require("sequelize");
+const School = require("./School")
+const Committee = require("./Committee")
 const db = require("../db")
 
 const User = db.define("User", {
@@ -34,9 +36,11 @@ User.prototype.validPassword = function(password){
     }
 User.beforeCreate(function(user){
     user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
+})
+User.beforeUpdate(function(user){
+    user.password = bcypt.hashSync(user.password,  bcrypt.genSaltSync(10), null)
 })    
-User.associate = function (models) {
-    User.belongsTo(models.School);
-    User.belongsTo(models.Committee);
-}
+    User.belongsTo(School);
+    User.belongsTo(Committee);
+
 module.exports = User;        
