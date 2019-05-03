@@ -1,11 +1,25 @@
+const db = require("../../db/models");
 const router = require("express").Router();
 const committeeController = require("../../../controllers/committeeController");
 const passport = require("../../db/config/passport");
 const isAuthenticated = require("../../db/config/middleware/isAuthenticated");
 
 router.route("/")
-    .get(committeeController.all)
+    .get(function(req, res){
+        db.Committee.findAll({})
+            .then(committeData =>{
+                res.send(committeData)
+            })
+    })
 router.route("/:name")
-    .get(committeeController.findByName)
+    .get(function(req, res){
+        db.Committee.findOne({
+            where:{
+                name: req.params.name
+            }
+        }).then(committeData => {
+            res.send(committeData) 
+        })
+    })
 
 module.exports = router;

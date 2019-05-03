@@ -4,7 +4,7 @@ const db = require("../db");
 
 // module.exports = function (sequelize, DataTypes) {
     
-const School = db.define("schools", {
+const School = db.define("School", {
         name: Sequelize.STRING 
     })
    
