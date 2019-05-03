@@ -73,22 +73,16 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <Switch>
-            <Route exact path="/" component={LandingPage} />
+          <Switch>
+            <Route exact path="/" component={LandingPage}/>
+            <Route exact path="/login" component={()=> <Login updateUser={this.updateUser}/>} />
+            <Route exact path="/signup" component={Signup} />
+            <Route exact path="/createuser" component={AdminUserCreate} />
+            <Route path="/verify/:token" component={VerifyUser}/>
+            <PrivateRoute exact path="/protected" component={()=><ProtectedPage updateUser={this.updateUser}/>} />
             <Route component={ErrorPage} />
-        </Switch>
+          </Switch>
       </Router>
-
-      // <Router>
-      //     <Switch>
-      //       <Route exact path="/" component={()=> <DefaultPage updateUser={this.updateUser} email={this.state.email} name={this.state.name} userType={this.state.userType}/>}/>
-      //       <Route exact path="/login" component={()=> <Login updateUser={this.updateUser}/>} />
-      //       <Route exact path="/signup" component={Signup} />
-      //       <Route exact path="/createuser" component={AdminUserCreate} />
-      //       <Route path="/verify/:token" component={VerifyUser}/>
-      //       <PrivateRoute exact path="/protected" component={()=><ProtectedPage updateUser={this.updateUser}/>} />
-      //     </Switch>
-      // </Router>
     );
   }
 }
