@@ -2,12 +2,18 @@ const db = require("../server/db/models");
 const passport = require("../server/db/config/passport");
 const isAuthenticated = require("../server/db/config/middleware/isAuthenticated");
 const JWT = require("jsonwebtoken");
-const Mailer = require("../server/db/config/mailer")
+const Mailer = require("../db/config/mailer")
+const generator = require("generate-password")
 
 
 module.exports ={
     //creating a new user in the database
     create: function(req, res){
+        let password = generator.generate({
+            length: 12,
+            numebers: true
+        });
+        req.body.password = password;
         db.User
         .create(req.body)
         .then(userObj => {
@@ -25,6 +31,7 @@ module.exports ={
                 text: token,
                 html: token
             })
+            res.send(userObj.dataValues)
         })
         .catch(err=> console.log(err));
     },

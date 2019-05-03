@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import LandingPage from "./pages/LandingPage";
+import ErrorPage from "./pages/ErrorPage";
 // import logo from "./logo.svg";
 import "./App.css";
 import Login from "./pages/Login";
@@ -71,18 +73,16 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div>
           <Switch>
-            <Route exact path="/" component={()=> <DefaultPage updateUser={this.updateUser} email={this.state.email} name={this.state.name} userType={this.state.userType}/>}/>
+            <Route exact path="/" component={LandingPage}/>
             <Route exact path="/login" component={()=> <Login updateUser={this.updateUser}/>} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/createuser" component={AdminUserCreate} />
             <Route path="/verify/:token" component={VerifyUser}/>
             <PrivateRoute exact path="/protected" component={()=><ProtectedPage updateUser={this.updateUser}/>} />
+            <Route component={ErrorPage} />
           </Switch>
-        </div>
       </Router>
-
     );
   }
 }

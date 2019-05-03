@@ -27,9 +27,6 @@ module.exports = (sequelize, DataTypes) =>{
         },
         country: {
             type: DataTypes.STRING,
-        },
-        userTok:{
-            type: DataTypes.STRING
         }
     });
 
