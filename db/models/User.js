@@ -24,15 +24,25 @@ module.exports = (sequelize, DataTypes) =>{
         userType: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+        country: {
+            type: DataTypes.STRING,
+        },
+        userTok:{
+            type: DataTypes.STRING
         }
     });
 
     User.prototype.validPassword = function(password){
-        return bcrypt.compareSync(password, this.password);
+            return bcrypt.compareSync(password, this.password);
     }
-
     User.beforeCreate(function(user){
         user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
     })
+    User.associate = function (models) {
+        User.belongsTo(models.School);
+        User.belongsTo(models.Committee);
+    }
     return User;
+
 }

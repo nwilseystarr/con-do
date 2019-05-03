@@ -6,6 +6,7 @@ const passport = require("./db/config/passport")
 // PORT and Models
 const PORT = process.env.PORT || 3001;
 const db = require("./db/models");
+// Routes
 const routes = require("./routes");
 
 let app = express();
@@ -19,25 +20,14 @@ const bodyParser = require('body-parser');
 
 app.use(express.json());
 
+//allowing our server to keep track of the user's auth status with session
 app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true}));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(passport.session());
-// passport.serializeUser(function(user, cb) {
-//   cb(null, user.id);
-// });
 
-// passport.deserializeUser(function(id, cb) {
-//   User.findById(id, function(err, user) {
-//     cb(err, user);
-//   });
-// });
 
 app.use(routes);
-// app.use( (req, res, next) => {
-//   console.log('req.session', req.session);
-//   next()
-// });
 
 
 // require("./attendanceRoutes/apiRoutes")(app);

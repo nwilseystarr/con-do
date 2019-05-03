@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import API from "../utils/API"
 
 class Signup extends Component {
+  //the signup state keeps track of all of the input fields in the signup form
     state = {
         email: "",
         password: "",
@@ -15,6 +16,7 @@ class Signup extends Component {
           [name]: value
         });
     };
+    //on submit we attempt to create a new user with the given values via the API that hits a route that queries our database
     handleFormSubmit = event =>{
         event.preventDefault();
         if (this.state.email && this.state.password && this.state.name && this.state.userType){

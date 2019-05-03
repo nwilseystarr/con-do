@@ -11,6 +11,24 @@ class DefaultPage extends Component {
       userType: "",
     }
   }
+  componentDidMount = ()=>{
+    this.loginViaL()
+  }
+  loginViaL = ()=>{
+    API.loginViaLink()
+      .then(res => {
+        console.log(res)
+        if (res.status === 200){
+            //updating our user state
+            this.props.updateUser({
+                loggedIn: true,
+                email: res.data.email,
+                name: res.data.name,
+                userType: res.data.userType
+            })
+        }
+    });
+  }
 
     render(){
         return(
