@@ -7,14 +7,15 @@ class CreateDelegate extends Component {
   //the signup state keeps track of all of the input fields in the signup form
     state = {
         email: "",
-        password: "",
         name: "",
-        userType: "",
+        userType: "delegate",
         school: "",
         country: "",
         committee: "",
         schoolOptions: [],
-        committeeOptions: []
+        committeeOptions: [],
+        recentName: "",
+        recentEmail: ""
     }
     //get all the options when the component first mounts
     componentDidMount = ()=>{
@@ -56,18 +57,24 @@ class CreateDelegate extends Component {
           //creating the new user
           await API.createUser({
               email: this.state.email,
-              password: this.state.password,
               name: this.state.name,
               userType: this.state.userType,
               country: this.state.country,
               SchoolId: this.state.school,
               CommitteeId: this.state.committee
             })
-                .then(res => window.location.assign("/login"));
+                .then(res => {
+                  console.log(res)
+                  this.setState({
+                    recentName: res.data.name,
+                    recentEmail: res.data.email
+                  })
+                });
         }
     }
     render(){
         return(
+          <div>
             <form>
             <input
               value={this.state.email}
@@ -76,24 +83,17 @@ class CreateDelegate extends Component {
               placeholder="email (required)"
             />
             <input
-              value={this.state.password}
-              onChange={this.handleInputChange}
-              type="password"
-              name="password"
-              placeholder="password (required)"
-            />
-            <input
               value={this.state.name}
               onChange={this.handleInputChange}
               name="name"
               placeholder="name (first and last)"
             />
-            <input
-                value={this.state.userType}
-                onChange={this.handleInputChange}
-                name="userType"
-                placeholder="user type"
-            />
+            <select value={this.state.userType} onChange={this.handleInputChange} name="userType">
+              <option value="admin">admin</option>
+              <option value="advisor">advisor</option>
+              <option value="staff">staff</option>
+              <option value="delegate">delegate</option>
+            </select>
             <Select name="school"  options={this.state.schoolOptions} handleSelect={this.handleSelect} />               
             <Select name="committee"  options={this.state.committeeOptions} handleSelect={this.handleSelect} />
             <input
@@ -109,6 +109,10 @@ class CreateDelegate extends Component {
             >Sign Up
             </button>
           </form>
+            <div>
+              <p>Account Created for {this.state.recentName}, email sent to {this.state.recentEmail}</p>
+            </div>
+          </div>
         )
     }
    
