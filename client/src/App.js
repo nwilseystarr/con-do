@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import LandingPage from "./pages/LandingPage";
-import ErrorPage from "./pages/ErrorPage";
-import AboutPage from "./pages/AboutPage";
+import LandingPage from "./components/LandingPage";
+import ErrorPage from "./components/ErrorPage";
+import AboutPage from "./components/AboutPage";
 import "./App.css";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
