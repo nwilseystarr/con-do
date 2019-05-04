@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import API from "../utils/API"
 import { derToJose } from "ecdsa-sig-formatter";
-import Navbar from "../components/Navbar";
-import LoginJumbotron from "../components/LoginJumbotron";
+import Navbar from "./Navbar";
+import LoginJumbotron from "./LoginJumbotron";
 
 class Login extends Component {
     //the state for the login component keeps track fo the email and password inputs
