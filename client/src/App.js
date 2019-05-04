@@ -6,7 +6,7 @@ import AboutPage from "./components/AboutPage";
 import "./App.css";
 import Login from "./components/LoginPage";
 import Signup from "./components/signup-page";
-import ProtectedPage from "./pages/ProtectedPage";
+import ProtectedPage from "./components/protected-page";
 import VerifyUser from "./pages/Verify";
 import API from "./utils/API";
 import CreateDelegate from "./components/CreateUserPage";
