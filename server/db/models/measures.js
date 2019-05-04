@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const db = require("../db");
 
-    const Measure = db.define("measures", {
+    const Measure = db.define("measure", {
         total_votes: Sequelize.INTEGER
     })
 
