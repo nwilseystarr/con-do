@@ -1,0 +1,60 @@
+/* CAROUSEL STYLING */
+
+.carousel-caption {
+    position: absolute;
+    right: 15%;
+    bottom: 182px;
+    left: 15%;
+    z-index: 10;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #fff;
+    text-align: center;
+}
+
+.display-2 {
+    font-weight: 700;
+}
+
+h2 {
+    font-weight: bold;
+}
+
+.youtubeVid {
+    color: red;
+}
+
+.youtubeVid:hover {
+    color: red;
+    opacity: 0.7;
+}
+
+/* ABOUT US STYLING */
+
+.fa-github {
+    color: rgb(19,46,67);
+}
+
+.fa-github:hover {
+    color: rgba(63, 85, 102, 0.87);
+    transform: translateY(1px);
+}
+
+.fa-github:active {
+    color: rgb(19,46,67);
+    transform: translateY(2px);
+}
+
+.fa-linkedin {
+    color: rgb(1,119,181);
+}
+
+.fa-linkedin:hover {
+    color: rgb(0, 82, 126);
+    transform: translateY(1px);
+}
+
+.fa-linkedin:active {
+    color: rgb(1,119,181);
+    transform: translateY(2px);
+}
