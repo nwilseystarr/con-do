@@ -68,8 +68,9 @@ router.route("/signup")
                     email: req.body.email,
                     password: req.body.password
             }
-            let token = JWT.sign({data: userInfo}, "chocolate-chip-cookies", { expiresIn: '176h' })
+            let token = JWT.sign({data: userInfo}, process.env.JWT_SECRET || "chocolate-chip-cookies", { expiresIn: '176h' })
             userObj.userTok = token
+            console.log(token)
             let message ={ 
                 from: "noreply@condo.com",
                 to: userObj.dataValues.email,
@@ -91,10 +92,27 @@ router.route("/login")
     })
 router.route("/login/:token")
     .get(function(req, res){
-        var decoded = JWT.verify(req.params.token, 'chocolate-chip-cookies');
+        var decoded = JWT.verify(req.params.token, process.env.JWT_SECRET || "chocolate-chip-cookies");
         console.log("decoded obj", decoded);
         // req.user.id= decoded.data.id
         res.send(decoded.data)
+    })
+// /api/users/updatepw
+router.route("/updatepassword")
+    .put(function(req, res){
+        console.log("updating password")
+        db.User
+            .update(
+                req.body,
+                {
+                    where:{
+                        id: req.user.id
+                    }, 
+                    individualHooks: true
+                })
+            .then(userObj =>{
+                console.log(userObj);
+            })
     })
 
 module.exports = router;

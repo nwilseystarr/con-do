@@ -23,6 +23,9 @@ export default {
         console.log("loggin in with token " + token)
         return axios.get("/api/users/login/" + token, {data:{token: token}})
     },
+    updatePW: function(password){
+        return axios.put("/api/users/updatepassword", password)
+    },
     //Committee Axios Calls
     getCommittees: function(){
         return axios.get("/api/committees")

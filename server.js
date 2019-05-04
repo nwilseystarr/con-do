@@ -33,7 +33,7 @@ app.use(routes);
 // require("./attendanceRoutes/apiRoutes")(app);
 // require("./attendanceRoutes/htmlRoutes")(app);
 
-db.sync({ force: true}).then(function () {
+db.sync({ force: false}).then(function () {
   app.listen(PORT, function () {
     console.log(`🌎 ==> API server now on port ${PORT}!`);
   });

@@ -11,6 +11,7 @@ import VerifyUser from "./components/verify";
 import API from "./utils/API";
 import CreateDelegate from "./components/CreateUserPage";
 import { Verify } from "crypto";
+import UpdatePassword from "./pages/UpdatePassword";
 // import isAuthenticated from "../db/config/middleware/isAuthenticated"
 
 console.log(API.isAuthenticated)
@@ -84,6 +85,7 @@ class App extends Component {
           <PrivateRoute exact path="/protected" component={() => <ProtectedPage updateUser={this.updateUser} />} />
           
           <Route exact path="/login" component={() => <Login updateUser={this.updateUser} />} />
+          <Route path="/updatepassword" component={UpdatePassword}/>
           
           <Route component={ErrorPage} />
         </Switch>
