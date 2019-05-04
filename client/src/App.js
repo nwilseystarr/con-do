@@ -10,6 +10,7 @@ import ProtectedPage from "./pages/ProtectedPage";
 import VerifyUser from "./pages/Verify"
 import API from "./utils/API";
 import AdminUserCreate from "./pages/AdminUserCreate";
+import Schedule from "./pages/Schedule"
 import { Verify } from "crypto";
 // import isAuthenticated from "../db/config/middleware/isAuthenticated"
 
@@ -79,6 +80,7 @@ class App extends Component {
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/createuser" component={AdminUserCreate} />
             <Route exact path="/aboutus" component={AboutPage}/>
+            <Route path="/schedule" component={Schedule}/>
             <Route path="/verify/:token" component={VerifyUser}/>
             <PrivateRoute exact path="/protected" component={()=><ProtectedPage updateUser={this.updateUser}/>} />
             <Route component={ErrorPage} />

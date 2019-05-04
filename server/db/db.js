@@ -5,7 +5,7 @@ const env = process.env.NODE_ENV || "development";
 const databaseName = "condo_db";
 
 const db = new Sequelize(
-  process.env.DATABASE_URL || `postgres://localhost:5432/${databaseName}`,
+  process.env.DATABASE_URL || `postgres://root:password@localhost:5432/${databaseName}`,
   {
     logging: false
   }

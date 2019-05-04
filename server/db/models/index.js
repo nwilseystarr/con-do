@@ -1,10 +1,10 @@
 const Committee = require("./committee");
-const Events = require("./events");
-const Measures = require("./measures");
+const Events = require("./event");
+const Measures = require("./measure");
 const School = require("./school");
 const User = require("./user");
 
-module.export = {
+module.exports = {
     Committee,
     Events,
     Measures,
