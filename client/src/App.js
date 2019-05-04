@@ -4,7 +4,7 @@ import LandingPage from "./components/LandingPage";
 import ErrorPage from "./components/error-page";
 import AboutPage from "./components/AboutPage";
 import "./App.css";
-import Login from "./components/login-page";
+import Login from "./components/LoginPage";
 import Signup from "./pages/Signup";
 import ProtectedPage from "./pages/ProtectedPage";
 import VerifyUser from "./pages/Verify";
