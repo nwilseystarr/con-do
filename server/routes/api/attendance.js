@@ -3,7 +3,8 @@ const router = require("express").Router();
 
 
 //admin route to pull all attendance
-    router.route.get("/admin", function (req, res) {
+router.route("/admin")
+    .get(function (req, res) {
         db.events.findAll({}).then(function(attendance) {
             res.send(attendance);
             //need buttons on html side to sort data
@@ -11,7 +12,8 @@ const router = require("express").Router();
     })
 
     //faculty
-    router.route.get("/faculty", function (req, res) {
+router.route("/faculty")
+    .get(function (req, res) {
         db.attendance.findAll({
             where: {
             //faculty school matches student school
@@ -21,7 +23,8 @@ const router = require("express").Router();
         })
     })
 
-    router.route.get("/staff", function (req, res) {
+router.route("/staff")
+    .get(function (req, res) {
         db.events.findAll({
             where: {
             //staff committee === delegate committee
@@ -31,7 +34,8 @@ const router = require("express").Router();
         })
     })
 
-    router.route.put("/delegate", function(req, res){
+router.route("/delegate")
+    .put(function (req, res) {
         db.eventss.update(
             { attendance: req.params.attend
             }, {
