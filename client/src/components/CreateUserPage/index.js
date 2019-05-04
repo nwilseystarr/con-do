@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import { Link } from "react-router-dom";
-import API from "../utils/API"
-import Select from "../components/Select"
+import API from "../../utils/API"
+import Select from "./select-dropdowns"
 
 class CreateDelegate extends Component {
   //the signup state keeps track of all of the input fields in the signup form
