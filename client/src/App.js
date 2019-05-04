@@ -7,7 +7,7 @@ import "./App.css";
 import Login from "./components/LoginPage";
 import Signup from "./components/signup-page";
 import ProtectedPage from "./components/protected-page";
-import VerifyUser from "./pages/Verify";
+import VerifyUser from "./components/verify";
 import API from "./utils/API";
 import CreateDelegate from "./components/CreateUserPage";
 import { Verify } from "crypto";
