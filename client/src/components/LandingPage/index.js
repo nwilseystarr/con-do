@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import Navbar from "../components/Navbar";
-import Carousel from "../components/Carousel";
-import FeatureCard from "../components/FeatureCard";
-import ContactForm from "../components/ContactForm";
+import Navbar from "../Navbar";
+import Carousel from "./carousel";
+import FeatureCard from "./feature-card";
+import ContactForm from "./contact-form";
 
 class LandingPage extends Component {
     render() {
