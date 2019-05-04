@@ -5,7 +5,7 @@ import ErrorPage from "./components/error-page";
 import AboutPage from "./components/AboutPage";
 import "./App.css";
 import Login from "./components/LoginPage";
-import Signup from "./pages/Signup";
+import Signup from "./components/signup-page";
 import ProtectedPage from "./pages/ProtectedPage";
 import VerifyUser from "./pages/Verify";
 import API from "./utils/API";
