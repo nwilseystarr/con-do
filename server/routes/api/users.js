@@ -6,7 +6,6 @@ const router = require("express").Router();
 const passport = require("../../db/config/passport/");
 const isAuthenticated = require("../../db/config/middleware/isAuthenticated");
 const JWT = require("jsonwebtoken");
-const Mailer = require("../../db/config/mailer")
 const generator = require("generate-password")
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
