@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import logo from "./logo_transparent.png";
 import "./style.css";
 
-class LandingNavbar extends Component {
+class Navbar extends Component {
     render() {
         return (
             <nav className="navbar navbar-expand-md navbar-light sticky-top border-bottom p-1 pr-3">
                 <a className="navbar-brand py-0" href="/">
-                <img src={logo} width="70" height="70" class="d-inline-block align-top" alt="Company Logo" />
+                <img src={logo} width="70" height="70" className="d-inline-block align-top" alt="Company Logo" />
                 </a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon navbar-dark"></span>
@@ -39,4 +39,4 @@ class LandingNavbar extends Component {
     }
 }
 
-export default LandingNavbar;
+export default Navbar;

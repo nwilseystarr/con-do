@@ -1,17 +1,14 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import API from "../utils/API"
-import { derToJose } from "ecdsa-sig-formatter";
-import LandingNavbar from "../components/LandingNavbar";
-import LoginJumbotron from "../components/LoginJumbotron";
+import API from "../../utils/API";
+import Navbar from "../Navbar";
 
-class Login extends Component {
+class UpdatePassword extends Component {
     //the state for the login component keeps track fo the email and password inputs
     constructor() {
         super()
         this.state = {
-            email: "",
             password: "",
+            passwordConfirm: "",
             redirectTo: null
         }
         this.handleInputChange.bind(this)
@@ -28,31 +25,20 @@ class Login extends Component {
     //with the given credentials
     handleFormSubmit = event => {
         event.preventDefault();
-        if (this.state.email && this.state.password) {
-            API.loginUser({
-                email: this.state.email,
+        if (this.state.password === this.state.passwordConfirm) {
+            API.updatePW({
                 password: this.state.password,
             })
                 .then(res => {
-                    console.log(res)
-                    if (res.status === 200) {
-                        //updating our user state
-                        this.props.updateUser({
-                            loggedIn: true,
-                            email: res.data.email,
-                            name: res.data.name,
-                            userType: res.data.userType
-                        })
-                    }
+
                 });
         }
     }
     render() {
         return (
             <div>
-                <LandingNavbar />
+                <Navbar />
                 <div className="container">
-                    <LoginJumbotron />
                     <div className="row justify-content-center">
                         <div className="col-lg-6">
                             <form>
@@ -62,10 +48,10 @@ class Login extends Component {
                                     </div>
                                     <input className="form-control border-top-0 border-left-0 border-right-0 border-dark rounded-0 px-2"
                                         aria-describedby="emailBlock"
-                                        value={this.state.email}
+                                        value={this.state.password}
                                         onChange={this.handleInputChange}
-                                        type="text"
-                                        name="email"
+                                        type="password"
+                                        name="password"
                                         placeholder="Email (required)"
                                     />
                                 </div>
@@ -74,10 +60,10 @@ class Login extends Component {
                                         <span className="pt-2 border-bottom border-dark rounded-0"><i class="fas fa-lock fa-lg"></i></span>
                                     </div>
                                     <input className="form-control border-top-0 border-left-0 border-right-0 border-dark rounded-0 px-2"
-                                        value={this.state.password}
+                                        value={this.state.passwordConfirm}
                                         onChange={this.handleInputChange}
-                                        type="password"
-                                        name="password"
+                                        type="passwordCofirm"
+                                        name="passwordConfirm"
                                         placeholder="Password (required)"
                                     />
                                 </div>
@@ -85,7 +71,7 @@ class Login extends Component {
                                     type="submit"
                                     name="login"
                                     onClick={this.handleFormSubmit}
-                                >Log In</button>
+                                >Update Password</button>
                             </form>
                         </div>
                     </div>
@@ -96,4 +82,4 @@ class Login extends Component {
     }
 
 }
-export default Login;
+export default UpdatePassword;

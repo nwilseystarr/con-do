@@ -10,19 +10,16 @@ class ContactForm extends Component {
             subject: "",
             message: ""
         };
-
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange = event => {
+    handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
             [name]: value
         });
     };
 
-    handleSubmit = event => {
+    handleFormSubmit = event => {
         event.preventDefault();
         this.setState({
             name: "",
@@ -48,6 +45,7 @@ class ContactForm extends Component {
                                     <input className="form-control border-top-0 border-left-0 border-right-0 border-dark rounded-0 px-1 pb-0"
                                         name="name"
                                         value={this.state.name}
+                                        onChange={this.handleInputChange}
                                         type="text"
                                         placeholder="First and Last Name"
                                     />
@@ -56,6 +54,7 @@ class ContactForm extends Component {
                                     <input className="form-control border-top-0 border-left-0 border-right-0 border-dark rounded-0 px-1 pb-0"
                                         name="email"
                                         value={this.state.email}
+                                        onChange={this.handleInputChange}
                                         type="text"
                                         placeholder="Email"
                                     />
@@ -65,6 +64,7 @@ class ContactForm extends Component {
                                 <input className="form-control border-top-0 border-left-0 border-right-0 border-dark rounded-0 px-1 pb-0"
                                     name="subject"
                                     value={this.state.subject}
+                                    onChange={this.handleInputChange}
                                     type="text"
                                     placeholder="Subject"
                                 />
@@ -73,17 +73,23 @@ class ContactForm extends Component {
                                 <textarea className="form-control border-dark pl-2"
                                     name="message"
                                     value={this.state.message}
+                                    onChange={this.handleInputChange}
                                     type="text"
                                     placeholder="Tell us what you need..."
                                     rows="5"
                                 />
                             </div>
-                            <button type="submit" class="btn btn-outline-dark">Submit</button>
+                            <button 
+                                className="btn btn-outline-dark"
+                                type="submit"
+                                name="contact"
+                                onClick={this.handleFormSubmit}
+                            >Submit
+                            </button>
                         </form>
                     </div>
                 </div>
             </div>
-
         );
     }
 }

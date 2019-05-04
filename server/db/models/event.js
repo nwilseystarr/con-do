@@ -10,7 +10,7 @@ const db = require("../db");
         eventCommittee: Sequelize.STRING,
         eventGroup: Sequelize.STRING,
         eventLocation: Sequelize.STRING, 
-        eventAttendance: Sequelize.JSON
+        eventAttendance: Sequelize.STRING
     })
 
 module.exports = Events;

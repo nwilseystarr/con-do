@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import API from "../utils/API"
+import API from "../../utils/API"
 import { Link } from "react-router-dom";
+
 //This component will serve as a way of generating a select input with a passed array from a parent component
 class Select extends Component {
     constructor(props){
@@ -44,4 +45,4 @@ class Select extends Component {
     }
 }
 
-export default Select
+export default Select;
