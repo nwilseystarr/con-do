@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import API from "../utils/API"
 import { derToJose } from "ecdsa-sig-formatter";
-import LandingNavbar from "../components/LandingNavbar";
+import Navbar from "../components/Navbar";
 import LoginJumbotron from "../components/LoginJumbotron";
 
 class Login extends Component {
@@ -50,7 +50,7 @@ class Login extends Component {
     render() {
         return (
             <div>
-                <LandingNavbar />
+                <Navbar />
                 <div className="container">
                     <LoginJumbotron />
                     <div className="row justify-content-center">
@@ -58,7 +58,7 @@ class Login extends Component {
                             <form>
                                 <div className="form-group input-group">
                                     <div className="input-group-prepend">
-                                        <span className="pt-2 border-bottom border-dark rounded-0"><i class="fas fa-envelope fa-lg"></i></span>
+                                        <span className="pt-2 border-bottom border-dark rounded-0"><i className="fas fa-envelope fa-lg"></i></span>
                                     </div>
                                     <input className="form-control border-top-0 border-left-0 border-right-0 border-dark rounded-0 px-2"
                                         aria-describedby="emailBlock"
@@ -71,7 +71,7 @@ class Login extends Component {
                                 </div>
                                 <div className="form-group input-group">
                                     <div className="input-group-prepend">
-                                        <span className="pt-2 border-bottom border-dark rounded-0"><i class="fas fa-lock fa-lg"></i></span>
+                                        <span className="pt-2 border-bottom border-dark rounded-0"><i className="fas fa-lock fa-lg"></i></span>
                                     </div>
                                     <input className="form-control border-top-0 border-left-0 border-right-0 border-dark rounded-0 px-2"
                                         value={this.state.password}

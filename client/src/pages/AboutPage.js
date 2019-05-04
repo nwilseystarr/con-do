@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import LandingNavbar from "../components/LandingNavbar";
+import Navbar from "../components/Navbar";
 import AboutCard from "../components/AboutCard";
 
 class AboutPage extends Component {
     render() {
         return (
             <div>
-                <LandingNavbar />
+                <Navbar />
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-lg-3 align-self-center">

@@ -78,7 +78,7 @@ class ContactForm extends Component {
                                     rows="5"
                                 />
                             </div>
-                            <button type="submit" class="btn btn-outline-dark">Submit</button>
+                            <button type="submit" className="btn btn-outline-dark">Submit</button>
                         </form>
                     </div>
                 </div>

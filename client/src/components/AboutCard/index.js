@@ -18,8 +18,8 @@ class AboutCard extends Component {
                                 <div className="col align-self-center">
                                     <div className="card-body">
                                         <p className="h3 card-title">Brendan Kelly</p>
-                                        <a href="https://github.com/dagreatbrendino" className="github-link mr-2"><i class="fab fa-github fa-lg"></i></a>
-                                        <a href="https://www.linkedin.com/in/brendan-kelly-133640106/" className="linkedin-link"><i class="fab fa-linkedin fa-lg"></i></a>
+                                        <a href="https://github.com/dagreatbrendino" className="github-link mr-2"><i className="fab fa-github fa-lg"></i></a>
+                                        <a href="https://www.linkedin.com/in/brendan-kelly-133640106/" className="linkedin-link"><i className="fab fa-linkedin fa-lg"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -34,8 +34,8 @@ class AboutCard extends Component {
                                 <div className="col align-self-center">
                                     <div className="card-body">
                                         <p className="h3 card-title">Nicole Wilsey-Starr</p>
-                                        <a href="https://github.com/nwilseystarr" className="github-link mr-2"><i class="fab fa-github fa-lg"></i></a>
-                                        <a href="https://www.linkedin.com/in/nicolewilsey/" className="linkedin-link"><i class="fab fa-linkedin fa-lg"></i></a>
+                                        <a href="https://github.com/nwilseystarr" className="github-link mr-2"><i className="fab fa-github fa-lg"></i></a>
+                                        <a href="https://www.linkedin.com/in/nicolewilsey/" className="linkedin-link"><i className="fab fa-linkedin fa-lg"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -52,8 +52,8 @@ class AboutCard extends Component {
                                 <div className="col align-self-center">
                                     <div className="card-body">
                                         <p className="h3 card-title">Karen Shea</p>
-                                        <a href="https://github.com/ks563" className="github-link mr-2"><i class="fab fa-github fa-lg"></i></a>
-                                        <a href="https://www.linkedin.com/in/karenmshea/" className="linkedin-link"><i class="fab fa-linkedin fa-lg"></i></a>
+                                        <a href="https://github.com/ks563" className="github-link mr-2"><i className="fab fa-github fa-lg"></i></a>
+                                        <a href="https://www.linkedin.com/in/karenmshea/" className="linkedin-link"><i className="fab fa-linkedin fa-lg"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -68,8 +68,8 @@ class AboutCard extends Component {
                                 <div className="col align-self-center">
                                     <div className="card-body">
                                         <p className="h3 card-title">Leah Morris</p>
-                                        <a href="https://github.com/morris-leaha" className="github-link mr-2"><i class="fab fa-github fa-lg"></i></a>
-                                        <a href="https://www.linkedin.com/in/morris-leaha/" className="linkedin-link"><i class="fab fa-linkedin fa-lg"></i></a>
+                                        <a href="https://github.com/morris-leaha" className="github-link mr-2"><i className="fab fa-github fa-lg"></i></a>
+                                        <a href="https://www.linkedin.com/in/morris-leaha/" className="linkedin-link"><i className="fab fa-linkedin fa-lg"></i></a>
                                     </div>
                                 </div>
                             </div>
