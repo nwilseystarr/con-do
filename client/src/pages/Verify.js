@@ -22,7 +22,7 @@ class Login extends Component {
                     //this route will log in the user via the passport authentication using the jswonwebtoken
                     API.loginUser({email: res.data.email, password: res.data.password})
                     //send the user to the page where they will configure their password
-                    window.location.assign("/")
+                    window.location.assign("/updatepw")
                     if (res.status === 200){
                     }
                 });
