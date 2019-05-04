@@ -1,3 +1,4 @@
+const db = require("../../db/models")
 const router = require("express").Router();
 const passport = require("../../../server/db/config/passport");
 const isAuthenticated = require("../../db/config/middleware/isAuthenticated");

@@ -38,7 +38,9 @@ User.beforeCreate(function(user){
     user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
 })
 User.beforeUpdate(function(user){
-    user.password = bcypt.hashSync(user.password,  bcrypt.genSaltSync(10), null)
+    console.log("Calling before update", user)
+    user.password = bcrypt.hashSync(user.password,  bcrypt.genSaltSync(10), null)
+    console.log(user.password)
 })    
     User.belongsTo(School);
     User.belongsTo(Committee);
