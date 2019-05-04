@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import API from "../utils/API"
-import LandingNavbar from "../components/LandingNavbar";
-import LoginJumbotron from "../components/LoginJumbotron";
+import API from "../../utils/API";
+import Navbar from "../Navbar";
 
 class UpdatePassword extends Component {
     //the state for the login component keeps track fo the email and password inputs
@@ -38,9 +37,8 @@ class UpdatePassword extends Component {
     render() {
         return (
             <div>
-                <LandingNavbar />
+                <Navbar />
                 <div className="container">
-                    <LoginJumbotron />
                     <div className="row justify-content-center">
                         <div className="col-lg-6">
                             <form>

@@ -11,7 +11,7 @@ import VerifyUser from "./components/verify";
 import API from "./utils/API";
 import CreateDelegate from "./components/CreateUserPage";
 import { Verify } from "crypto";
-import UpdatePassword from "./pages/UpdatePassword";
+import UpdatePassword from "./components/Dashboard/update-password";
 // import isAuthenticated from "../db/config/middleware/isAuthenticated"
 
 console.log(API.isAuthenticated)
