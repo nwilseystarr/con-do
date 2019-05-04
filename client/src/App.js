@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import LandingPage from "./components/LandingPage";
-import ErrorPage from "./components/ErrorPage";
+import ErrorPage from "./components/error-page";
 import AboutPage from "./components/AboutPage";
 import "./App.css";
 import Login from "./pages/Login";
