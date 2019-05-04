@@ -4,8 +4,22 @@ const passport = require("../../../server/db/config/passport");
 const isAuthenticated = require("../../db/config/middleware/isAuthenticated");
 
 router.route("/")
-    .get(schoolController.all)
+    .get(function(req, res){
+        db.School.findAll({})
+            .then(schoolData => {
+                res.send(schoolData)
+            })
+    })
 router.route("/:name")
-    .get(schoolController.findByName)
+    .get(function(req, res){
+        db.School.findOne({
+            where:{
+                name: req.params.name
+            }
+        }).then(schoolData => {
+            console.log("school" + schoolData)
+            res.send(schoolData) 
+        });
+    })
 
 module.exports = router;
