@@ -19,6 +19,15 @@ export default {
     getUser: function(){
         return axios.get("/api/users")
     },
+    getUsersByName: function(query){
+        return axios.get(`/api/users/querybyname/${query}`)
+    },
+    getUsersByCommittee: function(query){
+        return axios.get(`/api/users/querybycommittee/${query}`)
+    },
+    getUsersBySchool: function(query){
+        return axios.get(`/api/users/querybyschool/${query}`)
+    },
     loginViaLink: function(token){
         console.log("loggin in with token " + token)
         return axios.get("/api/users/login/" + token, {data:{token: token}})
@@ -33,11 +42,23 @@ export default {
     getCommitteeByName: function(name){
         return axios.get("/api/committees/" + name)
     },
+    getCommitteeIds: function(query){
+        return axios.get("/api/committees/queried/" +query)
+    },
+    addCommittee: function(committeeForm){
+        return axios.post("/api/committees/add", committeeForm)
+    },
     //School Axios Calls
     getSchools: function(){
         return axios.get("/api/schools")
     },
     getSchoolByName: function(name){
         return axios.get("/api/schools/" + name)
-    }
+    },  
+    getSchoolIds: function(query){
+        return axios.get("/api/schools/queried/" +query)
+    },
+    addSchool: function(schoolForm){
+        return axios.post("/api/schools/add", schoolForm)
+    },
 }
