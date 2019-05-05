@@ -1,5 +1,6 @@
 const Sequelize = require("sequelize");
 const db = require("../db");
+const Committee = require("./committee");
 
 
     const Events = db.define("event", {
@@ -12,5 +13,7 @@ const db = require("../db");
         eventLocation: Sequelize.STRING, 
         eventAttendance: Sequelize.STRING
     })
+
+Events.belongsTo(Committee);
 
 module.exports = Events;
