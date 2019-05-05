@@ -3,7 +3,7 @@ import axios from "axios";
 export default {
     //User Axios Calls
     createUser: function(userData){
-        return axios.post("/api/users/signup", userData);
+        return axios.post("/api/users/create", userData);
     },
     loginUser: function(loginForm){
         console.log(loginForm)

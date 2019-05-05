@@ -32,6 +32,7 @@ class Login extends Component {
             API.loginUser({
                 email: this.state.email,
                 password: this.state.password,
+                firstLog: false
             })
                 .then(res => {
                     console.log(res)
@@ -43,6 +44,7 @@ class Login extends Component {
                             name: res.data.name,
                             userType: res.data.userType
                         })
+                        window.location.assign("/")
                     }
                 });
         }

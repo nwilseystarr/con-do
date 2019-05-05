@@ -2,11 +2,12 @@ import React, {Component} from "react";
 import { Link } from "react-router-dom";
 import API from "../utils/API"
 import { derToJose } from "ecdsa-sig-formatter";
+import Loading from "./Loading"
 
 class Login extends Component {
     //the state for the login component keeps track fo the email and password inputs
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
 
         }
@@ -21,10 +22,9 @@ class Login extends Component {
                 .then(res => {
                     //this route will log in the user via the passport authentication using the jswonwebtoken
                     API.loginUser({email: res.data.email, password: res.data.password})
+                 
                     //send the user to the page where they will configure their password
-                    window.location.assign("/updatepw")
-                    if (res.status === 200){
-                    }
+                    window.location.assign("/updatepassword")
                 });
     }
     componentDidMount = ()=>{
@@ -32,7 +32,13 @@ class Login extends Component {
     }
     render(){
         return(
-            <h1>Redirecting...</h1>
+            <div className="container">
+                <div className="row">
+                    <div className="col text-center mt-5">
+                        <Loading/>
+                    </div>
+                </div>
+            </div>
         )
     }
    

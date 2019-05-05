@@ -26,11 +26,12 @@ class UpdatePassword extends Component {
     handleFormSubmit = event => {
         event.preventDefault();
         if (this.state.password === this.state.passwordConfirm) {
+            //once the userupdates their password we can clear first log
             API.updatePW({
-                password: this.state.password,
+                password: this.state.password, firstLog: false
             })
                 .then(res => {
-
+                    window.location.assign("/")
                 });
         }
     }
@@ -41,6 +42,7 @@ class UpdatePassword extends Component {
                 <div className="container">
                     <div className="row justify-content-center">
                         <div className="col-lg-6">
+                            {this.state.password === this.state.passwordConfirm ? <div></div>  : <div>Passwords Must Match!</div>}
                             <form>
                                 <div className="form-group input-group">
                                     <div className="input-group-prepend">
@@ -52,7 +54,7 @@ class UpdatePassword extends Component {
                                         onChange={this.handleInputChange}
                                         type="password"
                                         name="password"
-                                        placeholder="Email (required)"
+                                        placeholder="Password(required)"
                                     />
                                 </div>
                                 <div className="form-group input-group">
@@ -62,9 +64,9 @@ class UpdatePassword extends Component {
                                     <input className="form-control border-top-0 border-left-0 border-right-0 border-dark rounded-0 px-2"
                                         value={this.state.passwordConfirm}
                                         onChange={this.handleInputChange}
-                                        type="passwordCofirm"
+                                        type="password"
                                         name="passwordConfirm"
-                                        placeholder="Password (required)"
+                                        placeholder="Confirm (required)"
                                     />
                                 </div>
                                 <button className="btn btn-outline-dark px-3"
