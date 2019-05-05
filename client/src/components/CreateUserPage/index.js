@@ -19,7 +19,9 @@ class CreateUser extends Component {
       schoolOptions: [],
       committeeOptions: [],
       recentName: "",
-      recentEmail: ""
+      recentEmail: "",
+      committeeAddInput: "",
+      schoolAddInput: ""
     }
   
   }
@@ -68,7 +70,11 @@ class CreateUser extends Component {
                   console.log(res)
                   this.setState({
                     recentName: res.data.name,
-                    recentEmail: res.data.email
+                    recentEmail: res.data.email,
+                    email: "",
+                    name: "",
+                    userType: "delegate",
+                    country: "",
                   })
                 });
           }
@@ -91,9 +97,36 @@ class CreateUser extends Component {
           
         }
     }
+    //handling submit for committee add
+    handleAddCommittee = event =>{
+      event.preventDefault()
+      if (this.state.committeeAddInput){
+        API.addCommittee({name: this.state.committeeAddInput})
+          .then(res =>{
+            console.log(res)
+            this.setState({
+              committeeAddInput: ""
+            })
+            this.getOptions()
+          })
+      }
+    }
+    handleAddSchool = event =>{
+      event.preventDefault()
+      if (this.state.schoolAddInput){
+        API.addSchool({name: this.state.schoolAddInput})
+          .then(res =>{
+            console.log(res)
+            this.setState({
+              schoolAddInput: ""
+            })
+            this.getOptions()
+          })
+      }
+    }
     render(){
         return(
-          this.props.userType ==="admin" ?
+          this.props.userType ==="admin" || this.props.userType ==="advisor"?
           <div>
             <form>
             <input
@@ -138,6 +171,53 @@ class CreateUser extends Component {
             <div>
               <p>Account Created for {this.state.recentName}, email sent to {this.state.recentEmail}</p>
             </div>
+            {this.props.userType ==="admin" ? 
+            <div>
+              <form>
+                <input
+                  value={this.state.committeeAddInput}
+                  onChange={this.handleInputChange}
+                  name="committeeAddInput"
+                  placeholder="committee name"
+                />
+                <button
+                  type="submit"
+                  name="addCommittee"
+                  onClick={this.handleAddCommittee}
+                  > Add Committee
+                </button>
+              </form>
+              <form>
+                <input
+                  value={this.state.schoolAddInput}
+                  onChange={this.handleInputChange}
+                  name="schoolAddInput"
+                  placeholder="school name"
+                />
+                <button
+                  type="submit"
+                  name="addSchool"
+                  onClick={this.handleAddSchool}
+                  > Add School
+                </button>
+              </form>
+            </div>:
+              <form>
+                <input
+                  value={this.state.committeeAddInput}
+                  onChange={this.handleInputChange}
+                  name="committeeAddInput"
+                  placeholder="committee name"
+                />
+                <button
+                  type="submit"
+                  name="addCommittee"
+                  onClick={this.handleAddCommittee}
+                  > Add Committee
+                </button>
+              </form>
+            }
+              
           </div>:
           <Redirect to="/"/>
         )

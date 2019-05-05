@@ -10,6 +10,9 @@ const generator = require("generate-password")
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 console.log("environ ", process.env.SENDGRID_API_KEY)
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op
+
 
 // /api/users aka getting the logged in user by checking the req.user Obj
 router.route("/")
@@ -26,7 +29,45 @@ router.route("/")
         .catch(err=> console.log(err.name + " " + err.message));
         
     })
-    
+router.route("/querybyname/:query")
+    .get(function(req, res){
+        console.log(req.params.query)
+        db.User.findAll({
+            where: {
+                name: {
+                    [Op.like]: `%${req.params.query}%`
+                }
+            }
+        })
+        .then(queriedUsers =>{
+            console.log(queriedUsers)
+            res.send(queriedUsers)
+        })
+    })
+router.route("/querybycommittee/:query")
+    .get(function(req,res){
+        db.User.findAll({
+            where: {
+                committeeId: req.params.query
+            }
+        })
+        .then(queriedUsers =>{
+            console.log("committe users,", queriedUsers)
+            res.send(queriedUsers)
+        })
+    })
+router.route("/querybyschool/:query")
+    .get(function(req,res){
+        db.User.findAll({
+            where: {
+                schoolId: req.params.query
+            }
+        })
+        .then(queriedUsers =>{
+            console.log("committe users,", queriedUsers)
+            res.send(queriedUsers)
+        })
+    })
 // /api/users/create    
 router.route("/create")
     .post(function(req, res){

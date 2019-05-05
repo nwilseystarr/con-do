@@ -4,6 +4,7 @@ import LandingPage from "./components/LandingPage";
 import ErrorPage from "./components/error-page";
 import UnauthorizedPage from "./components/unauthorized-page"
 import AboutPage from "./components/AboutPage";
+import UserSearch from "./components/UserSearch"
 import "./App.css";
 import Login from "./components/LoginPage";
 import Signup from "./components/signup-page";
@@ -87,6 +88,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/aboutus" component={AboutPage} />
+          <Route exact path="/usersearch" component={UserSearch}/>
           
           {/* Auth related routes */}
           <Route path="/verify/:token" component={(props)=> <VerifyUser  {...props}/>} />
