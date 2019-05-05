@@ -9,7 +9,7 @@ import Signup from "./components/signup-page";
 import ProtectedPage from "./components/protected-page";
 import VerifyUser from "./components/verify";
 import API from "./utils/API";
-import CreateDelegate from "./components/CreateUserPage";
+import CreateUser from "./components/CreateUserPage";
 import { Verify } from "crypto";
 import UpdatePassword from "./components/Dashboard/update-password";
 // import isAuthenticated from "../db/config/middleware/isAuthenticated"
@@ -79,7 +79,7 @@ class App extends Component {
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/aboutus" component={AboutPage} />
 
-          <Route exact path="/createuser" component={CreateDelegate} />
+          <Route exact path="/createuser" component={() => <CreateUser userType={this.state.userType}/>} />
           <Route exact path="/signup" component={Signup} />
           <Route path="/verify/:token" component={VerifyUser} />
           <PrivateRoute exact path="/protected" component={() => <ProtectedPage updateUser={this.updateUser} />} />

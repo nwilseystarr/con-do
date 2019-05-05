@@ -3,20 +3,25 @@ import { Link } from "react-router-dom";
 import API from "../../utils/API"
 import Select from "./select-dropdowns"
 
-class CreateDelegate extends Component {
+class CreateUser extends Component {
   //the signup state keeps track of all of the input fields in the signup form
-    state = {
-        email: "",
-        name: "",
-        userType: "delegate",
-        school: "",
-        country: "",
-        committee: "",
-        schoolOptions: [],
-        committeeOptions: [],
-        recentName: "",
-        recentEmail: ""
+  constructor(props){
+    super(props)
+    this.state = {
+      email: "",
+      name: "",
+      userType: "delegate",
+      school: "",
+      country: "",
+      committee: "",
+      schoolOptions: [],
+      committeeOptions: [],
+      recentName: "",
+      recentEmail: ""
     }
+  
+  }
+    
     //get all the options when the component first mounts
     componentDidMount = ()=>{
       this.getOptions();
@@ -47,21 +52,15 @@ class CreateDelegate extends Component {
         event.preventDefault();
       
         if (this.state.email && this.state.name && this.state.userType){
-          //getting the committeId and schoolId from the database which users will be related to via a foreign key
-          // let committeeId = await API.getCommitteeByName(this.state.committee).then(res=> {
-          //  return res.data.id
-          // })
-          // let schoolId = await API.getSchoolByName(this.state.school).then(res=> {
-          //  return res.data.id
-          // })
-          //creating the new user
-          API.createUser({
+          //if an admin is creating the account, they will submit a value for each attribute
+          if (this.props.userType === "admin"){
+            API.createUser({
               email: this.state.email,
               name: this.state.name,
               userType: this.state.userType,
               country: this.state.country,
-              SchoolId: this.state.school,
-              CommitteeId: this.state.committee
+              schoolId: this.state.school,
+              committeeId: this.state.committee
             })
                 .then(res => {
                   console.log(res)
@@ -70,6 +69,24 @@ class CreateDelegate extends Component {
                     recentEmail: res.data.email
                   })
                 });
+          }
+          //if an advisor is creating the account, the will only submit certain values, the rest will be resolved in the route
+          else{
+            API.createUser({
+              email: this.state.email,
+              name: this.state.name,
+              country: this.state.country,
+              committeeId: this.state.committee
+            })
+                .then(res => {
+                  console.log(res)
+                  this.setState({
+                    recentName: res.data.name,
+                    recentEmail: res.data.email
+                  })
+                });
+          }
+          
         }
     }
     render(){
@@ -88,13 +105,19 @@ class CreateDelegate extends Component {
               name="name"
               placeholder="name (first and last)"
             />
-            <select value={this.state.userType} onChange={this.handleInputChange} name="userType">
-              <option value="admin">admin</option>
-              <option value="advisor">advisor</option>
-              <option value="staff">staff</option>
-              <option value="delegate">delegate</option>
-            </select>
-            <Select name="school"  options={this.state.schoolOptions} handleSelect={this.handleSelect} />               
+            {/* if the user is an admin, they can choose the user type of the user they are creating, otherwise they will create a delegate */}
+            {this.props.userType ==="admin" ?  
+              <select value={this.state.userType} onChange={this.handleInputChange} name="userType">
+                <option value="admin">admin</option>
+                <option value="advisor">advisor</option>
+                <option value="staff">staff</option>
+                <option value="delegate">delegate</option>
+              </select> :  
+              <div></div>}
+            {/* if the user is an admin they can choose the school of the user they are creating, otherwise the school id will match */}
+            {this.props.userType ==="admin" ? 
+              <Select name="school"  options={this.state.schoolOptions} handleSelect={this.handleSelect} /> :
+              <div></div>} 
             <Select name="committee"  options={this.state.committeeOptions} handleSelect={this.handleSelect} />
             <input
                 value={this.state.country}
@@ -117,4 +140,4 @@ class CreateDelegate extends Component {
     }
    
 }
-export default CreateDelegate;
+export default CreateUser;

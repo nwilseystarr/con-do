@@ -52,36 +52,49 @@ router.route("/")
         
     })
     
-// /api/users/signup    
-router.route("/signup")
+// /api/users/create    
+router.route("/create")
     .post(function(req, res){
-        let password = generator.generate({
-            length: 12,
-            numebers: true
-        });
-        req.body.password = password;
-        db.User
-        .create(req.body)
-        .then(userObj => {
-            console.log(userObj.dataValues.email)
-            let userInfo = {
-                    email: req.body.email,
-                    password: req.body.password
+        //checking to make sure the user is an admin or advisor
+        if(req.user.userType ==="admin" || req.user.userType ==="advisor"){
+            //generating a random password for the user
+            let password = generator.generate({
+                length: 12,
+                numebers: true
+            });
+            //adding the generated password to our request object
+            req.body.password = password;
+            //advisors can only add delegate accounts for their school, so the properties will be provided here
+            if(req.user.userType === "advisor")
+            {
+                req.body.schoolId = req.user.schoolId;
+                req.body.userType = "delegate"
             }
-            let token = JWT.sign({data: userInfo}, process.env.JWT_SECRET || "chocolate-chip-cookies", { expiresIn: '176h' })
-            userObj.userTok = token
-            console.log(token)
-            let message ={ 
-                from: "noreply@condo.com",
-                to: userObj.dataValues.email,
-                subject: "Welcome!",
-                text: token,
-                html: token
-            }
-            sgMail.send(message);
-            res.send(userObj.dataValues)
-        })
-        .catch(err=> console.log(err));
+            //create the new user
+            db.User
+            .create(req.body)
+            .then(userObj => {
+                console.log(userObj.dataValues.email)
+                //storing the info for the user being created into an object so that it can be emailed to the user via a jsonwebtoken
+                //the user will then be logged in with passport
+                let userInfo = {
+                        email: req.body.email,
+                        password: req.body.password
+                }
+                let token = JWT.sign({data: userInfo}, process.env.JWT_SECRET || "chocolate-chip-cookies", { expiresIn: '176h' })
+                console.log(token)
+                let message ={ 
+                    from: "noreply@condo.com",
+                    to: userObj.dataValues.email,
+                    subject: "Welcome!",
+                    text: token,
+                    html: token
+                }
+                sgMail.send(message);
+                res.send(userObj.dataValues)
+            })
+            .catch(err=> console.log(err));
+        }
     })
 
 // /api/users/login
