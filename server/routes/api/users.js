@@ -10,6 +10,7 @@ const generator = require("generate-password")
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 console.log("environ ", process.env.SENDGRID_API_KEY)
+
 // /api/users aka getting the logged in user by checking the req.user Obj
 router.route("/")
     .get(function(req, res){
@@ -20,32 +21,6 @@ router.route("/")
             }
         })
         .then((userData)=> {
-            //the user's permissions will be determined by their user type
-            //their permissions will be added to the req.user object created by the passport session so 
-            //that we can always verfiy on the backend if the user has permisssion to perform the inovked action
-            //it is also referenced by the userData object that is being passed to react so permissions are available
-            //on the front end as well
-            switch (userData.userType){
-                case "admin": 
-                    req.user.permissions = {
-                                C: ["admin create"],
-                                R: ["admin read"],
-                                U: ["admin update"],
-                                D: ["admin delete"]
-                    }
-                break;
-                case "delegate":
-                    req.user.permissions = {
-                            C: ["delegate create"],
-                            R: ["delagate read"],
-                            U: ["delagate update"],
-                            D: ["delagate delete"]
-                    }
-                break;
-            }
-            //
-            userData.dataValues.permissions = req.user.permissions;
-            console.log(userData)
             res.send(userData)
         })
         .catch(err=> console.log(err.name + " " + err.message));
@@ -62,8 +37,10 @@ router.route("/create")
                 length: 12,
                 numebers: true
             });
-            //adding the generated password to our request object
+            //adding the generated password to our request object and the firstLogin status which 
+            //will force the user to update their password on their first login
             req.body.password = password;
+            req.body.firstLog = true;
             //advisors can only add delegate accounts for their school, so the properties will be provided here
             if(req.user.userType === "advisor")
             {
@@ -107,7 +84,6 @@ router.route("/login/:token")
     .get(function(req, res){
         var decoded = JWT.verify(req.params.token, process.env.JWT_SECRET || "chocolate-chip-cookies");
         console.log("decoded obj", decoded);
-        // req.user.id= decoded.data.id
         res.send(decoded.data)
     })
 // /api/users/updatepw

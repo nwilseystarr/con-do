@@ -26,8 +26,9 @@ class UpdatePassword extends Component {
     handleFormSubmit = event => {
         event.preventDefault();
         if (this.state.password === this.state.passwordConfirm) {
+            //once the userupdates their password we can clear first log
             API.updatePW({
-                password: this.state.password,
+                password: this.state.password, firstLog: false
             })
                 .then(res => {
                     window.location.assign("/")

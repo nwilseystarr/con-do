@@ -29,6 +29,9 @@ const User = db.define("user", {
     },
     country: {
         type: Sequelize.STRING,
+    },
+    firstLog: {
+        type: Sequelize.BOOLEAN
     }    
 });
 User.prototype.validPassword = function(password){
@@ -41,7 +44,7 @@ User.beforeUpdate(function(user){
     console.log("Calling before update", user)
     user.password = bcrypt.hashSync(user.password,  bcrypt.genSaltSync(10), null)
     console.log(user.password)
-})    
+})   
     User.belongsTo(School);
     User.belongsTo(Committee);
 

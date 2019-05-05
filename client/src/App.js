@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import LandingPage from "./components/LandingPage";
 import ErrorPage from "./components/error-page";
 import UnauthorizedPage from "./components/unauthorized-page"
@@ -41,7 +41,7 @@ class App extends Component {
       email: null,
       name: null,
       userType: null,
-      permissions: null
+      firstLog: false
     }
     this.getUser = this.getUser.bind(this)
     this.componentDidMount = this.componentDidMount.bind(this)
@@ -67,30 +67,37 @@ class App extends Component {
             name: res.data.name,
             userType: res.data.userType,
             loggedIn: true,
-            permissions: res.data.permissions,
+            firstLog: res.data.firstLog
           });
         }
-
-
       });
   }
   render() {
     return (
+      //if this is the user's first time logging in, they will need to update their password before 
+      //goin anywhere else
+      this.state.firstLog ?
+      <Router>
+        <Switch>
+          <Route path="/updatepassword" component={UpdatePassword}/>       
+          <Route component={()=> (<Redirect to="/updatepassword" />)} />
+        </Switch>
+      </Router>: 
       <Router>
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/aboutus" component={AboutPage} />
+          
+          {/* Auth related routes */}
+          <Route path="/verify/:token" component={(props)=> <VerifyUser  {...props}/>} />
+          <Route exact path="/login" component={() => <Login updateUser={this.updateUser} />} />
+          <Route path="/updatepassword" component={UpdatePassword}/>
+          <Route path="/signup" component={Signup}/>
+
+          {/* admin & advisor only routes */}
           {/* /creatuser html route will either render the createuser component, or the unauthorizedpage component based on the type of user */}
           {this.state.userType==="admin" || this.state.userType==="advisor" ? <Route exact path="/createuser" component={() => <CreateUser userType={this.state.userType}/>} />:
             <Route exact path="/createuser" component={UnauthorizedPage}/>}
-          {/* <Route exact path="/createuser" component={() => <CreateUser userType={this.state.updatedUserType}/>} /> */}
-          <Route exact path="/signup" component={Signup} />
-          <Route path="/verify/:token" component={VerifyUser} />
-          <PrivateRoute exact path="/protected" component={() => <ProtectedPage updateUser={this.updateUser} />} />
-          
-          <Route exact path="/login" component={() => <Login updateUser={this.updateUser} />} />
-          <Route path="/updatepassword" component={UpdatePassword}/>
-          
           <Route component={ErrorPage} />
         </Switch>
       </Router>

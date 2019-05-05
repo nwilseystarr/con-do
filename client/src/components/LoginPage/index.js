@@ -32,6 +32,7 @@ class Login extends Component {
             API.loginUser({
                 email: this.state.email,
                 password: this.state.password,
+                firstLog: false
             })
                 .then(res => {
                     console.log(res)
