@@ -1,11 +1,13 @@
 import React, {Component} from "react";
 import { Link } from "react-router-dom";
+import {Redirect} from "react-router-dom"
 import API from "../../utils/API"
 import Select from "./select-dropdowns"
 
 class CreateUser extends Component {
   //the signup state keeps track of all of the input fields in the signup form
   constructor(props){
+    console.log(props)
     super(props)
     this.state = {
       email: "",
@@ -91,6 +93,7 @@ class CreateUser extends Component {
     }
     render(){
         return(
+          this.props.userType ==="admin" ?
           <div>
             <form>
             <input
@@ -135,7 +138,8 @@ class CreateUser extends Component {
             <div>
               <p>Account Created for {this.state.recentName}, email sent to {this.state.recentEmail}</p>
             </div>
-          </div>
+          </div>:
+          <Redirect to="/"/>
         )
     }
    

@@ -125,6 +125,7 @@ router.route("/updatepassword")
                 })
             .then(userObj =>{
                 console.log(userObj);
+                res.send(userObj)
             })
     })
 

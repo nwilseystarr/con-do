@@ -43,6 +43,7 @@ class Login extends Component {
                             name: res.data.name,
                             userType: res.data.userType
                         })
+                        window.location.assign("/")
                     }
                 });
         }
