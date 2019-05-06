@@ -8,7 +8,6 @@ import UserSearch from "./components/UserSearch"
 import "./App.css";
 import Login from "./components/LoginPage";
 import Signup from "./components/signup-page";
-import ProtectedPage from "./components/protected-page";
 import VerifyUser from "./components/verify";
 import API from "./utils/API";
 import CreateUser from "./components/CreateUserPage";
@@ -18,21 +17,6 @@ import Dashboard from "./components/Dashboard";
 // import isAuthenticated from "../db/config/middleware/isAuthenticated"
 const UserContext = React.createContext("none");
 
-console.log(API.isAuthenticated)
-let getAuth = async () => {
-  let authRes = await API.isAuthenticated()
-  let isAuthenticated = await authRes
-  return isAuthenticated
-}
-let isAuthenticated = getAuth()
-
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={(props) => (
-    isAuthenticated === true
-      ? <Component {...props} />
-      : <Route exact path="/login" component={Login} />
-  )} />
-)
 
 class App extends Component {
   //the users information will be passed to the compenent via it's state
@@ -89,7 +73,7 @@ class App extends Component {
       // everywhere else
       <Router>
         <Switch>
-          <Route exact path="/" component={LandingPage} />
+          <Route exact path="/" component={()=> <LandingPage loggedIn={this.state.loggedIn}/>} />
           <Route exact path="/aboutus" component={AboutPage} />
           <Route exact path="/usersearch" component={UserSearch}/>
           <Route exact path="/dashboard" component={Dashboard}/>
