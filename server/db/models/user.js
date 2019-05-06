@@ -50,7 +50,8 @@ User.beforeUpdate(function(user){
     user.password = bcrypt.hashSync(user.password,  bcrypt.genSaltSync(10), null)
     console.log(user.password)
 })   
-    User.belongsTo(School);
-    User.belongsTo(Committee);
+User.belongsTo(School);
+User.belongsTo(Committee);
+
 
 module.exports = User;        
