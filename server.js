@@ -6,6 +6,7 @@ const passport = require("./server/db/config/passport")
 // PORT and Models
 const PORT = process.env.PORT || 3001;
 const db = require("./server/db/db");
+const models = require("./server/db/models/")
 // Routes
 const routes = require("./server/routes");
 
@@ -32,8 +33,47 @@ app.use(routes);
 
 // require("./attendanceRoutes/apiRoutes")(app);
 // require("./attendanceRoutes/htmlRoutes")(app);
+const admin = {
+  email: "admin@mail.com",
+  password: "password",
+  name: "admin account",
+  userType: "admin",
+  firstLog: false
+}
+const advisor = {
+  email: "advisor@mail.com",
+  password: "password",
+  name: "advisor account",
+  userType: "advisor",
+  firstLog: false,
+  // schoolId: 99,
+}
+const staff = {
+  email: "staff@mail.com",
+  password: "password",
+  name: "staff account",
+  userType: "staff",
+  firstLog: false,
+  // committeeId: 99,
+}
+const delegate = {
+  email: "delegate@mail.com",
+  password: "password",
+  name: "delegate account",
+  userType: "delegate",
+  firstLog: false,
+  // schoolId: 99,
+  // committeeId: 99,
+  // country: "none"
+}
 
 db.sync({ force: false}).then(function () {
+  models.User.create(admin).catch(err=> console.log(err))
+  models.User.create(advisor).catch(err=> console.log(err))
+  models.User.create(staff).catch(err=> console.log(err))
+  models.User.create(delegate).catch(err=> console.log(err))
+  models.School.create({name: "None"})
+  models.Committee.create({name: "None"})
   app.listen(PORT, function () {
     console.log(`🌎 ==> API server now on port ${PORT}!`);
   });
