@@ -29,9 +29,10 @@ class Navbar extends Component {
                         <li className="nav-item mr-3">
                             <a className="nav-link" href="#contact">Contact</a>
                         </li>
-                        <li className="nav-item">
+                        {this.props.loggedIn ? <li></li>: <li className="nav-item">
                             <a className="nav-link btn btn-outline-danger px-4 py-2 mb-2" href="/login" role="button">Log In</a>
-                        </li>
+                        </li>}
+                        
                     </ul>
                 </div>
             </nav>
