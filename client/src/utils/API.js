@@ -5,6 +5,7 @@ export default {
     createUser: function(userData){
         return axios.post("/api/users/create", userData);
     },
+    //user auth
     loginUser: function(loginForm){
         console.log(loginForm)
         return axios.post("/api/users/login", loginForm);
@@ -13,9 +14,13 @@ export default {
         console.log(userData)
         return axios.post("/api/users/loginLink", userData)
     },
+    logOut: function(){
+        return axios.post("/api/users/logout")
+    },
     isAuthenticated: function(){
         return axios.get("/api/users/status")
     },
+    //get users
     getUser: function(){
         return axios.get("/api/users")
     },

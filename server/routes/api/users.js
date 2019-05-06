@@ -134,6 +134,12 @@ router.route("/login/:token")
         console.log("decoded obj", decoded);
         res.send(decoded.data)
     })
+// /api/users/logout
+router.route("/logout")
+    .post(function(req, res){
+        req.logout()
+        res.redirect("/")
+    })
 // /api/users/updatepw
 router.route("/updatepassword")
     .put(function(req, res){
