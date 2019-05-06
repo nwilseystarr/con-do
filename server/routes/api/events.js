@@ -11,7 +11,7 @@ router.route("/")
             res.send(users)
         })
     })
-})
+});
 
 router.route("/:committeeId")
     .get(function (req, res) {
