@@ -125,103 +125,142 @@ class CreateUser extends Component {
       }
     }
     render(){
-        return(
-          this.props.userType ==="admin" || this.props.userType ==="advisor"?
-          <div>
-            <form>
-            <input
-              value={this.state.email}
-              onChange={this.handleInputChange}
-              name="email"
-              placeholder="email (required)"
-            />
-            <input
-              value={this.state.name}
-              onChange={this.handleInputChange}
-              name="name"
-              placeholder="name (first and last)"
-            />
-            {/* if the user is an admin, they can choose the user type of the user they are creating, otherwise they will create a delegate */}
-            {this.props.userType ==="admin" ?  
-              <select value={this.state.userType} onChange={this.handleInputChange} name="userType">
-                <option value="admin">admin</option>
-                <option value="advisor">advisor</option>
-                <option value="staff">staff</option>
-                <option value="delegate">delegate</option>
-              </select> :  
-              <div></div>}
-            {/* if the user is an admin they can choose the school of the user they are creating, otherwise the school id will match */}
-            {this.props.userType ==="admin" ? 
-              <Select name="school"  options={this.state.schoolOptions} handleSelect={this.handleSelect} /> :
-              <div></div>} 
-            <Select name="committee"  options={this.state.committeeOptions} handleSelect={this.handleSelect} />
-            <input
-                value={this.state.country}
-                onChange={this.handleInputChange}
-                name="country"
-                placeholder="country"
-            />
-            <button
-                type="submit"
-                name="createDelegate"
-                onClick={this.handleFormSubmit}
-            >Sign Up
+    return (
+      this.props.userType === "admin" || this.props.userType === "advisor" ?
+        <div className="container">
+          <div className="row justify-content-around">
+            <div className="col-lg-8">
+              <h3>Add New User</h3>
+              <form>
+                <div className="form-group row input-group">
+                  <label for="emailInput" className="col-4 col-form-label">Email</label>
+                  <input
+                    value={this.state.email}
+                    onChange={this.handleInputChange}
+                    name="email"
+                    placeholder="email (required)"
+                    id="emailInput"
+                    className="col-8 form-control border-top-0 border-left-0 border-right-0 border-dark rounded-0 px-2"
+                  />
+                </div>
+                <div className="form-group row input-group">
+                  <label for="nameInput" className="col-4 col-form-label">Full Name</label>
+                  <input
+                    value={this.state.name}
+                    onChange={this.handleInputChange}
+                    name="name"
+                    placeholder="name (first and last)"
+                    id="nameInput"
+                    className="col-8 form-control border-top-0 border-left-0 border-right-0 border-dark rounded-0 px-2"
+                  />
+                </div>
+                <div className="form-group row input-group">
+                  <label for="countryInput" className="col-4 col-form-label">Country</label>
+                <input
+                  value={this.state.country}
+                  onChange={this.handleInputChange}
+                  name="country"
+                  placeholder="country"
+                  className="col-8 form-control border-top-0 border-left-0 border-right-0 border-dark rounded-0 px-2"
+                  id="countryInput"
+                />
+                </div>
+                {/* if the user is an admin, they can choose the user type of the user they are creating, otherwise they will create a delegate */}
+                {this.props.userType === "admin" ?
+                  <div class="form-group row input-group">
+                    <label for="userTypeSelect" className="col-4 col-form-label">User Type</label>
+                    <select className="col-8 form-control border-top-2 border-left-2 border-right-2 border-dark rounded-0 px-2" value={this.state.userType} onChange={this.handleInputChange} name="userType">
+                      <option value="admin">admin</option>
+                      <option value="advisor">advisor</option>
+                      <option value="staff">staff</option>
+                      <option value="delegate">delegate</option>
+                    </select>
+                  </div> :
+                  //empty div so advisors can't chose the usertype of the account they are creating
+                  <div></div>}
+                {/* if the user is an admin they can choose the school of the user they are creating, otherwise the school id will match */}
+                {this.props.userType === "admin" ?
+                  <div className="form-group row input-group">
+                    <label for="schoolSelect" className="col-4 col-form-label">School</label>
+                    <Select name="school" id="schoolSelect" options={this.state.schoolOptions} handleSelect={this.handleSelect} />
+                  </div>:
+                  <div></div>}
+                <div className="form-group row input-group">
+                <label for="committeeSelect" className="col-4 col-form-label">Committee</label>
+                  <Select name="committee" id="committeeSelect" options={this.state.committeeOptions} handleSelect={this.handleSelect} />
+                </div>
+                <button
+                  type="submit"
+                  name="createDelegate"
+                  onClick={this.handleFormSubmit}
+                >Add User
             </button>
-          </form>
-            <div>
-              <p>Account Created for {this.state.recentName}, email sent to {this.state.recentEmail}</p>
+              </form>
+              <div>
+                {this.state.recentEmail !=="" ?  <p>Account Created for {this.state.recentName}, email sent to {this.state.recentEmail}</p> : <div/>}
+              </div>
+              </div>
+              </div>
+              {this.props.userType === "admin" ?
+                <div className="row justify-content-around">
+                  <form className="col-5">
+                  <div className="form-group row input-group">
+                    <input
+                      value={this.state.committeeAddInput}
+                      onChange={this.handleInputChange}
+                      name="committeeAddInput"
+                      placeholder="committee name"
+                      id="committeeAddInput"
+                      className ="col-8 form-control border-top-0 border-left-0 border-right-0 border-dark rounded-0 px-2"
+                    />
+                  </div>
+                    <button
+                      type="submit"
+                      name="addCommittee"
+                      onClick={this.handleAddCommittee}
+                    > Add Committee
+                </button>
+                  </form>
+                  <form className="col-5">
+                  <div className="form-group row input-group">
+                    <input
+                      value={this.state.schoolAddInput}
+                      onChange={this.handleInputChange}
+                      name="schoolAddInput"
+                      placeholder="school name"
+                      id="schoolAddInput"
+                      className ="col-8 form-control border-top-0 border-left-0 border-right-0 border-dark rounded-0 px-2"
+                    />
+                  </div>
+                    <button
+                      type="submit"
+                      name="addSchool"
+                      onClick={this.handleAddSchool}
+                    > Add School
+                  </button>
+                  </form>
+                </div> :
+                <form>
+                  <input
+                    value={this.state.committeeAddInput}
+                    onChange={this.handleInputChange}
+                    name="committeeAddInput"
+                    placeholder="committee name"
+                  />
+                  <button
+                    type="submit"
+                    name="addCommittee"
+                    onClick={this.handleAddCommittee}
+                  > Add Committee
+                </button>
+                </form>
+              }
+
             </div>
-            {this.props.userType ==="admin" ? 
-            <div>
-              <form>
-                <input
-                  value={this.state.committeeAddInput}
-                  onChange={this.handleInputChange}
-                  name="committeeAddInput"
-                  placeholder="committee name"
-                />
-                <button
-                  type="submit"
-                  name="addCommittee"
-                  onClick={this.handleAddCommittee}
-                  > Add Committee
-                </button>
-              </form>
-              <form>
-                <input
-                  value={this.state.schoolAddInput}
-                  onChange={this.handleInputChange}
-                  name="schoolAddInput"
-                  placeholder="school name"
-                />
-                <button
-                  type="submit"
-                  name="addSchool"
-                  onClick={this.handleAddSchool}
-                  > Add School
-                </button>
-              </form>
-            </div>:
-              <form>
-                <input
-                  value={this.state.committeeAddInput}
-                  onChange={this.handleInputChange}
-                  name="committeeAddInput"
-                  placeholder="committee name"
-                />
-                <button
-                  type="submit"
-                  name="addCommittee"
-                  onClick={this.handleAddCommittee}
-                  > Add Committee
-                </button>
-              </form>
-            }
-              
-          </div>:
-          <Redirect to="/"/>
-        )
-    }
-   
+        :
+        <Redirect to="/" />
+    )
+  }
+
 }
 export default CreateUser;

@@ -83,7 +83,9 @@ class App extends Component {
           <Route path="/updatepassword" component={UpdatePassword}/>       
           <Route component={()=> (<Redirect to="/updatepassword" />)} />
         </Switch>
+     
       </Router>: 
+      // everywhere else
       <Router>
         <Switch>
           <Route exact path="/" component={LandingPage} />
