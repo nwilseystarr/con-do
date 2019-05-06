@@ -26,7 +26,7 @@ class UserDashboard extends Component {
 
     render() {
         return (
-            <div className="card mt-5 border-0">
+            <div className="card mt-5 border-0 text-center">
                 <div className="card-body">
                     <h1 className="display-3">John Smith{this.state.name}</h1>
                     <p className="h3">COUNTRY{this.state.country}</p>

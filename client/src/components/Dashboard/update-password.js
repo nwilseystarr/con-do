@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
-import Navbar from "../Navbar";
 
 class UpdatePassword extends Component {
     //the state for the login component keeps track fo the email and password inputs
@@ -38,48 +37,39 @@ class UpdatePassword extends Component {
     render() {
         return (
             <div>
-                <Navbar />
-                <div className="container">
-                    <div className="row justify-content-center">
-                        <div className="col-lg-6">
-                            {this.state.password === this.state.passwordConfirm ? <div></div>  : <div>Passwords Must Match!</div>}
-                            <form>
-                                <div className="form-group input-group">
-                                    <div className="input-group-prepend">
-                                        <span className="pt-2 border-bottom border-dark rounded-0"><i class="fas fa-envelope fa-lg"></i></span>
-                                    </div>
-                                    <input className="form-control border-top-0 border-left-0 border-right-0 border-dark rounded-0 px-2"
-                                        aria-describedby="emailBlock"
-                                        value={this.state.password}
-                                        onChange={this.handleInputChange}
-                                        type="password"
-                                        name="password"
-                                        placeholder="Password(required)"
-                                    />
-                                </div>
-                                <div className="form-group input-group">
-                                    <div className="input-group-prepend">
-                                        <span className="pt-2 border-bottom border-dark rounded-0"><i class="fas fa-lock fa-lg"></i></span>
-                                    </div>
-                                    <input className="form-control border-top-0 border-left-0 border-right-0 border-dark rounded-0 px-2"
-                                        value={this.state.passwordConfirm}
-                                        onChange={this.handleInputChange}
-                                        type="password"
-                                        name="passwordConfirm"
-                                        placeholder="Confirm (required)"
-                                    />
-                                </div>
-                                <button className="btn btn-outline-dark px-3"
-                                    type="submit"
-                                    name="login"
-                                    onClick={this.handleFormSubmit}
-                                >Update Password</button>
-                            </form>
-                        </div>
+                <div className="card border-0 mt-5">
+                    <div className="card-body">
+                        <h4>Change Password?</h4>
+                        {this.state.password === this.state.passwordConfirm ? <div></div> : <div>Passwords Must Match!</div>}
+                        <form>
+                            <div className="form-group input-group">
+                                <input className="form-control border-top-0 border-left-0 border-right-0 border-dark rounded-0 px-1"
+                                    aria-describedby="emailBlock"
+                                    value={this.state.password}
+                                    onChange={this.handleInputChange}
+                                    type="password"
+                                    name="password"
+                                    placeholder="New Password"
+                                />
+                            </div>
+                            <div className="form-group input-group">
+                                <input className="form-control border-top-0 border-left-0 border-right-0 border-dark rounded-0 px-1"
+                                    value={this.state.passwordConfirm}
+                                    onChange={this.handleInputChange}
+                                    type="password"
+                                    name="passwordConfirm"
+                                    placeholder="Confirm New Password"
+                                />
+                            </div>
+                            <button className="btn btn-outline-dark px-3"
+                                type="submit"
+                                name="login"
+                                onClick={this.handleFormSubmit}
+                            >Update Password</button>
+                        </form>
                     </div>
                 </div>
             </div>
-
         )
     }
 
