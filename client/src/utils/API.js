@@ -19,6 +19,9 @@ export default {
     getUser: function(){
         return axios.get("/api/users")
     },
+    getAllUsers: function(){
+        return axios.get("/api/users/all")
+    },
     getUsersByName: function(query){
         return axios.get(`/api/users/querybyname/${query}`)
     },
