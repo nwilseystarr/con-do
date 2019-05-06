@@ -27,7 +27,14 @@ router.route("/")
             res.send(userData)
         })
         .catch(err=> console.log(err.name + " " + err.message));
-        
+    })
+router.route("/all")
+    .get(function(req, res){
+        db.User
+        .findAll({})
+        .then( (usersData) =>{
+            res.send(usersData)
+        })
     })
 router.route("/querybyname/:query")
     .get(function(req, res){
