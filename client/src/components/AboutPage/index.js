@@ -8,7 +8,7 @@ class AboutPage extends Component {
     render() {
         return (
             <div>
-                <Navbar />
+                <Navbar loggedIn={this.props.loggedIn}/>
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-lg-3 align-self-center">

@@ -30,7 +30,7 @@ class UpdatePassword extends Component {
                 password: this.state.password, firstLog: false
             })
                 .then(res => {
-                    window.location.assign("/")
+                    window.location.assign("/dashboard")
                 });
         }
     }
