@@ -8,7 +8,7 @@ router.route("/:userId")
             .then(function (events) {
                 Events.findAll({
                     where: {
-                        committeeId: events.committeeId && 1000
+                        committeeId: [events.committeeId, 1000]
                     }
                 })
                     .then(function (events) {
