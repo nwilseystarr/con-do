@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-d
 import LandingPage from "./components/LandingPage";
 import ErrorPage from "./components/error-page";
 import UnauthorizedPage from "./components/unauthorized-page"
-import AboutPage from "./components/AboutPage";
+import AboutPage from "./components/LandingPage/about";
 import UserSearch from "./components/UserSearch"
 import "./App.css";
 import Login from "./components/LoginPage";
@@ -74,7 +74,7 @@ class App extends Component {
       <Router>
         <Switch>
           <Route exact path="/" component={()=> <LandingPage loggedIn={this.state.loggedIn}/>} />
-          <Route exact path="/aboutus" component={()=> <AboutPage loggedIn={this.state.loggedIn}/>} />
+          {/* <Route exact path="/aboutus" component={()=> <AboutPage loggedIn={this.state.loggedIn}/>} /> */}
           <Route exact path="/usersearch" component={UserSearch}/>
           <Route exact path="/dashboard" component={()=> <Dashboard loggedIn={this.state.loggedIn}  userType={this.state.userType}/>}/>
           

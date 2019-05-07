@@ -6,7 +6,7 @@ class FeatureCard extends Component {
             <div className="container-fluid mt-5">
                 <div className="row text-center">
                     <div className="col">
-                        <h1 className="display-4">Features</h1>
+                        <h1 className="display-4 mb-3" id="features">Features</h1>
                     </div>
                 </div>
                 <div className="row justify-content-center">

@@ -1,20 +1,21 @@
 import React, { Component } from "react";
-import Navbar from "../Navbar";
+// import Navbar from "../Navbar";
 import leah from "./leah.jpg";
 import nicole from "./nicole.jpg";
 import karen from "./karen.jpeg";
+import placeholder from "./placeholder-image.png";
 
 class AboutPage extends Component {
     render() {
         return (
             <div>
-                <Navbar loggedIn={this.props.loggedIn}/>
-                <div className="container-fluid">
+                {/* <Navbar loggedIn={this.props.loggedIn}/> */}
+                <div className="container-fluid" id="aboutus">
                     <div className="row">
                         <div className="col-lg-3 align-self-center">
-                            <h1 className="display-3 d-none d-sm-none d-md-none d-lg-block d-xl-block">Meet</h1>
-                            <h1 className="display-3 d-none d-sm-none d-md-none d-lg-block d-xl-block">The</h1>
-                            <h1 className="display-3 d-none d-sm-none d-md-none d-lg-block d-xl-block">Team</h1>
+                            <h1 className="display-3 d-none d-sm-none d-md-none d-lg-block d-xl-block pl-5">Meet</h1>
+                            <h1 className="display-3 d-none d-sm-none d-md-none d-lg-block d-xl-block pl-5">The</h1>
+                            <h1 className="display-3 d-none d-sm-none d-md-none d-lg-block d-xl-block pl-5">Team</h1>
                             <h1 className="display-4 d-xl-none d-lg-none text-center mt-5">Meet the Team</h1>
                         </div>
                         <div className="col">
@@ -24,7 +25,7 @@ class AboutPage extends Component {
                                         <div className="card border-0">
                                             <div className="row no-gutters">
                                                 <div className="col">
-                                                    <img className="card-img rounded-circle" src={nicole} alt="Team Member: Brendan Kelly" />
+                                                    <img className="card-img rounded-circle" src={placeholder} alt="Team Member: Brendan Kelly" />
                                                 </div>
                                                 <div className="col align-self-center">
                                                     <div className="card-body">
