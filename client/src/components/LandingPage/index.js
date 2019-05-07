@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Navbar from "../Navbar";
 import Carousel from "./carousel";
 import FeatureCard from "./feature-card";
+import AboutPage from "./about";
 import ContactForm from "./contact-form";
 
 class LandingPage extends Component {
@@ -11,6 +12,7 @@ class LandingPage extends Component {
                 <Navbar loggedIn={this.props.loggedIn}/>
                 <Carousel />
                 <FeatureCard />
+                <AboutPage />
                 <ContactForm />
             </div>
         );

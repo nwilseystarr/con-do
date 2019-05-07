@@ -44,6 +44,7 @@
     "react": "^16.8.6",
     "react-router-dom": "^5.0.0",
     "react-script": "^2.0.5",
+    "react-scroll": "^1.7.11",
     "react-table": "^6.10.0",
     "sequelize": "^5.8.0"
   }
