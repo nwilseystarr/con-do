@@ -12,7 +12,7 @@ import VerifyUser from "./components/verify";
 import API from "./utils/API";
 import CreateUser from "./components/CreateUserPage";
 import { Verify } from "crypto";
-import UpdatePassword from "./components/Dashboard/update-password";
+import UpdatePasswordPage from "./components/update-password-page";
 import Dashboard from "./components/Dashboard";
 // import isAuthenticated from "../db/config/middleware/isAuthenticated"
 const UserContext = React.createContext("none");
@@ -65,7 +65,7 @@ class App extends Component {
       this.state.firstLog ?
       <Router>
         <Switch>
-          <Route path="/updatepassword" component={UpdatePassword}/>       
+          <Route path="/updatepassword" component={()=> <UpdatePasswordPage loggedIn={this.state.loggedIn}/>}/>       
           <Route component={()=> (<Redirect to="/updatepassword" />)} />
         </Switch>
      
@@ -74,14 +74,13 @@ class App extends Component {
       <Router>
         <Switch>
           <Route exact path="/" component={()=> <LandingPage loggedIn={this.state.loggedIn}/>} />
-          <Route exact path="/aboutus" component={AboutPage} />
+          <Route exact path="/aboutus" component={()=> <AboutPage loggedIn={this.state.loggedIn}/>} />
           <Route exact path="/usersearch" component={UserSearch}/>
-          <Route exact path="/dashboard" component={Dashboard}/>
+          <Route exact path="/dashboard" component={()=> <Dashboard loggedIn={this.state.loggedIn}  userType={this.state.userType}/>}/>
           
           {/* Auth related routes */}
           <Route path="/verify/:token" component={(props)=> <VerifyUser  {...props}/>} />
           <Route exact path="/login" component={() => <Login updateUser={this.updateUser} />} />
-          <Route path="/updatepassword" component={UpdatePassword}/>
           <Route path="/signup" component={Signup}/>
 
 

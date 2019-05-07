@@ -8,7 +8,7 @@ class Dashboard extends Component {
     render() {
         return(
             <div>
-                <Navbar/>
+                <Navbar loggedIn={this.props.loggedIn}/>
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-lg-5">
@@ -16,6 +16,17 @@ class Dashboard extends Component {
                         </div>
                         <div className="col-lg-6">
                             <UpdatePassword/>
+                            {this.props.userType ==="admin" ? 
+                            <div>
+                                <a className="btn btn-outline-dark px-3" href="createuser">Create User</a>
+                                <a className="btn btn-outline-dark px-3" href="event/add">Add Event</a>
+                                <a className="btn btn-outline-dark px-3" href="schedule">View Schedule</a>
+                            </div>
+                            : 
+                            <div>
+                                <a className="btn btn-outline-dark px-3" href="schedule">View Schedule</a>
+                            </div>}
+                            
                         </div>
                     </div>
                 </div>
