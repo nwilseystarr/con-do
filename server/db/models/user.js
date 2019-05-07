@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt-nodejs");
 const Sequelize = require("sequelize");
-const School = require("./School")
-const Committee = require("./Committee")
+const School = require("./school")
+const Committee = require("./committee")
 const db = require("../db")
 
 const User = db.define("user", {
