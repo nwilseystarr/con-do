@@ -3,6 +3,7 @@ import API from "../../utils/API";
 import Navbar from "../Navbar";
 import UserDashboard from "./user";
 import UpdatePassword from "./update-password";
+import Schedule from "./schedule";
 
 class Dashboard extends Component {
     render() {
@@ -27,6 +28,9 @@ class Dashboard extends Component {
                                 <a className="btn btn-outline-dark px-3" href="schedule">View Schedule</a>
                             </div>}
                             
+                        </div>
+                        <div className="col-lg-6">
+                            <Schedule />
                         </div>
                     </div>
                 </div>

@@ -14,6 +14,7 @@ const Committee = require("./committee");
         eventAttendance: Sequelize.STRING
     })
 
-Events.belongsTo(Committee);
+    // Events.belongsTo(Committee);
+    // Committee.hasMany(Events);
 
 module.exports = Events;

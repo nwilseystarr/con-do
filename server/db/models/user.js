@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt-nodejs");
 const Sequelize = require("sequelize");
 const School = require("./School")
-const Committee = require("./Committee")
+// const Committee = require("./Committee")
 const db = require("../db")
 
 const User = db.define("user", {
@@ -51,7 +51,6 @@ User.beforeUpdate(function(user){
     console.log(user.password)
 })   
 User.belongsTo(School);
-User.belongsTo(Committee);
 
 
 module.exports = User;        
