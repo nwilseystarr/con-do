@@ -11,6 +11,8 @@ import Signup from "./components/signup-page";
 import VerifyUser from "./components/verify";
 import API from "./utils/API";
 import CreateUser from "./components/CreateUserPage";
+import CreateEvent from "./components/CreateEventPage"
+import Event from "./components/eventview"
 import { Verify } from "crypto";
 import UpdatePasswordPage from "./components/update-password-page";
 import Dashboard from "./components/Dashboard";
@@ -49,6 +51,7 @@ class App extends Component {
         if (res.status === 200) {
           console.log(res.data);
           this.setState({
+            id: res.data.id,
             email: res.data.email,
             name: res.data.name,
             userType: res.data.userType,
@@ -83,12 +86,17 @@ class App extends Component {
           <Route exact path="/login" component={() => <Login updateUser={this.updateUser} />} />
           <Route path="/signup" component={Signup}/>
 
+          <Route path="/event/:id" component={(props)=> <Event  {...props} loggedIn={this.state.loggedIn} userId={this.state.id}/>} />
 
           {/* admin & advisor only routes */}
           {/* /creatuser html route will either render the createuser component, or the unauthorizedpage component based on the type of user */}
           {this.state.userType==="admin" || this.state.userType==="advisor" ? <Route exact path="/createuser" component={() => <CreateUser userType={this.state.userType}/>} />:
             <Route exact path="/createuser" component={UnauthorizedPage}/>}
-          <Route component={ErrorPage} />
+         
+          {/* /creatuser html route will either render the createuser component, or the unauthorizedpage component based on the type of user */}
+          {this.state.userType==="admin" || this.state.userType==="advisor" ? <Route exact path="/createevent" component={() => <CreateEvent userType={this.state.userType}/>} />:
+            <Route exact path="/createevent" component={UnauthorizedPage}/>}
+           <Route component={ErrorPage} />
         </Switch>
       </Router>
     );
