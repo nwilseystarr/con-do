@@ -69,4 +69,19 @@ export default {
     addSchool: function(schoolForm){
         return axios.post("/api/schools/add", schoolForm)
     },
+    getAllEvents: function(){
+        return axios.get("/api/events")
+    },
+    getMyEvents: function(){
+        return axios.get("/api/events/my")
+    },
+    getEventById: function(id){
+        return axios.get("/api/events/" + id)
+    },
+    createEvent: function(eventData){
+        return axios.post("/api/events", eventData)
+    },
+    checkIn: function(id, attendance){
+        return axios.put("/api/events/" + id, attendance)
+    }
 }

@@ -1,20 +1,20 @@
 const Sequelize = require("sequelize");
+const Committee = require("./Committee");
 const db = require("../db");
-const Committee = require("./committee");
 
 
-    const Events = db.define("event", {
-        eventName: Sequelize.STRING,
-        eventDate: Sequelize.STRING,
-        eventTimeStart: Sequelize.STRING,
-        eventTimeEnd: Sequelize.STRING,
-        eventCommittee: Sequelize.STRING,
-        eventGroup: Sequelize.STRING,
-        eventLocation: Sequelize.STRING, 
-        eventAttendance: Sequelize.STRING
+
+    const Event = db.define("event", {
+        name: Sequelize.STRING,
+        date: Sequelize.STRING,
+        start: Sequelize.STRING,
+        end: Sequelize.STRING,
+        group: Sequelize.STRING,
+        location: Sequelize.STRING, 
+        attendance: Sequelize.JSONB
     })
 
-    // Events.belongsTo(Committee);
+    Event.belongsTo(Committee);
     // Committee.hasMany(Events);
 
-module.exports = Events;
+module.exports = Event;
