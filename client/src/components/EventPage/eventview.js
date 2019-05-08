@@ -2,14 +2,8 @@ import React, {Component} from "react";
 import { Link } from "react-router-dom";
 import API from "../../utils/API"
 import { derToJose } from "ecdsa-sig-formatter";
-<<<<<<< HEAD:client/src/components/eventview.js
-import Loading from "./Loading"
-import Navbar from "./Navbar";
-=======
 import Loading from "../Loading"
 import Navbar from "../Navbar";
-import UpdatePassword from "../Dashboard/update-password"
->>>>>>> 2c038bf393d6c367072141764626764c4a59d086:client/src/components/EventPage/eventview.js
 import ReactTable from 'react-table';
 import matchSorter from 'match-sorter';
 import Webcam from "./webcam"
