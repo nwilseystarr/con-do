@@ -23,6 +23,7 @@ class Event extends Component {
             allCommittees: [] 
         }
         this.getEvent.bind(this)
+        this.checkIn.bind(this)
     }
 
     //calling the loginUser method of our API which routes to the backend and attempts to log in user agent via passport
@@ -53,10 +54,10 @@ class Event extends Component {
                     })
                 });
     }
-    checkIn = () =>{
+    checkIn = (userId) =>{
         let currentAttendance = this.state.attendance
         let updatedAttendance = currentAttendance.map((attendanceRecord) => {
-            if (attendanceRecord.id == this.props.userId){
+            if (attendanceRecord.id == userId){
                 attendanceRecord.checkedIn = true
             }
             return attendanceRecord
@@ -145,7 +146,7 @@ class Event extends Component {
                     <div className="col-lg-9 mt-5">
                     <ReactTable data={this.state.attendance} columns={columns} defaultPageSize={10} filterable
                     defaultFilterMethod={(filter, row) => String(row[filter.id]) === filter.value} />
-                    <Webcam/>
+                    <Webcam checkIn={this.checkIn}/>
                     </div>
                 </div>
             </div>

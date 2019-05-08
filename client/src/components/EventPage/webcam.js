@@ -24,6 +24,9 @@ class Webcam extends Component {
       this.setState({
         result: data
       })
+      let userId = data[data.length - 1]
+      console.log(userId)
+      this.props.checkIn(userId)
     }
   }
   
