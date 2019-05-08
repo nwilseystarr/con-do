@@ -7,12 +7,11 @@ import AboutPage from "./components/LandingPage/about";
 import UserSearch from "./components/UserSearch"
 import "./App.css";
 import Login from "./components/LoginPage";
-import Signup from "./components/signup-page";
 import VerifyUser from "./components/verify";
 import API from "./utils/API";
 import CreateUser from "./components/CreateUserPage";
 import CreateEvent from "./components/CreateEventPage"
-import Event from "./components/eventview"
+import Event from "./components/EventPage/eventview"
 import { Verify } from "crypto";
 import UpdatePasswordPage from "./components/update-password-page";
 import Dashboard from "./components/Dashboard";
@@ -84,7 +83,6 @@ class App extends Component {
           {/* Auth related routes */}
           <Route path="/verify/:token" component={(props)=> <VerifyUser  {...props}/>} />
           <Route exact path="/login" component={() => <Login updateUser={this.updateUser} />} />
-          <Route path="/signup" component={Signup}/>
 
           <Route path="/event/:id" component={(props)=> <Event  {...props} loggedIn={this.state.loggedIn} userId={this.state.id}/>} />
 
