@@ -137,7 +137,7 @@ class CreateUser extends Component {
   render() {
     return (
       <div>
-        <Navbar />
+        <Navbar loggedIn={this.props.loggedIn}/>
         {this.props.userType === "admin" || this.props.userType === "advisor" ?
           <div className="container mt-5 pt-5 createUserContainer">
             <div className="row justify-content-around">
