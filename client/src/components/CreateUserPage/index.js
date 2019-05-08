@@ -292,25 +292,40 @@ class CreateUser extends Component {
                     </div>
                     :
                     <form>
-                      <div className="form-group row input-group">
-                        <label for="committeeAddInput" className="col-lg-2 col-sm-4 col-form-label px-0 ml-3">Add Committee</label>
-                        <input
-                          value={this.state.committeeAddInput}
-                          onChange={this.handleInputChange}
-                          name="committeeAddInput"
-                          placeholder="Committee Name"
-                          id="committeeAddInput"
-                          className="col-lg-10 col-sm-8 form-control border-top-0 border-left-0 border-right-0 border-dark rounded-0 px-0 ml-3"
-                        />
-                        <div className="input-group-append">
-                          <button
-                            className="btn border-top-0 border-right-0 border-left-0 border-bottom border-dark rounded-0 px-1"
-                            type="submit"
-                            name="addCommittee"
-                            onClick={this.handleAddCommittee}
-                          >
-                            <i className="fas fa-plus-circle"></i>
-                          </button>
+                      <div className="form-row align-items-center mb-3">
+                        <div className="col">
+                          <label for="committeeSelect" className="col-form-label px-0">Committee</label>
+                          <Select
+                            name="committee"
+                            id="committeeSelect"
+                            options={this.state.committeeOptions}
+                            handleSelect={this.handleSelect}
+                          />
+                        </div>
+                        <div className="col mr-3">
+                          <label for="committeeAddInput" className="col-form-label px-0 ml-3">Add Committee</label>
+                          <div className="input-group">
+                            <input
+                              value={this.state.committeeAddInput}
+                              onChange={this.handleInputChange}
+                              name="committeeAddInput"
+                              placeholder="Committee Name"
+                              id="committeeAddInput"
+                              aria-label="Input group example" aria-describedby="addCommitteeBtn"
+                              className="form-control border-top-0 border-left-0 border-right-0 border-dark rounded-0 px-0 ml-3"
+                            />
+                            <div className="input-group-append">
+                              <button
+                                className="btn border-top-0 border-right-0 border-left-0 border-bottom border-dark rounded-0 px-1"
+                                type="submit"
+                                name="addCommittee"
+                                id="addCommitteeBtn"
+                                onClick={this.handleAddCommittee}
+                              >
+                                <i className="fas fa-plus-circle"></i>
+                              </button>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </form>
