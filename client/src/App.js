@@ -76,7 +76,6 @@ class App extends Component {
       <Router>
         <Switch>
           <Route exact path="/" component={()=> <LandingPage loggedIn={this.state.loggedIn}/>} />
-          {/* <Route exact path="/aboutus" component={()=> <AboutPage loggedIn={this.state.loggedIn}/>} /> */}
           <Route exact path="/usersearch" component={UserSearch}/>
           <Route exact path="/dashboard" component={()=> <Dashboard loggedIn={this.state.loggedIn}  userType={this.state.userType}/>}/>
           <Route exact path="/profile" component={()=> <Profile loggedIn={this.state.loggedIn}  userType={this.state.userType}/>}/>
@@ -84,7 +83,6 @@ class App extends Component {
           {/* Auth related routes */}
           <Route path="/verify/:token" component={(props)=> <VerifyUser  {...props}/>} />
           <Route exact path="/login" component={() => <Login updateUser={this.updateUser} />} />
-
           <Route path="/event/:id" component={(props)=> <Event  {...props} loggedIn={this.state.loggedIn} userId={this.state.id}/>} />
 
           {/* admin & advisor only routes */}
