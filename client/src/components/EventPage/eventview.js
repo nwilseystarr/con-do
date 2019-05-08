@@ -4,6 +4,7 @@ import API from "../../utils/API"
 import { derToJose } from "ecdsa-sig-formatter";
 import Loading from "../Loading"
 import Navbar from "../Navbar";
+// import UpdatePassword from "../Dashboard/update-password"
 import ReactTable from 'react-table';
 import matchSorter from 'match-sorter';
 import Webcam from "./webcam"
@@ -18,6 +19,7 @@ class Event extends Component {
             start: "",
             location: "",
             checkedIn: false,
+            recentlyCheckedIn: "",
             allSchools: [],
             allCommittees: [] 
         }
@@ -58,6 +60,9 @@ class Event extends Component {
         let updatedAttendance = currentAttendance.map((attendanceRecord) => {
             if (attendanceRecord.id == userId){
                 attendanceRecord.checkedIn = true
+                this.setState({
+                    recentlyCheckedIn: attendanceRecord.name + " is now checked in!"
+                })
             }
             return attendanceRecord
         })
@@ -139,13 +144,13 @@ class Event extends Component {
                     <h4>{this.state.start} | {this.state.location}</h4>
                     {!this.state.checkedIn ? <button onClick={this.checkIn}>Check in</button>:
                  <button disabled={true}>Checked In</button> }
-                 
+                     <Webcam checkIn={this.checkIn}/>
+                     <div>{this.state.recentlyCheckedIn}</div>
                     
                     </div>
                     <div className="col-lg-9 mt-5">
                     <ReactTable data={this.state.attendance} columns={columns} defaultPageSize={10} filterable
                     defaultFilterMethod={(filter, row) => String(row[filter.id]) === filter.value} />
-                    <Webcam checkIn={this.checkIn}/>
                     </div>
                 </div>
             </div>
