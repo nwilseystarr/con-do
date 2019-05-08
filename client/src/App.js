@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-d
 import LandingPage from "./components/LandingPage";
 import ErrorPage from "./components/error-page";
 import UnauthorizedPage from "./components/unauthorized-page"
-import AboutPage from "./components/LandingPage/about";
 import UserSearch from "./components/UserSearch"
 import "./App.css";
 import Login from "./components/LoginPage";
@@ -15,6 +14,7 @@ import Event from "./components/EventPage/eventview"
 import { Verify } from "crypto";
 import UpdatePasswordPage from "./components/update-password-page";
 import Dashboard from "./components/Dashboard";
+import Profile from "./components/Profile";
 // import isAuthenticated from "../db/config/middleware/isAuthenticated"
 const UserContext = React.createContext("none");
 
@@ -76,14 +76,13 @@ class App extends Component {
       <Router>
         <Switch>
           <Route exact path="/" component={()=> <LandingPage loggedIn={this.state.loggedIn}/>} />
-          {/* <Route exact path="/aboutus" component={()=> <AboutPage loggedIn={this.state.loggedIn}/>} /> */}
           <Route exact path="/usersearch" component={UserSearch}/>
           <Route exact path="/dashboard" component={()=> <Dashboard loggedIn={this.state.loggedIn}  userType={this.state.userType}/>}/>
+          <Route exact path="/profile" component={()=> <Profile loggedIn={this.state.loggedIn}  userType={this.state.userType}/>}/>
           
           {/* Auth related routes */}
           <Route path="/verify/:token" component={(props)=> <VerifyUser  {...props}/>} />
           <Route exact path="/login" component={() => <Login updateUser={this.updateUser} />} />
-
           <Route path="/event/:id" component={(props)=> <Event  {...props} loggedIn={this.state.loggedIn} userId={this.state.id}/>} />
 
           {/* admin & advisor only routes */}

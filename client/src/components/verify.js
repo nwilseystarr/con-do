@@ -1,10 +1,10 @@
 import React, {Component} from "react";
 import { Link } from "react-router-dom";
-import API from "../utils/API"
+import API from "../utils/API";
 import { derToJose } from "ecdsa-sig-formatter";
-import Loading from "./Loading"
+import Loading from "./Loading";
 import Navbar from "./Navbar";
-import UpdatePassword from "./Dashboard/update-password"
+import UpdatePassword from "./Profile/update-password";
 
 class Login extends Component {
     //the state for the login component keeps track fo the email and password inputs
