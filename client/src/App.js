@@ -10,7 +10,7 @@ import VerifyUser from "./components/verify";
 import API from "./utils/API";
 import CreateUser from "./components/CreateUserPage";
 import CreateEvent from "./components/CreateEventPage"
-import Event from "./components/eventview"
+import Event from "./components/EventPage/eventview"
 import { Verify } from "crypto";
 import UpdatePasswordPage from "./components/update-password-page";
 import Dashboard from "./components/Dashboard";

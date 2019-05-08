@@ -1,11 +1,18 @@
 import React, {Component} from "react";
 import { Link } from "react-router-dom";
-import API from "../utils/API"
+import API from "../../utils/API"
 import { derToJose } from "ecdsa-sig-formatter";
+<<<<<<< HEAD:client/src/components/eventview.js
 import Loading from "./Loading"
 import Navbar from "./Navbar";
+=======
+import Loading from "../Loading"
+import Navbar from "../Navbar";
+import UpdatePassword from "../Dashboard/update-password"
+>>>>>>> 2c038bf393d6c367072141764626764c4a59d086:client/src/components/EventPage/eventview.js
 import ReactTable from 'react-table';
 import matchSorter from 'match-sorter';
+import Webcam from "./webcam"
 
 class Event extends Component {
     //the state for the login component keeps track fo the email and password inputs
@@ -21,6 +28,7 @@ class Event extends Component {
             allCommittees: [] 
         }
         this.getEvent.bind(this)
+        this.checkIn.bind(this)
     }
 
     //calling the loginUser method of our API which routes to the backend and attempts to log in user agent via passport
@@ -51,10 +59,10 @@ class Event extends Component {
                     })
                 });
     }
-    checkIn = () =>{
+    checkIn = (userId) =>{
         let currentAttendance = this.state.attendance
         let updatedAttendance = currentAttendance.map((attendanceRecord) => {
-            if (attendanceRecord.id == this.props.userId){
+            if (attendanceRecord.id == userId){
                 attendanceRecord.checkedIn = true
             }
             return attendanceRecord
@@ -143,6 +151,7 @@ class Event extends Component {
                     <div className="col-lg-9 mt-5">
                     <ReactTable data={this.state.attendance} columns={columns} defaultPageSize={10} filterable
                     defaultFilterMethod={(filter, row) => String(row[filter.id]) === filter.value} />
+                    <Webcam checkIn={this.checkIn}/>
                     </div>
                 </div>
             </div>
