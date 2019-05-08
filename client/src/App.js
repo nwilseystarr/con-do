@@ -87,11 +87,11 @@ class App extends Component {
 
           {/* admin & advisor only routes */}
           {/* /creatuser html route will either render the createuser component, or the unauthorizedpage component based on the type of user */}
-          {this.state.userType==="admin" || this.state.userType==="advisor" ? <Route exact path="/createuser" component={() => <CreateUser userType={this.state.userType}/>} />:
+          {this.state.userType==="admin" || this.state.userType==="advisor" ? <Route exact path="/createuser" component={() => <CreateUser loggedIn={this.state.loggedIn} userType={this.state.userType }/>} />:
             <Route exact path="/createuser" component={UnauthorizedPage}/>}
          
           {/* /creatuser html route will either render the createuser component, or the unauthorizedpage component based on the type of user */}
-          {this.state.userType==="admin" || this.state.userType==="advisor" ? <Route exact path="/createevent" component={() => <CreateEvent userType={this.state.userType}/>} />:
+          {this.state.userType==="admin" || this.state.userType==="advisor" ? <Route exact path="/createevent" component={() => <CreateEvent loggedIn={this.state.loggedIn} userType={this.state.userType}/>} />:
             <Route exact path="/createevent" component={UnauthorizedPage}/>}
            <Route component={ErrorPage} />
         </Switch>

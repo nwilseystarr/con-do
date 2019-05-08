@@ -103,6 +103,8 @@ class CreateUser extends Component {
           });
       }
     }
+    alert(`You have successfully created an account for ${this.state.name}!`);
+    window.location.assign("/dashboard");
   }
 
   //handling submit for committee add
@@ -137,7 +139,9 @@ class CreateUser extends Component {
   render() {
     return (
       <div>
-        <Navbar />
+        <Navbar loggedIn={this.props.loggedIn} />
+
+        {/* For logged in admin/advisors, input fields for FULL NAME, EMAIL, & COUNTRY are available */}
         {this.props.userType === "admin" || this.props.userType === "advisor" ?
           <div className="container mt-5 pt-5 createUserContainer">
             <div className="row justify-content-around">
@@ -177,6 +181,8 @@ class CreateUser extends Component {
                       id="countryInput"
                     />
                   </div>
+
+                  {/* NESTED TERNARY OPERATOR FOR ONLY ADMIN TO SELECT USER TYPE */}
                   {/* if the user is an admin, they can choose the user type of the user they are creating, otherwise they will create a delegate */}
                   {this.props.userType === "admin" ?
                     <div class="form-group row input-group">
@@ -192,100 +198,138 @@ class CreateUser extends Component {
                     //empty div so advisors can't chose the usertype of the account they are creating
                     <div></div>
                   }
+
+                  {/* NESTED TERNARY OPERATOR FOR ADMIN TO BE ABLE TO ADD COMMITTEE/SCHOOL IF NOT ALREADY IN DB */}
+                  {/* ADVISOR WILL ONLY BE ABLE TO ADD A COMMITTEE FOR A DELEGATE IF NOT ALREADY IN DB */}
                   {this.props.userType === "admin" ?
                     <div>
                       <form>
-                        <div className="form-group row input-group">
-                          <label for="committeeAddInput" className="col-lg-2 col-sm-4 col-form-label px-0 ml-3">Add Committee</label>
-                          <input
-                            value={this.state.committeeAddInput}
-                            onChange={this.handleInputChange}
-                            name="committeeAddInput"
-                            placeholder="Committee Name"
-                            id="committeeAddInput"
-                            className="col-lg-10 col-sm-8 form-control border-top-0 border-left-0 border-right-0 border-dark rounded-0 px-0 ml-3"
-                          />
-                          <div className="input-group-append">
-                            <button
-                              className="btn btn-outline-dark px-3"
-                              type="submit"
-                              name="addCommittee"
-                              onClick={this.handleAddCommittee}
-                            >
-                              <i className="fas fa-plus-circle"></i>
-                            </button>
+                        <div className="form-row align-items-center mb-3">
+                          <div className="col">
+                            <label for="committeeSelect" className="col-form-label px-0">Committee</label>
+                            <Select
+                              name="committee"
+                              id="committeeSelect"
+                              options={this.state.committeeOptions}
+                              handleSelect={this.handleSelect}
+                            />
+                          </div>
+                          <div className="col mr-3">
+                            <label for="committeeAddInput" className="col-form-label px-0 ml-3">Add Committee</label>
+                            <div className="input-group">
+                              <input
+                                value={this.state.committeeAddInput}
+                                onChange={this.handleInputChange}
+                                name="committeeAddInput"
+                                placeholder="Committee Name"
+                                id="committeeAddInput"
+                                aria-label="Input group example" aria-describedby="addCommitteeBtn"
+                                className="form-control border-top-0 border-left-0 border-right-0 border-dark rounded-0 px-0 ml-3"
+                              />
+                              <div className="input-group-append">
+                                <button
+                                  className="btn border-top-0 border-right-0 border-left-0 border-bottom border-dark rounded-0 px-1"
+                                  type="submit"
+                                  name="addCommittee"
+                                  id="addCommitteeBtn"
+                                  onClick={this.handleAddCommittee}
+                                >
+                                  <i className="fas fa-plus-circle"></i>
+                                </button>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </form>
                       <form>
-                        <div className="form-group row input-group">
-                          <label for="schoolAddInput" className="col-lg-2 col-sm-4 col-form-label px-0 ml-3">Add School</label>
-                          <input
-                            value={this.state.schoolAddInput}
-                            onChange={this.handleInputChange}
-                            name="schoolAddInput"
-                            placeholder="School Name"
-                            id="schoolAddInput"
-                            className="col-lg-10 col-sm-8 form-control border-top-0 border-left-0 border-right-0 border-dark rounded-0 px-0 ml-3"
-                          />
-                          <div className="input-group-append">
-                            <button
-                              className="btn btn-outline-dark px-3"
-                              type="submit"
-                              name="addSchool"
-                              onClick={this.handleAddSchool}
-                            >
-                              <i className="fas fa-plus-circle"></i>
-                            </button>
+                        <div className="form-row align-items-center mb-3">
+                          <div className="col">
+                            {/* NESTED TERNARY OPERATOR */}
+                            {/* if the user is an admin here's where they would choose the school that they just added OR select from db already for the user they are creating */}
+                            {this.props.userType === "admin" ?
+                              <div>
+                                <label for="schoolSelect" className="col-lg-2 col-sm-4 col-form-label px-0">School</label>
+                                <Select
+                                  name="school"
+                                  id="schoolSelect"
+                                  options={this.state.schoolOptions}
+                                  handleSelect={this.handleSelect}
+                                />
+                              </div>
+                              :
+                              // render nothing for any other usertype -- only admin can select the school for each user
+                              <div></div>
+                            }
+                          </div>
+                          <div className="col mr-3">
+                            <label for="schoolAddInput" className="col-form-label px-0 ml-3">Add School</label>
+                            <div className="input-group">
+                              <input
+                                value={this.state.schoolAddInput}
+                                onChange={this.handleInputChange}
+                                name="schoolAddInput"
+                                placeholder="School Name"
+                                id="schoolAddInput"
+                                aria-label="Input group example" aria-describedby="addSchoolBtn"
+                                className="form-control border-top-0 border-left-0 border-right-0 border-dark rounded-0 px-0 ml-3"
+                              />
+                              <div className="input-group-append">
+                                <button
+                                  className="btn border-top-0 border-right-0 border-left-0 border-bottom border-dark rounded-0 px-1"
+                                  type="submit"
+                                  name="addSchool"
+                                  id="addSchoolBtn"
+                                  onClick={this.handleAddSchool}
+                                >
+                                  <i className="fas fa-plus-circle"></i>
+                                </button>
+                              </div>
+
+                            </div>
                           </div>
                         </div>
                       </form>
                     </div>
-
-
                     :
                     <form>
-                      <input
-                        value={this.state.committeeAddInput}
-                        onChange={this.handleInputChange}
-                        name="committeeAddInput"
-                        placeholder="committee name"
-                      />
-                      <button
-                        type="submit"
-                        name="addCommittee"
-                        onClick={this.handleAddCommittee}
-                      >
-                        Add Committee
-                    </button>
+                      <div className="form-row align-items-center mb-3">
+                        <div className="col">
+                          <label for="committeeSelect" className="col-form-label px-0">Committee</label>
+                          <Select
+                            name="committee"
+                            id="committeeSelect"
+                            options={this.state.committeeOptions}
+                            handleSelect={this.handleSelect}
+                          />
+                        </div>
+                        <div className="col mr-3">
+                          <label for="committeeAddInput" className="col-form-label px-0 ml-3">Add Committee</label>
+                          <div className="input-group">
+                            <input
+                              value={this.state.committeeAddInput}
+                              onChange={this.handleInputChange}
+                              name="committeeAddInput"
+                              placeholder="Committee Name"
+                              id="committeeAddInput"
+                              aria-label="Input group example" aria-describedby="addCommitteeBtn"
+                              className="form-control border-top-0 border-left-0 border-right-0 border-dark rounded-0 px-0 ml-3"
+                            />
+                            <div className="input-group-append">
+                              <button
+                                className="btn border-top-0 border-right-0 border-left-0 border-bottom border-dark rounded-0 px-1"
+                                type="submit"
+                                name="addCommittee"
+                                id="addCommitteeBtn"
+                                onClick={this.handleAddCommittee}
+                              >
+                                <i className="fas fa-plus-circle"></i>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </form>
                   }
-                  {/* if the user is an admin they can choose the school of the user they are creating, otherwise the school id will match */}
-                  <div></div>
-                  {this.props.userType === "admin" ?
-                    <div className="form-group row input-group">
-                      <label for="schoolSelect" className="col-lg-2 col-sm-4 col-form-label px-0 ml-3">School</label>
-                      <Select
-                        name="school"
-                        id="schoolSelect"
-                        options={this.state.schoolOptions}
-                        handleSelect={this.handleSelect}
-                      />
-                    </div>
-                    :
-                    <div></div>
-                  }
-
-
-                  <div className="form-group row input-group">
-                    <label for="committeeSelect" className="col-lg-2 col-sm-4 col-form-label px-0 ml-3">Committee</label>
-                    <Select
-                      name="committee"
-                      id="committeeSelect"
-                      options={this.state.committeeOptions}
-                      handleSelect={this.handleSelect}
-                    />
-                  </div>
                   <button
                     className="btn btn-outline-dark px-3 mt-2 mb-5"
                     type="submit"
