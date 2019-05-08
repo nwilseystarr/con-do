@@ -19,7 +19,7 @@ class Navbar extends Component {
         return (
             <div>
                 {this.props.loggedIn ?
-                    <nav className="navbar navbar-expand-md navbar-light sticky-top border-bottom p-1 pr-3">
+                    <nav className="navbar navbar-expand-md navbar-light fixed-top border-bottom p-1 pr-3">
                         <a className="navbar-brand py-0" href="/dashboard">
                             <img src={modelUNLogo} width="70" height="60" className="d-inline-block align-top" alt="Model United Nations Logo" />
                         </a>
@@ -41,7 +41,7 @@ class Navbar extends Component {
                         </div>
                     </nav>
                     :
-                    <nav className="navbar navbar-expand-md navbar-light sticky-top border-bottom p-1 pr-3">
+                    <nav className="navbar navbar-expand-md navbar-light fixed-top border-bottom p-1 pr-3">
                         <a className="navbar-brand py-0" href="/">
                             <img src={condoLogo} width="70" height="70" className="d-inline-block align-top" alt="Company Logo" />
                         </a>
