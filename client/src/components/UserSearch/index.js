@@ -1,11 +1,11 @@
 import React, {Component} from "react";
-import UserRecord from "./user-record";
-import { Link } from "react-router-dom";
-import {Redirect} from "react-router-dom";
+// import UserRecord from "./user-record";
+// import { Link } from "react-router-dom";
+// import {Redirect} from "react-router-dom";
 import API from "../../utils/API";
 import ReactTable from 'react-table';
 import matchSorter from 'match-sorter';
-import { isError } from "util";
+// import { isError } from "util";
 // import Select from "./select-dropdowns"
 
 class UserSearch extends Component {

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import API from "../../utils/API";
+// import API from "../../utils/API";
 import Navbar from "../Navbar";
 import UserDashboard from "../Dashboard/user";
 import UpdatePassword from "./update-password";
@@ -9,7 +9,7 @@ class Profile extends Component {
         return(
             <div>
                 <Navbar loggedIn={this.props.loggedIn}/>
-                <div className="container-fluid">
+                <div className="container-fluid mt-5 pt-5">
                     <div className="row">
                         <div className="col-lg-5 align-self-center">
                             <UserDashboard/>

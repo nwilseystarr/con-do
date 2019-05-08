@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import API from "../../utils/API"
-import { derToJose } from "ecdsa-sig-formatter";
+// import { derToJose } from "ecdsa-sig-formatter";
 import Navbar from "../Navbar";
 import LoginJumbotron from "./jumbotron";
 
@@ -53,7 +53,7 @@ class Login extends Component {
         return (
             <div>
                 <Navbar />
-                <div className="container">
+                <div className="container mt-5 pt-3">
                     <LoginJumbotron />
                     <div className="row justify-content-center">
                         <div className="col-lg-6">
