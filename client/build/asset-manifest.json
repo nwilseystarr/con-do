@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.3146f910.chunk.css",
-    "main.js": "/static/js/main.4de80c86.chunk.js",
-    "main.js.map": "/static/js/main.4de80c86.chunk.js.map",
+    "main.css": "/static/css/main.cef4e9ad.chunk.css",
+    "main.js": "/static/js/main.05068e71.chunk.js",
+    "main.js.map": "/static/js/main.05068e71.chunk.js.map",
     "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
     "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
-    "static/js/2.c2561bbf.chunk.js": "/static/js/2.c2561bbf.chunk.js",
-    "static/js/2.c2561bbf.chunk.js.map": "/static/js/2.c2561bbf.chunk.js.map",
+    "static/js/2.64b25d05.chunk.js": "/static/js/2.64b25d05.chunk.js",
+    "static/js/2.64b25d05.chunk.js.map": "/static/js/2.64b25d05.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.1c6085ee9c79da2fea1f2938e82262b4.js": "/precache-manifest.1c6085ee9c79da2fea1f2938e82262b4.js",
+    "precache-manifest.f58f2960ef6d07691824185204f1c9e0.js": "/precache-manifest.f58f2960ef6d07691824185204f1c9e0.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/main.3146f910.chunk.css.map": "/static/css/main.3146f910.chunk.css.map",
+    "static/css/main.cef4e9ad.chunk.css.map": "/static/css/main.cef4e9ad.chunk.css.map",
     "static/media/United_Nations_logo.png": "/static/media/United_Nations_logo.5f59e4c2.png",
     "static/media/conference-room.jpg": "/static/media/conference-room.4f8eb240.jpg",
     "static/media/giant-conference.jpg": "/static/media/giant-conference.22770d3c.jpg",
@@ -20,6 +20,8 @@
     "static/media/nicole.jpg": "/static/media/nicole.faf80732.jpg",
     "static/media/people-at-conference.jpg": "/static/media/people-at-conference.15320add.jpg",
     "static/media/people-in-meeting.jpg": "/static/media/people-in-meeting.751bcb7d.jpg",
-    "static/media/people-in-row.jpg": "/static/media/people-in-row.be04bfab.jpg"
+    "static/media/people-in-row.jpg": "/static/media/people-in-row.be04bfab.jpg",
+    "static/media/placeholder-image.png": "/static/media/placeholder-image.2a30226c.png",
+    "static/media/rolling.gif": "/static/media/rolling.e58e0124.gif"
   }
 }

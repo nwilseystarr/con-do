@@ -1,5 +1,5 @@
 const Sequelize = require("sequelize");
-const Committee = require("./Committee");
+const Committee = require("./committee");
 const db = require("../db");
 
 

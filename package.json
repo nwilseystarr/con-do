@@ -46,6 +46,9 @@
     "react-script": "^2.0.5",
     "react-scroll": "^1.7.11",
     "react-table": "^6.10.0",
-    "sequelize": "^5.8.0"
+    "concurrently": "^4.1.0",
+    "sequelize": "^5.8.0",
+    "nodemon": "^1.18.7"
   }
 }
+

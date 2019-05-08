@@ -67,7 +67,7 @@ const delegate = {
   // country: "none"
 }
 
-db.sync({ force: false}).then(function () {
+db.sync({ force: true}).then(function () {
   models.User.create(admin).catch(err=> console.log(err))
   models.User.create(advisor).catch(err=> console.log(err))
   models.User.create(staff).catch(err=> console.log(err))
@@ -83,8 +83,3 @@ db.sync({ force: false}).then(function () {
 app.get("*", function(req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
-
-
-
-
-
