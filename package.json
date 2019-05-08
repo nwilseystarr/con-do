@@ -25,6 +25,7 @@
     "axios": "^0.18.0",
     "bcrypt-nodejs": "^0.0.3",
     "body-parser": "^1.19.0",
+    "concurrently": "^4.1.0",
     "dotenv": "^8.0.0",
     "express": "^4.16.3",
     "express-session": "^1.16.1",
@@ -35,20 +36,20 @@
     "match-sorter": "^3.0.0",
     "node-mailer": "^0.1.1",
     "nodemailer": "^6.1.1",
+    "nodemon": "^1.18.7",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "passport-magic-link": "^2.0.0",
     "pg": "^7.10.0",
+    "qr-scanner": "^1.1.1",
     "query-string": "^6.5.0",
     "react": "^16.8.6",
+    "react-qr-reader": "^2.2.1",
     "react-router-dom": "^5.0.0",
     "react-script": "^2.0.5",
     "react-scroll": "^1.7.11",
     "react-table": "^6.10.0",
-    "concurrently": "^4.1.0",
-    "sequelize": "^5.8.0",
-    "nodemon": "^1.18.7"
+    "sequelize": "^5.8.0"
   }
 }
-

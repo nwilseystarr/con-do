@@ -1,12 +1,13 @@
 import React, {Component} from "react";
 import { Link } from "react-router-dom";
-import API from "../utils/API"
+import API from "../../utils/API"
 import { derToJose } from "ecdsa-sig-formatter";
-import Loading from "./Loading"
-import Navbar from "./Navbar";
-import UpdatePassword from "./Dashboard/update-password"
+import Loading from "../Loading"
+import Navbar from "../Navbar";
+import UpdatePassword from "../Dashboard/update-password"
 import ReactTable from 'react-table';
 import matchSorter from 'match-sorter';
+import Webcam from "./webcam"
 
 class Event extends Component {
     //the state for the login component keeps track fo the email and password inputs
@@ -144,6 +145,7 @@ class Event extends Component {
                     <div className="col-lg-9 mt-5">
                     <ReactTable data={this.state.attendance} columns={columns} defaultPageSize={10} filterable
                     defaultFilterMethod={(filter, row) => String(row[filter.id]) === filter.value} />
+                    <Webcam/>
                     </div>
                 </div>
             </div>
