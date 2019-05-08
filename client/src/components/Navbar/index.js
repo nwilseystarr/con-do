@@ -48,6 +48,7 @@ class Navbar extends Component {
                                 <li className="nav-item">
                                     <Link
                                         className="nav-link mr-3"
+                                        activeClass="active-link"
                                         to="aboutus"
                                         smooth={true}
                                         spy={true}
@@ -60,6 +61,7 @@ class Navbar extends Component {
                                 <li className="nav-item">
                                     <Link
                                         className="nav-link mr-3"
+                                        activeClass="active-link"
                                         to="features"
                                         smooth={true}
                                         spy={true}
@@ -69,16 +71,17 @@ class Navbar extends Component {
                                         Features
                                     </Link>
                                 </li>
-                                <li className="nav-item">
+                                {/* <li className="nav-item">
                                     <a href="/howto" className="nav-link mr-3">How To</a>
-                                </li>
-                                <li className="nav-item mr-3">
+                                </li> */}
+                                <li className="nav-item">
                                     <Link
+                                        className="nav-link mr-3"
                                         to="contact"
-                                        className="nav-link"
+                                        activeClass="active-link"
                                         smooth={true}
                                         spy={true}
-                                        offset={-90}
+                                        offset={-100}
                                         duration={500}
                                     >
                                         Contact

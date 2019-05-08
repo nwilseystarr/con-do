@@ -1,6 +1,6 @@
 {
     "development": {
-      "username": "root",
+      "username": "postgres",
       "password": "password",
       "database": "condo_db",
       "host": "localhost",
@@ -8,7 +8,7 @@
       "dialect": "postgres"
     },
     "test": {
-      "username": "root",
+      "username": "postgres",
       "password": null,
       "database": "condo_db",
       "host": "localhost",
@@ -16,7 +16,7 @@
       "dialect": "postgres"
     },
     "production": {
-      "username": "root",
+      "username": "postgres",
       "password": null,
       "database": "condo_db",
       "host": "localhost",
