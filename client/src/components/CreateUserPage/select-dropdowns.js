@@ -40,7 +40,7 @@ class Select extends Component {
     };
     render() {
         return (
-            <select className="col-lg-10 col-sm-8 form-control border-dark rounded-0 px-0 ml-3" value={this.state.value} name={this.props.name} onChange={this.handleInputChange}>
+            <select className="form-control border-dark rounded-0 px-0" value={this.state.value} name={this.props.name} onChange={this.handleInputChange}>
                 {this.state.options.map(option => (<option value={option.id}>{option.name}</option>))}
             </select>
         )
