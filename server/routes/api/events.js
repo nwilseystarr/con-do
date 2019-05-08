@@ -1,8 +1,7 @@
-const { Events, User } = require("../../db/models");
+const { Events } = require("../../db/models");
 const router = require("express").Router();
-const isAuthenticated = require("../../db/config/middleware/isAuthenticated");
 
-router.route("/usereevnts")
+router.route("/userevents")
     .get(function (req, res) {
                 Events.findAll({
                     where: {

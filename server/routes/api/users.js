@@ -59,7 +59,7 @@ router.route("/querybycommittee/:query")
             }
         })
         .then(queriedUsers =>{
-            console.log("committe users,", queriedUsers)
+            console.log("committee users,", queriedUsers)
             res.send(queriedUsers)
         })
     })
@@ -71,7 +71,7 @@ router.route("/querybyschool/:query")
             }
         })
         .then(queriedUsers =>{
-            console.log("committe users,", queriedUsers)
+            console.log("committee users,", queriedUsers)
             res.send(queriedUsers)
         })
     })
