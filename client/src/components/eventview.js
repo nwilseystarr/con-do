@@ -4,7 +4,6 @@ import API from "../utils/API"
 import { derToJose } from "ecdsa-sig-formatter";
 import Loading from "./Loading"
 import Navbar from "./Navbar";
-import UpdatePassword from "./Dashboard/update-password"
 import ReactTable from 'react-table';
 import matchSorter from 'match-sorter';
 
