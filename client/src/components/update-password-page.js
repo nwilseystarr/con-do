@@ -1,7 +1,7 @@
 import React, {Component} from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import Navbar from "./Navbar"
-import { derToJose } from "ecdsa-sig-formatter";
+// import { derToJose } from "ecdsa-sig-formatter";
 import UpdatePassword from "./Profile/update-password"
 
 class UpdatePasswordPage extends Component {

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
-import QRCode from "qrcode"
+import QRCode from "qrcode";
 
 class UserDashboard extends Component {
     constructor(props) {

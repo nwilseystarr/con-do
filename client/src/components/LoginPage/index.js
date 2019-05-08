@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import API from "../../utils/API"
-import { derToJose } from "ecdsa-sig-formatter";
+// import { derToJose } from "ecdsa-sig-formatter";
 import Navbar from "../Navbar";
 import LoginJumbotron from "./jumbotron";
 

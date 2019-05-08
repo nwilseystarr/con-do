@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import API from "../../utils/API";
+// import API from "../../utils/API";
 import Navbar from "../Navbar";
 import UserDashboard from "../Dashboard/user";
 import UpdatePassword from "./update-password";

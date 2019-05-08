@@ -11,12 +11,12 @@ import API from "./utils/API";
 import CreateUser from "./components/CreateUserPage";
 import CreateEvent from "./components/CreateEventPage"
 import Event from "./components/EventPage/eventview"
-import { Verify } from "crypto";
+// import { Verify } from "crypto";
 import UpdatePasswordPage from "./components/update-password-page";
 import Dashboard from "./components/Dashboard";
 import Profile from "./components/Profile";
 // import isAuthenticated from "../db/config/middleware/isAuthenticated"
-const UserContext = React.createContext("none");
+// const UserContext = React.createContext("none");
 
 
 class App extends Component {
