@@ -57,19 +57,6 @@ class Navbar extends Component {
                                     <Link
                                         className="nav-link mr-3"
                                         activeClass="active-link"
-                                        to="aboutus"
-                                        smooth={true}
-                                        spy={true}
-                                        offset={-90}
-                                        duration={500}
-                                    >
-                                        About Us
-                                    </Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link
-                                        className="nav-link mr-3"
-                                        activeClass="active-link"
                                         to="features"
                                         smooth={true}
                                         spy={true}
@@ -77,6 +64,19 @@ class Navbar extends Component {
                                         duration={500}
                                     >
                                         Features
+                                    </Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link
+                                        className="nav-link mr-3"
+                                        activeClass="active-link"
+                                        to="aboutus"
+                                        smooth={true}
+                                        spy={true}
+                                        offset={-90}
+                                        duration={500}
+                                    >
+                                        About Us
                                     </Link>
                                 </li>
                                 {/* <li className="nav-item">

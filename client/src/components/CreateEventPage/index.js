@@ -83,7 +83,7 @@ class CreateEvent extends Component {
       <div>
         <Navbar />
         {this.props.userType === "admin" || this.props.userType === "advisor" ?
-          <div className="container mt-4">
+          <div className="container mt-5 pt-5">
             <div className="row justify-content-around">
               <div className="col-lg-8">
                 <h1 className="display-4 mb-4 mt-sm-5 text-center">Add New Event</h1>

@@ -9,7 +9,7 @@ class Profile extends Component {
         return(
             <div>
                 <Navbar loggedIn={this.props.loggedIn}/>
-                <div className="container-fluid">
+                <div className="container-fluid mt-5 pt-5">
                     <div className="row">
                         <div className="col-lg-5 align-self-center">
                             <UserDashboard/>

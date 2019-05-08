@@ -11,7 +11,7 @@ import "./style.css";
 class Carousel extends Component {
     render() {
         return (
-            <div className="container-fluid">
+            <div className="container-fluid mt-5 carouselContainer">
                 <div className="row">
                     <div className="col px-0">
                         <div id="carouselImages" className="carousel slide carousel-fade" data-ride="carousel">

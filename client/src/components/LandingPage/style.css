@@ -1,5 +1,9 @@
 /* CAROUSEL */
 
+.carouselContainer {
+    padding-top: 2rem;
+}
+
 .carousel-caption {
     position: absolute;
     right: 15%;
