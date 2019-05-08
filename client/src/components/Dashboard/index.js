@@ -20,13 +20,20 @@ class Dashboard extends Component {
                                     {this.props.userType === "admin" ?
                                         <div className="col d-flex justify-content-end mb-2">
                                             <a className="btn btn-outline-dark px-3 mr-2" href="/createuser"><i className="fas fa-user-plus mr-2"></i>Create User</a>
-                                            <a className="btn btn-outline-dark px-3 mr-2" href="/createevent"><i className="fas fa-plus mr-2"></i>Add Event</a>
-                                            <a className="btn btn-outline-dark px-3" href="/dashboard">View Schedule</a>
+                                            <a className="btn btn-outline-dark px-3" href="/createevent"><i className="fas fa-plus mr-2"></i>Add Event</a>
                                         </div>
                                         :
+                                        <div></div>
+                                    }
+                                </div>
+                                <div className="row">
+                                    {this.props.userType === "advisor" ?
                                         <div className="col d-flex justify-content-end mb-2">
-                                            <a className="btn btn-outline-dark px-3" href="schedule">View Schedule</a>
+                                            <a className="btn btn-outline-dark px-3 mr-2" href="/createuser"><i className="fas fa-user-plus mr-2"></i>Create Delegate</a>
+                                            <a className="btn btn-outline-dark px-3" href="/createevent"><i className="fas fa-plus mr-2"></i>Add Event</a>
                                         </div>
+                                        :
+                                        <div></div>
                                     }
                                 </div>
                                 <div className="row">

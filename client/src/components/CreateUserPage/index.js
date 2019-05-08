@@ -103,6 +103,8 @@ class CreateUser extends Component {
           });
       }
     }
+    alert(`You have successfully created an account for ${this.state.name}!`);
+    window.location.assign("/dashboard");
   }
 
   //handling submit for committee add
