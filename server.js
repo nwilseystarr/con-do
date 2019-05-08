@@ -67,13 +67,13 @@ const delegate = {
   // country: "none"
 }
 
-db.sync({ force: true}).then(function () {
-  models.User.create(admin).catch(err=> console.log(err))
-  models.User.create(advisor).catch(err=> console.log(err))
-  models.User.create(staff).catch(err=> console.log(err))
-  models.User.create(delegate).catch(err=> console.log(err))
-  models.School.create({name: "None"})
-  models.Committee.create({name: "None"})
+db.sync({ force: false}).then(function () {
+  // models.User.create(admin).catch(err=> console.log(err))
+  // models.User.create(advisor).catch(err=> console.log(err))
+  // models.User.create(staff).catch(err=> console.log(err))
+  // models.User.create(delegate).catch(err=> console.log(err))
+  // models.School.create({name: "None"})
+  // models.Committee.create({name: "None"})
   app.listen(PORT, function () {
     console.log(`🌎 ==> API server now on port ${PORT}!`);
   });
