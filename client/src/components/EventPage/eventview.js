@@ -27,19 +27,21 @@ class Event extends Component {
         this.checkIn.bind(this)
     }
 
-    //calling the loginUser method of our API which routes to the backend and attempts to log in user agent via passport
-    //with the given credentials
+    //this will get all of the relvant data for the event with the id that matches the id of the url paramater
     getEvent = () =>{
+            //first we will get all of the school and committee data from the database
             API.getSchools().then(res =>{
                 this.setState({allSchools: res.data})
             })
             API.getCommittees().then(res=>{
                 this.setState({allCommittees: res.data})
             })
-            //this route will verify the json webtoken from the url paramater
+            
             API.getEventById(this.props.match.params.id)
                 .then(res => {
-                    // console.log(res)
+                    //when we get the event data, we will map over the attendance array to search for the record that has an id 
+                    //that matches the currently logged in user. Once we find that record, we will use it's checkedIn property to 
+                    //change our checkedIn state (the checkedIn state of the logged in user agent)
                     res.data.attendance.map(attendanceRecord =>{
                         if (attendanceRecord.id === this.props.userId){
                             this.setState({
@@ -47,6 +49,7 @@ class Event extends Component {
                             })
                         }
                     })
+                    //then we will update the attendance state array with the value of the attendance array in the database
                     this.setState({
                         attendance: res.data.attendance,
                         name: res.data.name,
@@ -55,8 +58,13 @@ class Event extends Component {
                     })
                 });
     }
+    //this function should only be called by the admin, with the userId paramater being provided by the qrCode ofthe delegate
     checkIn = (userId) =>{
+        //first we will store our current attendance by grabbing it from the state
         let currentAttendance = this.state.attendance
+        //then we will map through this array and return each attendance record into a new array
+        //before we return the record, we will check to see if the record matches the id of the user who is 
+        //requesting to check in. Once we find that record we will set its checkedIn property to true
         let updatedAttendance = currentAttendance.map((attendanceRecord) => {
             if (attendanceRecord.id === userId){
                 attendanceRecord.checkedIn = true
@@ -67,10 +75,12 @@ class Event extends Component {
             return attendanceRecord
         })
         console.log(updatedAttendance)
+        //we will then create our request object using the updated attendance array and replace the attendance array for the event
+        //in the database with the new attendance array
         let toSendAttendance = {attendance: updatedAttendance}
         API.checkIn(this.props.match.params.id, toSendAttendance)
             .then(res=>{
-                // console.log(res)
+                //call get event again so that the table will be updated with the most recent values
                 this.getEvent()
             })
     }
@@ -80,6 +90,9 @@ class Event extends Component {
     render(){
         let allSchools = this.state.allSchools
         let allCommittees = this.state.allCommittees
+        //Our react table will use the attendance array from the current event to populate its data
+        //each attendance record is a user object that has the following properties
+        // name (str), checkedIn(bool), committeedId(key), schoolId(key)
         const columns = [
             {
                 Header: 'Name',
