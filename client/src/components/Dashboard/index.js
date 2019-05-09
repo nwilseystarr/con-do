@@ -41,7 +41,7 @@ class Dashboard extends Component {
                                     <div className="col">
                                         <Schedule
                                         // {...this.props.loggedIn}
-                                        // name ={this.props.name}
+                                        name ={this.props.name}
                                         // location={this.props.location}
                                         // start={this.props.start}
                                         // end={this.props.end}
