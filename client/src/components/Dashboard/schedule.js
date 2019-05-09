@@ -31,10 +31,7 @@ class Schedule extends Component {
                     start: res.start,
                     end: res.end
                 });
-
-
             })
-
     )
 
     componentDidMount = () => { this.getSchedule(); }
@@ -75,25 +72,27 @@ class Schedule extends Component {
             <div>
                 <div className="col-lg-9 mt-5">
                     <ReactTable
-                        minRows={0}
-                        data={this.state.data}
                         columns={columns}
-                        onFetchData={(state, instance) => {
-                            this.setState({ loading: true })
-                            AXIOS.put("http://localhost:3001/api/events/userevents", {
-                                name: state.name,
-                                location: state.location,
-                                start: state.start,
-                                end: state.end
-                            })
-                                .then((res) => {
-                                    // Update react-table
-                                    this.setState({
-                                        data: res.data.name,
-                                        loading: false
-                                    })
-                                })
-                        }}
+                        minRows={0}
+                        data={[...data]}
+                        // resolveData={data => data.map(row => row)}
+                        // onFetchData={(state, instance) => {
+                        //     this.setState({ loading: true })
+                        //     AXIOS.put("http://localhost:3001/api/events/userevents", {
+                        //         name: state.name,
+                        //         location: state.location,
+                        //         start: state.start,
+                        //         end: state.end
+                        //     })
+                        //         .then((res) => {
+                        //             // Update react-table
+                        //             this.setState({
+                                        
+                        //                 data: res.data.name,
+                        //                 loading: false
+                        //             })
+                        //         })
+                        // }}
                     />
                 </div>
             </div>
