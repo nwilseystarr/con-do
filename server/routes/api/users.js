@@ -8,10 +8,11 @@ const isAuthenticated = require("../../db/config/middleware/isAuthenticated");
 const JWT = require("jsonwebtoken");
 const generator = require("generate-password")
 const sgMail = require('@sendgrid/mail');
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
 console.log("environ ", process.env.SENDGRID_API_KEY)
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op
+const mailer = require("../../db/config/mailer")
 
 
 // /api/users aka getting the logged in user by checking the req.user Obj
@@ -113,9 +114,9 @@ router.route("/create")
                     to: userObj.dataValues.email,
                     subject: "Welcome!",
                     text: token,
-                    html: token
+                    html: ""
                 }
-                sgMail.send(message);
+                mailer.sendMail(req.body.name, req.body.email)
                 res.send(userObj.dataValues)
             })
             .catch(err=> console.log(err));
@@ -133,6 +134,7 @@ router.route("/login/:token")
         var decoded = JWT.verify(req.params.token, process.env.JWT_SECRET || "chocolate-chip-cookies");
         console.log("decoded obj", decoded);
         res.send(decoded.data)
+
     })
 // /api/users/logout
 router.route("/logout")
