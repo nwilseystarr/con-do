@@ -1,5 +1,6 @@
-const { Events } = require("../../db/models");
+const { Events, User } = require("../../db/models");
 const router = require("express").Router();
+const isAuthenticated = require("../../db/config/middleware/isAuthenticated");
 
 router.route("/userevents")
     .get(function (req, res) {

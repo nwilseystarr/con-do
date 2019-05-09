@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import Navbar from "../Navbar";
 import UserDashboard from "./user";
 import Schedule from "./schedule";
+import { scheduled } from "rxjs";
 
 class Dashboard extends Component {
     render() {
@@ -38,12 +39,15 @@ class Dashboard extends Component {
                                 </div>
                                 <div className="row">
                                     <div className="col">
-                                        <Schedule />
+                                        <Schedule 
+                                        name={this.props.name}
+                                        location={this.props.location}
+                                        start={this.props.start}
+                                        end={this.props.end}
+                                        />
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
