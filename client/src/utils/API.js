@@ -85,8 +85,8 @@ export default {
         return axios.put("/api/events/" + id, attendance)
     },
     //Schedules 
-    getScheduleByUser: function (name, location, start, end) {
-        return axios.get("api/events/userevents/" + name, location, start, end)
+    getScheduleByUser: function (id) {
+        return axios.get("api/events/userevents", id)
     }
 }
 

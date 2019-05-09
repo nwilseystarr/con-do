@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ReactTable from 'react-table';
 import API from "../../utils/API";
-import Axios from "axios";
+// import Axios from "axios";
 
 
 class Schedule extends Component {
@@ -12,12 +12,11 @@ class Schedule extends Component {
             location: "",
             start: "",
             end: ""
-        };
-
+        }
         this.getSchedule.bind(this);
     };
 
-    getSchedule = () => (
+    getSchedule = () => {
         // API.getScheduleByUser().then(res => {
         //     this.setState({allSchedule: res.data})
         // })
@@ -31,8 +30,11 @@ class Schedule extends Component {
                     start: res.start,
                     end: res.end
                 });
+            console.log(res)
             })
-    )
+    }
+
+
 
     componentDidMount = () => { this.getSchedule(); }
 
@@ -75,24 +77,24 @@ class Schedule extends Component {
                         columns={columns}
                         minRows={0}
                         data={[...data]}
-                        // resolveData={data => data.map(row => row)}
-                        // onFetchData={(state, instance) => {
-                        //     this.setState({ loading: true })
-                        //     AXIOS.put("http://localhost:3001/api/events/userevents", {
-                        //         name: state.name,
-                        //         location: state.location,
-                        //         start: state.start,
-                        //         end: state.end
-                        //     })
-                        //         .then((res) => {
-                        //             // Update react-table
-                        //             this.setState({
-                                        
-                        //                 data: res.data.name,
-                        //                 loading: false
-                        //             })
-                        //         })
-                        // }}
+                    // resolveData={data => data.map(row => row)}
+                    // onFetchData={(state, instance) => {
+                    //     this.setState({ loading: true })
+                    //     AXIOS.put("http://localhost:3001/api/events/userevents", {
+                    //         name: state.name,
+                    //         location: state.location,
+                    //         start: state.start,
+                    //         end: state.end
+                    //     })
+                    //         .then((res) => {
+                    //             // Update react-table
+                    //             this.setState({
+
+                    //                 data: res.data.name,
+                    //                 loading: false
+                    //             })
+                    //         })
+                    // }}
                     />
                 </div>
             </div>
