@@ -90,6 +90,9 @@ class Event extends Component {
     render(){
         let allSchools = this.state.allSchools
         let allCommittees = this.state.allCommittees
+        //Our react table will use the attendance array from the current event to populate its data
+        //each attendance record is a user object that has the following properties
+        // name (str), checkedIn(bool), committeedId(key), schoolId(key)
         const columns = [
             {
                 Header: 'Name',
