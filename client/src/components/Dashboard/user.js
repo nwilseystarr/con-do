@@ -19,7 +19,7 @@ class UserDashboard extends Component {
     }
 
     getUserInfo = () => {
-        console.log("getting user")
+        // console.log("getting user")
         API.getUser()
             .then(res =>{
                 this.setState({ id: res.data.id, name: res.data.name, country: res.data.country, school: res.data.school, role: res.data.school });

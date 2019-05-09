@@ -8,11 +8,10 @@ class Schedule extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            name: "Hello"
-            // ,
-            // location: "",
-            // start: "",
-            // end: ""
+            name: "",
+            location: "",
+            start: "",
+            end: ""
         };
 
         this.getSchedule.bind(this);
@@ -25,87 +24,78 @@ class Schedule extends Component {
 
         API.getScheduleByUser()
             .then(res => {
-                console.log(res)
+                // console.log(res)
                 this.setState({
                     name: res.name,
-                    // location: res.location,
-                    // start: res.start,
-                    // end: res.end
+                    location: res.location,
+                    start: res.start,
+                    end: res.end
                 });
             })
-        
     )
 
     componentDidMount = () => { this.getSchedule(); }
 
     render() {
         const data = [{
-            name: this.props.name,
-            // location: this.props.location,
-            // start: this.props.start,
-            // end: this.props.end
+            name: this.state.name,
+            location: this.state.location,
+            start: this.state.start,
+            end: this.state.end
         }]
         console.log(data);
 
         const columns = [
             {
-                id: "name",
+                id: "eventName",
                 Header: "event",
-                accessor: data => data.name
+                accessor: d => d.name
+            },
+            {
+                id: "eventLocation",
+                Header: "location",
+                accessor: d => d.location
+            },
+            {
+                id: "eventStart",
+                Header: "event start",
+                aaccessor: d => d.start
+            },
+            {
+                id: "eventEnd",
+                Header: "event end",
+                accessor: d => d.end
             }
-            // ,
-            // {
-            //     id: "location",
-            //     Header: "location",
-            //     accessor: data => data.location
-            // },
-            // {
-            //     id: "start",
-            //     Header: "event start",
-            //     aaccessor: data => data.start
-            // },
-            // {
-            //     id: "end",
-            //     Header: "event end",
-            //     accessor: data => data.end
-            // }
         ]
 
         return (
+            <div>
                 <div className="col-lg-9 mt-5">
-                <ReactTable 
-                    minRows = {0}
-                    columns = {columns}
-                    data = {data.rows}
-                />
-                    {/* <ReactTable
-                        minRows = {0}
+                    <ReactTable
                         columns={columns}
-                        // data={this.state.data} // should default to []
-                        pages={this.state.pages} // should default to -1 (which means we don't know how many pages we have)
-                        // loading={this.state.loading}
-                        manual // informs React Table that you'll be handling sorting and pagination server-side
-                        onFetchData={(state, instance) => {
-                            // show the loading overlay
-                            this.setState({ loading: true })
-                            // fetch your data
-                            Axios.put('http://localhost:3001/api/events/my', {
-                                page: state.page,
-                                pageSize: state.pageSize,
-                                sorted: state.sorted,
-                                filtered: state.filtered
-                            })
-                                .then((res) => {
-                                    // Update react-table
-                                    this.setState({
-                                        data: res.data.rows,
-                                        pages: res.data.pages,
-                                        loading: false
-                                    })
-                                })
-                        }}
-                    /> */}
+                        minRows={0}
+                        data={[...data]}
+                        // resolveData={data => data.map(row => row)}
+                        // onFetchData={(state, instance) => {
+                        //     this.setState({ loading: true })
+                        //     AXIOS.put("http://localhost:3001/api/events/userevents", {
+                        //         name: state.name,
+                        //         location: state.location,
+                        //         start: state.start,
+                        //         end: state.end
+                        //     })
+                        //         .then((res) => {
+                        //             // Update react-table
+                        //             this.setState({
+                                        
+                        //                 data: res.data.name,
+                        //                 loading: false
+                        //             })
+                        //         })
+                        // }}
+                    />
                 </div>
+            </div>
         )
     }
 }

@@ -52,15 +52,20 @@ class CreateEvent extends Component {
   //on submit we attempt to create a new event with the given values via the API that hits a route that queries our database
   handleFormSubmit = event => {
     event.preventDefault();
+    //first we need to get all the users that have a committeeId that matches the committeId of the event we are creating
     API.getUsersByCommittee(this.state.committee)
       .then(response => {
         console.log(response);
+        //then we will store this returned array in users
         let users = response.data;
+        //we will map over this users array and give each one a new property checkedIn:false 
         let attendance = users.map((user) => {
           let attendingUser = user;
           attendingUser.checkedIn = false;
           return attendingUser;
         });
+        //we will update our state to be the same as this array, and then use this array as the value for the attendance column of this 
+        //event
         this.setState({ attendance: attendance })
         API.createEvent({
           name: this.state.name,

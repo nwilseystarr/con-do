@@ -8,7 +8,7 @@
       "dialect": "postgres"
     },
     "test": {
-      "username": "postgres",
+      "username": "root",
       "password": null,
       "database": "condo_db",
       "host": "localhost",
@@ -16,7 +16,7 @@
       "dialect": "postgres"
     },
     "production": {
-      "username": "postgres",
+      "username": "root",
       "password": null,
       "database": "condo_db",
       "host": "localhost",
