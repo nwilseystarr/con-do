@@ -83,5 +83,8 @@ export default {
     },
     checkIn: function(id, attendance){
         return axios.put("/api/events/" + id, attendance)
+    },
+    getScheduleByUser: function () {
+        return axios.get("/userevents")
     }
 }

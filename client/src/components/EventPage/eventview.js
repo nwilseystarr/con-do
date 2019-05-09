@@ -39,7 +39,7 @@ class Event extends Component {
             //this route will verify the json webtoken from the url paramater
             API.getEventById(this.props.match.params.id)
                 .then(res => {
-                    console.log(res)
+                    // console.log(res)
                     res.data.attendance.map(attendanceRecord =>{
                         if (attendanceRecord.id === this.props.userId){
                             this.setState({
@@ -70,7 +70,7 @@ class Event extends Component {
         let toSendAttendance = {attendance: updatedAttendance}
         API.checkIn(this.props.match.params.id, toSendAttendance)
             .then(res=>{
-                console.log(res)
+                // console.log(res)
                 this.getEvent()
             })
     }
@@ -92,7 +92,7 @@ class Event extends Component {
                 Header: 'Checked In',
                 id: 'checkedIn',
                 accessor: attendance =>{
-                    console.log(attendance)
+                    // console.log(attendance)
                     if(attendance.checkedIn){
                         return "yes"
                     }
@@ -108,8 +108,8 @@ class Event extends Component {
                 Header: 'School',
                 id: 'schoolName',
                 accessor: attendance => {
-                    console.log(allSchools)
-                    console.log(attendance)
+                    // console.log(allSchools)
+                    // console.log(attendance)
                     if(attendance.schoolId){
                         return allSchools[attendance.schoolId -1].name
                     }
