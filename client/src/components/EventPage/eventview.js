@@ -58,7 +58,7 @@ class Event extends Component {
     checkIn = (userId) =>{
         let currentAttendance = this.state.attendance
         let updatedAttendance = currentAttendance.map((attendanceRecord) => {
-            if (attendanceRecord.id == userId){
+            if (attendanceRecord.id === userId){
                 attendanceRecord.checkedIn = true
                 this.setState({
                     recentlyCheckedIn: attendanceRecord.name + " is now checked in!"

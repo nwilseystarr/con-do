@@ -39,11 +39,11 @@ class Dashboard extends Component {
                                 <div className="row">
                                     <div className="col">
                                         <Schedule
-                                        {...this.props.loggedIn}
-                                        name ={this.props.name}
-                                        location={this.props.location}
-                                        start={this.props.start}
-                                        end={this.props.end}
+                                        // {...this.props.loggedIn}
+                                        // name ={this.props.name}
+                                        // location={this.props.location}
+                                        // start={this.props.start}
+                                        // end={this.props.end}
                                         />
                                     </div>
                                 </div>
