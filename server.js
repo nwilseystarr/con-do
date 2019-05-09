@@ -30,9 +30,6 @@ app.use(passport.session());
 
 app.use(routes);
 
-
-// require("./attendanceRoutes/apiRoutes")(app);
-// require("./attendanceRoutes/htmlRoutes")(app);
 const admin = {
   email: "admin@mail.com",
   password: "password",

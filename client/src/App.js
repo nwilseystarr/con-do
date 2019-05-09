@@ -48,7 +48,7 @@ class App extends Component {
     API.getUser()
       .then(res => {
         if (res.status === 200) {
-          console.log(res.data);
+          // console.log(res.data);
           this.setState({
             id: res.data.id,
             email: res.data.email,
