@@ -1,29 +1,26 @@
-# Create React Express App
+# Con-Do
+Con-Do is a mobile-friendly white label web application designed to streamline conferences and/or other bigger events by allowing users to see their schedule of events, track user attendance through the use of uniquely generated QR codes, and utilize an in-app chatting system.
 
-## About This Boilerplate
+Currently, our app is built using Model United Nations (MUN) as a base conference example to show how our application also allows for different levels of authentication (i.e., administrators,organizers, teachers, and students).
 
-This setup allows for a Node/Express/React app which can be easily deployed to Heroku.
+## Deployment
+This app is deployed using Heroku.  Click <a href="https://con-do.herokuapp.com/">here</a> to start interacting.  
 
-The front-end React app will auto-reload as it's updated via webpack dev server, and the backend Express app will auto-reload independently with nodemon.
+## Tools/Technologies Used
 
-## Starting the app locally
-
-Start by installing front and backend dependencies. While in this directory, run the following command:
-
-```
-yarn install
-```
-
-This should install node modules within the server and the client folder.
-
-After both installations complete, run the following command in your terminal:
-
-```
-yarn start
-```
-
-Your app should now be running on <http://localhost:3000>. The Express server should intercept any AJAX requests from the client.
-
-## Deployment (Heroku)
-
-To deploy, simply add and commit your changes, and push to Heroku. As is, the NPM scripts should take care of the rest.
+<a href="https://getbootstrap.com/">Bootstrap</a><br>
+<a href="https://www.npmjs.com/package/dotenv">DotEnv</a>
+<a href="https://www.npmjs.com/package/express">Express.js</a><br>
+<a href="https://fontawesome.com/">Font Awesome</a><br>
+<a href="https://www.npmjs.com/package/generate-password">Generate Password</a><br>
+<a href="https://fonts.google.com/">Google Fonts</a><br>
+<a href="https://www.npmjs.com/package/json-web-token">JSON Web Token</a><br>
+<a href="https://www.npmjs.com/package/match-sorter">Match Sorter</a><br>
+<a href="https://nodejs.org/en/">Node.js</a><br>
+<a href="http://www.passportjs.org/">Passport</a><br>
+<a href="https://www.postgresql.org/">Postgres</a><br>
+<a href="https://www.npmjs.com/package/qrcode">QRCode</a><br>
+<a href="https://www.npmjs.com/package/react-router-dom">React Router Dom</a><br>
+<a href="https://www.npmjs.com/package/react-qr-reader">React QR Reader</a><br>
+<a href="https://www.npmjs.com/package/@sendgrid/mail">Sendgrid/mail</a><br>
+<a href="http://docs.sequelizejs.com/">Sequelize</a><br>
