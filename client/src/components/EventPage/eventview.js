@@ -150,20 +150,21 @@ class Event extends Component {
         return(
         <div>
             <Navbar loggedIn={this.props.loggedIn}/>
-              <div className="container-fluid">
+              <div className="container-fluid p-5">
                 <div className="row justify-content-center">
                     <div className="col-lg-3 mt-5">
                     <h2>{this.state.name}</h2>
                     <h4>{this.state.start} | {this.state.location}</h4>
-                    {!this.state.checkedIn ? <button onClick={this.checkIn}>Check in</button>:
-                 <button disabled={true}>Checked In</button> }
+                    {!this.state.checkedIn ? <button className="btn btn-outline-dark" onClick={this.checkIn}>Check in</button>:
+                 <button className="btn btn-outline-dark" disabled={true}>Checked In</button> }
                      <Webcam checkIn={this.checkIn}/>
                      <div>{this.state.recentlyCheckedIn}</div>
                     
                     </div>
-                    <div className="col-lg-9 mt-5">
+                    <div className="col-lg-9 mt-5 p-5">
                     <ReactTable data={this.state.attendance} columns={columns} defaultPageSize={10} filterable
-                    defaultFilterMethod={(filter, row) => String(row[filter.id]) === filter.value} />
+                    defaultFilterMethod={(filter, row) => String(row[filter.id]) === filter.value}  minRows={0} 
+                    />
                     </div>
                 </div>
             </div>
