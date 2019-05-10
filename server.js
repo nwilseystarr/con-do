@@ -30,6 +30,8 @@ app.use(passport.session());
 
 app.use(routes);
 
+
+//creates user logins
 const admin = {
   email: "admin@mail.com",
   password: "password",

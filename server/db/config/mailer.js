@@ -2,6 +2,9 @@ require('dotenv').config()
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
+
+//references to images for email
+
 {/* <a href="https://ibb.co/gVgF3cv"><img src="https://i.ibb.co/GTP30rs/checkin-1.png" alt="checkin-1" border="0"></a>
 <a href="https://ibb.co/dtKqvDQ"><img src="https://i.ibb.co/sC3G4qF/logo-transparent.png" alt="logo-transparent" border="0"></a>
 <a href="https://ibb.co/M6X01hs"><img src="https://i.ibb.co/FVPTYWK/United-Nations-logo-5f59e4c2.png" alt="United-Nations-logo-5f59e4c2" border="0"></a>
@@ -16,6 +19,7 @@ const modelUnLogo = 'https://ibb.co/xM9Ffp0'
 const updateePasswordMobileImg = 'https://ibb.co/mRbzznm' */}
 const mailer = {
 
+    //sends email to user when user is created
 
     sendMail : (userName, userEmail, token)=>{
 
