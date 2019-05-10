@@ -1,100 +1,75 @@
 import React, { Component } from "react";
 import ReactTable from 'react-table';
 import API from "../../utils/API";
-import AXIOS from "axios";
+import {
+    BrowserRouter as Router,
+    Link,
+   
+  } from 'react-router-dom';
 
 
 class Schedule extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            array: [],
             name: "",
             location: "",
             start: "",
             end: ""
-        };
-
+        }
         this.getSchedule.bind(this);
     };
 
-    getSchedule = () => (
-        // API.getScheduleByUser().then(res => {
-        //     this.setState({allSchedule: res.data})
-        // })
-
+    getSchedule = () => {
         API.getScheduleByUser()
             .then(res => {
                 // console.log(res)
                 this.setState({
-                    name: res.name,
-                    location: res.location,
-                    start: res.start,
-                    end: res.end
+                    array: res.data
                 });
+            console.log(res)
             })
-    )
+    }
 
     componentDidMount = () => { this.getSchedule(); }
 
     render() {
-        const data = [{
-            name: this.state.name,
-            location: this.state.location,
-            start: this.state.start,
-            end: this.state.end
-        }]
-        console.log(data);
-
         const columns = [
             {
-                id: "eventName",
-                Header: "event",
-                accessor: d => d.name
+                id: "name",
+                Header: "Event",
+                accessor: "name"
             },
             {
-                id: "eventLocation",
-                Header: "location",
-                accessor: d => d.location
+                id: "location",
+                Header: "Location",
+                accessor: "location"
             },
             {
-                id: "eventStart",
-                Header: "event start",
-                aaccessor: d => d.start
+                id: "start",
+                Header: "Event Start",
+                accessor: "start"
             },
             {
-                id: "eventEnd",
-                Header: "event end",
-                accessor: d => d.end
+                id: "end",
+                Header: "Event End",
+                accessor: "end"
+            }, {
+                id: "attendance",
+                Header: "Attendance",
+                accessor: event => <Link to={{ pathname: `/event/${event.id}` }}>{event.name}</Link>
+                // render: ({ row }) => (<Link to={{ pathname: `/events/${row.id}` }}>{row.name}</Link>)
             }
         ]
 
         return (
             <div>
-                <div className="col-lg-9 mt-5">
                     <ReactTable
                         columns={columns}
                         minRows={0}
-                        data={[...data]}
-                        // resolveData={data => data.map(row => row)}
-                        // onFetchData={(state, instance) => {
-                        //     this.setState({ loading: true })
-                        //     AXIOS.put("http://localhost:3001/api/events/userevents", {
-                        //         name: state.name,
-                        //         location: state.location,
-                        //         start: state.start,
-                        //         end: state.end
-                        //     })
-                        //         .then((res) => {
-                        //             // Update react-table
-                        //             this.setState({
-                                        
-                        //                 data: res.data.name,
-                        //                 loading: false
-                        //             })
-                        //         })
-                        // }}
+                        data={this.state.array}
                     />
-                </div>
             </div>
         )
     }
