@@ -93,7 +93,7 @@ export default {
 
     //Schedules 
     getScheduleByUser: function (id) {
-        return axios.get("api/events/userevents", id)
+        return axios.get("api/events/my", id)
     }
 
 }
