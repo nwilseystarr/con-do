@@ -2,89 +2,91 @@ import axios from "axios";
 
 export default {
     //User Axios Calls
-    createUser: function(userData){
+    createUser: function (userData) {
         return axios.post("/api/users/create", userData);
     },
     //user auth
-    loginUser: function(loginForm){
+    loginUser: function (loginForm) {
         console.log(loginForm)
         return axios.post("/api/users/login", loginForm);
     },
-    loginLink: function(userData){
+    loginLink: function (userData) {
         console.log(userData)
         return axios.post("/api/users/loginLink", userData)
     },
-    logOut: function(){
+    logOut: function () {
         return axios.post("/api/users/logout")
     },
-    isAuthenticated: function(){
+    isAuthenticated: function () {
         return axios.get("/api/users/status")
     },
     //get users
-    getUser: function(){
+    getUser: function () {
         return axios.get("/api/users")
     },
-    getAllUsers: function(){
+    getAllUsers: function () {
         return axios.get("/api/users/all")
     },
-    getUsersByName: function(query){
+    getUsersByName: function (query) {
         return axios.get(`/api/users/querybyname/${query}`)
     },
-    getUsersByCommittee: function(query){
+    getUsersByCommittee: function (query) {
         return axios.get(`/api/users/querybycommittee/${query}`)
     },
-    getUsersBySchool: function(query){
+    getUsersBySchool: function (query) {
         return axios.get(`/api/users/querybyschool/${query}`)
     },
-    loginViaLink: function(token){
+    loginViaLink: function (token) {
         console.log("loggin in with token " + token)
-        return axios.get("/api/users/login/" + token, {data:{token: token}})
+        return axios.get("/api/users/login/" + token, { data: { token: token } })
     },
-    updatePW: function(password){
+    updatePW: function (password) {
         return axios.put("/api/users/updatepassword", password)
     },
     //Committee Axios Calls
-    getCommittees: function(){
+    getCommittees: function () {
         return axios.get("/api/committees")
     },
-    getCommitteeByName: function(name){
+    getCommitteeByName: function (name) {
         return axios.get("/api/committees/" + name)
     },
-    getCommitteeIds: function(query){
-        return axios.get("/api/committees/queried/" +query)
+    getCommitteeIds: function (query) {
+        return axios.get("/api/committees/queried/" + query)
     },
-    addCommittee: function(committeeForm){
+    addCommittee: function (committeeForm) {
         return axios.post("/api/committees/add", committeeForm)
     },
     //School Axios Calls
-    getSchools: function(){
+    getSchools: function () {
         return axios.get("/api/schools")
     },
-    getSchoolByName: function(name){
+    getSchoolByName: function (name) {
         return axios.get("/api/schools/" + name)
-    },  
-    getSchoolIds: function(query){
-        return axios.get("/api/schools/queried/" +query)
     },
-    addSchool: function(schoolForm){
+    getSchoolIds: function (query) {
+        return axios.get("/api/schools/queried/" + query)
+    },
+    addSchool: function (schoolForm) {
         return axios.post("/api/schools/add", schoolForm)
     },
-    getAllEvents: function(){
+    getAllEvents: function () {
         return axios.get("/api/events")
     },
-    getMyEvents: function(){
+    getMyEvents: function () {
         return axios.get("/api/events/my")
     },
-    getEventById: function(id){
+    getEventById: function (id) {
         return axios.get("/api/events/" + id)
     },
-    createEvent: function(eventData){
+    createEvent: function (eventData) {
         return axios.post("/api/events", eventData)
     },
-    checkIn: function(id, attendance){
+    checkIn: function (id, attendance) {
         return axios.put("/api/events/" + id, attendance)
     },
-    getScheduleByUser: function () {
-        return axios.get("api/events/userevents")
+    //Schedules 
+    getScheduleByUser: function (id) {
+        return axios.get("api/events/userevents", id)
     }
 }
+

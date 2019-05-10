@@ -15,6 +15,5 @@ const db = require("../db");
     })
 
     Event.belongsTo(Committee);
-    // Committee.hasMany(Events);
 
 module.exports = Event;

@@ -15,6 +15,7 @@ class Schedule extends Component {
             array: [],
             name: "",
             location: "",
+            date: "",
             start: "",
             end: ""
         }
@@ -45,6 +46,11 @@ class Schedule extends Component {
                 id: "location",
                 Header: "Location",
                 accessor: "location"
+            },
+            {
+                id:"date",
+                Header: "date",
+                accessor: "date"
             },
             {
                 id: "start",
