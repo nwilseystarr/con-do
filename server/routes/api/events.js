@@ -34,7 +34,7 @@ router.route("/my")
     .get(function (req, res){
         Events.findAll({
             where: {
-                committeeId: [req.params.committeeId, 1000]
+                committeeId: [req.user.committeeId, 1000]
             }
         })
         .then(function(eventData){

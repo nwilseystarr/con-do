@@ -109,14 +109,8 @@ router.route("/create")
                 }
                 let token = JWT.sign({data: userInfo}, process.env.JWT_SECRET || "chocolate-chip-cookies", { expiresIn: '176h' })
                 console.log(token)
-                let message ={ 
-                    from: "noreply@condo.com",
-                    to: userObj.dataValues.email,
-                    subject: "Welcome!",
-                    text: token,
-                    html: ""
-                }
-                mailer.sendMail(req.body.name, req.body.email)
+
+                mailer.sendMail(req.body.name, req.body.email, token)
                 res.send(userObj.dataValues)
             })
             .catch(err=> console.log(err));
