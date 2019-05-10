@@ -68,4 +68,14 @@ router.route("/:id")
             res.send(eventData)
         })
     })
+    .delete(function(req,res){
+        Events.destroy({
+            where:{
+                id: req.params.id
+            }
+        })
+        .then(deleted =>{
+            res.end()
+        })
+    })
 module.exports = router;

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import API from "../../utils/API";
 import Select from "./select-dropdowns";
+import UserSearch from "./UserSearch"
 import Navbar from "../Navbar";
 
 class CreateUser extends Component {
@@ -21,7 +22,8 @@ class CreateUser extends Component {
       recentName: "",
       recentEmail: "",
       committeeAddInput: "",
-      schoolAddInput: ""
+      schoolAddInput: "",
+      updateMe: 0
     };
   }
 
@@ -111,6 +113,7 @@ class CreateUser extends Component {
                   let toSendAtt = {attendance: currentAttend}
                   //push this new attendance array to the event's attendance column
                   API.addUserToAttendance(event.id, toSendAtt)
+                  this.setState( (state)=>({updateMe: state.updateMe + 1}) )
                 })
               })
           });
@@ -160,10 +163,12 @@ class CreateUser extends Component {
                 let toSendAtt = {attendance: currentAttend}
                 //push this new attendance array to the event's attendance column
                 API.addUserToAttendance(event.id, toSendAtt)
+                 this.setState( (state)=>({updateMe: state.updateMe + 1}) )
               })
             })
         });
       }
+     
     }
 
   }
@@ -208,6 +213,9 @@ class CreateUser extends Component {
             <div className="row justify-content-around">
               <div className="col-lg-8">
                 <h1 className="display-4 mb-4 mt-sm-3 text-center">Add New User</h1>
+                <div>
+                  {this.state.recentEmail !== "" ? <p>Account Created for {this.state.recentName}, email sent to {this.state.recentEmail}</p> : <div />}
+                </div>
                 <form>
                   <div className="form-group row input-group">
                     <label for="nameInput" className="col-lg-2 col-sm-4 col-form-label px-0 ml-3">Full Name</label>
@@ -400,9 +408,10 @@ class CreateUser extends Component {
                     Add User
                   </button>
                 </form>
-                <div>
-                  {this.state.recentEmail !== "" ? <p>Account Created for {this.state.recentName}, email sent to {this.state.recentEmail}</p> : <div />}
-                </div>
+                  
+              </div>
+              <div className="col-lg-12">
+                <UserSearch key={this.state.updateMe}/>
               </div>
             </div>
           </div>

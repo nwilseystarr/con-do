@@ -43,6 +43,9 @@ export default {
     updatePW: function (password) {
         return axios.put("/api/users/updatepassword", password)
     },
+    removeUser: function(userId){
+        return axios.delete("/api/users/" + userId)
+    },
     //Committee Axios Calls
     getCommittees: function () {
         return axios.get("/api/committees")
@@ -83,6 +86,9 @@ export default {
     },
     createEvent: function (eventData) {
         return axios.post("/api/events", eventData)
+    },
+    removeEvent: function(eventId){
+        return axios.delete("/api/events/" + eventId)
     },
     checkIn: function (id, attendance) {
         return axios.put("/api/events/" + id, attendance)

@@ -1,12 +1,8 @@
 import React, {Component} from "react";
-// import UserRecord from "./user-record";
-// import { Link } from "react-router-dom";
-// import {Redirect} from "react-router-dom";
-import API from "../../utils/API";
+import API from "../../../utils/API";
 import ReactTable from 'react-table';
 import matchSorter from 'match-sorter';
-// import { isError } from "util";
-// import Select from "./select-dropdowns"
+
 
 class UserSearch extends Component {
   //the signup state keeps track of all of the input fields in the signup form
@@ -35,6 +31,17 @@ class UserSearch extends Component {
                 })
             })
     } 
+    removeUser = (userId)=>{
+        API.removeUser(userId)
+            .then(res=>{
+                API.getAllUsers()
+                    .then(res=>{
+                        this.setState({
+                        users: res.data
+                    })
+                })
+            })
+    }
     render(){
         let allSchools = this.state.allSchools
         let allCommittees = this.state.allCommittees
@@ -58,7 +65,7 @@ class UserSearch extends Component {
                         id: 'schoolName',
                         accessor: user => {
                             console.log(user)
-                            if(user.committeeId){
+                            if(user.schoolId){
                                 return allSchools[user.schoolId -1].name
                             }
                             else{
@@ -93,6 +100,12 @@ class UserSearch extends Component {
                         filterMethod: (filter, rows) =>
                         matchSorter(rows, filter.value, { keys: ["userType"] }),
                             filterAll: true
+                    },
+                    {
+                        Header: 'Delete',
+                        id: 'deleteuser',
+                        accessor: user => <button onClick={(e) => this.removeUser(user.id)}>X</button>
+                  
                     }      
         ]
         return(
@@ -101,7 +114,7 @@ class UserSearch extends Component {
             {/* results will be displayed here */}
                 {/* {this.state.users.map((user)=> <UserRecord key={user.email} name={user.name}/>)} */}
                 <ReactTable data={this.state.users} columns={columns} filterable
-                    defaultFilterMethod={(filter, row) => String(row[filter.id]) === filter.value}/>
+                    defaultFilterMethod={(filter, row) => String(row[filter.id]) === filter.value} minRows="10" defaultPageSize="10"/>
             
         </div>
      

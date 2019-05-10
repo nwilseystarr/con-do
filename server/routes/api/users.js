@@ -154,5 +154,17 @@ router.route("/updatepassword")
                 res.send(userObj)
             })
     })
-
+// /api/users/id
+router.route("/:userId")
+    .delete(function(req, res){
+        db.User
+            .destroy({
+                where:{
+                    id: req.params.userId
+                }
+            })
+        .then(deleted =>{
+            res.end()
+        })
+    })
 module.exports = router;
