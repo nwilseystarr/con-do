@@ -66,7 +66,8 @@ class Event extends Component {
         //before we return the record, we will check to see if the record matches the id of the user who is 
         //requesting to check in. Once we find that record we will set its checkedIn property to true
         let updatedAttendance = currentAttendance.map((attendanceRecord) => {
-            if (attendanceRecord.id === userId){
+            let id = parseInt(userId)
+            if (attendanceRecord.id === id){
                 attendanceRecord.checkedIn = true
                 this.setState({
                     recentlyCheckedIn: attendanceRecord.name + " is now checked in!"
