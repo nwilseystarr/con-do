@@ -78,15 +78,23 @@ export default {
     getEventById: function (id) {
         return axios.get("/api/events/" + id)
     },
+    getEventsByCommitteeId: function(committeeId){
+        return axios.get("/api/events/committee/" + committeeId)
+    },
     createEvent: function (eventData) {
         return axios.post("/api/events", eventData)
     },
     checkIn: function (id, attendance) {
         return axios.put("/api/events/" + id, attendance)
     },
+    addUserToAttendance: function (id, attendance) {
+        return axios.put("/api/events/" + id, attendance)
+    },
+
     //Schedules 
     getScheduleByUser: function (id) {
         return axios.get("api/events/userevents", id)
     }
+
 }
 
