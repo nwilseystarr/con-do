@@ -5,7 +5,7 @@ const schoolRoutes = require("./schools");
 const attendanceRoutes = require("./attendance");
 const eventRoutes = require("./events");
 
-//various api routes go here
+// api routes go here
 router.use("/users", userRoutes);
 router.use("/committees", commmitteeRoutes);
 router.use("/schools", schoolRoutes);

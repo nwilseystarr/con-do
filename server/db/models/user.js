@@ -4,6 +4,7 @@ const School = require("./school")
 const Committee = require("./committee")
 const db = require("../db")
 
+//creates user model for all users
 const User = db.define("user", {
     email: {
         type: Sequelize.STRING,
@@ -32,12 +33,7 @@ const User = db.define("user", {
     },
     firstLog: {
         type: Sequelize.BOOLEAN
-    },
-    // attendance: [
-    //     //array of integers (eventIDs tied to delegates only, viewable to other users)
-            //when a user is present at an event you would push the event id to this array so that 
-            //if index of this event is >-1 the user was present, if the eventID is not in this array the user is nto present
-    // ]
+    }
 });
 User.prototype.validPassword = function(password){
             return bcrypt.compareSync(password, this.password);
