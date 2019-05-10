@@ -9,7 +9,7 @@ This app is deployed using Heroku.  Click <a href="https://con-do.herokuapp.com/
 ## Tools/Technologies Used
 <a href="https://www.npmjs.com/package/axios">Axios</a><br>
 <a href="https://getbootstrap.com/">Bootstrap</a><br>
-<a href="https://www.npmjs.com/package/dotenv">DotEnv</a>
+<a href="https://www.npmjs.com/package/dotenv">DotEnv</a><br>
 <a href="https://www.npmjs.com/package/express">Express.js</a><br>
 <a href="https://fontawesome.com/">Font Awesome</a><br>
 <a href="https://www.npmjs.com/package/generate-password">Generate Password</a><br>
