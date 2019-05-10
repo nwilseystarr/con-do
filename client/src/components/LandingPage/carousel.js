@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import image1 from "./conference-room.jpg";
+import image1 from "./people-in-row.jpg";
 import image2 from "./giant-conference.jpg";
-import image3 from "./israeli-parliament.jpg";
-import image4 from "./people-at-conference.jpg";
-import image5 from "./people-in-meeting.jpg";
-import image6 from "./people-in-row.jpg";
+import image3 from "./people-in-meeting.jpg";
+import image4 from "./presenting.jpg";
+import image5 from "./people-at-conference.jpg";
+import image6 from "./conference-room.jpg";
 import "./style.css";
 
 
