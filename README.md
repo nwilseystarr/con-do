@@ -26,3 +26,9 @@ This app is deployed using Heroku.  Click <a href="https://con-do.herokuapp.com/
 <a href="https://www.npmjs.com/package/react-table">React Table</a><br>
 <a href="https://www.npmjs.com/package/@sendgrid/mail">Sendgrid/mail</a><br>
 <a href="http://docs.sequelizejs.com/">Sequelize</a><br>
+
+## Authors
+<a href="https://github.com/dagreatbrendino">Brendan Kelly</a><br>
+<a href="https://github.com/ks563">Karen Shea</a><br>
+<a href="https://github.com/morris-leaha">Leah Morris</a><br>
+<a href="https://github.com/nwilseystarr">Nicole Wilsey-Starr</a><br>
