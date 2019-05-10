@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 import ReactTable from 'react-table';
 import API from "../../utils/API";
+import {
+    BrowserRouter as Router,
+    Link,
+   
+  } from 'react-router-dom';
+
 
 class Schedule extends Component {
     constructor(props) {
@@ -55,18 +61,21 @@ class Schedule extends Component {
                 id: "end",
                 Header: "Event End",
                 accessor: "end"
+            }, {
+                id: "attendance",
+                Header: "Attendance",
+                accessor: event => <Link to={{ pathname: `/event/${event.id}` }}>{event.name}</Link>
+                // render: ({ row }) => (<Link to={{ pathname: `/events/${row.id}` }}>{row.name}</Link>)
             }
         ]
 
         return (
             <div>
-                <div className="col-lg-9 mt-5">
                     <ReactTable
                         columns={columns}
                         minRows={0}
                         data={this.state.array}
                     />
-                </div>
             </div>
         )
     }

@@ -2,11 +2,11 @@ const { Events, User } = require("../../db/models");
 const router = require("express").Router();
 const isAuthenticated = require("../../db/config/middleware/isAuthenticated");
 
-router.route("/userevents")
+router.route("/committee/:committeeId")
     .get(function (req, res) {
                 Events.findAll({
                     where: {
-                        committeeId: [req.user.committeeId, 1000]
+                        committeeId: [req.params.committeeId, 1000]
                     }
                 })
                     .then(function (events) {
@@ -34,7 +34,7 @@ router.route("/my")
     .get(function (req, res){
         Events.findAll({
             where: {
-                committeeId: req.user.committeeId
+                committeeId: [req.params.committeeId, 1000]
             }
         })
         .then(function(eventData){
