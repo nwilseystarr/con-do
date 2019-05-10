@@ -43,6 +43,9 @@ export default {
     updatePW: function (password) {
         return axios.put("/api/users/updatepassword", password)
     },
+    removeUser: function(userId){
+        return axios.delete("/api/users/" + userId)
+    },
     //Committee Axios Calls
     getCommittees: function () {
         return axios.get("/api/committees")
