@@ -3,6 +3,7 @@ import { Redirect } from "react-router-dom";
 import API from "../../utils/API";
 import Select from "./select-dropdowns";
 import Navbar from "../Navbar";
+import Schedule from "./schedule"
 import "./style.css";
 
 class CreateEvent extends Component {
@@ -176,6 +177,9 @@ class CreateEvent extends Component {
                     Add Event
                   </button>
                 </form>
+              </div>
+              <div className="col">
+                <Schedule/>
               </div>
             </div>
           </div>
