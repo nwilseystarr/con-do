@@ -411,7 +411,7 @@ class CreateUser extends Component {
                   
               </div>
               <div className="col-lg-12">
-                <UserSearch key={this.state.updateMe}/>
+                <UserSearch key={this.state.updateMe} userType={this.props.userType} schoolId={this.props.schoolId} userId={this.props.userId}/>
               </div>
             </div>
           </div>

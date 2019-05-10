@@ -36,6 +36,9 @@ export default {
     getUsersBySchool: function (query) {
         return axios.get(`/api/users/querybyschool/${query}`)
     },
+    getMyDelegates: function(){
+        return axios.get(`/api/users/my`)
+    },
     loginViaLink: function (token) {
         console.log("loggin in with token " + token)
         return axios.get("/api/users/login/" + token, { data: { token: token } })

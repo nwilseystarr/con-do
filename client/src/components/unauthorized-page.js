@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Loading from "./Loading"
 
+let loadingTimeout;
 class UnauthorizedPage extends Component {
     constructor(){
         super()
@@ -8,13 +9,18 @@ class UnauthorizedPage extends Component {
             renderError: false
         }             
     }
+    
     //use loading icon whil state is update before displaying authentication error
     componentDidMount =  ()=>{
-        setTimeout(function () {
+        loadingTimeout = setTimeout(function () {
         this.setState({
             renderError: true
         })
         }.bind(this), 5000)
+        // loadingTimeout
+    }
+    componentWillUnmount = ()=>{
+        clearTimeout(loadingTimeout)
     }       
     render() {
         return (
