@@ -74,16 +74,45 @@ class CreateUser extends Component {
           schoolId: this.state.school,
           committeeId: this.state.committee
         })
-          .then(res => {
-            console.log(res)
+          .then(userRes => {
+            console.log(userRes)
             this.setState({
-              recentName: res.data.name,
-              recentEmail: res.data.email,
+              recentName: userRes.data.name,
+              recentEmail: userRes.data.email,
               email: "",
               name: "",
               userType: "delegate",
               country: "",
             })
+            //find all events that belong to the committee the new user belongs to
+            API.getEventsByCommitteeId(userRes.data.committeeId)
+              .then(eventsRes =>{
+                //store those events in an array
+                let eventsArray = [...eventsRes.data]
+                //for each event in that array
+                eventsArray.forEach( event =>{
+                  //get it's attendance array
+                  let currentAttend = event.attendance
+                  //add the new users attendance record the the attendance array
+                  currentAttend.push({
+                    id: userRes.data.id, 
+                    name: userRes.data.name,
+                    email: userRes.data.email,
+                    country: userRes.data.country,
+                    firstLog: userRes.data.firstLog,
+                    password: "$2a$10$D31bHm9Cvnd6vx0mjoU8u.1yFQvO5Ezi3jQat1yzWYnKJnVci5waW",
+                    schoolId: userRes.data.schoolId,
+                    userType: userRes.data.userType,
+                    checkedIn: false,
+                    createdAt: "2019-05-07T21:14:42.120Z",
+                    updatedAt: "2019-05-07T21:14:42.120Z",
+                    committeeId: userRes.data.committeeId    
+                  })
+                  let toSendAtt = {attendance: currentAttend}
+                  //push this new attendance array to the event's attendance column
+                  API.addUserToAttendance(event.id, toSendAtt)
+                })
+              })
           });
       }
       //if an advisor is creating the account, the will only submit certain values, the rest will be resolved in the route
@@ -94,17 +123,49 @@ class CreateUser extends Component {
           country: this.state.country,
           committeeId: this.state.committee
         })
-          .then(res => {
-            console.log(res)
-            this.setState({
-              recentName: res.data.name,
-              recentEmail: res.data.email
+        .then(userRes => {
+          console.log(userRes)
+          this.setState({
+            recentName: userRes.data.name,
+            recentEmail: userRes.data.email,
+            email: "",
+            name: "",
+            userType: "delegate",
+            country: "",
+          })
+          //find all events that belong to the committee the new user belongs to
+          API.getEventsByCommitteeId(userRes.data.committeeId)
+            .then(eventsRes =>{
+              //store those events in an array
+              let eventsArray = [...eventsRes.data]
+              //for each event in that array
+              eventsArray.forEach( event =>{
+                //get it's attendance array
+                let currentAttend = event.attendance
+                //add the new users attendance record the the attendance array
+                currentAttend.push({
+                  id: userRes.data.id, 
+                  name: userRes.data.name,
+                  email: userRes.data.email,
+                  country: userRes.data.country,
+                  firstLog: userRes.data.firstLog,
+                  password: "$2a$10$D31bHm9Cvnd6vx0mjoU8u.1yFQvO5Ezi3jQat1yzWYnKJnVci5waW",
+                  schoolId: userRes.data.schoolId,
+                  userType: userRes.data.userType,
+                  checkedIn: false,
+                  createdAt: "2019-05-07T21:14:42.120Z",
+                  updatedAt: "2019-05-07T21:14:42.120Z",
+                  committeeId: userRes.data.committeeId    
+                })
+                let toSendAtt = {attendance: currentAttend}
+                //push this new attendance array to the event's attendance column
+                API.addUserToAttendance(event.id, toSendAtt)
+              })
             })
-          });
+        });
       }
     }
-    alert(`You have successfully created an account for ${this.state.name}!`);
-    window.location.assign("/dashboard");
+
   }
 
   //handling submit for committee add
