@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import API from "../../../utils/API";
+import API from "../../utils/API";
 import ReactTable from 'react-table';
 import matchSorter from 'match-sorter';
 
@@ -11,51 +11,23 @@ class UserSearch extends Component {
     super(props)
     this.state = {
       users: [],
-      allSchools: [],
       allCommittees: [] 
     }
   }
     
     //get all the options when the component first mounts
     componentDidMount = ()=>{
-        API.getSchools().then(res =>{
-            this.setState({allSchools: res.data})
-        })
         API.getCommittees().then(res=>{
             this.setState({allCommittees: res.data})
         })
-        API.getAllUsers()
+        API.getMyDelegates()
             .then(res=>{
-                let returnedUsers = res.data
-                if (this.props.userType === "advisor"){
-                    console.log("filtering users")
-                    returnedUsers = returnedUsers.filter(user => user.schoolId === this.props.schoolId)
-                }
-                returnedUsers = returnedUsers.filter(user => user.id != this.props.userId)
                 this.setState({
-                    users: returnedUsers
+                    users: res.data
                 })
             })
-        } 
-    removeUser = (userId)=>{
-        API.removeUser(userId)
-            .then(res=>{
-                API.getAllUsers()
-                    .then(res=>{
-                        let returnedUsers = res.data
-                        if (this.props.userType === "advisor"){
-                            console.log("filtering users")
-                            returnedUsers = returnedUsers.filter(user => user.schoolId === this.props.schoolId)
-                        }
-                        returnedUsers = returnedUsers.filter(user => user.id != this.props.userId)
-                        this.setState({
-                            users: returnedUsers
-                        })
-                    })
-                })
-    }
+    } 
     render(){
-        let allSchools = this.state.allSchools
         let allCommittees = this.state.allCommittees
   
         const columns = [
@@ -72,20 +44,6 @@ class UserSearch extends Component {
                         filterMethod: (filter, rows) =>
                         matchSorter(rows, filter.value, { keys: ["email"] }),
                             filterAll: true
-                    },{
-                        Header: 'School',
-                        id: 'schoolName',
-                        accessor: user => {
-                            console.log(user)
-                            if(user.schoolId){
-                                return allSchools[user.schoolId -1].name
-                            }
-                            else{
-                                return null
-                            }
-                        }, filterMethod: (filter, rows) =>
-                        matchSorter(rows, filter.value, { keys: ["schoolName"] }),
-                            filterAll: true,
                     },{
                         Header: 'Committee',
                         id: 'committeeName',
@@ -106,19 +64,13 @@ class UserSearch extends Component {
                         filterMethod: (filter, rows) =>
                         matchSorter(rows, filter.value, { keys: ["country"] }),
                             filterAll: true
-                    },{
-                        Header: 'Role',
-                        accessor: 'userType',
-                        filterMethod: (filter, rows) =>
-                        matchSorter(rows, filter.value, { keys: ["userType"] }),
-                            filterAll: true
                     },
-                    {
-                        Header: 'Delete',
-                        id: 'deleteuser',
-                        accessor: user => <button onClick={(e) => this.removeUser(user.id)}>X</button>
+                    // {
+                    //     Header: 'Delete',
+                    //     id: 'deleteuser',
+                    //     accessor: user => <button onClick={(e) => this.removeUser(user.id)}>X</button>
                   
-                    }      
+                    // }      
         ]
         return(
           

@@ -167,4 +167,15 @@ router.route("/:userId")
             res.end()
         })
     })
+router.route("/my")
+    .get(function(req, res){
+        db.User
+            .findAll({
+                where:{
+                    schoolId: req.user.schoolId
+                }
+            }).then(schoolUsers =>{
+                res.send(schoolUsers)
+            })
+    })
 module.exports = router;

@@ -11,7 +11,7 @@ import API from "./utils/API";
 import CreateUser from "./components/CreateUserPage";
 import CreateEvent from "./components/CreateEventPage"
 import Event from "./components/EventPage/eventview"
-// import { Verify } from "crypto";
+import MyDelegates from "./components/MyDelegates"
 import UpdatePasswordPage from "./components/update-password-page";
 import Dashboard from "./components/Dashboard";
 import Profile from "./components/Profile";
@@ -24,11 +24,14 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
+      id: null,
       loggedIn: false,
       email: null,
       name: null,
       userType: null,
-      firstLog: false
+      firstLog: false,
+      schoolId: null,
+      committeeId: null
     }
     this.getUser = this.getUser.bind(this)
     this.componentDidMount = this.componentDidMount.bind(this)
@@ -55,7 +58,9 @@ class App extends Component {
             name: res.data.name,
             userType: res.data.userType,
             loggedIn: true,
-            firstLog: res.data.firstLog
+            firstLog: res.data.firstLog,
+            schoolId: res.data.schoolId,
+            committeeId: res.data.committeeId
           });
         }
       });
@@ -74,26 +79,42 @@ class App extends Component {
       </Router>: 
       // everywhere else
       <Router>
-        <Switch>
+        {/* if the user is logged in they will have access to all routes depending on their type */}
+        {this.state.loggedIn ? <Switch>
           <Route exact path="/" component={()=> <LandingPage loggedIn={this.state.loggedIn}/>} />
           <Route exact path="/dashboard" component={()=> <Dashboard loggedIn={this.state.loggedIn}  userType={this.state.userType}/>}/>
           <Route exact path="/profile" component={()=> <Profile loggedIn={this.state.loggedIn}  userType={this.state.userType}/>}/>
           
+
+          <Route path="/event/:id" component={(props)=> <Event  {...props} loggedIn={this.state.loggedIn} userId={this.state.id}/>} />
+
+          {/* admin and advisor only routes. If the user is not one of these, they will be given an unauthorized page */}
+          {this.state.userType==="admin" || this.state.userType==="advisor" ? 
+            <div>
+              <Route exact path="/createevent" component={() => <CreateEvent loggedIn={this.state.loggedIn} userType={this.state.userType}/>} />
+              <Route exact path="/createuser" component={() => <CreateUser loggedIn={this.state.loggedIn} userType={this.state.userType } schoolId={this.state.schoolId} userId={this.state.id}/>} />
+            </div>
+            :
+            <div>
+              <Route exact path="/createevent" component={UnauthorizedPage}/>
+              <Route exact path="/createuser" component={UnauthorizedPage}/>} 
+            </div>           
+          }
+
+             <Route exact path="/mydelegates" component={()=> <MyDelegates loggedIn={this.state.loggedIn} />}/>
+           <Route component={()=> <ErrorPage loggedIn={this.state.loggedIn} />} />
+          
+        </Switch>:
+        // if not logged in, then the user can only access the landing page and the login page
+        <Switch>
+          <Route exact path="/" component={()=> <LandingPage loggedIn={this.state.loggedIn}/>} />
           {/* Auth related routes */}
           <Route path="/verify/:token" component={(props)=> <VerifyUser  {...props}/>} />
           <Route exact path="/login" component={() => <Login updateUser={this.updateUser} />} />
-          <Route path="/event/:id" component={(props)=> <Event  {...props} loggedIn={this.state.loggedIn} userId={this.state.id}/>} />
-
-          {/* admin & advisor only routes */}
-          {/* /creatuser html route will either render the createuser component, or the unauthorizedpage component based on the type of user */}
-          {this.state.userType==="admin" || this.state.userType==="advisor" ? <Route exact path="/createuser" component={() => <CreateUser loggedIn={this.state.loggedIn} userType={this.state.userType }/>} />:
-            <Route exact path="/createuser" component={UnauthorizedPage}/>}
-         
-          {/* /creatuser html route will either render the createuser component, or the unauthorizedpage component based on the type of user */}
-          {this.state.userType==="admin" || this.state.userType==="advisor" ? <Route exact path="/createevent" component={() => <CreateEvent loggedIn={this.state.loggedIn} userType={this.state.userType}/>} />:
-            <Route exact path="/createevent" component={UnauthorizedPage}/>}
-           <Route component={ErrorPage} />
+          <Route component={UnauthorizedPage}/>
         </Switch>
+      }
+        
       </Router>
     );
   }
