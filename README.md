@@ -22,5 +22,7 @@ This app is deployed using Heroku.  Click <a href="https://con-do.herokuapp.com/
 <a href="https://www.npmjs.com/package/qrcode">QRCode</a><br>
 <a href="https://www.npmjs.com/package/react-router-dom">React Router Dom</a><br>
 <a href="https://www.npmjs.com/package/react-qr-reader">React QR Reader</a><br>
+<a href="https://www.npmjs.com/package/react-scroll">React Scroll</a><br>
+<a href="https://www.npmjs.com/package/react-table">React Table</a><br>
 <a href="https://www.npmjs.com/package/@sendgrid/mail">Sendgrid/mail</a><br>
 <a href="http://docs.sequelizejs.com/">Sequelize</a><br>
