@@ -55,12 +55,12 @@ class Schedule extends Component {
                 id: "end",
                 Header: "Event End",
                 accessor: "end"
-            }
+            },
         ]
 
         return (
             <div>
-                <div className="col-lg-9 mt-5">
+                <div>
                     <ReactTable
                         columns={columns}
                         minRows={0}
