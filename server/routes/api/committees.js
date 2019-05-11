@@ -37,11 +37,13 @@ router.route("/:committeeId")
         })
     })
 router.route("/add")
-    .post(function (req, res){
-        db.Committee.create(req.body)
-        .then(committeeObj =>{
-            res.send(committeeObj)
-        })
+    .post(function (req, res) {
+        if (req.user.userType === "admin" || req.user.userType === "advisor") {
+            db.Committee.create(req.body)
+                .then(committeeObj => {
+                    res.send(committeeObj)
+                })
+        }
     })
 
 module.exports = router;

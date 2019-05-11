@@ -21,7 +21,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 
 app.use(express.json());
 
