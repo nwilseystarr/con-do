@@ -4,21 +4,21 @@ const router = require("express").Router();
 
 router.route("/committee/:committeeId")
     .get(function (req, res) {
-                Events.findAll({
-                    where: {
-                        committeeId: [req.params.committeeId, 1000]
-                    }
-                })
-                    .then(function (events) {
-                        res.send(events)
-                    })
+        Events.findAll({
+            where: {
+                committeeId: [req.params.committeeId, 1000]
+            }
+        })
+            .then(function (events) {
+                res.send(events)
             })
+    })
 
 //get all events
 router.route("/")
-    .get(function (req, res){
+    .get(function (req, res) {
         Events.findAll()
-            .then(function(eventsData){
+            .then(function (eventsData) {
                 res.send(eventsData)
             })
     })
@@ -33,51 +33,53 @@ router.route("/")
     })
 //get events for logged in user
 router.route("/my")
-    .get(function (req, res){
+    .get(function (req, res) {
         //if the user is an admin or an advisor they will be sent all events
-        if(req.user.userType === "admin" || req.user.userType ==="advisor"){
+        if (req.user.userType === "admin" || req.user.userType === "advisor") {
             Events.findAll()
-            .then(function(eventData){
-                res.send(eventData)
-            })
+                .then(function (eventData) {
+                    res.send(eventData)
+                })
         }
-        else{
+        else {
             Events.findAll({
                 where: {
                     committeeId: [req.user.committeeId, 1000]
                 }
             })
-            .then(function(eventData){
-                res.send(eventData)
-            })
+                .then(function (eventData) {
+                    res.send(eventData)
+                })
         }
     })
 router.route("/:id")
-    .get(function (req, res){
-        
+    .get(function (req, res) {
+
         Events.findOne({
             where: {
                 id: req.params.id
             }
         })
-        .then(function(eventData){
-            res.send(eventData)
-        })
+            .then(function (eventData) {
+                res.send(eventData)
+            })
     })
-    .put(function (req, res){
-        // console.log("updating event " + req.params.id )
-        // console.log(req.body)
-        Events.update(
-            req.body,
-            {
-                where:{
-                    id: req.params.id
+    .put(function (req, res) {
+        if (req.user.userType === "admin" || req.user.userType === "staff") {
+            // console.log("updating event " + req.params.id )
+            // console.log(req.body)
+            Events.update(
+                req.body,
+                {
+                    where: {
+                        id: req.params.id
+                    }
                 }
-            }
-        )
-        .then(eventData =>{
-            res.send(eventData)
-        })
+            )
+                .then(eventData => {
+                    res.send(eventData)
+                })
+        }
     })
     .delete(function (req, res) {
         if (req.user.userType === "admin") {

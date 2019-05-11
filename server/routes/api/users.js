@@ -137,7 +137,7 @@ router.route("/logout")
     })
 // /api/users/updatepw
 router.route("/updatepassword")
-    .put(function(req, res){
+    .put(function (req, res) {
         // console.log("updating password")
         db.User
             .update(
@@ -155,7 +155,8 @@ router.route("/updatepassword")
     })
 // /api/users/id
 router.route("/:userId")
-    .delete(function(req, res){
+    .delete(function (req, res) {
+        if (req.user.userType === "admin" || req.user.userType === "advisor") {
         db.User
             .destroy({
                 where:{
@@ -164,7 +165,8 @@ router.route("/:userId")
             })
         .then(deleted =>{
             res.end()
-        })
+        })          
+        }
     })
 router.route("/my")
     .get(function(req, res){
