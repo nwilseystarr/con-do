@@ -38,11 +38,13 @@ router.route("/:name")
         });
     })
 router.route("/add")
-    .post(function(req,res){
-        db.School.create(req.body)
-        .then(schoolObject =>{
-            res.send(schoolObject)
-        })
+    .post(function (req, res) {
+        if (req.user.userType === "admin") {
+            db.School.create(req.body)
+                .then(schoolObject => {
+                    res.send(schoolObject)
+                })
+        }
     })
 
 module.exports = router;

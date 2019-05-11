@@ -22,12 +22,14 @@ router.route("/")
                 res.send(eventsData)
             })
     })
-    .post(function (req, res){
-        Events.create(req.body)
-            .then(function(createdEvent){
-                // console.log(createdEvent)
-                res.send(createdEvent)
-            })
+    .post(function (req, res) {
+        if (req.user.userType === "admin") {
+            Events.create(req.body)
+                .then(function (createdEvent) {
+                    // console.log(createdEvent)
+                    res.send(createdEvent)
+                })
+        }
     })
 //get events for logged in user
 router.route("/my")
@@ -77,15 +79,17 @@ router.route("/:id")
             res.send(eventData)
         })
     })
-    .delete(function(req,res){
-        Events.destroy({
-            where:{
-                id: req.params.id
-            }
-        })
-        .then(deleted =>{
-            res.end()
-        })
+    .delete(function (req, res) {
+        if (req.user.userType === "admin") {
+            Events.destroy({
+                where: {
+                    id: req.params.id
+                }
+            })
+                .then(deleted => {
+                    res.end()
+                })
+        }
     })
 
 module.exports = router;
