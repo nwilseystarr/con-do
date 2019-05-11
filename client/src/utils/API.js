@@ -122,11 +122,11 @@ export default {
     },
 
     //Chat 
-    getMessage: function () {
-        return axios.get("/api/chat/")
+    getMessage: function (message) {
+        return axios.get("/api/chat/", message)
     },
-    postMessage: function () {
-        return axios.post("/api/chat")
+    postMessage: function (message) {
+        return axios.post("/api/chat/", message)
     },
 }
 

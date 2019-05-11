@@ -6,19 +6,21 @@ class Chat extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: "",
             messages: [],
         }
     };
 
+    //Load all messages with the component
     componentDidMount(){
         this.getMessages();
     };
 
+    //Get all messages from db 
     getMessages = () => {
         API.getMessage().then(res => {
             this.setState({
                 messages: res.data
+                //.map over the messages to display
             });
         });
     };
@@ -35,17 +37,17 @@ class Chat extends Component {
     handleFormSubmit = event => {
         event.preventDefault();
         API.postMessage({
+            name: this.params.name,
+            message: this.state.message
         })
     };
-
-    //.map over the messages to display
 
     render() {
         return (
             <div className="container-fluid mt-5 pt-5">
                 <Navbar />
                 <form>
-                    <textarea id="message" class="form-control" placeholder="Your message here" />
+                    <textarea id="message" className="form-control" placeholder="Your message here" />
                     <button
                         className="btn btn-outline-dark px-3 mt-2 mb-5"
                         type="submit"

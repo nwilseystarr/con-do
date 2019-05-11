@@ -2,17 +2,16 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import LandingPage from "./components/LandingPage";
 import ErrorPage from "./components/error-page";
-import UnauthorizedPage from "./components/unauthorized-page"
-// import UserSearch from "./components/UserSearch"
+import UnauthorizedPage from "./components/unauthorized-page";
 import "./App.css";
 import Login from "./components/LoginPage";
 import VerifyUser from "./components/verify";
 import API from "./utils/API";
 import CreateUser from "./components/CreateUserPage";
-import CreateEvent from "./components/CreateEventPage"
-import Event from "./components/EventPage/eventview"
-import Measure from "./components/MeasureDetail"
-import MyDelegates from "./components/MyDelegates"
+import CreateEvent from "./components/CreateEventPage";
+import Event from "./components/EventPage/eventview";
+import Measure from "./components/MeasureDetail";
+import MyDelegates from "./components/MyDelegates";
 import UpdatePasswordPage from "./components/update-password-page";
 import Dashboard from "./components/Dashboard";
 import Profile from "./components/Profile";
@@ -119,7 +118,6 @@ class App extends Component {
         // if not logged in, then the user can only access the landing page and the login page
         <Switch>
           <Route exact path="/" component={()=> <LandingPage loggedIn={this.state.loggedIn}/>} />
-          <Route exact path="/usersearch" component={UserSearch}/>
           <Route exact path="/dashboard" component={()=> <Dashboard loggedIn={this.state.loggedIn}  userType={this.state.userType}/>}/>
           <Route exact path="/profile" component={()=> <Profile loggedIn={this.state.loggedIn}  userType={this.state.userType}/>}/>
           <Route exact path="/chat" component={() => <Chat {...userProps}/>} />

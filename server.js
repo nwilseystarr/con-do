@@ -100,7 +100,7 @@ const delegate4 = {
   country: "none"
 }
 
-db.sync({ force: false}).then(function () {
+db.sync({ force: true}).then(function () {
   models.School.create({name: "None"})
   models.Committee.create({name: "None"})
   models.User.create(admin).catch(err=> console.log(err))

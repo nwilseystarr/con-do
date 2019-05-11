@@ -5,7 +5,6 @@ const db = require("../db")
 const Chat = db.define("chat", {
     name: {
         type: Sequelize.STRING,
-        allowNull: false,
     },
     message: {
         type: Sequelize.STRING,
