@@ -14,7 +14,7 @@ router.route("/queried/:query")
     .get(function(req, res){
         // console.log(req.params.query)
         db.School.findAll({
-            attributes: ['id'],
+            attributes: ["id"],
             where: {
                 name: {
                     [Op.like]: `%${req.params.query}%`
