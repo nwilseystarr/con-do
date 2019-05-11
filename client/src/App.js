@@ -98,22 +98,22 @@ class App extends Component {
 
           <Route path="/event/:id" component={(props)=> <Event  {...props} {...userProps}/>} />
           <Route path="/measure/:id" component={(props)=> <Measure  {...props} {...userProps}/>} />
+          <Route exact path="/mydelegates" component={()=> <MyDelegates loggedIn={this.state.loggedIn} />}/>
           {/* admin and advisor only routes. If the user is not one of these, they will be given an unauthorized page */}
           {this.state.userType==="admin" || this.state.userType==="advisor" ? 
             <div>
               <Route exact path="/createevent" component={() => <CreateEvent {...userProps}/>} />
               <Route exact path="/createuser" component={() => <CreateUser {...userProps}/>} />
+              <Route component={()=> <ErrorPage loggedIn={this.state.loggedIn} />} />
             </div>
             :
             <div>
               <Route exact path="/createevent" component={()=> <UnauthorizedPage {...userProps}/>}/>
-              <Route exact path="/createuser" component={()=> <UnauthorizedPage {...userProps}/>}/>} 
+              <Route exact path="/createuser" component={()=> <UnauthorizedPage {...userProps}/>}/>}
+              <Route component={()=> <ErrorPage loggedIn={this.state.loggedIn} />} />
             </div>           
           }
-
-             <Route exact path="/mydelegates" component={()=> <MyDelegates loggedIn={this.state.loggedIn} />}/>
-           <Route component={()=> <ErrorPage loggedIn={this.state.loggedIn} />} />
-          
+      
         </Switch>:
         // if not logged in, then the user can only access the landing page and the login page
         <Switch>
