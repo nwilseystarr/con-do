@@ -49,7 +49,7 @@ class Schedule extends Component {
             },
             {
                 id:"date",
-                Header: "date",
+                Header: "Date",
                 accessor: "date"
             },
             {
@@ -62,10 +62,9 @@ class Schedule extends Component {
                 Header: "Event End",
                 accessor: "end"
             }, {
-                id: "attendance",
-                Header: "Attendance",
-                accessor: event => <Link to={{ pathname: `/event/${event.id}` }}>{event.name}</Link>
-                // render: ({ row }) => (<Link to={{ pathname: `/events/${row.id}` }}>{row.name}</Link>)
+                id: "eventLink",
+                Header: "Event Link",
+                accessor: event => <Link to={{ pathname: `/event/${event.id}` }}>View Detail</Link>
             }
         ]
 
