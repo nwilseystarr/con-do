@@ -6,12 +6,13 @@ class Chat extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            messages: [],
+            message: "",
+            messages: []
         }
     };
 
     //Load all messages with the component
-    componentDidMount(){
+    componentDidMount() {
         this.getMessages();
     };
 
@@ -20,16 +21,16 @@ class Chat extends Component {
         API.getMessage().then(res => {
             this.setState({
                 messages: res.data
-                //.map over the messages to display
             });
+            console.log(res.data)
         });
     };
 
     //handle input change function to update the field in real time 
     handleInputChange = event => {
-        const { name, message } = event.target;
+        const { name, value } = event.target;
         this.setState({
-            [name]: message
+            [name]: value
         });
     };
 
@@ -37,17 +38,31 @@ class Chat extends Component {
     handleFormSubmit = event => {
         event.preventDefault();
         API.postMessage({
-            name: this.params.name,
+            name: this.props.name,
             message: this.state.message
         })
+        this.setState({
+            message: ""
+        })
     };
+
+    //so users can press "enter" to send a message
+    // onEnterPress = (e) => {
+    //     if (e.keyCode == 13 && e.shiftKey == false) {
+    //         e.preventDefault();
+    //         this.handleFormSubmit.submit();
+    //     }
+    // }
+
 
     render() {
         return (
             <div className="container-fluid mt-5 pt-5">
-                <Navbar />
+                <Navbar loggedIn={this.props.loggedIn} />
                 <form>
-                    <textarea id="message" className="form-control" placeholder="Your message here" />
+                    <textarea wrap="hard" name="message" id="message" className="form-control" placeholder="Your message here" value={this.state.message} onChange={this.handleInputChange} 
+                    // onKeyDown={this.onEnterPress} 
+                    />
                     <button
                         className="btn btn-outline-dark px-3 mt-2 mb-5"
                         type="submit"
@@ -56,8 +71,13 @@ class Chat extends Component {
                         Send Message
                   </button>
                 </form >
-                <div>
-                    where messages are shown
+                <div className="border border-dark" >
+                    {this.state.messages.map(messageData =>
+                        <div>
+                            {messageData.name}
+                            <br></br>
+                            {messageData.message}
+                        </div>)}
                 </div>
             </div >
         )

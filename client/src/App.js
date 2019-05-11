@@ -77,60 +77,56 @@ class App extends Component {
       committeeId: this.state.committeeId
     }
     return (
-      //if this is the user's first time logging in, they will need to update their password before 
+      //if this is the user's first time logging in, they will need to update their password before
       //goin anywhere else
       this.state.firstLog ?
-      <Router>
-        <Switch>
-          <Route path="/updatepassword" component={()=> <UpdatePasswordPage {...userProps}/>}/>       
-          <Route component={()=> (<Redirect to="/updatepassword" />)} />
-        </Switch>
-     
-      </Router>: 
-      // everywhere else
-      <Router>
-        {/* if the user is logged in they will have access to all routes depending on their type */}
-        {this.state.loggedIn ? <Switch>
-          <Route exact path="/" component={()=> <LandingPage {...userProps}/>} />
-          <Route exact path="/dashboard" component={()=> <Dashboard {...userProps}/>}/>
-          <Route exact path="/profile" component={()=> <Profile {...userProps}/>}/>
-          
+        <Router>
+          <Switch>
+            <Route path="/updatepassword" component={() => <UpdatePasswordPage {...userProps} />} />
+            <Route component={() => (<Redirect to="/updatepassword" />)} />
+          </Switch>
 
-          <Route path="/event/:id" component={(props)=> <Event  {...props} {...userProps}/>} />
-          <Route path="/measure/:id" component={(props)=> <Measure  {...props} {...userProps}/>} />
-          <Route exact path="/mydelegates" component={()=> <MyDelegates loggedIn={this.state.loggedIn} />}/>
-          {/* admin and advisor only routes. If the user is not one of these, they will be given an unauthorized page */}
-          {this.state.userType==="admin" || this.state.userType==="advisor" ? 
-            <div>
-              <Route exact path="/createevent" component={() => <CreateEvent {...userProps}/>} />
-              <Route exact path="/createuser" component={() => <CreateUser {...userProps}/>} />
-              <Route component={()=> <ErrorPage loggedIn={this.state.loggedIn} />} />
-            </div>
-            :
-            <div>
-              <Route exact path="/createevent" component={()=> <UnauthorizedPage {...userProps}/>}/>
-              <Route exact path="/createuser" component={()=> <UnauthorizedPage {...userProps}/>}/>}
-              <Route component={()=> <ErrorPage loggedIn={this.state.loggedIn} />} />
-            </div>           
+        </Router> :
+        // everywhere else
+        <Router>
+          {/* if the user is logged in they will have access to all routes depending on their type */}
+          {this.state.loggedIn ? <Switch>
+            <Route exact path="/" component={() => <LandingPage {...userProps} />} />
+            <Route exact path="/dashboard" component={() => <Dashboard {...userProps} />} />
+            <Route exact path="/profile" component={() => <Profile {...userProps} />} />
+
+
+            <Route path="/event/:id" component={(props) => <Event  {...props} {...userProps} />} />
+            <Route path="/measure/:id" component={(props) => <Measure  {...props} {...userProps} />} />
+            <Route exact path="/mydelegates" component={() => <MyDelegates loggedIn={this.state.loggedIn} />} />
+            <Route exact path="/chat" component={() => <Chat {...userProps} />} />
+            {/* admin and advisor only routes. If the user is not one of these, they will be given an unauthorized page */}
+            {this.state.userType === "admin" || this.state.userType === "advisor" ?
+              <div>
+                <Route exact path="/createevent" component={() => <CreateEvent {...userProps} />} />
+                <Route exact path="/createuser" component={() => <CreateUser {...userProps} />} />
+                <Route component={() => <ErrorPage loggedIn={this.state.loggedIn} />} />
+              </div>
+              :
+              <div>
+                <Route exact path="/createevent" component={() => <UnauthorizedPage {...userProps} />} />
+                <Route exact path="/createuser" component={() => <UnauthorizedPage {...userProps} />} />}
+             <Route component={() => <ErrorPage loggedIn={this.state.loggedIn} />} />
+              </div>
+            }
+
+          </Switch> :
+            // if not logged in, then the user can only access the landing page and the login page
+            <Switch>
+              <Route exact path="/" component={() => <LandingPage loggedIn={this.state.loggedIn} />} />
+              {/* Auth related routes */}
+              <Route path="/verify/:token" component={(props) => <VerifyUser  {...props} />} />
+              <Route exact path="/login" component={() => <Login updateUser={this.updateUser} />} />
+              <Route component={() => <UnauthorizedPage {...userProps} />} />
+            </Switch>
           }
-      
-        </Switch>:
-        // if not logged in, then the user can only access the landing page and the login page
-        <Switch>
-          <Route exact path="/" component={()=> <LandingPage loggedIn={this.state.loggedIn}/>} />
-          <Route exact path="/dashboard" component={()=> <Dashboard loggedIn={this.state.loggedIn}  userType={this.state.userType}/>}/>
-          <Route exact path="/profile" component={()=> <Profile loggedIn={this.state.loggedIn}  userType={this.state.userType}/>}/>
-          <Route exact path="/chat" component={() => <Chat {...userProps}/>} />
-          
-          {/* Auth related routes */}
-          <Route path="/verify/:token" component={(props)=> <VerifyUser  {...props}/>} />
-          <Route exact path="/login" component={() => <Login updateUser={this.updateUser} />} />
-          <Route  component={()=> <UnauthorizedPage {...userProps}/>}/>
-        </Switch>
-      }
-        
-      </Router>
-    );
+
+        </Router>);
   }
 }
 

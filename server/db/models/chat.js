@@ -8,6 +8,7 @@ const Chat = db.define("chat", {
     },
     message: {
         type: Sequelize.STRING,
+        allowNull: false
     }
 });
 module.exports = Chat;        
