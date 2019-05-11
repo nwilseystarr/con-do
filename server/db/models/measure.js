@@ -4,10 +4,22 @@ const db = require("../db");
 
 //defines measure model
 const Measure = db.define("measure", {
-    name: Sequelize.STRING,
+    name: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+            len: [1, 60]
+        }
+    },
     voteTally: Sequelize.JSONB,
     result : Sequelize.BOOLEAN,
-    measureType: Sequelize.STRING,
+    measureType: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+            len: [1, 60]
+        }
+    },
     open : Sequelize.BOOLEAN,
 })
 
