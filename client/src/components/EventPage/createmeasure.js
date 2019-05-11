@@ -29,19 +29,32 @@ class CreateMeasure extends Component {
   //on submit we attempt to create a new event with the given values via the API that hits a route that queries our database
   handleFormSubmit = event => {
     event.preventDefault();
-    //first we need to get all the users that have a committeeId that matches the committeId of the event we are creating
+       //first we will get all checked in delegates and store them in an array voters
         let voters = this.props.attendees.filter(attendee => (attendee.checkedIn === true && attendee.userType ==="delegate"))
-        console.log(voters)
-        //we will update our state to be the same as this array, and then use this array as the value for the attendance column of this 
-        //event
-        // this.setState({ attendance: attendance })
-        // API.createMeasure({
-        //   name: this.state.name,
-        //   eventId: this.props.eventId,
-        // })
-        //   .then(res => {
-        //     console.log(res);
-        //   });
+        //then we will map over this array, only returning the properties that we need, and adding the property vote, which is a boolean 
+        //representing an affirmitive or negative vote
+        voters = voters.map(voter =>{
+          return ({
+            id: voter.id,
+            name: voter.name,
+            country: voter.country,
+            vote: false
+          })
+        })
+        //create the measure with the given arguments
+        API.createMeasure({
+          name: this.state.name,
+          eventId: this.props.eventId,
+          voteTally: voters,
+          result: false,
+          measureType: this.state.measureType,
+          open: false
+        })
+          .then(res => {
+            this.setState({
+              name: ""
+            })
+          });
   }
 
 
@@ -49,28 +62,26 @@ class CreateMeasure extends Component {
 
       
         return (
-            <div className="container mt-5 pt-5">
+            <div className="container mt-2 pt-2 mb-5">
               <div className="row justify-content-around">
-                <div className="col-lg-8">
-                  <h1 className="display-4 mb-4 mt-sm-5 text-center">Add New Measure</h1>
-                  <form>
+                <div className="col-lg-12">
+                  <form className="form-inline">
                     <div className="form-group row input-group">
-                      <label for="nameInput" className="col-lg-2 col-sm-4 col-form-label px-0 ml-3">Measure Title</label>
                       <input
                         value={this.state.name}
                         onChange={this.handleInputChange}
                         name="name"
                         placeholder="Measure Name"
-                        className="col-lg-10 col-sm-8 form-control border-top-0 border-left-0 border-right-0 border-dark rounded-0 px-0 ml-3"
+                        className="col form-control border-top-0 border-left-0 border-right-0 border-dark rounded-0 px-0 ml-3"
                         id="nameInput"
                       />
                     </div>
-                    <select className="col-lg-10 col-sm-8 form-control border-dark rounded-0 px-0 ml-3" value={this.state.measureType} onChange={this.handleInputChange} name="measureType">
+                    <select className="col form-control border-dark rounded-0 px-0 ml-3" value={this.state.measureType} onChange={this.handleInputChange} name="measureType">
                         <option value="resolution">resolution</option>
                         <option value="procedural">procedural</option>
                     </select>
                     <button
-                      className="btn btn-outline-dark px-3 mt-2 mb-5"
+                      className="btn btn-outline-dark px-3 ml-3"
                       type="submit"
                       name="createEvent"
                       onClick={this.handleFormSubmit}

@@ -53,9 +53,12 @@ export default {
     getCommittees: function () {
         return axios.get("/api/committees")
     },
-    getCommitteeByName: function (name) {
-        return axios.get("/api/committees/" + name)
+    getCommitteById: function(committeeId){
+        return axios.get("/api/committees/" + committeeId)
     },
+    // getCommitteeByName: function (name) {
+    //     return axios.get("/api/committees/" + name)
+    // },
     getCommitteeIds: function (query) {
         return axios.get("/api/committees/queried/" + query)
     },
@@ -107,6 +110,15 @@ export default {
     //Measures
     createMeasure: function (measureData){
         return axios.post("/api/measures/", measureData)
+    },
+    getMeasuresByEvent: function(eventId){
+        return axios.get("/api/measures/event/" + eventId)
+    },
+    getMeasureById: function(measureId){
+        return axios.get("/api/measures/" + measureId)
+    },
+    updateMeasure: function(measureId, measureBody){
+        return axios.put("/api/measures/" +measureId, measureBody)
     }
 
 }

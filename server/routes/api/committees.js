@@ -26,11 +26,11 @@ router.route("/queried/:query")
             res.send(queriedCommittees)
         })
     })
-router.route("/:name")
+router.route("/:committeeId")
     .get(function(req, res){
         db.Committee.findOne({
             where:{
-                name: req.params.name
+                id: req.params.committeeId
             }
         }).then(committeData => {
             res.send(committeData) 
