@@ -8,7 +8,6 @@ const Event = db.define("event", {
     date: Sequelize.STRING,
     start: Sequelize.STRING,
     end: Sequelize.STRING,
-    group: Sequelize.STRING,
     location: Sequelize.STRING,
     attendance: Sequelize.JSONB
 })
