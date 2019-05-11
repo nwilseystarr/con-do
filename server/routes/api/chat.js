@@ -8,8 +8,6 @@ router.route("/messages")
             res.send(messageData)
         })    
     })
-
-router.route("/messages")
     .post(function (req, res){
         db.Message.save((err) =>{
             if(err)

@@ -36,7 +36,7 @@ export default {
     getUsersBySchool: function (query) {
         return axios.get(`/api/users/querybyschool/${query}`)
     },
-    getMyDelegates: function(){
+    getMyDelegates: function () {
         return axios.get(`/api/users/my`)
     },
     loginViaLink: function (token) {
@@ -46,14 +46,14 @@ export default {
     updatePW: function (password) {
         return axios.put("/api/users/updatepassword", password)
     },
-    removeUser: function(userId){
+    removeUser: function (userId) {
         return axios.delete("/api/users/" + userId)
     },
     //Committee Axios Calls
     getCommittees: function () {
         return axios.get("/api/committees")
     },
-    getCommitteById: function(committeeId){
+    getCommitteById: function (committeeId) {
         return axios.get("/api/committees/" + committeeId)
     },
     // getCommitteeByName: function (name) {
@@ -87,13 +87,13 @@ export default {
     getEventById: function (id) {
         return axios.get("/api/events/" + id)
     },
-    getEventsByCommitteeId: function(committeeId){
+    getEventsByCommitteeId: function (committeeId) {
         return axios.get("/api/events/committee/" + committeeId)
     },
     createEvent: function (eventData) {
         return axios.post("/api/events", eventData)
     },
-    removeEvent: function(eventId){
+    removeEvent: function (eventId) {
         return axios.delete("/api/events/" + eventId)
     },
     checkIn: function (id, attendance) {
@@ -108,18 +108,25 @@ export default {
         return axios.get("api/events/my", id)
     },
     //Measures
-    createMeasure: function (measureData){
+    createMeasure: function (measureData) {
         return axios.post("/api/measures/", measureData)
     },
-    getMeasuresByEvent: function(eventId){
+    getMeasuresByEvent: function (eventId) {
         return axios.get("/api/measures/event/" + eventId)
     },
-    getMeasureById: function(measureId){
+    getMeasureById: function (measureId) {
         return axios.get("/api/measures/" + measureId)
     },
-    updateMeasure: function(measureId, measureBody){
-        return axios.put("/api/measures/" +measureId, measureBody)
-    }
+    updateMeasure: function (measureId, measureBody) {
+        return axios.put("/api/measures/" + measureId, measureBody)
+    },
 
+    //Chat 
+    getMessage: function () {
+        return axios.get("/api/chat/")
+    },
+    postMessage: function () {
+        return axios.post("/api/chat")
+    },
 }
 

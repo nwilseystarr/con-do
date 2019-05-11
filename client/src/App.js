@@ -122,7 +122,7 @@ class App extends Component {
           <Route exact path="/usersearch" component={UserSearch}/>
           <Route exact path="/dashboard" component={()=> <Dashboard loggedIn={this.state.loggedIn}  userType={this.state.userType}/>}/>
           <Route exact path="/profile" component={()=> <Profile loggedIn={this.state.loggedIn}  userType={this.state.userType}/>}/>
-          <Route exact path="/chat" component={() => <Chat />} />
+          <Route exact path="/chat" component={() => <Chat {...userProps}/>} />
           
           {/* Auth related routes */}
           <Route path="/verify/:token" component={(props)=> <VerifyUser  {...props}/>} />
