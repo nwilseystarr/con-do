@@ -9,8 +9,12 @@ const db = require("./server/db/db");
 const models = require("./server/db/models/")
 // Routes
 const routes = require("./server/routes");
-
 let app = express();
+
+//Chat
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {

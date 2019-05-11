@@ -6,7 +6,7 @@ const db = require("../db")
 
 //creates user model for all users
 const User = db.define("user", {
-    email: {
+    name: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true,

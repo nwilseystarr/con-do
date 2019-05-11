@@ -15,6 +15,7 @@ import Event from "./components/EventPage/eventview"
 import UpdatePasswordPage from "./components/update-password-page";
 import Dashboard from "./components/Dashboard";
 import Profile from "./components/Profile";
+import Chat from "./components/Chat";
 // import isAuthenticated from "../db/config/middleware/isAuthenticated"
 // const UserContext = React.createContext("none");
 
@@ -79,6 +80,7 @@ class App extends Component {
           <Route exact path="/usersearch" component={UserSearch}/>
           <Route exact path="/dashboard" component={()=> <Dashboard loggedIn={this.state.loggedIn}  userType={this.state.userType}/>}/>
           <Route exact path="/profile" component={()=> <Profile loggedIn={this.state.loggedIn}  userType={this.state.userType}/>}/>
+          <Route exact path="/chat" component={() => <Chat />} />
           
           {/* Auth related routes */}
           <Route path="/verify/:token" component={(props)=> <VerifyUser  {...props}/>} />
