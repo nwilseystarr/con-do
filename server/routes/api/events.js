@@ -1,6 +1,6 @@
 const { Events, User } = require("../../db/models");
 const router = require("express").Router();
-const isAuthenticated = require("../../db/config/middleware/isAuthenticated");
+
 
 router.route("/committee/:committeeId")
     .get(function (req, res) {
@@ -25,7 +25,7 @@ router.route("/")
     .post(function (req, res){
         Events.create(req.body)
             .then(function(createdEvent){
-                console.log(createdEvent)
+                // console.log(createdEvent)
                 res.send(createdEvent)
             })
     })
@@ -54,8 +54,8 @@ router.route("/:id")
         })
     })
     .put(function (req, res){
-        console.log("updating event " + req.params.id )
-        console.log(req.body)
+        // console.log("updating event " + req.params.id )
+        // console.log(req.body)
         Events.update(
             req.body,
             {

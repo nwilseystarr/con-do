@@ -4,7 +4,6 @@ require('dotenv').config()
 const db = require("../../db/models");
 const router = require("express").Router();
 const passport = require("../../db/config/passport/");
-const isAuthenticated = require("../../db/config/middleware/isAuthenticated");
 const JWT = require("jsonwebtoken");
 const generator = require("generate-password")
 const sgMail = require('@sendgrid/mail');
