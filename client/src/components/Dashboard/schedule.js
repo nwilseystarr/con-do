@@ -29,7 +29,7 @@ class Schedule extends Component {
                 this.setState({
                     array: res.data
                 });
-            console.log(res)
+            // console.log(res)
             })
     }
 

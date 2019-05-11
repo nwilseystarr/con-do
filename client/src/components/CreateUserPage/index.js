@@ -8,7 +8,7 @@ import Navbar from "../Navbar";
 class CreateUser extends Component {
   //the signup state keeps track of all of the input fields in the signup form
   constructor(props) {
-    console.log(props);
+    // console.log(props);
     super(props);
     this.state = {
       email: "",
@@ -77,7 +77,7 @@ class CreateUser extends Component {
           committeeId: this.state.committee
         })
           .then(userRes => {
-            console.log(userRes)
+            // console.log(userRes)
             this.setState({
               recentName: userRes.data.name,
               recentEmail: userRes.data.email,
@@ -127,7 +127,7 @@ class CreateUser extends Component {
           committeeId: this.state.committee
         })
         .then(userRes => {
-          console.log(userRes)
+          // console.log(userRes)
           this.setState({
             recentName: userRes.data.name,
             recentEmail: userRes.data.email,
@@ -179,7 +179,7 @@ class CreateUser extends Component {
     if (this.state.committeeAddInput) {
       API.addCommittee({ name: this.state.committeeAddInput })
         .then(res => {
-          console.log(res);
+          // console.log(res);
           this.setState({
             committeeAddInput: ""
           });
@@ -193,7 +193,7 @@ class CreateUser extends Component {
     if (this.state.schoolAddInput) {
       API.addSchool({ name: this.state.schoolAddInput })
         .then(res => {
-          console.log(res);
+          // console.log(res);
           this.setState({
             schoolAddInput: ""
           });

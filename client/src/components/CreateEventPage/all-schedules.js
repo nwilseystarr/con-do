@@ -8,7 +8,7 @@ import {
   } from 'react-router-dom';
 
 
-class Schedule extends Component {
+class AllSchedules extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -90,4 +90,4 @@ class Schedule extends Component {
         )
     }
 }
-export default Schedule;
+export default AllSchedules;

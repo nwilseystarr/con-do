@@ -4,7 +4,6 @@ require('dotenv').config()
 const db = require("../../db/models");
 const router = require("express").Router();
 const passport = require("../../db/config/passport/");
-const isAuthenticated = require("../../db/config/middleware/isAuthenticated");
 const JWT = require("jsonwebtoken");
 const generator = require("generate-password")
 const sgMail = require('@sendgrid/mail');
@@ -39,7 +38,7 @@ router.route("/all")
     })
 router.route("/querybyname/:query")
     .get(function(req, res){
-        console.log(req.params.query)
+        // console.log(req.params.query)
         db.User.findAll({
             where: {
                 name: {
@@ -48,7 +47,7 @@ router.route("/querybyname/:query")
             }
         })
         .then(queriedUsers =>{
-            console.log(queriedUsers)
+            // console.log(queriedUsers)
             res.send(queriedUsers)
         })
     })
@@ -60,7 +59,7 @@ router.route("/querybycommittee/:query")
             }
         })
         .then(queriedUsers =>{
-            console.log("committee users,", queriedUsers)
+            // console.log("committee users,", queriedUsers)
             res.send(queriedUsers)
         })
     })
@@ -72,7 +71,7 @@ router.route("/querybyschool/:query")
             }
         })
         .then(queriedUsers =>{
-            console.log("committee users,", queriedUsers)
+            // console.log("committee users,", queriedUsers)
             res.send(queriedUsers)
         })
     })
@@ -100,7 +99,7 @@ router.route("/create")
             db.User
             .create(req.body)
             .then(userObj => {
-                console.log(userObj.dataValues.email)
+                // console.log(userObj.dataValues.email)
                 //storing the info for the user being created into an object so that it can be emailed to the user via a jsonwebtoken
                 //the user will then be logged in with passport
                 let userInfo = {
@@ -108,7 +107,7 @@ router.route("/create")
                         password: req.body.password
                 }
                 let token = JWT.sign({data: userInfo}, process.env.JWT_SECRET || "chocolate-chip-cookies", { expiresIn: '176h' })
-                console.log(token)
+                // console.log(token)
 
                 mailer.sendMail(req.body.name, req.body.email, token)
                 res.send(userObj.dataValues)
@@ -126,7 +125,7 @@ router.route("/login")
 router.route("/login/:token")
     .get(function(req, res){
         var decoded = JWT.verify(req.params.token, process.env.JWT_SECRET || "chocolate-chip-cookies");
-        console.log("decoded obj", decoded);
+        // console.log("decoded obj", decoded);
         res.send(decoded.data)
 
     })
@@ -139,7 +138,7 @@ router.route("/logout")
 // /api/users/updatepw
 router.route("/updatepassword")
     .put(function(req, res){
-        console.log("updating password")
+        // console.log("updating password")
         db.User
             .update(
                 req.body,
@@ -150,7 +149,7 @@ router.route("/updatepassword")
                     individualHooks: true
                 })
             .then(userObj =>{
-                console.log(userObj);
+                // console.log(userObj);
                 res.send(userObj)
             })
     })
