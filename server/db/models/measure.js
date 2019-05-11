@@ -1,14 +1,18 @@
 const Sequelize = require("sequelize");
+const Event = require("./event")
 const db = require("../db");
 
 //defines measure model
 const Measure = db.define("measure", {
-    total_votes: Sequelize.INTEGER
+    name: Sequelize.STRING,
+    voteTally: Sequelize.JSONB,
+    result : Sequelize.BOOLEAN,
+    measureType: Sequelize.STRING,
+    open : Sequelize.BOOLEAN,
 })
 
-Measure.associate = function (models) {
-    Measure.belongsTo(models.Committee);
-}
+Measure.belongsTo(Event);
+
 
 
 module.exports = Measure;

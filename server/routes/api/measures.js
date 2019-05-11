@@ -11,3 +11,5 @@ router.route("/")
                 res.send(createdMeasure)
             })
     })
+
+module.exports = router

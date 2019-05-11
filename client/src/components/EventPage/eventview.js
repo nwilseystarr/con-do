@@ -8,6 +8,7 @@ import Navbar from "../Navbar";
 import ReactTable from 'react-table';
 import matchSorter from 'match-sorter';
 import Webcam from "./webcam"
+import CreateMeasure from "./createmeasure";
 
 class Event extends Component {
     //the state for the login component keeps track fo the email and password inputs
@@ -67,6 +68,32 @@ class Event extends Component {
         //requesting to check in. Once we find that record we will set its checkedIn property to true
         let updatedAttendance = currentAttendance.map((attendanceRecord) => {
             let id = parseInt(userId)
+            if (attendanceRecord.id === id){
+                attendanceRecord.checkedIn = true
+                this.setState({
+                    recentlyCheckedIn: attendanceRecord.name + " is now checked in!"
+                })
+            }
+            return attendanceRecord
+        })
+        console.log(updatedAttendance)
+        //we will then create our request object using the updated attendance array and replace the attendance array for the event
+        //in the database with the new attendance array
+        let toSendAttendance = {attendance: updatedAttendance}
+        API.checkIn(this.props.match.params.id, toSendAttendance)
+            .then(res=>{
+                //call get event again so that the table will be updated with the most recent values
+                this.getEvent()
+            })
+    }
+    checkInButton = () =>{
+        //first we will store our current attendance by grabbing it from the state
+        let currentAttendance = this.state.attendance
+        //then we will map through this array and return each attendance record into a new array
+        //before we return the record, we will check to see if the record matches the id of the user who is 
+        //requesting to check in. Once we find that record we will set its checkedIn property to true
+        let updatedAttendance = currentAttendance.map((attendanceRecord) => {
+            let id = this.props.userId
             if (attendanceRecord.id === id){
                 attendanceRecord.checkedIn = true
                 this.setState({
@@ -156,13 +183,14 @@ class Event extends Component {
                     <div className="col-lg-3 mt-5">
                     <h2>{this.state.name}</h2>
                     <h4>{this.state.start} | {this.state.location}</h4>
-                    {!this.state.checkedIn ? <button className="btn btn-outline-dark" onClick={this.checkIn}>Check in</button>:
+                    {!this.state.checkedIn ? <button className="btn btn-outline-dark" onClick={this.checkInButton}>Check in</button>:
                  <button className="btn btn-outline-dark" disabled={true}>Checked In</button> }
                      <Webcam checkIn={this.checkIn}/>
                      <div>{this.state.recentlyCheckedIn}</div>
                     
                     </div>
                     <div className="col-lg-9 mt-5 p-5">
+                    <CreateMeasure attendees={this.state.attendance} eventId={this.props.match.params.id}/>
                     <ReactTable data={this.state.attendance} columns={columns} defaultPageSize={10} filterable
                     defaultFilterMethod={(filter, row) => String(row[filter.id]) === filter.value}  minRows={0} 
                     />
