@@ -7,11 +7,11 @@ export default {
     },
     //user auth
     loginUser: function (loginForm) {
-        console.log(loginForm)
+        // console.log(loginForm)
         return axios.post("/api/users/login", loginForm);
     },
     loginLink: function (userData) {
-        console.log(userData)
+        // console.log(userData)
         return axios.post("/api/users/loginLink", userData)
     },
     logOut: function () {
@@ -36,20 +36,29 @@ export default {
     getUsersBySchool: function (query) {
         return axios.get(`/api/users/querybyschool/${query}`)
     },
+    getMyDelegates: function(){
+        return axios.get(`/api/users/my`)
+    },
     loginViaLink: function (token) {
-        console.log("loggin in with token " + token)
+        // console.log("loggin in with token " + token)
         return axios.get("/api/users/login/" + token, { data: { token: token } })
     },
     updatePW: function (password) {
         return axios.put("/api/users/updatepassword", password)
     },
+    removeUser: function(userId){
+        return axios.delete("/api/users/" + userId)
+    },
     //Committee Axios Calls
     getCommittees: function () {
         return axios.get("/api/committees")
     },
-    getCommitteeByName: function (name) {
-        return axios.get("/api/committees/" + name)
+    getCommitteById: function(committeeId){
+        return axios.get("/api/committees/" + committeeId)
     },
+    // getCommitteeByName: function (name) {
+    //     return axios.get("/api/committees/" + name)
+    // },
     getCommitteeIds: function (query) {
         return axios.get("/api/committees/queried/" + query)
     },
@@ -84,6 +93,9 @@ export default {
     createEvent: function (eventData) {
         return axios.post("/api/events", eventData)
     },
+    removeEvent: function(eventId){
+        return axios.delete("/api/events/" + eventId)
+    },
     checkIn: function (id, attendance) {
         return axios.put("/api/events/" + id, attendance)
     },
@@ -94,6 +106,19 @@ export default {
     //Schedules 
     getScheduleByUser: function (id) {
         return axios.get("api/events/my", id)
+    },
+    //Measures
+    createMeasure: function (measureData){
+        return axios.post("/api/measures/", measureData)
+    },
+    getMeasuresByEvent: function(eventId){
+        return axios.get("/api/measures/event/" + eventId)
+    },
+    getMeasureById: function(measureId){
+        return axios.get("/api/measures/" + measureId)
+    },
+    updateMeasure: function(measureId, measureBody){
+        return axios.put("/api/measures/" +measureId, measureBody)
     }
 
 }

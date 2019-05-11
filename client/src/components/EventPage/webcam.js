@@ -33,7 +33,7 @@ class Webcam extends Component {
       
         return (
         <div>
-          <button className="btn btn-outline-dark" onClick={this.turnOn}>Turn on Webcam</button>
+          <button className="btn btn-outline-dark" onClick={this.turnOn}>Start Checkin</button>
           {this.state.startCheckin ? <QrScanner
             delay={300}
             onError={this.handleError}

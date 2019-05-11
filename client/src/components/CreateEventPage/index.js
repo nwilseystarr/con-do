@@ -3,6 +3,7 @@ import { Redirect } from "react-router-dom";
 import API from "../../utils/API";
 import Select from "./select-dropdowns";
 import Navbar from "../Navbar";
+import AllSchedules from "./all-schedules"
 import "./style.css";
 
 class CreateEvent extends Component {
@@ -138,17 +139,6 @@ class CreateEvent extends Component {
                     />
                   </div>
                   <div className="form-group row input-group">
-                    <label for="groupInput" className="col-lg-2 col-sm-4 col-form-label px-0 ml-3">Group</label>
-                    <input
-                      value={this.state.group}
-                      onChange={this.handleInputChange}
-                      name="group"
-                      placeholder="Group"
-                      className="col-lg-10 col-sm-8 form-control border-top-0 border-left-0 border-right-0 border-dark rounded-0 px-0 ml-3"
-                      id="groupInput"
-                    />
-                  </div>
-                  <div className="form-group row input-group">
                     <label for="locationInput" className="col-lg-2 col-sm-4 col-form-label px-0 ml-3">Location</label>
                     <input
                       value={this.state.location}
@@ -176,6 +166,9 @@ class CreateEvent extends Component {
                     Add Event
                   </button>
                 </form>
+              </div>
+              <div className="col">
+                <AllSchedules/>
               </div>
             </div>
           </div>

@@ -1,7 +1,5 @@
 const db = require("../../db/models");
 const router = require("express").Router();
-const passport = require("../../db/config/passport");
-const isAuthenticated = require("../../db/config/middleware/isAuthenticated");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op
 
@@ -14,7 +12,7 @@ router.route("/")
     })
 router.route("/queried/:query")
     .get(function(req, res){
-        console.log(req.params.query)
+        // console.log(req.params.query)
         db.Committee.findAll({
             attributes: ['id'],
             where: {
@@ -24,15 +22,15 @@ router.route("/queried/:query")
             }
         })
         .then(queriedCommittees =>{
-            console.log(queriedCommittees)
+            // console.log(queriedCommittees)
             res.send(queriedCommittees)
         })
     })
-router.route("/:name")
+router.route("/:committeeId")
     .get(function(req, res){
         db.Committee.findOne({
             where:{
-                name: req.params.name
+                id: req.params.committeeId
             }
         }).then(committeData => {
             res.send(committeData) 

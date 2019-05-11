@@ -8,7 +8,7 @@ import {
   } from 'react-router-dom';
 
 
-class Schedule extends Component {
+class AllSchedules extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -19,21 +19,32 @@ class Schedule extends Component {
             start: "",
             end: ""
         }
-        this.getSchedule.bind(this);
+        this.getEvents.bind(this);
     };
 
-    getSchedule = () => {
-        API.getScheduleByUser()
+    getEvents = () => {
+        API.getAllEvents()
             .then(res => {
                 // console.log(res)
                 this.setState({
                     array: res.data
                 });
-            // console.log(res)
+            console.log(res)
+            })
+    }
+    removeEvent = (eventId)=>{
+        API.removeEvent(eventId)
+            .then(res=>{
+                API.getAllEvents()
+                    .then(res=>{
+                        this.setState({
+                        array: res.data
+                    })
+                })
             })
     }
 
-    componentDidMount = () => { this.getSchedule(); }
+    componentDidMount = () => { this.getEvents(); }
 
     render() {
         const columns = [
@@ -62,10 +73,9 @@ class Schedule extends Component {
                 Header: "Event End",
                 accessor: "end"
             }, {
-                id: "attendance",
-                Header: "Attendance",
-                accessor: event => <Link to={{ pathname: `/event/${event.id}` }}>{event.name}</Link>
-                // render: ({ row }) => (<Link to={{ pathname: `/events/${row.id}` }}>{row.name}</Link>)
+                Header: 'Delete',
+                        id: 'deleteuser',
+                        accessor: event => <button onClick={(e) => this.removeEvent(event.id)}>X</button>
             }
         ]
 
@@ -80,4 +90,4 @@ class Schedule extends Component {
         )
     }
 }
-export default Schedule;
+export default AllSchedules;

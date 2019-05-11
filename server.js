@@ -65,18 +65,51 @@ const delegate = {
   name: "delegate account",
   userType: "delegate",
   firstLog: false,
-  // schoolId: 99,
-  // committeeId: 99,
-  // country: "none"
+  schoolId: 1,
+  committeeId: 1,
+  country: "none"
+}
+const delegate2 = {
+  email: "delegate2@mail.com",
+  password: "password",
+  name: "delegate account",
+  userType: "delegate",
+  firstLog: false,
+  schoolId: 1,
+  committeeId: 1,
+  country: "none"
+}
+const delegate3 = {
+  email: "delegate3@mail.com",
+  password: "password",
+  name: "delegate account",
+  userType: "delegate",
+  firstLog: false,
+  schoolId: 1,
+  committeeId: 1,
+  country: "none"
+}
+const delegate4 = {
+  email: "delegate4@mail.com",
+  password: "password",
+  name: "delegate account",
+  userType: "delegate",
+  firstLog: false,
+  schoolId: 1,
+  committeeId: 1,
+  country: "none"
 }
 
 db.sync({ force: false}).then(function () {
-  // models.User.create(admin).catch(err=> console.log(err))
-  // models.User.create(advisor).catch(err=> console.log(err))
-  // models.User.create(staff).catch(err=> console.log(err))
-  // models.User.create(delegate).catch(err=> console.log(err))
-  // models.School.create({name: "None"})
-  // models.Committee.create({name: "None"})
+  models.School.create({name: "None"})
+  models.Committee.create({name: "None"})
+  models.User.create(admin).catch(err=> console.log(err))
+  models.User.create(advisor).catch(err=> console.log(err))
+  models.User.create(staff).catch(err=> console.log(err))
+  models.User.create(delegate).catch(err=> console.log(err))
+  models.User.create(delegate2).catch(err=> console.log(err))
+  models.User.create(delegate3).catch(err=> console.log(err))
+  models.User.create(delegate4).catch(err=> console.log(err))
   app.listen(PORT, function () {
     console.log(`🌎 ==> API server now on port ${PORT}!`);
   });
