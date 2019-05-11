@@ -9,8 +9,12 @@ const db = require("./server/db/db");
 const models = require("./server/db/models/")
 // Routes
 const routes = require("./server/routes");
-
 let app = express();
+
+//Chat
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
@@ -96,16 +100,16 @@ const delegate4 = {
   country: "none"
 }
 
-db.sync({ force: true}).then(function () {
-  models.School.create({name: "None"})
-  models.Committee.create({name: "None"})
-  models.User.create(admin).catch(err=> console.log(err))
-  models.User.create(advisor).catch(err=> console.log(err))
-  models.User.create(staff).catch(err=> console.log(err))
-  models.User.create(delegate).catch(err=> console.log(err))
-  models.User.create(delegate2).catch(err=> console.log(err))
-  models.User.create(delegate3).catch(err=> console.log(err))
-  models.User.create(delegate4).catch(err=> console.log(err))
+db.sync({ force: false}).then(function () {
+  // models.School.create({name: "None"})
+  // models.Committee.create({name: "None"})
+  // models.User.create(admin).catch(err=> console.log(err))
+  // models.User.create(advisor).catch(err=> console.log(err))
+  // models.User.create(staff).catch(err=> console.log(err))
+  // models.User.create(delegate).catch(err=> console.log(err))
+  // models.User.create(delegate2).catch(err=> console.log(err))
+  // models.User.create(delegate3).catch(err=> console.log(err))
+  // models.User.create(delegate4).catch(err=> console.log(err))
   app.listen(PORT, function () {
     console.log(`🌎 ==> API server now on port ${PORT}!`);
   });
