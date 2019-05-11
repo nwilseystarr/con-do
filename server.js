@@ -10,16 +10,11 @@ const models = require("./server/db/models/")
 // Routes
 const routes = require("./server/routes");
 let app = express();
-let server;
+
 
 //Chat
 var socket = require("socket.io");
 
-io = socket(server);
-
-io.on('connection', (socket) => {
-console.log(socket.id)
-});
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
@@ -109,6 +104,11 @@ server = app.listen(PORT, function () {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
 });
 
+io = socket(server);
+
+io.on('connection', (socket) => {
+console.log(socket.id)
+});
 
 db.sync({ force: true }).then(function () {
   models.School.create({name: "None"})

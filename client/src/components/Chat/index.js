@@ -11,6 +11,26 @@ class Chat extends Component {
             messages: []
         }
         this.socket = io("localhost:3001");
+
+        this.socket.on('RECEIVE_MESSAGE', function(data){
+            console.log("Hello");
+            this.getMessages(data);
+        });
+
+        // const addMessage = data => {
+        //     console.log(data);
+        //     this.setState({messages: [...this.state.messages, data]});
+        //     console.log(this.state.messages);
+        // };
+
+        this.sendMessage = ev => {
+            // ev.preventDefault();
+            this.socket.emit('SEND_MESSAGE', {
+                author: this.state.username,
+                message: this.state.message
+            });
+            this.setState({ message: '' });
+        }
     };
 
     //Load all messages with the component
@@ -46,6 +66,7 @@ class Chat extends Component {
         this.setState({
             message: ""
         })
+        this.sendMessage();
     };
 
     //so users can press "enter" to send a message
@@ -62,7 +83,7 @@ class Chat extends Component {
             <div className="container-fluid mt-5 pt-5">
                 <Navbar loggedIn={this.props.loggedIn} />
                 <form>
-                    <textarea wrap="hard" name="message" id="message" className="form-control" placeholder="Your message here" value={this.state.message} onChange={this.handleInputChange} 
+                    <textarea wrap="hard" name="message" id="message" className="form-control" placeholder="Your message here" value={this.state.message} onChange={this.handleInputChange}
                     // onKeyDown={this.onEnterPress} 
                     />
                     <button
