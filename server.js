@@ -10,11 +10,16 @@ const models = require("./server/db/models/")
 // Routes
 const routes = require("./server/routes");
 let app = express();
+let server;
 
 //Chat
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
+var socket = require("socket.io");
 
+io = socket(server);
+
+io.on('connection', (socket) => {
+console.log(socket.id)
+});
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
@@ -26,7 +31,7 @@ const bodyParser = require("body-parser");
 app.use(express.json());
 
 //allowing our server to keep track of the user's auth status with session
-app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true}));
+app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -100,22 +105,25 @@ const delegate4 = {
   country: "none"
 }
 
-db.sync({ force: false}).then(function () {
-  // models.School.create({name: "None"})
-  // models.Committee.create({name: "None"})
-  // models.User.create(admin).catch(err=> console.log(err))
-  // models.User.create(advisor).catch(err=> console.log(err))
-  // models.User.create(staff).catch(err=> console.log(err))
-  // models.User.create(delegate).catch(err=> console.log(err))
-  // models.User.create(delegate2).catch(err=> console.log(err))
-  // models.User.create(delegate3).catch(err=> console.log(err))
-  // models.User.create(delegate4).catch(err=> console.log(err))
-  app.listen(PORT, function () {
-    console.log(`🌎 ==> API server now on port ${PORT}!`);
-  });
+server = app.listen(PORT, function () {
+  console.log(`🌎 ==> API server now on port ${PORT}!`);
 });
+
+
+db.sync({ force: true }).then(function () {
+  models.School.create({name: "None"})
+  models.Committee.create({name: "None"})
+  models.User.create(admin).catch(err=> console.log(err))
+  models.User.create(advisor).catch(err=> console.log(err))
+  models.User.create(staff).catch(err=> console.log(err))
+  models.User.create(delegate).catch(err=> console.log(err))
+  models.User.create(delegate2).catch(err=> console.log(err))
+  models.User.create(delegate3).catch(err=> console.log(err))
+  models.User.create(delegate4).catch(err=> console.log(err))
+});
+
 // Send every request to the React app
 // Define any API routes before this runs
-app.get("*", function(req, res) {
+app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
