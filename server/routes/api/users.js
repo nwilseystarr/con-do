@@ -1,12 +1,12 @@
 //this file contains all api routes for users
 //it uses the userController to relate to our database
-require('dotenv').config()
+require("dotenv").config()
 const db = require("../../db/models");
 const router = require("express").Router();
 const passport = require("../../db/config/passport/");
 const JWT = require("jsonwebtoken");
 const generator = require("generate-password")
-const sgMail = require('@sendgrid/mail');
+const sgMail = require("@sendgrid/mail");
 
 console.log("environ ", process.env.SENDGRID_API_KEY)
 const Sequelize = require("sequelize");
@@ -106,7 +106,7 @@ router.route("/create")
                         email: req.body.email,
                         password: req.body.password
                 }
-                let token = JWT.sign({data: userInfo}, process.env.JWT_SECRET || "chocolate-chip-cookies", { expiresIn: '176h' })
+                let token = JWT.sign({data: userInfo}, process.env.JWT_SECRET || "chocolate-chip-cookies", { expiresIn: "176h" })
                 // console.log(token)
 
                 mailer.sendMail(req.body.name, req.body.email, token)

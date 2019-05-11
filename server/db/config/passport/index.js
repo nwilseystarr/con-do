@@ -1,4 +1,4 @@
-const passport = require('passport')
+const passport = require("passport")
 const LocalStrategy = require("./localStrategy")
 
 var db = require("../../models");
