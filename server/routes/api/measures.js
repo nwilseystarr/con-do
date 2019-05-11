@@ -2,8 +2,9 @@ const { Measures,} = require("../../db/models");
 const router = require("express").Router();
 
 
-//get all events
+// /api/measures/
 router.route("/")
+    //create a new measure
     .post(function (req, res){
         Measures.create(req.body)
             .then(function(createdMeasure){
@@ -11,7 +12,10 @@ router.route("/")
                 res.send(createdMeasure)
             })
     })
+
+// /api/measures/:measureId
 router.route("/:measureId")
+    //get the measure that has a matching id
     .get(function(req, res){
         Measures.findOne({
             where:{
@@ -22,6 +26,7 @@ router.route("/:measureId")
             res.send(returnedMeasure)
         })
     })
+    //update the measure with the matching id
     .put(function(req, res){
         Measures.update(
             req.body,
@@ -35,8 +40,9 @@ router.route("/:measureId")
             res.send(updatedMeasure)
         })
     })
-
+// /api/measures/event/:eventId
 router.route("/event/:eventId")
+    //find all measures with a matching eventId
     .get(function (req, res){
         Measures.findAll({
             where:{

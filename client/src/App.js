@@ -106,8 +106,8 @@ class App extends Component {
             </div>
             :
             <div>
-              <Route exact path="/createevent" component={UnauthorizedPage}/>
-              <Route exact path="/createuser" component={UnauthorizedPage}/>} 
+              <Route exact path="/createevent" component={()=> <UnauthorizedPage {...userProps}/>}/>
+              <Route exact path="/createuser" component={()=> <UnauthorizedPage {...userProps}/>}/>} 
             </div>           
           }
 
@@ -121,7 +121,7 @@ class App extends Component {
           {/* Auth related routes */}
           <Route path="/verify/:token" component={(props)=> <VerifyUser  {...props}/>} />
           <Route exact path="/login" component={() => <Login updateUser={this.updateUser} />} />
-          <Route component={UnauthorizedPage}/>
+          <Route  component={()=> <UnauthorizedPage {...userProps}/>}/>
         </Switch>
       }
         

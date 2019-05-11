@@ -10,6 +10,8 @@ import matchSorter from 'match-sorter';
 import Webcam from "./webcam"
 import CreateMeasure from "./createmeasure";
 import ViewMeasures from "./viewmeasures"
+import { BrowserRouter as Route,Redirect } from "react-router-dom";
+import UnauthorizedPage from "../unauthorized-page";
 
 class Event extends Component {
     //the state for the login component keeps track fo the email and password inputs
@@ -22,6 +24,7 @@ class Event extends Component {
             location: "",
             checkedIn: false,
             recentlyCheckedIn: "",
+            committeeId: "",
             allSchools: [],
             allCommittees: [] 
         }
@@ -56,7 +59,8 @@ class Event extends Component {
                         attendance: res.data.attendance,
                         name: res.data.name,
                         start: res.data.start,
-                        location: res.data.location
+                        location: res.data.location,
+                        committeeId: res.data.committeeId
                     })
                 });
     }
@@ -86,6 +90,35 @@ class Event extends Component {
                 //call get event again so that the table will be updated with the most recent values
                 this.getEvent()
             })
+        //adding the newly checked in user to the voteTally
+        API.getMeasuresByEvent(this.props.match.params.id)
+            .then(measuresRes =>{
+                //get all measures for this event
+                measuresRes.data.forEach(measure=>{
+                    //for a measure get it's current vote tally
+                    let votes = measure.voteTally
+                    let id = parseInt(userId)
+                    //check to see if the user who just checked in is already in the voteTally array
+                    let filtered = votes.filter( vote=> vote.id === id)
+                    //if they are not in the vote tally, push them 
+                    if (filtered.length === 0){
+                        //get the delegatesInfo from the attendance array
+                        let delegateInfo = this.state.attendance.filter(delegate=> delegate.id == this.props.userId)
+                        //if the user who attempted to check in is in the attendance array, push their info to the voteTally array
+                        if(delegateInfo){
+                            votes.push({
+                                id: delegateInfo[0].id,
+                                name: delegateInfo[0].name,
+                                country: delegateInfo[0].country,
+                                vote: false
+                            })
+                        }
+
+                    }
+                    //push the new voteTally array to the measure
+                    API.updateMeasure(measure.id, {voteTally: votes})
+                })
+            })
     }
     checkInButton = () =>{
         //first we will store our current attendance by grabbing it from the state
@@ -112,13 +145,41 @@ class Event extends Component {
                 //call get event again so that the table will be updated with the most recent values
                 this.getEvent()
             })
+        //adding the newly checked in user to the voteTally
+        API.getMeasuresByEvent(this.props.match.params.id)
+            .then(measuresRes =>{
+                //get all measures for this event
+                measuresRes.data.forEach(measure=>{
+                    //for a measure get it's current vote tally
+                    let votes = measure.voteTally
+                    console.log(votes)
+                    //check to see if the user who just checked in is already in the voteTally array
+                    let filtered = votes.filter( vote=> vote.id === this.props.userId)
+                    //if they are not in the vote tally, push them 
+                    if (filtered.length === 0){
+                        //get the delegatesInfo from the attendance array
+                        let delegateInfo = this.state.attendance.filter(delegate=> delegate.id == this.props.userId)
+                        //if the user who attempted to check in is in the attendance array, push their info to the voteTally array
+                        if(delegateInfo){
+                            votes.push({
+                                id: delegateInfo[0].id,
+                                name: delegateInfo[0].name,
+                                country: delegateInfo[0].country,
+                                vote: false
+                            })
+                        }
+
+                    }
+                    //push the new voteTally array to the measure
+                    API.updateMeasure(measure.id, {voteTally: votes})
+                })
+            })
     }
     componentDidMount = ()=>{
         this.getEvent();
     }
     render(){
         let allSchools = this.state.allSchools
-        let allCommittees = this.state.allCommittees
         //Our react table will use the attendance array from the current event to populate its data
         //each attendance record is a user object that has the following properties
         // name (str), checkedIn(bool), committeedId(key), schoolId(key)
@@ -172,27 +233,56 @@ class Event extends Component {
         ]
         return(
         <div>
+            
+            {/* if the user is and admin, advisor, or has a committeeId that matches the event, then they can access the page */}
+            {this.props.userType === "admin" || this.props.userType === "advisor" || this.props.committeeId === this.state.committeeId ?
+            <div>
             <Navbar loggedIn={this.props.loggedIn}/>
-              <div className="container-fluid p-5">
-                <div className="row justify-content-center">
-                    <div className="col-lg-3 mt-5">
-                    <h2>{this.state.name}</h2>
-                    <h4>{this.state.start} | {this.state.location}</h4>
-                    {!this.state.checkedIn ? <button className="btn btn-outline-dark" onClick={this.checkInButton}>Check in</button>:
+            <div className="container-fluid p-5">
+            <div className="row justify-content-center">
+                <div className="col-lg-3 mt-5">
+                {/* event info */}
+                <h2>{this.state.name}</h2>
+                <h4>{this.state.start} | {this.state.location}</h4>
+                {/* checked in status of the current user */}
+                {!this.state.checkedIn ? <button className="btn btn-outline-dark" onClick={this.checkInButton}>Check in</button>:
                  <button className="btn btn-outline-dark" disabled={true}>Checked In</button> }
-                     <Webcam checkIn={this.checkIn}/>
-                     <div>{this.state.recentlyCheckedIn}</div>
-                    
+
+                {/*if the user is not a delegate, then they can check in other users  */}
+                {this.props.userType === "admin" || this.props.userType === "advisor" || this.props.userType === "staff" ?
+                    <div>
+                        <Webcam checkIn={this.checkIn}/>
+                        <div>{this.state.recentlyCheckedIn}</div>
                     </div>
-                    <div className="col-lg-9 mt-5 p-5">
-                    <ViewMeasures eventId={this.props.match.params.id}/>
-                    <CreateMeasure attendees={this.state.attendance} eventId={this.props.match.params.id}/>
-                    <ReactTable data={this.state.attendance} columns={columns} defaultPageSize={10} filterable
-                    defaultFilterMethod={(filter, row) => String(row[filter.id]) === filter.value}  minRows={0} 
-                    />
+                :
+                    <div/>
+                }
+
+                
+                </div>
+
+                <div className="col-lg-9 mt-5 p-5">
+                <h4>Measures</h4>
+                <ViewMeasures eventId={this.props.match.params.id}/>
+
+                {/* if the user is not a delegate, they can view attendance and create measures */}
+                {this.props.userType === "admin" || this.props.userType === "advisor" || this.props.userType === "staff" ?
+                    <div>
+                        <CreateMeasure attendees={this.state.attendance} eventId={this.props.match.params.id}/>
+                        <h4>Attendance</h4>
+                        <ReactTable data={this.state.attendance} columns={columns} defaultPageSize={10} filterable
+                            defaultFilterMethod={(filter, row) => String(row[filter.id]) === filter.value}  minRows={0} 
+                        />
                     </div>
+                :
+                    <div/>
+                }
                 </div>
             </div>
+        </div>
+        </div>
+        : <UnauthorizedPage {...this.props}/>}
+              
         </div>
         )
     }

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import API from "../../utils/API"
-import Measure from "./measure"
 import ReactTable from 'react-table';
 import matchSorter from 'match-sorter';
 import { BrowserRouter as Router, Link, } from 'react-router-dom';
@@ -15,23 +14,23 @@ class ViewMeasures extends Component {
     this.getMeasures = this.getMeasures.bind(this)
   }
   componentDidMount = ()=>{
+    //we will check for new measures every 5 seconds
     pullEventsInterval = setInterval(this.getMeasures, 5000, this.props.eventId)
   }
   componentWillUnmount = ()=>{
     clearInterval(pullEventsInterval)
-    // console.log("component unmounting")
   }
   getMeasures = (eventId) =>{
-    console.log("getting measuers")
-
-      API.getMeasuresByEvent(eventId)
-        .then(res =>{
-          if (res.data.length > this.state.measures.length){
-            this.setState({
-              measures: res.data
-            })
-          }
-        })
+    //pull all measures for the current event
+    API.getMeasuresByEvent(eventId)
+      .then(res =>{
+        //if there are new measures, then update the measures state
+        if (res.data.length > this.state.measures.length){
+          this.setState({
+            measures: res.data
+          })
+        }
+      })
   }
   
     render() {
@@ -55,8 +54,6 @@ class ViewMeasures extends Component {
             Header: 'Result',
             id: 'result',
             accessor: measure => {
-                // console.log(allSchools)
-                // console.log(attendance)
                 if(measure.result){
                     return "Passed!"
                 }

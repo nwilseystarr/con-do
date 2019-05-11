@@ -32,14 +32,23 @@ router.route("/")
 //get events for logged in user
 router.route("/my")
     .get(function (req, res){
-        Events.findAll({
-            where: {
-                committeeId: [req.user.committeeId, 1000]
-            }
-        })
-        .then(function(eventData){
-            res.send(eventData)
-        })
+        //if the user is an admin or an advisor they will be sent all events
+        if(req.user.userType === "admin" || req.user.userType ==="advisor"){
+            Events.findAll()
+            .then(function(eventData){
+                res.send(eventData)
+            })
+        }
+        else{
+            Events.findAll({
+                where: {
+                    committeeId: [req.user.committeeId, 1000]
+                }
+            })
+            .then(function(eventData){
+                res.send(eventData)
+            })
+        }
     })
 router.route("/:id")
     .get(function (req, res){
@@ -78,4 +87,5 @@ router.route("/:id")
             res.end()
         })
     })
+
 module.exports = router;
