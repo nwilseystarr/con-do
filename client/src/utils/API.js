@@ -103,6 +103,10 @@ export default {
     //Schedules 
     getScheduleByUser: function (id) {
         return axios.get("api/events/my", id)
+    },
+    //Measures
+    createMeasure: function (measureData){
+        return axios.post("/api/measures/", measureData)
     }
 
 }
