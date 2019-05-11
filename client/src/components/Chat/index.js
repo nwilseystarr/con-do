@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Navbar from "../Navbar";
 import API from "../../utils/API";
+import io from "socket.io-client";
 
 class Chat extends Component {
     constructor(props) {
@@ -9,6 +10,7 @@ class Chat extends Component {
             message: "",
             messages: []
         }
+        this.socket = io("localhost:3001");
     };
 
     //Load all messages with the component
