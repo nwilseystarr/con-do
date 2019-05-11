@@ -29,19 +29,31 @@ class CreateMeasure extends Component {
   //on submit we attempt to create a new event with the given values via the API that hits a route that queries our database
   handleFormSubmit = event => {
     event.preventDefault();
-    //first we need to get all the users that have a committeeId that matches the committeId of the event we are creating
+       //first we will get all checked in delegates and store them in an array voters
         let voters = this.props.attendees.filter(attendee => (attendee.checkedIn === true && attendee.userType ==="delegate"))
         console.log(voters)
-        //we will update our state to be the same as this array, and then use this array as the value for the attendance column of this 
-        //event
-        // this.setState({ attendance: attendance })
-        // API.createMeasure({
-        //   name: this.state.name,
-        //   eventId: this.props.eventId,
-        // })
-        //   .then(res => {
-        //     console.log(res);
-        //   });
+        //then we will map over this array, only returning the properties that we need, and adding the property vote, which is a boolean 
+        //representing an affirmitive or negative vote
+        voters = voters.map(voter =>{
+          return ({
+            id: voter.id,
+            name: voter.name,
+            country: voter.country,
+            vote: false
+          })
+        })
+        console.log(voters)
+        API.createMeasure({
+          name: this.state.name,
+          eventId: this.props.eventId,
+          voteTally: voters,
+          result: false,
+          measureType: this.state.measureType,
+          open: false
+        })
+          .then(res => {
+            console.log(res);
+          });
   }
 
 

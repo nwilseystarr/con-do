@@ -9,6 +9,7 @@ import ReactTable from 'react-table';
 import matchSorter from 'match-sorter';
 import Webcam from "./webcam"
 import CreateMeasure from "./createmeasure";
+import ViewMeasures from "./viewmeasures"
 
 class Event extends Component {
     //the state for the login component keeps track fo the email and password inputs
@@ -161,16 +162,10 @@ class Event extends Component {
                 matchSorter(rows, filter.value, { keys: ["schoolName"] }),
                     filterAll: true,
             },{
-                Header: 'Committee',
-                id: 'committeeName',
-                accessor: attendance => {
-                    if(attendance.committeeId){
-                        return allCommittees[attendance.committeeId -1].name
-                    }
-                    else{
-                        return null
-                    }
-                }, filterMethod: (filter, rows) =>
+                Header: 'Country',
+                id: 'countryName',
+                accessor: 'country',
+                filterMethod: (filter, rows) =>
                 matchSorter(rows, filter.value, { keys: ["committeeName"] }),
                     filterAll: true,
             }
@@ -190,6 +185,7 @@ class Event extends Component {
                     
                     </div>
                     <div className="col-lg-9 mt-5 p-5">
+                    <ViewMeasures eventId={this.props.match.params.id}/>
                     <CreateMeasure attendees={this.state.attendance} eventId={this.props.match.params.id}/>
                     <ReactTable data={this.state.attendance} columns={columns} defaultPageSize={10} filterable
                     defaultFilterMethod={(filter, row) => String(row[filter.id]) === filter.value}  minRows={0} 

@@ -11,6 +11,7 @@ import API from "./utils/API";
 import CreateUser from "./components/CreateUserPage";
 import CreateEvent from "./components/CreateEventPage"
 import Event from "./components/EventPage/eventview"
+import Measure from "./components/MeasureDetail"
 import MyDelegates from "./components/MyDelegates"
 import UpdatePasswordPage from "./components/update-password-page";
 import Dashboard from "./components/Dashboard";
@@ -66,13 +67,22 @@ class App extends Component {
       });
   }
   render() {
+    let userProps = {
+      userId: this.state.id,
+      email: this.state.email,
+      name: this.state.name,
+      userType: this.state.userType,
+      loggedIn: this.state.loggedIn,
+      schoolId: this.state.schoolId,
+      committeeId: this.state.committeeId
+    }
     return (
       //if this is the user's first time logging in, they will need to update their password before 
       //goin anywhere else
       this.state.firstLog ?
       <Router>
         <Switch>
-          <Route path="/updatepassword" component={()=> <UpdatePasswordPage loggedIn={this.state.loggedIn}/>}/>       
+          <Route path="/updatepassword" component={()=> <UpdatePasswordPage {...userProps}/>}/>       
           <Route component={()=> (<Redirect to="/updatepassword" />)} />
         </Switch>
      
@@ -81,18 +91,18 @@ class App extends Component {
       <Router>
         {/* if the user is logged in they will have access to all routes depending on their type */}
         {this.state.loggedIn ? <Switch>
-          <Route exact path="/" component={()=> <LandingPage loggedIn={this.state.loggedIn}/>} />
-          <Route exact path="/dashboard" component={()=> <Dashboard loggedIn={this.state.loggedIn}  userType={this.state.userType}/>}/>
-          <Route exact path="/profile" component={()=> <Profile loggedIn={this.state.loggedIn}  userType={this.state.userType}/>}/>
+          <Route exact path="/" component={()=> <LandingPage {...userProps}/>} />
+          <Route exact path="/dashboard" component={()=> <Dashboard {...userProps}/>}/>
+          <Route exact path="/profile" component={()=> <Profile {...userProps}/>}/>
           
 
-          <Route path="/event/:id" component={(props)=> <Event  {...props} loggedIn={this.state.loggedIn} userId={this.state.id}/>} />
-
+          <Route path="/event/:id" component={(props)=> <Event  {...props} {...userProps}/>} />
+          <Route path="/measure/:id" component={(props)=> <Measure  {...props} {...userProps}/>} />
           {/* admin and advisor only routes. If the user is not one of these, they will be given an unauthorized page */}
           {this.state.userType==="admin" || this.state.userType==="advisor" ? 
             <div>
-              <Route exact path="/createevent" component={() => <CreateEvent loggedIn={this.state.loggedIn} userType={this.state.userType}/>} />
-              <Route exact path="/createuser" component={() => <CreateUser loggedIn={this.state.loggedIn} userType={this.state.userType } schoolId={this.state.schoolId} userId={this.state.id}/>} />
+              <Route exact path="/createevent" component={() => <CreateEvent {...userProps}/>} />
+              <Route exact path="/createuser" component={() => <CreateUser {...userProps}/>} />
             </div>
             :
             <div>
