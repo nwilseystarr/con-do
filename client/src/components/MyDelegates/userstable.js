@@ -7,7 +7,7 @@ import matchSorter from 'match-sorter';
 class UserSearch extends Component {
   //the signup state keeps track of all of the input fields in the signup form
   constructor(props){
-    console.log(props)
+    // console.log(props)
     super(props)
     this.state = {
       users: [],
@@ -48,7 +48,7 @@ class UserSearch extends Component {
                         Header: 'Committee',
                         id: 'committeeName',
                         accessor: user => {
-                            console.log(user)
+                            // console.log(user)
                             if(user.committeeId){
                                 return allCommittees[user.committeeId -1].name
                             }

@@ -7,11 +7,11 @@ export default {
     },
     //user auth
     loginUser: function (loginForm) {
-        console.log(loginForm)
+        // console.log(loginForm)
         return axios.post("/api/users/login", loginForm);
     },
     loginLink: function (userData) {
-        console.log(userData)
+        // console.log(userData)
         return axios.post("/api/users/loginLink", userData)
     },
     logOut: function () {
@@ -40,7 +40,7 @@ export default {
         return axios.get(`/api/users/my`)
     },
     loginViaLink: function (token) {
-        console.log("loggin in with token " + token)
+        // console.log("loggin in with token " + token)
         return axios.get("/api/users/login/" + token, { data: { token: token } })
     },
     updatePW: function (password) {

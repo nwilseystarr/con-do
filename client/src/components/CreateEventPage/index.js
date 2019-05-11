@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 import API from "../../utils/API";
 import Select from "./select-dropdowns";
 import Navbar from "../Navbar";
-import Schedule from "./schedule"
+import AllSchedules from "./all-schedules"
 import "./style.css";
 
 class CreateEvent extends Component {
@@ -179,7 +179,7 @@ class CreateEvent extends Component {
                 </form>
               </div>
               <div className="col">
-                <Schedule/>
+                <AllSchedules/>
               </div>
             </div>
           </div>

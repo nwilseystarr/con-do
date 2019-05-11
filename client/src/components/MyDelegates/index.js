@@ -7,7 +7,7 @@ import MyUsers from "./userstable"
 class MyDelegates extends Component {
   //the signup state keeps track of all of the input fields in the signup form
   constructor(props) {
-    console.log(props);
+    // console.log(props);
     super(props);
     this.state = {
     };
