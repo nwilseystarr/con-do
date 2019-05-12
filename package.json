@@ -49,6 +49,7 @@
     "react-scroll": "^1.7.11",
     "react-table": "^6.10.0",
     "sequelize": "^5.8.0",
-    "socket.io": "^2.2.0"
+    "socket.io": "^2.2.0",
+    "uuid": "^3.3.2"
   }
 }

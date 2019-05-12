@@ -10,16 +10,11 @@ const models = require("./server/db/models/")
 // Routes
 const routes = require("./server/routes");
 let app = express();
-let server;
+
 
 //Chat
 var socket = require("socket.io");
 
-io = socket(server);
-
-io.on('connection', (socket) => {
-console.log(socket.id)
-});
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
@@ -109,17 +104,27 @@ server = app.listen(PORT, function () {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
 });
 
+io = socket(server);
 
-db.sync({ force: true }).then(function () {
-  models.School.create({name: "None"})
-  models.Committee.create({name: "None"})
-  models.User.create(admin).catch(err=> console.log(err))
-  models.User.create(advisor).catch(err=> console.log(err))
-  models.User.create(staff).catch(err=> console.log(err))
-  models.User.create(delegate).catch(err=> console.log(err))
-  models.User.create(delegate2).catch(err=> console.log(err))
-  models.User.create(delegate3).catch(err=> console.log(err))
-  models.User.create(delegate4).catch(err=> console.log(err))
+io.on('connection', (socket) => {
+  console.log(socket.id);
+
+  socket.on('SEND_MESSAGE', function(data){
+      io.emit('RECEIVE_MESSAGE', data);
+  })
+});
+
+
+db.sync({ force: false }).then(function () {
+  // models.School.create({name: "None"})
+  // models.Committee.create({name: "None"})
+  // models.User.create(admin).catch(err=> console.log(err))
+  // models.User.create(advisor).catch(err=> console.log(err))
+  // models.User.create(staff).catch(err=> console.log(err))
+  // models.User.create(delegate).catch(err=> console.log(err))
+  // models.User.create(delegate2).catch(err=> console.log(err))
+  // models.User.create(delegate3).catch(err=> console.log(err))
+  // models.User.create(delegate4).catch(err=> console.log(err))
 });
 
 // Send every request to the React app

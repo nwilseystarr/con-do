@@ -2,15 +2,36 @@ import React, { Component } from "react";
 import Navbar from "../Navbar";
 import API from "../../utils/API";
 import io from "socket.io-client";
+const uuidv4 = require('uuid/v4');
 
 class Chat extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            message: "",
+            message: " ",
             messages: []
         }
         this.socket = io("localhost:3001");
+
+        this.socket.on('RECEIVE_MESSAGE', function (data) {
+            addMessage(data);
+        });
+
+
+        const addMessage = data => {
+            console.log(data);
+            this.setState({messages: [...this.state.messages, data]});
+            console.log(this.state.messages);
+        };
+
+        this.sendMessage = ev => {
+            // ev.preventDefault();
+            this.socket.emit('SEND_MESSAGE', {
+                author: this.state.username,
+                message: this.state.message
+            });
+            this.setState({ message: '' });
+        }
     };
 
     //Load all messages with the component
@@ -46,6 +67,7 @@ class Chat extends Component {
         this.setState({
             message: ""
         })
+        this.sendMessage();
     };
 
     //so users can press "enter" to send a message
@@ -62,7 +84,7 @@ class Chat extends Component {
             <div className="container-fluid mt-5 pt-5">
                 <Navbar loggedIn={this.props.loggedIn} />
                 <form>
-                    <textarea wrap="hard" name="message" id="message" className="form-control" placeholder="Your message here" value={this.state.message} onChange={this.handleInputChange} 
+                    <textarea wrap="hard" name="message" id="message" className="form-control" placeholder="Your message here" value={this.state.message} onChange={this.handleInputChange}
                     // onKeyDown={this.onEnterPress} 
                     />
                     <button
@@ -73,12 +95,12 @@ class Chat extends Component {
                         Send Message
                   </button>
                 </form >
-                <div className="border border-dark" >
-                    {this.state.messages.map(messageData =>
+                <div className="border border-dark" key={uuidv4} >
+                    {this.state.messages.map(message =>
                         <div>
-                            {messageData.name}
+                            {message.name}
                             <br></br>
-                            {messageData.message}
+                            {message.message}
                         </div>)}
                 </div>
             </div >
