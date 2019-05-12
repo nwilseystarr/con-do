@@ -2,26 +2,27 @@ import React, { Component } from "react";
 import Navbar from "../Navbar";
 import API from "../../utils/API";
 import io from "socket.io-client";
+const uuidv4 = require('uuid/v4');
 
 class Chat extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            message: "",
+            message: " ",
             messages: []
         }
         this.socket = io("localhost:3001");
 
-        this.socket.on('RECEIVE_MESSAGE', function(data){
+        this.socket.on('RECEIVE_MESSAGE', function (data) {
             console.log("Hello");
-            this.getMessages(data);
+            this.addMessage(data);
         });
 
-        // const addMessage = data => {
-        //     console.log(data);
-        //     this.setState({messages: [...this.state.messages, data]});
-        //     console.log(this.state.messages);
-        // };
+        const addMessage = data => {
+            console.log(data);
+            this.setState({ messages: [...this.state.messages, data] });
+            console.log(this.state.messages);
+        };
 
         this.sendMessage = ev => {
             // ev.preventDefault();
@@ -94,12 +95,12 @@ class Chat extends Component {
                         Send Message
                   </button>
                 </form >
-                <div className="border border-dark" >
-                    {this.state.messages.map(messageData =>
+                <div className="border border-dark" key={uuidv4} >
+                    {this.state.messages.map(message =>
                         <div>
-                            {messageData.name}
+                            {message.name}
                             <br></br>
-                            {messageData.message}
+                            {message.message}
                         </div>)}
                 </div>
             </div >
