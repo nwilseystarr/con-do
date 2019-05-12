@@ -15,14 +15,8 @@ class Chat extends Component {
 
         this.socket.on('RECEIVE_MESSAGE', function (data) {
             console.log("Hello");
-            this.addMessage(data);
+            this.getMessages(data);
         });
-
-        const addMessage = data => {
-            console.log(data);
-            this.setState({ messages: [...this.state.messages, data] });
-            console.log(this.state.messages);
-        };
 
         this.sendMessage = ev => {
             // ev.preventDefault();
