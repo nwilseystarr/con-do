@@ -107,8 +107,13 @@ server = app.listen(PORT, function () {
 io = socket(server);
 
 io.on('connection', (socket) => {
-console.log(socket.id)
+  console.log(socket.id);
+
+  socket.on('SEND_MESSAGE', function(data){
+      io.emit('RECEIVE_MESSAGE', data);
+  })
 });
+
 
 db.sync({ force: false }).then(function () {
   // models.School.create({name: "None"})
