@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ReactDOM from "react-dom";
 import Navbar from "../Navbar";
 import API from "../../utils/API";
 import io from "socket.io-client";
@@ -32,6 +33,11 @@ class Chat extends Component {
             });
             this.setState({ message: '' });
         }
+    };
+
+    componentDidUpdate() {
+        const node = ReactDOM.findDOMNode(this)
+        node.scrollTop = node.scrollHeight
     };
 
     //Load all messages with the component
@@ -81,7 +87,7 @@ class Chat extends Component {
 
     render() {
         return (
-            <div className="container-fluid mt-5 pt-5">
+            <div className="container container-fluid mt-5 pt-5">
                 <Navbar loggedIn={this.props.loggedIn} />
                 <form>
                     <textarea wrap="hard" name="message" id="message" className="form-control" placeholder="Your message here" value={this.state.message} onChange={this.handleInputChange}
@@ -97,7 +103,7 @@ class Chat extends Component {
                 </form >
                 <div className="border border-dark" key={uuidv4} >
                     {this.state.messages.map(message =>
-                        <div>
+                        <div className="messages-div">
                             {message.name}
                             <br></br>
                             {message.message}
