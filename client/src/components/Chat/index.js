@@ -3,12 +3,14 @@ import ReactDOM from "react-dom";
 import Navbar from "../Navbar";
 import API from "../../utils/API";
 import io from "socket.io-client";
+// import "./style.css";
 const uuidv4 = require('uuid/v4');
 
 class Chat extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            username: this.props.name,
             message: " ",
             messages: []
         }
@@ -21,14 +23,17 @@ class Chat extends Component {
 
         const addMessage = data => {
             console.log(data);
-            this.setState({messages: [...this.state.messages, data]});
+            this.setState(
+                {messages: [...this.state.messages, data]});
+            this.setState(
+                {username: this.props.name, data});
             console.log(this.state.messages);
         };
 
         this.sendMessage = ev => {
             // ev.preventDefault();
             this.socket.emit('SEND_MESSAGE', {
-                author: this.state.username,
+                username: this.state.username,
                 message: this.state.message
             });
             this.setState({ message: '' });
@@ -87,9 +92,9 @@ class Chat extends Component {
 
     render() {
         return (
-            <div className="container container-fluid mt-5 pt-5">
+            <div className="container-fluid mt-5 pt-5">
                 <Navbar loggedIn={this.props.loggedIn} />
-                <form>
+                <form className="chat">
                     <textarea wrap="hard" name="message" id="message" className="form-control" placeholder="Your message here" value={this.state.message} onChange={this.handleInputChange}
                     // onKeyDown={this.onEnterPress} 
                     />
