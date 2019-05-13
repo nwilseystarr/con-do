@@ -3,8 +3,10 @@ import API from "../../utils/API"
 import Navbar from "../Navbar";
 import ReactTable from 'react-table';
 import matchSorter from 'match-sorter';
+import io from "socket.io-client";
+const uuidv4 = require('uuid/v4');
 
-let pullMeasureInterval;
+// let pullMeasureInterval;
 
 class MeasureDetail extends Component {
     //the state for the login component keeps track fo the email and password inputs
@@ -22,11 +24,22 @@ class MeasureDetail extends Component {
             eventName: "",
             committeeName: ""
         }
+        const getMeasure = this.getMeasure.bind(this)
+        this.socket = io("localhost:3001");
+
+        this.socket.on("RECEIVE_MESSAGE", function(data){
+            setTimeout(getMeasure, 1000)
+            
+        })
+        this.emit = ev =>{
+            this.socket.emit('SEND_MESSAGE', {});
+        }
 
     }
 
     //this will get all of the relvant data for the event with the id that matches the id of the url paramater
     getMeasure = () =>{
+        console.log("getting measure")
             //first we will get all of the school data
             API.getSchools().then(res =>{
                 this.setState({allSchools: res.data})
@@ -82,18 +95,18 @@ class MeasureDetail extends Component {
         API.updateMeasure(this.state.id, {open: false})
             .then(res =>{
                 console.log(res)
-                this.getMeasure()
-
+                // this.getMeasure()
             })
-            
+        this.emit()
     }
     //admin can open voting
     openVoting = ()=>{
         API.updateMeasure(this.state.id, {open: true})
             .then(res =>{
                 console.log(res)
-                this.getMeasure()
-            })       
+                // this.getMeasure()
+            })     
+        this.emit() 
     }
     //delegate casts a yes vote
     castYes = ()=>{
@@ -114,7 +127,7 @@ class MeasureDetail extends Component {
             let currentVote = this.state.voteTally
             //find the vote record that matches the user and update it's value to true
             let updatedVote = currentVote.map(delegateVote =>{
-                if(delegateVote.id === this.props.userId){
+                if(delegateVote.id === this.props.id){
                     delegateVote.vote = true
                 }
                 return delegateVote
@@ -123,9 +136,10 @@ class MeasureDetail extends Component {
             API.updateMeasure(this.state.id, {voteTally: updatedVote})
             .then(res =>{
                 console.log(res)
-                this.getMeasure()
+                // this.getMeasure()
             })    
         })
+        this.emit()
     }
     castNo = ()=>{
         //first make sure we have the most up to date voteTally
@@ -144,7 +158,7 @@ class MeasureDetail extends Component {
             let currentVote = this.state.voteTally
             //update the voter record for the current user
             let updatedVote = currentVote.map(delegateVote =>{
-                if(delegateVote.id === this.props.userId){
+                if(delegateVote.id === this.props.id){
                     delegateVote.vote = false
                 }
                 return delegateVote
@@ -152,18 +166,19 @@ class MeasureDetail extends Component {
             //update the measure with the new vote tally
             API.updateMeasure(this.state.id, {voteTally: updatedVote})
             .then(res =>{
-                this.getMeasure()
+                // this.getMeasure()
             })
         })     
+        this.emit()
     }
     
     componentDidMount = ()=>{
         //setting an interval so the measure will be updated every 5 seconds
-        pullMeasureInterval = setInterval(this.getMeasure, 5000)
+        // pullMeasureInterval = setInterval(this.getMeasure, 5000)
         this.getMeasure();
     }
     componentWillUnmount = ()=>{
-        clearInterval(pullMeasureInterval)
+        // clearInterval(pullMeasureInterval)
     }
     render(){
         //Our react table will use the voteTally array to populate its rows

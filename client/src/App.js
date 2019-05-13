@@ -91,29 +91,28 @@ class App extends Component {
         <Router>
           {/* if the user is logged in they will have access to all routes depending on their type */}
           {this.state.loggedIn ? <Switch>
-            <Route exact path="/" component={() => <LandingPage {...userProps} />} />
-            <Route exact path="/dashboard" component={() => <Dashboard {...userProps} />} />
-            <Route exact path="/profile" component={() => <Profile {...userProps} />} />
+            <Route exact path="/" component={() => <LandingPage {...this.state} />} />
+            <Route exact path="/dashboard" component={() => <Dashboard {...this.state} />} />
+            <Route exact path="/profile" component={() => <Profile {...this.state} />} />
 
 
-            <Route path="/event/:id" component={(props) => <Event  {...props} {...userProps} />} />
-            <Route path="/measure/:id" component={(props) => <Measure  {...props} {...userProps} />} />
+            <Route path="/event/:id" component={(props) => <Event  {...props} {...this.state} />} />
+            <Route path="/measure/:id" component={(props) => <Measure  {...props} {...this.state} />} />
             <Route exact path="/mydelegates" component={() => <MyDelegates loggedIn={this.state.loggedIn} />} />
-            <Route exact path="/chat" component={() => <Chat {...userProps} />} />
+            <Route exact path="/chat" component={() => <Chat {...this.state} />} />
             {/* admin and advisor only routes. If the user is not one of these, they will be given an unauthorized page */}
             {this.state.userType === "admin" || this.state.userType === "advisor" ?
-              <div>
-                <Route exact path="/createevent" component={() => <CreateEvent {...userProps} />} />
-                <Route exact path="/createuser" component={() => <CreateUser {...userProps} />} />
-                <Route component={() => <ErrorPage loggedIn={this.state.loggedIn} />} />
-              </div>
+                <Route exact path="/createevent" component={() => <CreateEvent {...this.state} />} />
               :
-              <div>
-                <Route exact path="/createevent" component={() => <UnauthorizedPage {...userProps} />} />
-                <Route exact path="/createuser" component={() => <UnauthorizedPage {...userProps} />} />}
-             <Route component={() => <ErrorPage loggedIn={this.state.loggedIn} />} />
-              </div>
+                <Route exact path="/createevent" component={() => <UnauthorizedPage {...this.state} />} />
             }
+            {this.state.userType === "admin" || this.state.userType === "advisor" ?
+                <Route exact path="/createuser" component={() => <CreateUser {...this.state} />} />
+              :
+                <Route exact path="/createuser" component={() => <UnauthorizedPage {...this.state} />} />}
+            }
+            
+            <Route component={() => <ErrorPage loggedIn={this.state.loggedIn} />} />
 
           </Switch> :
             // if not logged in, then the user can only access the landing page and the login page
@@ -122,7 +121,7 @@ class App extends Component {
               {/* Auth related routes */}
               <Route path="/verify/:token" component={(props) => <VerifyUser  {...props} />} />
               <Route exact path="/login" component={() => <Login updateUser={this.updateUser} />} />
-              <Route component={() => <UnauthorizedPage {...userProps} />} />
+              <Route component={() => <UnauthorizedPage {...this.state} />} />
             </Switch>
           }
 

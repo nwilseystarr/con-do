@@ -3,22 +3,29 @@ import API from "../../utils/API"
 import ReactTable from 'react-table';
 import matchSorter from 'match-sorter';
 import { BrowserRouter as Router, Link, } from 'react-router-dom';
+import io from "socket.io-client";
+const uuidv4 = require('uuid/v4');
 
-let pullEventsInterval;
 class ViewMeasures extends Component {
   constructor(){
     super()
     this.state = {
       measures: []
     }
-    this.getMeasures = this.getMeasures.bind(this)
+    const getMeasures = this.getMeasures.bind(this)
+    this.socket = io("localhost:3001")
+
+    this.socket.on("RECEIVE_MESSAGE", function(data){
+      let eventId = data.eventId
+      setTimeout(getMeasures, 1000, eventId)
+      
+  })
   }
   componentDidMount = ()=>{
-    //we will check for new measures every 5 seconds
-    pullEventsInterval = setInterval(this.getMeasures, 5000, this.props.eventId)
+    this.getMeasures(this.props.eventId)
   }
   componentWillUnmount = ()=>{
-    clearInterval(pullEventsInterval)
+    // clearInterval(pullEventsInterval)
   }
   getMeasures = (eventId) =>{
     //pull all measures for the current event

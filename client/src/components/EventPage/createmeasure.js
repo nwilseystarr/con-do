@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import API from "../../utils/API"
+import io from "socket.io-client";
+const uuidv4 = require('uuid/v4');
 
 class CreateMeasure extends Component {
   constructor(props){
@@ -8,7 +10,10 @@ class CreateMeasure extends Component {
       name: "",
       measureType: "resolution"
     }
-
+    this.socket = io("localhost:3001");
+    this.emit = ev =>{
+      this.socket.emit('SEND_MESSAGE', {eventId: this.props.eventId});
+  }
     
   }
   handleSelect = (selected) => {
@@ -54,7 +59,9 @@ class CreateMeasure extends Component {
             this.setState({
               name: ""
             })
+            
           });
+          this.emit()
   }
 
 

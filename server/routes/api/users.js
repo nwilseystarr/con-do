@@ -118,7 +118,8 @@ router.route("/create")
 
 // /api/users/login
 router.route("/login")
-    .post(passport.authenticate("local"),function(req, res){
+    .post(passport.authenticate("local",{ failureRedirect: '/login'}), function(req, res){
+        console.log("logging in")
         let userInfo = req.user
         res.send(userInfo);
     })

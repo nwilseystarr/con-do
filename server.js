@@ -9,6 +9,7 @@ const db = require("./server/db/db");
 const models = require("./server/db/models/")
 // Routes
 const routes = require("./server/routes");
+
 let app = express();
 
 
@@ -30,7 +31,6 @@ app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(passport.session());
-
 
 app.use(routes);
 
@@ -57,7 +57,7 @@ const staff = {
   name: "staff account",
   userType: "staff",
   firstLog: false,
-  // committeeId: 99,
+  committeeId: 1,
 }
 const delegate = {
   email: "delegate@mail.com",
