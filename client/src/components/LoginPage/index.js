@@ -12,7 +12,8 @@ class Login extends Component {
         this.state = {
             email: "",
             password: "",
-            redirectTo: null
+            redirectTo: null,
+            loginMessage: ""
         }
         this.handleInputChange.bind(this)
         this.handleFormSubmit.bind(this)
@@ -36,7 +37,7 @@ class Login extends Component {
             })
                 .then(res => {
                     console.log(res)
-                    if (res.status === 200) {
+                    if (res.data.email) {
                         //updating our user state
                         this.props.updateUser({
                             loggedIn: true,
@@ -45,6 +46,11 @@ class Login extends Component {
                             userType: res.data.userType
                         })
                         window.location.assign("/dashboard")
+                    }
+                    else{
+                        this.setState({
+                            loginMessage: "Invalid email or password!"
+                        })
                     }
                 });
         }
@@ -57,6 +63,7 @@ class Login extends Component {
                     <LoginJumbotron />
                     <div className="row justify-content-center">
                         <div className="col-lg-6">
+                            <h6 className="text-danger">{this.state.loginMessage}</h6>
                             <form>
                                 <div className="form-group input-group">
                                     <div className="input-group-prepend">
