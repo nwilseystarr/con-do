@@ -10,7 +10,6 @@ class Chat extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: this.props.name,
             message: " ",
             messages: []
         }
@@ -23,10 +22,11 @@ class Chat extends Component {
 
         const addMessage = data => {
             console.log(data);
-            this.setState(
-                {messages: [...this.state.messages, data]});
-            this.setState(
-                {username: this.props.name, data});
+            this.setState({
+                messages: [...this.state.messages, data],
+                username: this.state.name
+                });
+                
             console.log(this.state.messages);
         };
 
