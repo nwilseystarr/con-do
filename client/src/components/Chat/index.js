@@ -41,7 +41,8 @@ class Chat extends Component {
         this.socket.on('RECEIVE_MESSAGE', function (data) {
             addMessage(data);
             addUserName(data);
-            console.log(data);
+            console.log(data.message);
+            console.log(data.username);
         });
 
         this.sendMessage = () => {
