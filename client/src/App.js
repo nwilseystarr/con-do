@@ -12,6 +12,7 @@ import CreateEvent from "./components/CreateEventPage";
 import Event from "./components/EventPage/eventview";
 import Measure from "./components/MeasureDetail";
 import MyDelegates from "./components/MyDelegates";
+import UserDetail from "./components/UserDetail"
 import UpdatePasswordPage from "./components/update-password-page";
 import Dashboard from "./components/Dashboard";
 import Profile from "./components/Profile";
@@ -100,6 +101,9 @@ class App extends Component {
             <Route path="/measure/:id" component={(props) => <Measure  {...props} {...this.state} />} />
             <Route exact path="/mydelegates" component={() => <MyDelegates loggedIn={this.state.loggedIn} />} />
             <Route exact path="/chat" component={() => <Chat {...this.state} />} />
+
+            <Route path="/user/:id" component={(props) => <UserDetail  {...props} {...this.state} />} />
+
             {/* admin and advisor only routes. If the user is not one of these, they will be given an unauthorized page */}
             {this.state.userType === "admin" || this.state.userType === "advisor" ?
                 <Route exact path="/createevent" component={() => <CreateEvent {...this.state} />} />

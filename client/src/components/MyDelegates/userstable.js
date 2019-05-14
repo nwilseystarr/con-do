@@ -2,6 +2,9 @@ import React, {Component} from "react";
 import API from "../../utils/API";
 import ReactTable from "react-table";
 import matchSorter from "match-sorter";
+import {
+    BrowserRouter as Router, Link, 
+  } from "react-router-dom";
 
 
 class UserSearch extends Component {
@@ -65,12 +68,12 @@ class UserSearch extends Component {
                         matchSorter(rows, filter.value, { keys: ["country"] }),
                             filterAll: true
                     },
-                    // {
-                    //     Header: "Delete",
-                    //     id: "deleteuser",
-                    //     accessor: user => <button onClick={(e) => this.removeUser(user.id)}>X</button>
+                    {
+                        Header: "Pofile Link",
+                        id: "userLink",
+                        accessor: user => <Link to={{ pathname: `/user/${user.id}` }}>View Detail</Link>
                   
-                    // }      
+                    }      
         ]
         return(
           
