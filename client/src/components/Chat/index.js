@@ -3,7 +3,14 @@ import ReactDOM from "react-dom";
 import Navbar from "../Navbar";
 import API from "../../utils/API";
 import io from "socket.io-client";
-import "./style.css";
+import ScrollToBottom from "react-scroll-to-bottom";
+import { css } from "glamor";
+ 
+const ROOT_CSS = css({
+  height: 300,
+  width: 400
+});
+
 const uuidv4 = require("uuid/v4");
 
 class Chat extends Component {
@@ -22,8 +29,8 @@ class Chat extends Component {
 
         const addMessage = data => {
             console.log(data);
-            this.setState({messages: [...this.state.messages, data]});
-            this.setState({username: [...this.state.messages, data]});
+            this.setState({ messages: [...this.state.messages, data] });
+            this.setState({ username: [...this.state.messages, data] });
             console.log(this.state.messages);
             console.log(data);
         };
@@ -51,7 +58,7 @@ class Chat extends Component {
     //Get all messages from db 
     getMessages = () => {
         API.getMessage().then(res => {
-            this.setState({ 
+            this.setState({
                 messages: res.data
             });
             console.log(res.data)
@@ -103,14 +110,16 @@ class Chat extends Component {
                         Send Message
                   </button>
                 </form >
-                <div className="border border-dark" key={uuidv4} >
-                    {this.state.messages.map(message =>
-                        <div className="messages-div">
-                            {this.props.name}
-                            <br></br>
-                            {message.message}
-                        </div>)}
-                </div>
+                <ScrollToBottom className={ ROOT_CSS }>
+                    <div className= "messages-div" key={uuidv4} >
+                        {this.state.messages.map(message =>
+                            <div className="">
+                                {this.props.name}
+                                <br></br>
+                                {message.message}
+                            </div>)}
+                    </div>
+                </ScrollToBottom>
             </div >
         )
     }
