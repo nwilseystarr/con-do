@@ -4,8 +4,8 @@ class FeatureCard extends Component {
     render() {
         return (
             <div className="container-fluid" id="features">
-                <div className="row snippetContainer my-5 text-center align-items-center flex-column pt-3">
-                    <div className="col w-75 border-left border-right border-dark px-0 mb-3">
+                <div className="row snippetContainer mt-5 mb-4 text-center align-items-center flex-column pt-3">
+                    <div className="col w-75 px-0 mb-3">
                         <h1 className="display-4 px-2 ">We <span className="underline">DO</span> Conferences &amp; Events</h1>
                     </div>
                     <div className="col">
@@ -17,9 +17,9 @@ class FeatureCard extends Component {
                         <h1 className="display-4 mb-3 ft-title">Key Features</h1>
                     </div>
                 </div>
-                <div className="row justify-content-center align-items-center">
+                <div className="row justify-content-center align-items-center mb-4">
                     <div className="col">
-                        <div className="card-group">
+                        <div className="card-deck">
                             <div className="card border-0">
                                 <div className="card-body text-center align-self-center">
                                     <i className="far fa-calendar-alt fa-7x mb-3"></i>

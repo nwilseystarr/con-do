@@ -46,7 +46,7 @@ h2 {
 /* SNIPPET */
 
 .snippetContainer {
-    background: rgba(113, 122, 130, 0.301);
+    background: rgba(113, 122, 130, 0.12);
 }
 
 /* FEATURES */
@@ -61,8 +61,17 @@ h2 {
     background: none;
 }
 
-.fa-8x:hover {
-    color: rgba(173, 19, 19, 0.733);
+.card-text {
+    color: rgba(109, 111, 112, 0.966);
+}
+
+.fa-7x {
+    color: rgb(50, 50, 50);
+
+}
+
+.fa-7x:hover {
+    color: rgba(109, 111, 112, 0.966);
 }
 
 /* CONTACT FORM */
@@ -74,11 +83,11 @@ h2 {
 /* ABOUT */
 
 .fa-github {
-    color: rgb(19,46,67);
+    color: rgb(50, 50, 50);
 }
 
 .fa-github:hover {
-    color: rgba(63, 85, 102, 0.87);
+    color: rgba(109, 111, 112, 0.966);
     transform: translateY(1px);
 }
 

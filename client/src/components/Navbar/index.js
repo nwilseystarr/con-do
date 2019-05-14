@@ -35,7 +35,7 @@ class Navbar extends Component {
                                     <a className="nav-link" href="/profile">Profile</a>
                                 </li>
                                 <li className="nav-item">
-                                    <button className="nav-link btn btn-outline-danger px-4 py-2" onClick={this.logOut}>Log Out</button>
+                                    <button className="nav-link btn btn-danger px-4 py-2 text-white" onClick={this.logOut}>Log Out</button>
                                 </li>
                             </ul>
                         </div>
@@ -60,7 +60,7 @@ class Navbar extends Component {
                                         to="features"
                                         smooth={true}
                                         spy={true}
-                                        offset={-110}
+                                        offset={-120}
                                         duration={500}
                                     >
                                         Features
@@ -86,14 +86,14 @@ class Navbar extends Component {
                                         activeClass="active-link"
                                         smooth={true}
                                         spy={true}
-                                        offset={-100}
+                                        offset={-150}
                                         duration={500}
                                     >
                                         Contact
                                     </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link btn btn-outline-danger px-4 py-2" href="/login" role="button">Log In</a>
+                                    <a className="nav-link btn btn-danger px-4 py-2 text-white" href="/login" role="button">Log In</a>
                                 </li>
                             </ul>
                         </div>
