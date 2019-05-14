@@ -1,17 +1,13 @@
 import React, {Component} from "react";
-// import UserRecord from "./user-record";
-// import { Link } from "react-router-dom";
-// import {Redirect} from "react-router-dom";
-import API from "../../utils/API";
+import API from "../../../utils/API";
 import ReactTable from 'react-table';
 import matchSorter from 'match-sorter';
-// import { isError } from "util";
-// import Select from "./select-dropdowns"
+
 
 class UserSearch extends Component {
   //the signup state keeps track of all of the input fields in the signup form
   constructor(props){
-    console.log(props)
+    // console.log(props)
     super(props)
     this.state = {
       users: [],
@@ -30,11 +26,34 @@ class UserSearch extends Component {
         })
         API.getAllUsers()
             .then(res=>{
+                let returnedUsers = res.data
+                if (this.props.userType === "advisor"){
+                    // console.log("filtering users")
+                    returnedUsers = returnedUsers.filter(user => user.schoolId === this.props.schoolId)
+                }
+                returnedUsers = returnedUsers.filter(user => user.id != this.props.userId)
                 this.setState({
-                    users: res.data
+                    users: returnedUsers
                 })
             })
-    } 
+        } 
+    removeUser = (userId)=>{
+        API.removeUser(userId)
+            .then(res=>{
+                API.getAllUsers()
+                    .then(res=>{
+                        let returnedUsers = res.data
+                        if (this.props.userType === "advisor"){
+                            // console.log("filtering users")
+                            returnedUsers = returnedUsers.filter(user => user.schoolId === this.props.schoolId)
+                        }
+                        returnedUsers = returnedUsers.filter(user => user.id != this.props.userId)
+                        this.setState({
+                            users: returnedUsers
+                        })
+                    })
+                })
+    }
     render(){
         let allSchools = this.state.allSchools
         let allCommittees = this.state.allCommittees
@@ -57,8 +76,8 @@ class UserSearch extends Component {
                         Header: 'School',
                         id: 'schoolName',
                         accessor: user => {
-                            console.log(user)
-                            if(user.committeeId){
+                            // console.log(user)
+                            if(user.schoolId){
                                 return allSchools[user.schoolId -1].name
                             }
                             else{
@@ -71,7 +90,7 @@ class UserSearch extends Component {
                         Header: 'Committee',
                         id: 'committeeName',
                         accessor: user => {
-                            console.log(user)
+                            // console.log(user)
                             if(user.committeeId){
                                 return allCommittees[user.committeeId -1].name
                             }
@@ -93,6 +112,12 @@ class UserSearch extends Component {
                         filterMethod: (filter, rows) =>
                         matchSorter(rows, filter.value, { keys: ["userType"] }),
                             filterAll: true
+                    },
+                    {
+                        Header: 'Delete',
+                        id: 'deleteuser',
+                        accessor: user => <button onClick={(e) => this.removeUser(user.id)}>X</button>
+                  
                     }      
         ]
         return(
@@ -101,7 +126,7 @@ class UserSearch extends Component {
             {/* results will be displayed here */}
                 {/* {this.state.users.map((user)=> <UserRecord key={user.email} name={user.name}/>)} */}
                 <ReactTable data={this.state.users} columns={columns} filterable
-                    defaultFilterMethod={(filter, row) => String(row[filter.id]) === filter.value}/>
+                    defaultFilterMethod={(filter, row) => String(row[filter.id]) === filter.value} minRows="10" defaultPageSize="10"/>
             
         </div>
      

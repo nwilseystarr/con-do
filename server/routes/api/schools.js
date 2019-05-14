@@ -1,7 +1,5 @@
 const db = require("../../db/models")
 const router = require("express").Router();
-const passport = require("../../../server/db/config/passport");
-const isAuthenticated = require("../../db/config/middleware/isAuthenticated");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op
 
@@ -14,9 +12,9 @@ router.route("/")
     })
 router.route("/queried/:query")
     .get(function(req, res){
-        console.log(req.params.query)
+        // console.log(req.params.query)
         db.School.findAll({
-            attributes: ['id'],
+            attributes: ["id"],
             where: {
                 name: {
                     [Op.like]: `%${req.params.query}%`
@@ -24,7 +22,7 @@ router.route("/queried/:query")
             }
         })
         .then(queriedSchools =>{
-            console.log(queriedSchools)
+            // console.log(queriedSchools)
             res.send(queriedSchools)
         })
     })
@@ -35,16 +33,18 @@ router.route("/:name")
                 name: req.params.name
             }
         }).then(schoolData => {
-            console.log("school" + schoolData)
+            // console.log("school" + schoolData)
             res.send(schoolData) 
         });
     })
 router.route("/add")
-    .post(function(req,res){
-        db.School.create(req.body)
-        .then(schoolObject =>{
-            res.send(schoolObject)
-        })
+    .post(function (req, res) {
+        if (req.user.userType === "admin") {
+            db.School.create(req.body)
+                .then(schoolObject => {
+                    res.send(schoolObject)
+                })
+        }
     })
 
 module.exports = router;
