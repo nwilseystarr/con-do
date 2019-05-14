@@ -81,7 +81,7 @@ class ContactForm extends Component {
                                 />
                             </div>
                             <button 
-                                className="btn btn-outline-dark"
+                                className="btn btn-outline-dark px-4"
                                 type="submit"
                                 name="contact"
                                 onClick={this.handleFormSubmit}

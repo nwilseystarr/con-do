@@ -73,7 +73,7 @@ class Navbar extends Component {
                                         to="aboutus"
                                         smooth={true}
                                         spy={true}
-                                        offset={-90}
+                                        offset={-80}
                                         duration={500}
                                     >
                                         About Us
@@ -86,7 +86,7 @@ class Navbar extends Component {
                                         activeClass="active-link"
                                         smooth={true}
                                         spy={true}
-                                        offset={-150}
+                                        offset={-130}
                                         duration={500}
                                     >
                                         Contact
