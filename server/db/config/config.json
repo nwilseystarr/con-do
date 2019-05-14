@@ -1,6 +1,6 @@
 {
     "development": {
-      "username": "root",
+      "username": "postgres",
       "password": "password",
       "database": "condo_db",
       "host": "localhost",

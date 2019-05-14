@@ -1,7 +1,13 @@
-# Con-Do
-Con-Do is a mobile-friendly white label web application designed to streamline conferences and/or other bigger events by allowing users to see their schedule of events, track user attendance through the use of uniquely generated QR codes, and utilize an in-app chatting system.
+# Con.Do
+Con.Do is a mobile-friendly white label web application designed to streamline conferences and/or other bigger events by allowing users to:
+	- See their schedule of events 
+- Track user attendance through the use of uniquely generated QR codes
+- Utilize an in-app chatting system 
+- Vote on resolutions, or take polls
+- Create other user accounts, which triggers an email containing a Magic Link that once clicked, logs the new user in and prompts the user to change their password
 
-Currently, our app is built using Model United Nations (MUN) as a base conference example to show how our application also allows for different levels of authentication (i.e., administrators,organizers, teachers, and students).
+Currently, our app is built using Model United Nations (MUN) as a base conference example to show how our application also allows for different levels of authentication (i.e., administrators, organizers, teachers, and students).
+
 
 ## Deployment
 This app is deployed using Heroku.  Click <a href="https://con-do.herokuapp.com/">here</a> to start interacting.  
@@ -18,6 +24,7 @@ This app is deployed using Heroku.  Click <a href="https://con-do.herokuapp.com/
 <a href="https://www.npmjs.com/package/match-sorter">Match Sorter</a><br>
 <a href="https://nodejs.org/en/">Node.js</a><br>
 <a href="http://www.passportjs.org/">Passport</a><br>
+<a href="https://www.npmjs.com/package/passport-magic-link">Passport Magic Link</a><br>
 <a href="https://www.postgresql.org/">Postgres</a><br>
 <a href="https://www.npmjs.com/package/qrcode">QRCode</a><br>
 <a href="https://www.npmjs.com/package/react-router-dom">React Router Dom</a><br>
