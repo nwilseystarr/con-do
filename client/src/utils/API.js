@@ -3,12 +3,12 @@ import axios from "axios";
 export default {
     //User Axios Calls
     createUser: function (userData) {
-        return axios.post("/api/users/create", userData);
+        return axios.post("/api/users/create", userData)
     },
     //user auth
     loginUser: function (loginForm) {
         // console.log(loginForm)
-        return axios.post("/api/users/login", loginForm);
+        return axios.post("/api/users/login", loginForm)
     },
     loginLink: function (userData) {
         // console.log(userData)

@@ -1,13 +1,24 @@
 import React, { Component } from "react";
+import ReactDOM from "react-dom";
 import Navbar from "../Navbar";
 import API from "../../utils/API";
 import io from "socket.io-client";
-const uuidv4 = require('uuid/v4');
+import ScrollToBottom from "react-scroll-to-bottom";
+// import "./style.css"
+
+import { css } from "glamor";
+const ROOT_CSS = css({
+    height: 300,
+    width: 400
+});
+
+const uuidv4 = require("uuid/v4");
 
 class Chat extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            username: this.props.name,
             message: " ",
             messages: []
         }
@@ -17,21 +28,27 @@ class Chat extends Component {
             addMessage(data);
         });
 
-
         const addMessage = data => {
             console.log(data);
-            this.setState({messages: [...this.state.messages, data]});
+            this.setState({ messages: [...this.state.messages, data] });
+            this.setState({ username: [...this.state.messages, data] });
             console.log(this.state.messages);
+            console.log(data);
         };
 
-        this.sendMessage = ev => {
+        this.sendMessage = () => {
             // ev.preventDefault();
             this.socket.emit('SEND_MESSAGE', {
-                author: this.state.username,
+                username: this.props.name,
                 message: this.state.message
             });
             this.setState({ message: '' });
         }
+    };
+
+    componentDidUpdate() {
+        const node = ReactDOM.findDOMNode(this)
+        node.scrollTop = node.scrollHeight
     };
 
     //Load all messages with the component
@@ -78,12 +95,21 @@ class Chat extends Component {
     //     }
     // }
 
-
     render() {
         return (
-            <div className="container-fluid mt-5 pt-5">
+            <div className="container container-fluid mt-5 pt-5 vw-100">
                 <Navbar loggedIn={this.props.loggedIn} />
-                <form>
+                <ScrollToBottom className={ROOT_CSS}>
+                    <div className="messages-div" key={uuidv4} >
+                        {this.state.messages.map(message =>
+                            <div>
+                            <br></br>
+                            <div className="text-secondary">{this.props.name}</div>
+                            <div className="text-primary">{message.message}</div>
+                            </div>)}
+                    </div>
+                </ScrollToBottom>
+                <form className={ROOT_CSS}>
                     <textarea wrap="hard" name="message" id="message" className="form-control" placeholder="Your message here" value={this.state.message} onChange={this.handleInputChange}
                     // onKeyDown={this.onEnterPress} 
                     />
@@ -95,14 +121,6 @@ class Chat extends Component {
                         Send Message
                   </button>
                 </form >
-                <div className="border border-dark" key={uuidv4} >
-                    {this.state.messages.map(message =>
-                        <div>
-                            {message.name}
-                            <br></br>
-                            {message.message}
-                        </div>)}
-                </div>
             </div >
         )
     }

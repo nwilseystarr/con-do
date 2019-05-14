@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Loading from "./Loading"
-import Navbar from "./Navbar"
+import Loading from "./Loading";
+import Navbar from "./Navbar";
 
 let loadingTimeout;
 class UnauthorizedPage extends Component {

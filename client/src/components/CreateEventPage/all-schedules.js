@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import ReactTable from 'react-table';
+import ReactTable from "react-table";
 import API from "../../utils/API";
-import {
-    BrowserRouter as Router,
-    Link,
+// import {
+//     BrowserRouter as Router,
+//     Link,
    
-  } from 'react-router-dom';
+//   } from "react-router-dom";
 
 
 class AllSchedules extends Component {
@@ -73,8 +73,8 @@ class AllSchedules extends Component {
                 Header: "Event End",
                 accessor: "end"
             }, {
-                Header: 'Delete',
-                        id: 'deleteuser',
+                Header: "Delete",
+                        id: "deleteuser",
                         accessor: event => <button onClick={(e) => this.removeEvent(event.id)}>X</button>
             }
         ]

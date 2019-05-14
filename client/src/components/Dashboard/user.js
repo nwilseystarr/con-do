@@ -39,13 +39,13 @@ class UserDashboard extends Component {
                 // })
                 // .catch(err => console.log(err));
                 const opts = {
-                    type: 'image/png',
+                    type: "image/png",
                   }
                    
-                  QRCode.toDataURL(''+ res.data.id, opts, function (err, url) {
+                  QRCode.toDataURL(" "+ res.data.id, opts, function (err, url) {
                     if (err) throw err
                    
-                    let img = document.getElementById('image')
+                    let img = document.getElementById("image")
                     img.src = url
                   })
             })     
@@ -54,7 +54,7 @@ class UserDashboard extends Component {
 
     render() {
         let imageStyle = {
-            width: '300px'
+            width: "300px"
         }
         return (
             <div className="card mt-5 border-0 text-center">

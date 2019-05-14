@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import API from "../../../utils/API";
-import ReactTable from 'react-table';
-import matchSorter from 'match-sorter';
+import ReactTable from "react-table";
+import matchSorter from "match-sorter";
 
 
 class UserSearch extends Component {
@@ -60,21 +60,21 @@ class UserSearch extends Component {
   
         const columns = [
                     {
-                        Header: 'Name',
-                        accessor: 'name',
+                        Header: "Name",
+                        accessor: "name",
                         filterMethod: (filter, rows) =>
                         matchSorter(rows, filter.value, { keys: ["name"] }),
                             filterAll: true,         
                             
                     },{
-                        Header: 'Email',
-                        accessor: 'email',
+                        Header: "Email",
+                        accessor: "email",
                         filterMethod: (filter, rows) =>
                         matchSorter(rows, filter.value, { keys: ["email"] }),
                             filterAll: true
                     },{
-                        Header: 'School',
-                        id: 'schoolName',
+                        Header: "School",
+                        id: "schoolName",
                         accessor: user => {
                             // console.log(user)
                             if(user.schoolId){
@@ -87,8 +87,8 @@ class UserSearch extends Component {
                         matchSorter(rows, filter.value, { keys: ["schoolName"] }),
                             filterAll: true,
                     },{
-                        Header: 'Committee',
-                        id: 'committeeName',
+                        Header: "Committee",
+                        id: "committeeName",
                         accessor: user => {
                             // console.log(user)
                             if(user.committeeId){
@@ -101,21 +101,21 @@ class UserSearch extends Component {
                         matchSorter(rows, filter.value, { keys: ["committeeName"] }),
                             filterAll: true,
                     },{
-                        Header: 'Country',
-                        accessor: 'country',
+                        Header: "Country",
+                        accessor: "country",
                         filterMethod: (filter, rows) =>
                         matchSorter(rows, filter.value, { keys: ["country"] }),
                             filterAll: true
                     },{
-                        Header: 'Role',
-                        accessor: 'userType',
+                        Header: "Role",
+                        accessor: "userType",
                         filterMethod: (filter, rows) =>
                         matchSorter(rows, filter.value, { keys: ["userType"] }),
                             filterAll: true
                     },
                     {
-                        Header: 'Delete',
-                        id: 'deleteuser',
+                        Header: "Delete",
+                        id: "deleteuser",
                         accessor: user => <button onClick={(e) => this.removeUser(user.id)}>X</button>
                   
                     }      
