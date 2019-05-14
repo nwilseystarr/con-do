@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import rolling from "./rolling.gif"
+import rolling from "./rolling.gif";
 
 class AboutPage extends Component {
     render() {

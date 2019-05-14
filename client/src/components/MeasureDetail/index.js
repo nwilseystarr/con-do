@@ -1,10 +1,10 @@
 import React, {Component} from "react";
 import API from "../../utils/API"
 import Navbar from "../Navbar";
-import ReactTable from 'react-table';
-import matchSorter from 'match-sorter';
+import ReactTable from "react-table";
+import matchSorter from "match-sorter";
 import io from "socket.io-client";
-const uuidv4 = require('uuid/v4');
+const uuidv4 = require("uuid/v4");
 
 // let pullMeasureInterval;
 
@@ -32,7 +32,7 @@ class MeasureDetail extends Component {
             
         })
         this.emit = ev =>{
-            this.socket.emit('SEND_MESSAGE', {});
+            this.socket.emit("SEND_MESSAGE", {});
         }
 
     }
@@ -184,23 +184,23 @@ class MeasureDetail extends Component {
         //Our react table will use the voteTally array to populate its rows
         const columns = [
             {
-                Header: 'Name',
-                accessor: 'name',
+                Header: "Name",
+                accessor: "name",
                 filterMethod: (filter, rows) =>
                 matchSorter(rows, filter.value, { keys: ["name"] }),
                     filterAll: true,   
             },
             {
-                Header: 'Country',
-                id: 'countryName',
-                accessor: 'country',
+                Header: "Country",
+                id: "countryName",
+                accessor: "country",
                 filterMethod: (filter, rows) =>
                 matchSorter(rows, filter.value, { keys: ["committeeName"] }),
                     filterAll: true,
             },
             {
-                Header: 'Votes',
-                id: 'delegateVote',
+                Header: "Votes",
+                id: "delegateVote",
                 accessor: delegateVote => {
                     if(delegateVote.vote){
                         return "Yes"

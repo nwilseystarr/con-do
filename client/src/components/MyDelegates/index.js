@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
-import API from "../../utils/API";
+// import { Redirect } from "react-router-dom";
+// import API from "../../utils/API";
 import Navbar from "../Navbar";
 import MyUsers from "./userstable"
 

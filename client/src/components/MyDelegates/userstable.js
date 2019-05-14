@@ -35,21 +35,21 @@ class UserSearch extends Component {
   
         const columns = [
                     {
-                        Header: 'Name',
-                        accessor: 'name',
+                        Header: "Name",
+                        accessor: "name",
                         filterMethod: (filter, rows) =>
                         matchSorter(rows, filter.value, { keys: ["name"] }),
                             filterAll: true,         
                             
                     },{
-                        Header: 'Email',
-                        accessor: 'email',
+                        Header: "Email",
+                        accessor: "email",
                         filterMethod: (filter, rows) =>
                         matchSorter(rows, filter.value, { keys: ["email"] }),
                             filterAll: true
                     },{
-                        Header: 'Committee',
-                        id: 'committeeName',
+                        Header: "Committee",
+                        id: "committeeName",
                         accessor: user => {
                             // console.log(user)
                             if(user.committeeId){
@@ -62,8 +62,8 @@ class UserSearch extends Component {
                         matchSorter(rows, filter.value, { keys: ["committeeName"] }),
                             filterAll: true,
                     },{
-                        Header: 'Country',
-                        accessor: 'country',
+                        Header: "Country",
+                        accessor: "country",
                         filterMethod: (filter, rows) =>
                         matchSorter(rows, filter.value, { keys: ["country"] }),
                             filterAll: true
