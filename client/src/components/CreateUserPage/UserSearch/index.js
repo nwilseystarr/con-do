@@ -28,10 +28,12 @@ class UserSearch extends Component {
             .then(res=>{
                 let returnedUsers = res.data
                 if (this.props.userType === "advisor"){
-                    // console.log("filtering users")
                     returnedUsers = returnedUsers.filter(user => user.schoolId === this.props.schoolId)
+                    returnedUsers = returnedUsers.filter(user => user.userType != "admin")
+                    returnedUsers = returnedUsers.filter(user => user.userType != "advisor")
+                    returnedUsers = returnedUsers.filter(user => user.userType != "staff")
                 }
-                returnedUsers = returnedUsers.filter(user => user.id != this.props.userId)
+                returnedUsers = returnedUsers.filter(user => user.id != this.props.id)
                 this.setState({
                     users: returnedUsers
                 })
@@ -44,10 +46,13 @@ class UserSearch extends Component {
                     .then(res=>{
                         let returnedUsers = res.data
                         if (this.props.userType === "advisor"){
-                            // console.log("filtering users")
                             returnedUsers = returnedUsers.filter(user => user.schoolId === this.props.schoolId)
+                            returnedUsers = returnedUsers.filter(user => user.userType != "admin")
+                            returnedUsers = returnedUsers.filter(user => user.userType != "advisor")
+                            returnedUsers = returnedUsers.filter(user => user.userType != "staff")
                         }
-                        returnedUsers = returnedUsers.filter(user => user.id != this.props.userId)
+                        returnedUsers = returnedUsers.filter(user => user.id != this.props.id)
+                        
                         this.setState({
                             users: returnedUsers
                         })
