@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "52a1613100adb668808e86ec2a62eee4",
+    "revision": "d062f25f19718fcd28b8cd9ae3d549e1",
     "url": "/index.html"
   },
   {
-    "revision": "56c5c4aca35afce99aee",
+    "revision": "1241f3db8585885f0d86",
     "url": "/static/css/main.2cf6218b.chunk.css"
   },
   {
-    "revision": "971640dcc4a5da9da089",
-    "url": "/static/js/2.6fb928b1.chunk.js"
+    "revision": "6803af79e8b7ba8599e2",
+    "url": "/static/js/2.6423d2a8.chunk.js"
   },
   {
-    "revision": "56c5c4aca35afce99aee",
-    "url": "/static/js/main.0c8008af.chunk.js"
+    "revision": "1241f3db8585885f0d86",
+    "url": "/static/js/main.c395bce7.chunk.js"
   },
   {
     "revision": "42ac5946195a7306e2a5",
@@ -30,10 +30,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "22770d3c40e4cec8d691c14ca63fde59",
     "url": "/static/media/giant-conference.22770d3c.jpg"
-  },
-  {
-    "revision": "516246bc7daa0c2a229cfdd8e2bbb5aa",
-    "url": "/static/media/israeli-parliament.516246bc.jpg"
   },
   {
     "revision": "c8d3856fe952270ae8f89ccdfe8af31d",
@@ -62,6 +58,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "2a30226c3900baffabea4d1412e03a87",
     "url": "/static/media/placeholder-image.2a30226c.png"
+  },
+  {
+    "revision": "78aa472467f4423dcbd1227f43dcf370",
+    "url": "/static/media/presenting.78aa4724.jpg"
   },
   {
     "revision": "e58e0124842cb596b490fb3eac881388",
