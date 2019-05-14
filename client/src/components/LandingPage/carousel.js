@@ -4,14 +4,13 @@ import image2 from "./giant-conference.jpg";
 import image3 from "./people-in-meeting.jpg";
 import image4 from "./presenting.jpg";
 import image5 from "./people-at-conference.jpg";
-import image6 from "./conference-room.jpg";
 import "./style.css";
 
 
 class Carousel extends Component {
     render() {
         return (
-            <div className="container-fluid mt-5 carouselContainer">
+            <div className="container-fluid carouselContainer">
                 <div className="row">
                     <div className="col px-0">
                         <div id="carouselImages" className="carousel slide carousel-fade" data-ride="carousel">
@@ -21,54 +20,45 @@ class Carousel extends Component {
                                 <li data-target="#carouselImages" data-slide-to="2"></li>
                                 <li data-target="#carouselImages" data-slide-to="3"></li>
                                 <li data-target="#carouselImages" data-slide-to="4"></li>
-                                <li data-target="#carouselImages" data-slide-to="5"></li>
                             </ol>
                             <div className="carousel-inner">
                                 <div className="carousel-item active">
-                                    <img src={image1} className="d-block w-100" alt="..." height="650px" />
-                                    <div className="carousel-caption d-none d-md-block">
-                                        <p className="display-2 mb-0">con.DO</p>
-                                        <h2>The Ultimate Conference App</h2>
+                                    <img src={image1} className="d-block vw-100 vh-100 carousel-img" alt="..." />
+                                    <div className="carouselCaption">
+                                        <h1 className="display-2">con.DO</h1>
+                                        <h2 className="border-top border-bottom border-white">The Ultimate Conference App</h2>
                                         <a className="youtubeVid" href="/youtube"><i className="fab fa-youtube fa-4x"></i></a>
                                     </div>
                                 </div>
                                 <div className="carousel-item">
-                                    <img src={image2} className="d-block w-100" alt="..." height="650px" />
-                                    <div className="carousel-caption d-none d-md-block">
-                                        <p className="display-2 mb-0">con.DO</p>
-                                        <h2>The Ultimate Conference App</h2>
+                                    <img src={image2} className="d-block vw-100 vh-100 carousel-img" alt="..." />
+                                    <div className="carouselCaption">
+                                        <h1 className="display-2">con.DO</h1>
+                                        <h2 className="border-top border-bottom border-white">The Ultimate Conference App</h2>
                                         <a className="youtubeVid" href="/youtube"><i className="fab fa-youtube fa-4x"></i></a>
                                     </div>
                                 </div>
                                 <div className="carousel-item">
-                                    <img src={image3} className="d-block w-100" alt="..." height="650px" />
-                                    <div className="carousel-caption d-none d-md-block">
-                                        <p className="display-2 mb-0">con.DO</p>
-                                        <h2>The Ultimate Conference App</h2>
+                                    <img src={image3} className="d-block vw-100 vh-100 carousel-img" alt="..." />
+                                    <div className="carouselCaption">
+                                        <h1 className="display-2">con.DO</h1>
+                                        <h2 className="border-top border-bottom border-white">The Ultimate Conference App</h2>
                                         <a className="youtubeVid" href="/youtube"><i className="fab fa-youtube fa-4x"></i></a>
                                     </div>
                                 </div>
                                 <div className="carousel-item">
-                                    <img src={image4} className="d-block w-100" alt="..." height="650px" />
-                                    <div className="carousel-caption d-none d-md-block">
-                                        <p className="display-2 mb-0">con.DO</p>
-                                        <h2>The Ultimate Conference App</h2>
+                                    <img src={image4} className="d-block vw-100 vh-100 carousel-img" alt="..." />
+                                    <div className="carouselCaption">
+                                        <h1 className="display-2">con.DO</h1>
+                                        <h2 className="border-top border-bottom border-white">The Ultimate Conference App</h2>
                                         <a className="youtubeVid" href="/youtube"><i className="fab fa-youtube fa-4x"></i></a>
                                     </div>
                                 </div>
                                 <div className="carousel-item">
-                                    <img src={image5} className="d-block w-100" alt="..." height="650px" />
-                                    <div className="carousel-caption d-none d-md-block">
-                                        <p className="display-2 mb-0">con.DO</p>
-                                        <h2>The Ultimate Conference App</h2>
-                                        <a className="youtubeVid" href="/youtube"><i className="fab fa-youtube fa-4x"></i></a>
-                                    </div>
-                                </div>
-                                <div className="carousel-item">
-                                    <img src={image6} className="d-block w-100" alt="..." height="650px" />
-                                    <div className="carousel-caption d-none d-md-block">
-                                        <p className="display-2 mb-0">con.DO</p>
-                                        <h2>The Ultimate Conference App</h2>
+                                    <img src={image5} className="d-block vw-100 vh-100 carousel-img" alt="..." />
+                                    <div className="carouselCaption">
+                                        <h1 className="display-2">con.DO</h1>
+                                        <h2 className="border-top border-bottom border-white">The Ultimate Conference App</h2>
                                         <a className="youtubeVid" href="/youtube"><i className="fab fa-youtube fa-4x"></i></a>
                                     </div>
                                 </div>
