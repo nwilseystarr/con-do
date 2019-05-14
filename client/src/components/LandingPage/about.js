@@ -8,7 +8,7 @@ import placeholder from "./placeholder-image.png";
 class AboutPage extends Component {
     render() {
         return (
-            <div className="container-fluid vh-100" id="aboutus">
+            <div className="container-fluid" id="aboutus">
                 <div className="row">
                     <div className="col-lg-3 align-self-center">
                         <h1 className="display-3 d-none d-sm-none d-md-none d-lg-block d-xl-block pl-5">Meet</h1>

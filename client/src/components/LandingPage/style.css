@@ -51,19 +51,18 @@ h2 {
 
 /* FEATURES */
 
-/* .ft-title {
-    padding-top: 3rem;
-} */
-
 .underline {
     border-bottom: 4px solid black;
     font-weight: bold;
-    color: white;
-    text-shadow: 4px 3px 6px black;
+    text-shadow: 4px 2px 6px grey;
 }
 
 .card {
     background: none;
+}
+
+.fa-8x:hover {
+    color: rgba(173, 19, 19, 0.733);
 }
 
 /* CONTACT FORM */

@@ -3,7 +3,7 @@ import React, { Component } from "react";
 class FeatureCard extends Component {
     render() {
         return (
-            <div className="container-fluid vh-100" id="features">
+            <div className="container-fluid" id="features">
                 <div className="row snippetContainer my-5 text-center align-items-center flex-column pt-3">
                     <div className="col w-75 border-left border-right border-dark px-0 mb-3">
                         <h1 className="display-4 px-2 ">We <span className="underline">DO</span> Conferences &amp; Events</h1>
@@ -11,8 +11,6 @@ class FeatureCard extends Component {
                     <div className="col">
                         <p className="lead">Let our mobile-friendly application help streamline your next conference or large-scale event, so that you can focus on the smaller things!</p>
                     </div>
-
-
                 </div>
                 <div className="row text-center">
                     <div className="col">
@@ -20,6 +18,40 @@ class FeatureCard extends Component {
                     </div>
                 </div>
                 <div className="row justify-content-center align-items-center">
+                    <div className="col">
+                        <div className="card-group">
+                            <div className="card border-0">
+                                <div className="card-body text-center align-self-center">
+                                    <i className="far fa-calendar-alt fa-7x mb-3"></i>
+                                    <h3 className="card-title">Schedules</h3>
+                                    <p className="card-text text-justify">Never miss an event ever again!  Through our app you'll be able to see a list of every event in one place.</p>
+                                </div>
+                            </div>
+                            <div className="card border-0">
+                                <div className="card-body text-center align-self-center">
+                                    <i className="fas fa-qrcode fa-7x mb-3"></i>
+                                    <h3 className="card-title">Attendance</h3>
+                                    <p className="card-text text-justify">Have users check in to events quickly and securely with their own personal QR code! Utilize this information to know how many people have attended and who has attended each event!</p>
+                                </div>
+                            </div>
+                            <div className="card border-0">
+                                <div className="card-body text-center align-self-center">
+                                    <i className="far fa-comments fa-7x mb-3"></i>
+                                    <h3 className="card-title">In-App Chat</h3>
+                                    <p className="card-text text-justify">Keep in the loop by staying in touch with everyone through our in-app messenging platform!</p>
+                                </div>
+                            </div>
+                            <div className="card border-0">
+                                <div className="card-body text-center align-self-center">
+                                    <i className="fas fa-poll fa-7x mb-3"></i>
+                                    <h3 className="card-title">Vote/Polls</h3>
+                                    <p className="card-text text-justify">Quickly resolve issues, problems, or questions through our voting/poll feature-- it's never been easier to keep track of answers!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {/* <div className="row justify-content-center align-items-center">
                     <div className="col-lg-3 px-0">
                         <div className="card border-0 mb-3">
                             <div className="row no-gutters">
@@ -88,7 +120,7 @@ class FeatureCard extends Component {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
         );
     }
