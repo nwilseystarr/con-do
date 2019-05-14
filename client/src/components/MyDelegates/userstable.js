@@ -1,10 +1,10 @@
 import React, {Component} from "react";
 import API from "../../utils/API";
-import ReactTable from 'react-table';
-import matchSorter from 'match-sorter';
+import ReactTable from "react-table";
+import matchSorter from "match-sorter";
 import {
     BrowserRouter as Router, Link, 
-  } from 'react-router-dom';
+  } from "react-router-dom";
 
 
 class UserSearch extends Component {
@@ -69,8 +69,8 @@ class UserSearch extends Component {
                             filterAll: true
                     },
                     {
-                        Header: 'Pofile Link',
-                        id: 'userLink',
+                        Header: "Pofile Link",
+                        id: "userLink",
                         accessor: user => <Link to={{ pathname: `/user/${user.id}` }}>View Detail</Link>
                   
                     }      

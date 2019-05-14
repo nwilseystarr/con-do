@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import API from "../../utils/API";
-import matchSorter from 'match-sorter';
+import matchSorter from "match-sorter";
 import Navbar from "../Navbar";
 import ReactTable from "react-table"
 import API from "../../utils/API"
