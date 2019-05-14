@@ -4,11 +4,12 @@ import Navbar from "../Navbar";
 import API from "../../utils/API";
 import io from "socket.io-client";
 import ScrollToBottom from "react-scroll-to-bottom";
+// import "./style.css"
+
 import { css } from "glamor";
- 
 const ROOT_CSS = css({
-  height: 300,
-  width: 400
+    height: 300,
+    width: 400
 });
 
 const uuidv4 = require("uuid/v4");
@@ -17,28 +18,36 @@ class Chat extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: this.props.name,
+            name: this.props.name,
             message: " ",
             messages: []
         }
         this.socket = io("localhost:3001");
 
-        this.socket.on('RECEIVE_MESSAGE', function (data) {
-            addMessage(data);
-        });
-
         const addMessage = data => {
             console.log(data);
             this.setState({ messages: [...this.state.messages, data] });
-            this.setState({ username: [...this.state.messages, data] });
-            console.log(this.state.messages);
-            console.log(data);
+            // this.setState({ username: [...this.state.username, data] });
+            // console.log(this.state.messages);
+            // console.log(data);
         };
 
+        const addUserName = data => {
+            console.log(data);
+            this.setState({name: data.name});
+        };
+
+
+        this.socket.on('RECEIVE_MESSAGE', function (data) {
+            addMessage(data);
+            addUserName(data);
+            console.log(data.message);
+            console.log(data.name);
+        });
+
         this.sendMessage = () => {
-            // ev.preventDefault();
             this.socket.emit('SEND_MESSAGE', {
-                username: this.props.name,
+                name: this.props.name,
                 message: this.state.message
             });
             this.setState({ message: '' });
@@ -96,9 +105,19 @@ class Chat extends Component {
 
     render() {
         return (
-            <div className="container container-fluid mt-5 pt-5">
+            <div className="container container-fluid mt-5 pt-5 vw-100">
                 <Navbar loggedIn={this.props.loggedIn} />
-                <form>
+                <ScrollToBottom className={ROOT_CSS}>
+                    <div className="messages-div" key={uuidv4} >
+                        {this.state.messages.map(message =>
+                            <div>
+                            <br></br>
+                            <div className="text-secondary">{message.name}</div>
+                            <div className="text-primary">{message.message}</div>
+                            </div>)}
+                    </div>
+                </ScrollToBottom>
+                <form className={ROOT_CSS}>
                     <textarea wrap="hard" name="message" id="message" className="form-control" placeholder="Your message here" value={this.state.message} onChange={this.handleInputChange}
                     // onKeyDown={this.onEnterPress} 
                     />
@@ -110,16 +129,6 @@ class Chat extends Component {
                         Send Message
                   </button>
                 </form >
-                <ScrollToBottom className={ ROOT_CSS }>
-                    <div className= "messages-div" key={uuidv4} >
-                        {this.state.messages.map(message =>
-                            <div className="">
-                                {this.props.name}
-                                <br></br>
-                                {message.message}
-                            </div>)}
-                    </div>
-                </ScrollToBottom>
             </div >
         )
     }
