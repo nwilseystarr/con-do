@@ -3,13 +3,14 @@ import ReactDOM from "react-dom";
 import Navbar from "../Navbar";
 import API from "../../utils/API";
 import io from "socket.io-client";
-// import "./style.css";
-const uuidv4 = require('uuid/v4');
+import "./style.css";
+const uuidv4 = require("uuid/v4");
 
 class Chat extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            username: this.props.name,
             message: " ",
             messages: []
         }
@@ -19,21 +20,18 @@ class Chat extends Component {
             addMessage(data);
         });
 
-
         const addMessage = data => {
             console.log(data);
-            this.setState({
-                messages: [...this.state.messages, data],
-                username: this.state.name
-                });
-                
+            this.setState({messages: [...this.state.messages, data]});
+            this.setState({username: [...this.state.messages, data]});
             console.log(this.state.messages);
+            console.log(data);
         };
 
-        this.sendMessage = ev => {
+        this.sendMessage = () => {
             // ev.preventDefault();
             this.socket.emit('SEND_MESSAGE', {
-                username: this.state.username,
+                username: this.props.name,
                 message: this.state.message
             });
             this.setState({ message: '' });
@@ -53,7 +51,7 @@ class Chat extends Component {
     //Get all messages from db 
     getMessages = () => {
         API.getMessage().then(res => {
-            this.setState({
+            this.setState({ 
                 messages: res.data
             });
             console.log(res.data)
@@ -89,12 +87,11 @@ class Chat extends Component {
     //     }
     // }
 
-
     render() {
         return (
-            <div className="container-fluid mt-5 pt-5">
+            <div className="container container-fluid mt-5 pt-5">
                 <Navbar loggedIn={this.props.loggedIn} />
-                <form className="chat">
+                <form>
                     <textarea wrap="hard" name="message" id="message" className="form-control" placeholder="Your message here" value={this.state.message} onChange={this.handleInputChange}
                     // onKeyDown={this.onEnterPress} 
                     />
@@ -109,7 +106,7 @@ class Chat extends Component {
                 <div className="border border-dark" key={uuidv4} >
                     {this.state.messages.map(message =>
                         <div className="messages-div">
-                            {message.name}
+                            {this.props.name}
                             <br></br>
                             {message.message}
                         </div>)}
