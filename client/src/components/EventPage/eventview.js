@@ -1,16 +1,16 @@
 import React, {Component} from "react";
 // import { Link } from "react-router-dom";
-import API from "../../utils/API"
+import API from "../../utils/API";
 // import { derToJose } from "ecdsa-sig-formatter";
 // import Loading from "../Loading";
 import Navbar from "../Navbar";
 // import UpdatePassword from "../Dashboard/update-password"
-import ReactTable from 'react-table';
-import matchSorter from 'match-sorter';
-import Webcam from "./webcam"
+import ReactTable from "react-table";
+import matchSorter from "match-sorter";
+import Webcam from "./webcam";
 import CreateMeasure from "./createmeasure";
-import ViewMeasures from "./viewmeasures"
-import { BrowserRouter as Route,Redirect } from "react-router-dom";
+import ViewMeasures from "./viewmeasures";
+// import { BrowserRouter as Route,Redirect } from "react-router-dom";
 import UnauthorizedPage from "../unauthorized-page";
 
 class Event extends Component {
@@ -33,36 +33,36 @@ class Event extends Component {
     }
 
     //this will get all of the relvant data for the event with the id that matches the id of the url paramater
-    getEvent = () =>{
-            //first we will get all of the school and committee data from the database
-            API.getSchools().then(res =>{
-                this.setState({allSchools: res.data})
-            })
-            API.getCommittees().then(res=>{
-                this.setState({allCommittees: res.data})
-            })
+    getEvent = () => {
+        //first we will get all of the school and committee data from the database
+        API.getSchools().then(res => {
+            this.setState({ allSchools: res.data })
+        })
+        API.getCommittees().then(res => {
+            this.setState({ allCommittees: res.data })
+        })
             
-            API.getEventById(this.props.match.params.id)
-                .then(res => {
-                    //when we get the event data, we will map over the attendance array to search for the record that has an id 
-                    //that matches the currently logged in user. Once we find that record, we will use it's checkedIn property to 
-                    //change our checkedIn state (the checkedIn state of the logged in user agent)
-                    res.data.attendance.map(attendanceRecord =>{
-                        if (attendanceRecord.id === this.props.userId){
-                            this.setState({
-                                checkedIn: attendanceRecord.checkedIn
-                            })
-                        }
-                    })
-                    //then we will update the attendance state array with the value of the attendance array in the database
-                    this.setState({
-                        attendance: res.data.attendance,
-                        name: res.data.name,
-                        start: res.data.start,
-                        location: res.data.location,
-                        committeeId: res.data.committeeId
-                    })
-                });
+        API.getEventById(this.props.match.params.id)
+            .then(res => {
+                //when we get the event data, we will map over the attendance array to search for the record that has an id 
+                //that matches the currently logged in user. Once we find that record, we will use it's checkedIn property to 
+                //change our checkedIn state (the checkedIn state of the logged in user agent)
+                res.data.attendance.map(attendanceRecord => {
+                    if (attendanceRecord.id === this.props.userId) {
+                        this.setState({
+                            checkedIn: attendanceRecord.checkedIn
+                        })
+                    }
+                })
+                //then we will update the attendance state array with the value of the attendance array in the database
+                this.setState({
+                    attendance: res.data.attendance,
+                    name: res.data.name,
+                    start: res.data.start,
+                    location: res.data.location,
+                    committeeId: res.data.committeeId
+                })
+            });
     }
     //this function should only be called by the admin, with the userId paramater being provided by the qrCode ofthe delegate
     checkIn = (userId) =>{
@@ -185,15 +185,15 @@ class Event extends Component {
         // name (str), checkedIn(bool), committeedId(key), schoolId(key)
         const columns = [
             {
-                Header: 'Name',
-                accessor: 'name',
+                Header: "Name",
+                accessor: "name",
                 filterMethod: (filter, rows) =>
                 matchSorter(rows, filter.value, { keys: ["name"] }),
                     filterAll: true,   
             },
             {
-                Header: 'Checked In',
-                id: 'checkedIn',
+                Header: "Checked In",
+                id: "checkedIn",
                 accessor: attendance =>{
                     // console.log(attendance)
                     if(attendance.checkedIn){
@@ -208,8 +208,8 @@ class Event extends Component {
                     filterAll: true,   
             },
             {
-                Header: 'School',
-                id: 'schoolName',
+                Header: "School",
+                id: "schoolName",
                 accessor: attendance => {
                     // console.log(allSchools)
                     // console.log(attendance)
@@ -223,9 +223,9 @@ class Event extends Component {
                 matchSorter(rows, filter.value, { keys: ["schoolName"] }),
                     filterAll: true,
             },{
-                Header: 'Country',
-                id: 'countryName',
-                accessor: 'country',
+                Header: "Country",
+                id: "countryName",
+                accessor: "country",
                 filterMethod: (filter, rows) =>
                 matchSorter(rows, filter.value, { keys: ["committeeName"] }),
                     filterAll: true,

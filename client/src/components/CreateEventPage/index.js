@@ -56,7 +56,7 @@ class CreateEvent extends Component {
     //first we need to get all the users that have a committeeId that matches the committeId of the event we are creating
     API.getUsersByCommittee(this.state.committee)
       .then(response => {
-        console.log(response);
+        // console.log(response);
         //then we will store this returned array in users
         let users = response.data;
         //we will map over this users array and give each one a new property checkedIn:false 
@@ -79,7 +79,7 @@ class CreateEvent extends Component {
           committeeId: this.state.committee
         })
           .then(res => {
-            console.log(res);
+            // console.log(res);
           });
       });
   }
