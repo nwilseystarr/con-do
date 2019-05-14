@@ -18,7 +18,7 @@ class Chat extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: this.props.name,
+            name: this.props.name,
             message: " ",
             messages: []
         }
@@ -34,7 +34,7 @@ class Chat extends Component {
 
         const addUserName = data => {
             console.log(data);
-            this.setState({username: [...this.state.username, data]});
+            this.setState({name: data.name});
         };
 
 
@@ -42,12 +42,12 @@ class Chat extends Component {
             addMessage(data);
             addUserName(data);
             console.log(data.message);
-            console.log(data.username);
+            console.log(data.name);
         });
 
         this.sendMessage = () => {
             this.socket.emit('SEND_MESSAGE', {
-                username: this.props.name,
+                name: this.props.name,
                 message: this.state.message
             });
             this.setState({ message: '' });
