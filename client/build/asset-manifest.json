@@ -1,20 +1,19 @@
 {
   "files": {
     "main.css": "/static/css/main.2cf6218b.chunk.css",
-    "main.js": "/static/js/main.0c8008af.chunk.js",
-    "main.js.map": "/static/js/main.0c8008af.chunk.js.map",
+    "main.js": "/static/js/main.65f13ae5.chunk.js",
+    "main.js.map": "/static/js/main.65f13ae5.chunk.js.map",
     "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
     "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
-    "static/js/2.6fb928b1.chunk.js": "/static/js/2.6fb928b1.chunk.js",
-    "static/js/2.6fb928b1.chunk.js.map": "/static/js/2.6fb928b1.chunk.js.map",
+    "static/js/2.6423d2a8.chunk.js": "/static/js/2.6423d2a8.chunk.js",
+    "static/js/2.6423d2a8.chunk.js.map": "/static/js/2.6423d2a8.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.7d7f855852230cb01b14c225b8e2bedf.js": "/precache-manifest.7d7f855852230cb01b14c225b8e2bedf.js",
+    "precache-manifest.c44361b64c08a8c90e850d744316bd36.js": "/precache-manifest.c44361b64c08a8c90e850d744316bd36.js",
     "service-worker.js": "/service-worker.js",
     "static/css/main.2cf6218b.chunk.css.map": "/static/css/main.2cf6218b.chunk.css.map",
     "static/media/United_Nations_logo.png": "/static/media/United_Nations_logo.5f59e4c2.png",
     "static/media/conference-room.jpg": "/static/media/conference-room.4f8eb240.jpg",
     "static/media/giant-conference.jpg": "/static/media/giant-conference.22770d3c.jpg",
-    "static/media/israeli-parliament.jpg": "/static/media/israeli-parliament.516246bc.jpg",
     "static/media/karen.jpeg": "/static/media/karen.c8d3856f.jpeg",
     "static/media/leah.jpg": "/static/media/leah.b3328e6c.jpg",
     "static/media/nicole.jpg": "/static/media/nicole.faf80732.jpg",
@@ -22,6 +21,7 @@
     "static/media/people-in-meeting.jpg": "/static/media/people-in-meeting.751bcb7d.jpg",
     "static/media/people-in-row.jpg": "/static/media/people-in-row.be04bfab.jpg",
     "static/media/placeholder-image.png": "/static/media/placeholder-image.2a30226c.png",
+    "static/media/presenting.jpg": "/static/media/presenting.78aa4724.jpg",
     "static/media/rolling.gif": "/static/media/rolling.e58e0124.gif"
   }
 }
