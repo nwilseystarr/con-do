@@ -24,20 +24,27 @@ class Chat extends Component {
         }
         this.socket = io("localhost:3001");
 
-        this.socket.on('RECEIVE_MESSAGE', function (data) {
-            addMessage(data);
-        });
-
         const addMessage = data => {
             console.log(data);
             this.setState({ messages: [...this.state.messages, data] });
-            this.setState({ username: [...this.state.messages, data] });
-            console.log(this.state.messages);
-            console.log(data);
+            // this.setState({ username: [...this.state.username, data] });
+            // console.log(this.state.messages);
+            // console.log(data);
         };
 
+        const addUserName = data => {
+            console.log(data);
+            this.setState({username: [...this.state.username, data]});
+        };
+
+
+        this.socket.on('RECEIVE_MESSAGE', function (data) {
+            addMessage(data);
+            addUserName(data);
+            console.log(data);
+        });
+
         this.sendMessage = () => {
-            // ev.preventDefault();
             this.socket.emit('SEND_MESSAGE', {
                 username: this.props.name,
                 message: this.state.message
@@ -104,7 +111,7 @@ class Chat extends Component {
                         {this.state.messages.map(message =>
                             <div>
                             <br></br>
-                            <div className="text-secondary">{this.props.name}</div>
+                            <div className="text-secondary">{message.name}</div>
                             <div className="text-primary">{message.message}</div>
                             </div>)}
                     </div>
