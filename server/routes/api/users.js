@@ -171,7 +171,8 @@ router.route("/:userId")
     })
 router.route("/my")
     .get(function(req, res){
-        db.User
+        if(req.user.userType === "advisor"){
+            db.User
             .findAll({
                 where:{
                     schoolId: req.user.schoolId
@@ -179,5 +180,14 @@ router.route("/my")
             }).then(schoolUsers =>{
                 res.send(schoolUsers)
             })
+        }
+        else if(req.user.userType === "admin"){
+            db.User
+            .findAll({})
+            .then(schoolUsers =>{
+                res.send(schoolUsers)
+            })
+        }
+
     })
 module.exports = router;
