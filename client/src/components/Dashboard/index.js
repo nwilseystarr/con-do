@@ -31,7 +31,7 @@ class Dashboard extends Component {
                                     {this.props.userType === "advisor" ?
                                         <div className="col d-flex justify-content-end mb-2">
                                             <a className="btn btn-outline-dark px-3 mr-2" href="/createuser"><i className="fas fa-user-plus mr-2"></i>Create Delegate</a>
-                                            <a className="btn btn-outline-dark px-3" href="/createevent"><i className="fas fa-plus mr-2"></i>Add Event</a>
+                                           
                                         </div>
                                         :
                                         <div></div>
