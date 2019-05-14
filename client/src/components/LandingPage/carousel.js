@@ -26,7 +26,7 @@ class Carousel extends Component {
                                     <img src={image1} className="d-block vw-100 vh-100 carousel-img" alt="..." />
                                     <div className="carouselCaption">
                                         <h1 className="display-2">con.DO</h1>
-                                        <h2 className="border-top border-bottom border-white">The Ultimate Conference App</h2>
+                                        <h2 className="">The Ultimate Conference App</h2>
                                         <a className="youtubeVid" href="/youtube"><i className="fab fa-youtube fa-4x"></i></a>
                                     </div>
                                 </div>
@@ -34,7 +34,7 @@ class Carousel extends Component {
                                     <img src={image2} className="d-block vw-100 vh-100 carousel-img" alt="..." />
                                     <div className="carouselCaption">
                                         <h1 className="display-2">con.DO</h1>
-                                        <h2 className="border-top border-bottom border-white">The Ultimate Conference App</h2>
+                                        <h2 className="">The Ultimate Conference App</h2>
                                         <a className="youtubeVid" href="/youtube"><i className="fab fa-youtube fa-4x"></i></a>
                                     </div>
                                 </div>

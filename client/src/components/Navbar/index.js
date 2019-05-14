@@ -60,7 +60,7 @@ class Navbar extends Component {
                                         to="features"
                                         smooth={true}
                                         spy={true}
-                                        offset={-90}
+                                        offset={-110}
                                         duration={500}
                                     >
                                         Features
@@ -79,9 +79,6 @@ class Navbar extends Component {
                                         About Us
                                     </Link>
                                 </li>
-                                {/* <li className="nav-item">
-                                    <a href="/howto" className="nav-link mr-3">How To</a>
-                                </li> */}
                                 <li className="nav-item">
                                     <Link
                                         className="nav-link mr-3"

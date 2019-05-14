@@ -31,10 +31,11 @@ class ContactForm extends Component {
 
     render() {
         return (
-            <div className="container-fluid mt-5 mb-5" id="contact">
+            <div className="container-fluid vh-100 mt-5" id="contact">
                 <div className="row text-center">
                     <div className="col">
                         <p className="display-4 text-center mt-4">Contact Us</p>
+                        <p className="lead">Tell us about your event and we'll customize our app to fit your needs</p>
                     </div>
                 </div>
                 <div className="row justify-content-center">

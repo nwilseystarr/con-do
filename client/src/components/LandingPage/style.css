@@ -43,6 +43,29 @@ h2 {
     opacity: 0.7;
 }
 
+/* SNIPPET */
+
+.snippetContainer {
+    background: rgba(113, 122, 130, 0.301);
+}
+
+/* FEATURES */
+
+/* .ft-title {
+    padding-top: 3rem;
+} */
+
+.underline {
+    border-bottom: 4px solid black;
+    font-weight: bold;
+    color: white;
+    text-shadow: 4px 3px 6px black;
+}
+
+.card {
+    background: none;
+}
+
 /* CONTACT FORM */
 
 .form-control:focus {

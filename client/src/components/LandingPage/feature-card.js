@@ -3,14 +3,24 @@ import React, { Component } from "react";
 class FeatureCard extends Component {
     render() {
         return (
-            <div className="container-fluid mt-5" id="features">
+            <div className="container-fluid vh-100" id="features">
+                <div className="row snippetContainer my-5 text-center align-items-center flex-column pt-3">
+                    <div className="col w-75 border-left border-right border-dark px-0 mb-3">
+                        <h1 className="display-4 px-2 ">We <span className="underline">DO</span> Conferences &amp; Events</h1>
+                    </div>
+                    <div className="col">
+                        <p className="lead">Let our mobile-friendly application help streamline your next conference or large-scale event, so that you can focus on the smaller things!</p>
+                    </div>
+
+
+                </div>
                 <div className="row text-center">
                     <div className="col">
-                        <h1 className="display-4 mb-3">Features</h1>
+                        <h1 className="display-4 mb-3 ft-title">Key Features</h1>
                     </div>
                 </div>
-                <div className="row justify-content-center">
-                    <div className="col-lg-4 px-0">
+                <div className="row justify-content-center align-items-center">
+                    <div className="col-lg-3 px-0">
                         <div className="card border-0 mb-3">
                             <div className="row no-gutters">
                                 <div className="col d-flex">
@@ -27,7 +37,7 @@ class FeatureCard extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="col-lg-4 px-0">
+                    <div className="col-lg-3 px-0">
                         <div className="card border-0 mb-3">
                             <div className="row no-gutters">
                                 <div className="col d-flex">
@@ -44,18 +54,35 @@ class FeatureCard extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="col-lg-4 px-0">
+                    <div className="col-lg-3 px-0">
                         <div className="card border-0 mb-3">
                             <div className="row no-gutters">
                                 <div className="col d-flex">
                                     <div className="card-body text-center align-self-center">
-                                        <i className="far fa-comments fa-8x mt-3"></i>
+                                        <i className="far fa-comments fa-8x"></i>
                                     </div>
                                 </div>
                                 <div className="col">
                                     <div className="card-body">
                                         <h4 className="card-title text-bold">In-App Chat</h4>
                                         <p className="card-text">Keep in the loop by staying in touch with everyone through our in-app messenging platform!</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-lg-3 px-0">
+                        <div className="card border-0 mb-3">
+                            <div className="row no-gutters">
+                                <div className="col d-flex">
+                                    <div className="card-body text-center align-self-center">
+                                        <i className="fas fa-poll fa-8x"></i>
+                                    </div>
+                                </div>
+                                <div className="col">
+                                    <div className="card-body">
+                                        <h4 className="card-title text-bold">Vote/Polls</h4>
+                                        <p className="card-text">Record and track individual answers to a question or a poll.  </p>
                                     </div>
                                 </div>
                             </div>

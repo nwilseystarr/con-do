@@ -1,6 +1,6 @@
-# Con.Do
-Con.Do is a mobile-friendly white label web application designed to streamline conferences and/or other bigger events by allowing users to:
-	- See their schedule of events 
+# <a href="https://con-do.herokuapp.com/">Con.DO</a>
+<a href="https://con-do.herokuapp.com/">Con.DO</a> is a mobile-friendly white label web application designed to streamline conferences and/or other bigger events by allowing users to:
+- See their schedule of events 
 - Track user attendance through the use of uniquely generated QR codes
 - Utilize an in-app chatting system 
 - Vote on resolutions, or take polls
