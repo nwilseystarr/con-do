@@ -3,15 +3,15 @@ import React, { Component } from "react";
 class FeatureCard extends Component {
     render() {
         return (
-            <div className="container-fluid" id="features">
-                <div className="row snippetContainer mt-5 mb-4 text-center align-items-center flex-column pt-3">
+            <div className="container-fluid vh-100 mt-5 pt-5" id="features">
+                {/* <div className="row snippetContainer mt-5 mb-4 text-center align-items-center flex-column pt-3">
                     <div className="col w-75 px-0 mb-3">
                         <h1 className="display-4 px-2 ">We <span className="underline">DO</span> Conferences &amp; Events</h1>
                     </div>
                     <div className="col">
                         <p className="lead">Let our mobile-friendly application help streamline your next conference or large-scale event, so that you can focus on the smaller things!</p>
                     </div>
-                </div>
+                </div> */}
                 <div className="row text-center">
                     <div className="col">
                         <h1 className="display-4 mb-3 ft-title">Key Features</h1>
