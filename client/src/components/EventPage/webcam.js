@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import QrScanner from 'react-qr-reader'
+import QrScanner from "react-qr-reader";
 
 
 class Webcam extends Component {
@@ -38,7 +38,7 @@ class Webcam extends Component {
             delay={300}
             onError={this.handleError}
             onScan={this.handleScan}
-            style={{ width: '100%'}}/>: <div/>}
+            style={{ width: "100%"}}/>: <div/>}
           
         </div>
         );
