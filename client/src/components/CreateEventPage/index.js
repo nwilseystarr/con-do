@@ -21,6 +21,7 @@ class CreateEvent extends Component {
       attendance: "",
       committee: "",
       committeeOptions: [],
+      updateMe: 0
     };
   };
 
@@ -79,7 +80,7 @@ class CreateEvent extends Component {
           committeeId: this.state.committee
         })
           .then(res => {
-            // console.log(res);
+            this.setState( (state)=>({updateMe: state.updateMe + 1}) )
           });
       });
   }
@@ -168,7 +169,7 @@ class CreateEvent extends Component {
                 </form>
               </div>
               <div className="col">
-                <AllSchedules/>
+                <AllSchedules key={this.state.updateMe}/>
               </div>
             </div>
           </div>
