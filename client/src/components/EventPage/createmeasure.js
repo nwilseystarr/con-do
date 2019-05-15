@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 import io from "socket.io-client";
-const uuidv4 = require("uuid/v4");
+// const uuidv4 = require("uuid/v4");
 
 class CreateMeasure extends Component {
   constructor(props) {
@@ -63,6 +63,7 @@ class CreateMeasure extends Component {
         });
       });
     this.emit();
+    window.location.reload();
   }
 
 
@@ -91,7 +92,7 @@ class CreateMeasure extends Component {
           onClick={this.handleFormSubmit}
         >
           Add Measure
-                    </button>
+        </button>
       </form>
     );
   }
