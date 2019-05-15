@@ -207,10 +207,10 @@ class CreateUser extends Component {
 
         {/* For logged in admin/advisors, input fields for FULL NAME, EMAIL, & COUNTRY are available */}
         {this.props.userType === "admin" || this.props.userType === "advisor" ?
-          <div className="container mt-5 pt-5 createUserContainer">
+          <div className="container-fluid mt-5 pt-5 createUserContainer">
             <div className="row justify-content-around">
-              <div className="col-lg-8">
-                <h1 className="display-4 mb-4 mt-sm-3 text-center">Add New User</h1>
+              <div className="col border-right border-secondary">
+                <h1 className="display-4 mb-4">Add New User</h1>
                 <div>
                   {this.state.recentEmail !== "" ? <p>Account Created for {this.state.recentName}, email sent to {this.state.recentEmail}</p> : <div />}
                 </div>
@@ -398,7 +398,7 @@ class CreateUser extends Component {
                     </form>
                   }
                   <button
-                    className="btn btn-outline-dark px-3 mt-2 mb-5"
+                    className="btn btn-dark px-3 mt-2 mb-5"
                     type="submit"
                     name="createDelegate"
                     onClick={this.handleFormSubmit}
@@ -408,7 +408,8 @@ class CreateUser extends Component {
                 </form>
 
               </div>
-              <div className="col-lg-12">
+              <div className="col mb-5">
+                <h1 className="display-4 mb-4 pb-3">Search Users</h1>
                 <UserSearch key={this.state.updateMe} userType={this.props.userType} schoolId={this.props.schoolId} id={this.props.id} />
               </div>
             </div>
