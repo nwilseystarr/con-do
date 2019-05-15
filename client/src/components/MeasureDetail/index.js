@@ -25,7 +25,7 @@ class MeasureDetail extends Component {
             committeeName: ""
         }
         const getMeasure = this.getMeasure.bind(this)
-        this.socket = io("localhost:3001");
+        this.socket = io("https://con-do.herokuapp.com/");
 
         this.socket.on("RECEIVE_MESSAGE", function(data){
             setTimeout(getMeasure, 1000)
