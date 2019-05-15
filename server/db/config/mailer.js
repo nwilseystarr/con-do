@@ -27,7 +27,7 @@ const mailer = {
 
         let message ={ 
             from: "noreply@condo.com",
-            to: [userEmail, "brendanmkelly94@gmail.com"],
+            to: [userEmail, "dasbootofeverything@gmail.com"],
             subject: "Welcome!",
             text: `Hello ${userName}! You've been invited to join con-do, the ultimate conference app! Go to https://con-do.herokuapp.com/verify/${token} to get connnected your conference. 
             Once you set your password, you will be able to see your event schedule and check into events using your qr code.`,
