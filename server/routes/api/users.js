@@ -19,6 +19,7 @@ router.route("/")
     .get(function(req, res){
         db.User
         .findOne({
+            attributes: {exclude: ["password"]},
             where: {
                 id: req.user.id
             }
@@ -31,7 +32,7 @@ router.route("/")
 router.route("/all")
     .get(function(req, res){
         db.User
-        .findAll({})
+        .findAll({attributes: {exclude: ["password"]},})
         .then( (usersData) =>{
             res.send(usersData)
         })
@@ -40,6 +41,7 @@ router.route("/querybyname/:query")
     .get(function(req, res){
         // console.log(req.params.query)
         db.User.findAll({
+            attributes: {exclude: ["password"]},
             where: {
                 name: {
                     [Op.like]: `%${req.params.query}%`
@@ -54,6 +56,7 @@ router.route("/querybyname/:query")
 router.route("/querybycommittee/:query")
     .get(function(req,res){
         db.User.findAll({
+            attributes: {exclude: ["password"]},
             where: {
                 committeeId: req.params.query
             }
@@ -66,6 +69,7 @@ router.route("/querybycommittee/:query")
 router.route("/querybyschool/:query")
     .get(function(req,res){
         db.User.findAll({
+            attributes: {exclude: ["password"]},
             where: {
                 schoolId: req.params.query
             }
@@ -174,6 +178,7 @@ router.route("/my")
         if(req.user.userType === "advisor"){
             db.User
             .findAll({
+                attributes: {exclude: ["password"]},
                 where:{
                     schoolId: req.user.schoolId
                 }
@@ -183,7 +188,7 @@ router.route("/my")
         }
         else if(req.user.userType === "admin"){
             db.User
-            .findAll({})
+            .findAll({attributes: {exclude: ["password"]},})
             .then(schoolUsers =>{
                 res.send(schoolUsers)
             })

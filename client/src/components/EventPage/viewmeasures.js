@@ -17,7 +17,7 @@ class ViewMeasures extends Component {
 
     this.socket.on("RECEIVE_MESSAGE", function(data){
       let eventId = data.eventId
-      setTimeout(getMeasures, 1000, eventId)
+      setTimeout(getMeasures, 2000, eventId)
       
   })
   }
