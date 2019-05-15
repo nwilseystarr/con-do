@@ -13,7 +13,7 @@ class Dashboard extends Component {
                 <div className="container-fluid mt-5 pt-5">
                     <div className="row">
                         <div className="col-lg-5 align-self-center">
-                            <UserDashboard />
+                            <UserDashboard {...this.props} />
                         </div>
                         <div className="col-lg-7 align-self-center mt-5">
                             <div className="container-fluid">
