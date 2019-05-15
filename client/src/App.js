@@ -53,7 +53,6 @@ class App extends Component {
     API.getUser()
       .then(res => {
         if (res.status === 200) {
-          // console.log(res.data);
           this.setState({
             id: res.data.id,
             email: res.data.email,
@@ -99,7 +98,6 @@ class App extends Component {
 
             <Route path="/event/:id" component={(props) => <Event  {...props} {...this.state} />} />
             <Route path="/measure/:id" component={(props) => <Measure  {...props} {...this.state} />} />
-            <Route exact path="/mydelegates" component={() => <MyDelegates loggedIn={this.state.loggedIn} />} />
             <Route exact path="/chat" component={() => <Chat {...this.state} />} />
 
             <Route path="/user/:id" component={(props) => <UserDetail  {...props} {...this.state} />} />
@@ -114,6 +112,11 @@ class App extends Component {
                 <Route exact path="/createuser" component={() => <CreateUser {...this.state} />} />
               :
                 <Route exact path="/createuser" component={() => <UnauthorizedPage {...this.state} />} />}
+            
+            {this.state.userType === "admin" || this.state.userType === "advisor" ?
+              <Route exact path="/mydelegates" component={() => <MyDelegates loggedIn={this.state.loggedIn} />} />
+              : 
+              <Route exact path="/mydelegates" component={() => <UnauthorizedPage {...this.state} />} />}
             }
             
             <Route component={() => <ErrorPage loggedIn={this.state.loggedIn} />} />

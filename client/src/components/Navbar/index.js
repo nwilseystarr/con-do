@@ -10,11 +10,39 @@ class Navbar extends Component {
     constructor() {
         super()
         this.logOut = this.logOut.bind(this)
+        this.state = {
+            userType: null
+        }
+        this.getUser = this.getUser.bind(this)
     }
     logOut = () => {
         API.logOut()
         window.location.assign("/")
     }
+
+    componentDidMount = () => {
+        this.getUser()
+    }
+
+    //getting the current user based on the session.user
+    getUser = () => {
+        API.getUser()
+            .then(res => {
+                if (res.status === 200) {
+                    this.setState({
+                        id: res.data.id,
+                        email: res.data.email,
+                        name: res.data.name,
+                        userType: res.data.userType,
+                        loggedIn: true,
+                        firstLog: res.data.firstLog,
+                        schoolId: res.data.schoolId,
+                        committeeId: res.data.committeeId
+                    });
+                }
+            });
+    }
+
     render() {
         return (
             <div>
@@ -37,8 +65,17 @@ class Navbar extends Component {
                                 <li className="nav-item mr-3">
                                     <a className="nav-link" href="/chat">Chat</a>
                                 </li>
+                                {/* Only render My Delegates Page for advisors*/}
+                                {this.state.userType === "advisor" ?
+                                    <li className="nav-item mr-3">
+                                        <a className="nav-link" href="/mydelegates">My Delegates</a>
+                                    </li>
+                                    :
+                                    <li></li>
+                                }
+                                {/* END Only render My Delegates Page for advisors*/}
                                 <li className="nav-item">
-                                    <button className="nav-link btn btn-outline-danger px-4 py-2" onClick={this.logOut}>Log Out</button>
+                                    <button className="nav-link btn btn-danger px-4 py-2 text-white" onClick={this.logOut}>Log Out</button>
                                 </li>
                             </ul>
                         </div>
@@ -63,7 +100,7 @@ class Navbar extends Component {
                                         to="features"
                                         smooth={true}
                                         spy={true}
-                                        offset={-90}
+                                        offset={-120}
                                         duration={500}
                                     >
                                         Features
@@ -76,15 +113,12 @@ class Navbar extends Component {
                                         to="aboutus"
                                         smooth={true}
                                         spy={true}
-                                        offset={-90}
+                                        offset={-80}
                                         duration={500}
                                     >
                                         About Us
                                     </Link>
                                 </li>
-                                {/* <li className="nav-item">
-                                    <a href="/howto" className="nav-link mr-3">How To</a>
-                                </li> */}
                                 <li className="nav-item">
                                     <Link
                                         className="nav-link mr-3"
@@ -92,14 +126,14 @@ class Navbar extends Component {
                                         activeClass="active-link"
                                         smooth={true}
                                         spy={true}
-                                        offset={-100}
+                                        offset={-130}
                                         duration={500}
                                     >
                                         Contact
                                     </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link btn btn-outline-danger px-4 py-2" href="/login" role="button">Log In</a>
+                                    <a className="nav-link btn btn-danger px-4 py-2 text-white" href="/login" role="button">Log In</a>
                                 </li>
                             </ul>
                         </div>
