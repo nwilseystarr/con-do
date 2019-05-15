@@ -3,7 +3,8 @@ import React, { Component } from "react";
 import Navbar from "../Navbar";
 import UserDashboard from "./user";
 import Schedule from "./schedule";
-import { scheduled } from "rxjs";
+// import { scheduled } from "rxjs";
+import "./style.css";
 
 class Dashboard extends Component {
     render() {
