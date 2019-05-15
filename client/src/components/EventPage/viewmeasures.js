@@ -13,7 +13,7 @@ class ViewMeasures extends Component {
       measures: []
     }
     const getMeasures = this.getMeasures.bind(this)
-    this.socket = io("localhost:3001")
+    this.socket = io("https://con-do.herokuapp.com/")
 
     this.socket.on("RECEIVE_MESSAGE", function(data){
       let eventId = data.eventId
