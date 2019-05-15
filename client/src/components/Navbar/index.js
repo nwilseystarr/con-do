@@ -34,6 +34,9 @@ class Navbar extends Component {
                                 <li className="nav-item mr-3">
                                     <a className="nav-link" href="/profile">Profile</a>
                                 </li>
+                                <li className="nav-item mr-3">
+                                    <a className="nav-link" href="/chat">Chat</a>
+                                </li>
                                 <li className="nav-item">
                                     <button className="nav-link btn btn-outline-danger px-4 py-2" onClick={this.logOut}>Log Out</button>
                                 </li>

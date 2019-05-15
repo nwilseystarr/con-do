@@ -4,7 +4,7 @@ import Navbar from "../Navbar";
 import API from "../../utils/API";
 import io from "socket.io-client";
 import ScrollToBottom from "react-scroll-to-bottom";
-// import "./style.css"
+import "./style.css";
 
 import { css } from "glamor";
 const ROOT_CSS = css({
@@ -22,19 +22,16 @@ class Chat extends Component {
             message: " ",
             messages: []
         }
-        this.socket = io("localhost:3001");
+        this.socket = io("https://con-do.herokuapp.com/");
 
         const addMessage = data => {
             console.log(data);
             this.setState({ messages: [...this.state.messages, data] });
-            // this.setState({ username: [...this.state.username, data] });
-            // console.log(this.state.messages);
-            // console.log(data);
         };
 
         const addUserName = data => {
             console.log(data);
-            this.setState({name: data.name});
+            this.setState({ name: data.name });
         };
 
 
@@ -106,29 +103,32 @@ class Chat extends Component {
     render() {
         return (
             <div className="container container-fluid mt-5 pt-5 vw-100">
-                <Navbar loggedIn={this.props.loggedIn} />
-                <ScrollToBottom className={ROOT_CSS}>
-                    <div className="messages-div" key={uuidv4} >
-                        {this.state.messages.map(message =>
-                            <div>
-                            <br></br>
-                            <div className="text-secondary">{message.name}</div>
-                            <div className="text-primary">{message.message}</div>
-                            </div>)}
-                    </div>
-                </ScrollToBottom>
-                <form className={ROOT_CSS}>
-                    <textarea wrap="hard" name="message" id="message" className="form-control" placeholder="Your message here" value={this.state.message} onChange={this.handleInputChange}
-                    // onKeyDown={this.onEnterPress} 
-                    />
-                    <button
-                        className="btn btn-outline-dark px-3 mt-2 mb-5"
-                        type="submit"
-                        onClick={this.handleFormSubmit}
-                    >
-                        Send Message
+                <div className="column">
+                    <div className="row justify-content-center">
+                        <Navbar loggedIn={this.props.loggedIn} />
+                        <ScrollToBottom className={ROOT_CSS}>
+                            <div className="messages-div" key={uuidv4} >
+                                {this.state.messages.map(message =>
+                                    <div className="speech-bubble my-4">
+                                        <div className="text-primary">{message.name}</div>
+                                        <div className="text-dark">{message.message}</div>
+                                    </div>)}
+                            </div>
+                        </ScrollToBottom>
+                        <form className={ROOT_CSS}>
+                            <textarea wrap="hard" name="message" id="message" className="form-control" placeholder="Your message here" value={this.state.message} onChange={this.handleInputChange}
+                            // onKeyDown={this.onEnterPress} 
+                            />
+                            <button
+                                className="btn btn-outline-dark px-3 mt-2 mb-5"
+                                type="submit"
+                                onClick={this.handleFormSubmit}
+                            >
+                                Send Message
                   </button>
-                </form >
+                        </form >
+                    </div>
+                </div>
             </div >
         )
     }
