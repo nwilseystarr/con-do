@@ -20,6 +20,7 @@ class CreateEvent extends Component {
       location: "",
       attendance: "",
       committee: "",
+      committeeAddInput: "",
       committeeOptions: [],
       updateMe: 0
     };
@@ -32,8 +33,10 @@ class CreateEvent extends Component {
 
   getOptions = () => {
     API.getCommittees().then(res => {
-      this.setState({ committeeOptions: res.data })
-    })
+      this.setState({
+        committeeOptions: res.data
+      });
+    });
   };
 
   handleSelect = (selected) => {
@@ -41,7 +44,7 @@ class CreateEvent extends Component {
     const value = selected.value
     this.setState({
       [name]: value
-    })
+    });
   };
 
   handleInputChange = event => {
@@ -80,15 +83,30 @@ class CreateEvent extends Component {
           committeeId: this.state.committee
         })
           .then(res => {
-            this.setState( (state)=>({updateMe: state.updateMe + 1}) )
+            this.setState((state) => ({ updateMe: state.updateMe + 1 }))
           });
       });
+  }
+
+  //handling submit for committee add
+  handleAddCommittee = event => {
+    event.preventDefault();
+    if (this.state.committeeAddInput) {
+      API.addCommittee({ name: this.state.committeeAddInput })
+        .then(res => {
+          // console.log(res);
+          this.setState({
+            committeeAddInput: ""
+          });
+          this.getOptions();
+        });
+    }
   }
 
   render() {
     return (
       <div>
-        <Navbar loggedIn={this.props.loggedIn}/>
+        <Navbar loggedIn={this.props.loggedIn} />
         {this.props.userType === "admin" || this.props.userType === "advisor" ?
           <div className="container mt-5 pt-5">
             <div className="row justify-content-around">
@@ -152,11 +170,37 @@ class CreateEvent extends Component {
                   </div>
                   <div className="form-group row input-group">
                     <label for="committeeSelect" className="col-lg-2 col-sm-4 col-form-label px-0 ml-3">Committee</label>
-                    <Select 
-                      name="committee" 
-                      id="committeeSelect" 
-                      options={this.state.committeeOptions} 
-                      handleSelect={this.handleSelect} />
+                    <Select
+                      name="committee"
+                      id="committeeSelect"
+                      options={this.state.committeeOptions}
+                      handleSelect={this.handleSelect}
+                    />
+                  </div>
+                  <div className="col mr-3">
+                    <label for="committeeAddInput" className="col-form-label px-0 ml-3">Add Committee</label>
+                    <div className="input-group">
+                      <input
+                        value={this.state.committeeAddInput}
+                        onChange={this.handleInputChange}
+                        name="committeeAddInput"
+                        placeholder="Committee Name"
+                        id="committeeAddInput"
+                        aria-label="Input group example" aria-describedby="addCommitteeBtn"
+                        className="form-control border-top-0 border-left-0 border-right-0 border-dark rounded-0 px-0 ml-3"
+                      />
+                      <div className="input-group-append">
+                        <button
+                          className="btn border-top-0 border-right-0 border-left-0 border-bottom border-dark rounded-0 px-1"
+                          type="submit"
+                          name="addCommittee"
+                          id="addCommitteeBtn"
+                          onClick={this.handleAddCommittee}
+                        >
+                          <i className="fas fa-plus-circle"></i>
+                        </button>
+                      </div>
+                    </div>
                   </div>
                   <button
                     className="btn btn-outline-dark px-3 mt-2 mb-5"
@@ -169,7 +213,7 @@ class CreateEvent extends Component {
                 </form>
               </div>
               <div className="col">
-                <AllSchedules key={this.state.updateMe}/>
+                <AllSchedules key={this.state.updateMe} />
               </div>
             </div>
           </div>

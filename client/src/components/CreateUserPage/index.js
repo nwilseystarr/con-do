@@ -44,7 +44,7 @@ class CreateUser extends Component {
         committeeOptions: res.data
       });
     });
-  }
+  };
 
   handleSelect = (selected) => {
     const name = selected.name;
@@ -52,7 +52,7 @@ class CreateUser extends Component {
     this.setState({
       [name]: value
     });
-  }
+  };
 
   handleInputChange = event => {
     const { name, value } = event.target;
