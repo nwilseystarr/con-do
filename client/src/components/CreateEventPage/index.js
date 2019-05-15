@@ -108,7 +108,7 @@ class CreateEvent extends Component {
       <div>
         <Navbar loggedIn={this.props.loggedIn} />
         {this.props.userType === "admin" || this.props.userType === "advisor" ?
-          <div className="container mt-5 pt-5">
+          <div className="container mt-3 pt-5">
             <div className="row justify-content-around">
               <div className="col-lg-8">
                 <h1 className="display-4 mb-4 mt-sm-5 text-center">Add New Event</h1>
@@ -138,10 +138,11 @@ class CreateEvent extends Component {
                   <div className="form-group row input-group">
                     <label for="startInput" className="col-lg-2 col-sm-4 col-form-label px-0 ml-3">Start Time</label>
                     <input
+                      type="time"
                       value={this.state.start}
                       onChange={this.handleInputChange}
                       name="start"
-                      placeholder="HH:MM"
+                      // placeholder="HH:MM"
                       className="col-lg-10 col-sm-8 form-control border-top-0 border-left-0 border-right-0 border-dark rounded-0 px-0 ml-3"
                       id="startInput"
                     />
@@ -149,10 +150,11 @@ class CreateEvent extends Component {
                   <div className="form-group row input-group">
                     <label for="endInput" className="col-lg-2 col-sm-4 col-form-label px-0 ml-3">End Time</label>
                     <input
+                      type="time"
                       value={this.state.end}
                       onChange={this.handleInputChange}
                       name="end"
-                      placeholder="HH:MM"
+                      // placeholder="HH:MM"
                       className="col-lg-10 col-sm-8 form-control border-top-0 border-left-0 border-right-0 border-dark rounded-0 px-0 ml-3"
                       id="endInput"
                     />
@@ -177,8 +179,8 @@ class CreateEvent extends Component {
                       handleSelect={this.handleSelect}
                     />
                   </div>
-                  <div className="col mr-3">
-                    <label for="committeeAddInput" className="col-form-label px-0 ml-3">Add Committee</label>
+                  <div className="form-group row input-group">
+                    <label for="committeeAddInput" className="col-lg-2 col-sm-4 col-form-label px-0 ml-3">Add Committee</label>
                     <div className="input-group">
                       <input
                         value={this.state.committeeAddInput}
@@ -203,7 +205,7 @@ class CreateEvent extends Component {
                     </div>
                   </div>
                   <button
-                    className="btn btn-outline-dark px-3 mt-2 mb-5"
+                    className="btn btn-dark px-3 mt-2 mb-5"
                     type="submit"
                     name="createEvent"
                     onClick={this.handleFormSubmit}
