@@ -70,7 +70,7 @@ class UserSearch extends Component {
                             filterAll: true
                     },
                     {
-                        Header: "Pofile Link",
+                        Header: "Profile Link",
                         id: "userLink",
                         accessor: user => <Link to={{ pathname: `/user/${user.id}` }}>View Detail</Link>
                   

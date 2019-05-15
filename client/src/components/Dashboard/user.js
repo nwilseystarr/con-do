@@ -27,7 +27,7 @@ class UserDashboard extends Component {
                 let schoolId = res.data.schoolId
                 console.log(schoolId)
                 let committeeId = res.data.committeeId
-                console.log(schoolId);
+                
                 API.getSchools()
                     .then(schoolRes => {
                         console.log(schoolRes)
@@ -35,7 +35,7 @@ class UserDashboard extends Component {
                             school: schoolRes.data.filter(sch => sch.id === schoolId)[0].name
                         });
                     });
-                console.log(committeeId);
+                
                 API.getCommittees()
                     .then(committeeRes => {
                         this.setState({
