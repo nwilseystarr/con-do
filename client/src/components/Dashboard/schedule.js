@@ -70,11 +70,15 @@ class Schedule extends Component {
 
         return (
             <div>
+                {this.state.array.length !==0 ?
                     <ReactTable
                         columns={columns}
                         minRows={0}
                         data={this.state.array}
                     />
+                :
+                <div/>
+                }
             </div>
         )
     }

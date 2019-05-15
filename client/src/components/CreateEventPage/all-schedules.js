@@ -81,11 +81,15 @@ class AllSchedules extends Component {
 
         return (
             <div>
+                {this.state.array ? 
                     <ReactTable
                         columns={columns}
                         minRows={0}
                         data={this.state.array}
                     />
+                :
+                <div/>
+                }
             </div>
         )
     }
