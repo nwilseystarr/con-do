@@ -9,7 +9,7 @@ class LandingPage extends Component {
     render() {
         return (
             <div>
-                <Navbar loggedIn={this.props.loggedIn}/>
+                <Navbar loggedIn={this.props.loggedIn} userType={this.props.userType}/>
                 <Carousel />
                 <FeatureCard />
                 <AboutPage />

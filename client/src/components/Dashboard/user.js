@@ -6,6 +6,13 @@ import "./style.css";
 class UserDashboard extends Component {
     constructor(props) {
         super(props);
+        this.state ={
+            name: "",
+            school: "",
+            committee: "",
+            country: "",
+            role: ""
+        }
     }
 
     componentDidMount() {

@@ -8,7 +8,7 @@ class Profile extends Component {
     render() {
         return(
             <div>
-                <Navbar loggedIn={this.props.loggedIn}/>
+                <Navbar loggedIn={this.props.loggedIn} userType={this.props.userType}/>
                 <div className="container-fluid mt-5 pt-5">
                     <div className="row">
                         <div className="col-lg-5 align-self-center">

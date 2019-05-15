@@ -217,7 +217,7 @@ class MeasureDetail extends Component {
         ]
         return(
         <div>
-            <Navbar loggedIn={this.props.loggedIn}/>
+            <Navbar loggedIn={this.props.loggedIn} userType={this.props.userType}/>
               <div className="container-fluid p-5">
                 <div className="row justify-content-center">
                     <div className="col-lg-10 mt-5">
