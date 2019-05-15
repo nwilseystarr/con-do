@@ -25,8 +25,9 @@ class UserSearch extends Component {
         })
         API.getMyDelegates()
             .then(res=>{
+                let usersTable = res.data.filter(user=> user.userType !== "advisor")
                 this.setState({
-                    users: res.data
+                    users: usersTable
                 })
             })
     } 
