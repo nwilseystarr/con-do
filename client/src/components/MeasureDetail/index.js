@@ -4,6 +4,7 @@ import Navbar from "../Navbar";
 import ReactTable from "react-table";
 import matchSorter from "match-sorter";
 import io from "socket.io-client";
+import "./style.css";
 const uuidv4 = require("uuid/v4");
 
 // let pullMeasureInterval;
@@ -229,35 +230,46 @@ class MeasureDetail extends Component {
         return (
             <div>
                 <Navbar loggedIn={this.props.loggedIn} />
-                <div className="container-fluid p-5">
+                <div className="container-fluid mt-5 pt-4">
                     <div className="row justify-content-center">
                         <div className="col-lg-10 mt-5">
-                            <h3>Measure: {this.state.name} for {this.state.committeeName} during {this.state.eventName}</h3>
+                            <h3 className="divTitle">Measure:</h3>
+                            <h1 className="display-4"><b>{this.state.name} for {this.state.committeeName} during {this.state.eventName}</b></h1>
                             {/* if the user is admin or staff, they can open up/ close voting */}
                             {this.props.userType === "admin" || this.props.userType === "staff" ?
                                 this.state.open ?
                                     <div>
-                                        <button onClick={this.closeVoting}>Close Voting</button>
+                                        <button className="btn btn-outline-dark mb-3" onClick={this.closeVoting}>Close Voting</button>
                                     </div>
                                     :
                                     <div>
-                                        <button onClick={this.openVoting}>Open Voting</button>
+                                        <h5 className="mb-2">Voting Is Closed!</h5>
+                                        <button className="btn btn-outline-dark mb-3" onClick={this.openVoting}>Open Voting</button>
                                     </div>
                                 :
                                 <div />
                             }
 
-                            {this.state.result ? <div>Passed!</div> : <div>Failed!</div>}
+                            {/* Measure Pass/Fail Result */}
+                            <div className="current-result mb-3">
+                                <span className="h5 text-muted">Current Status: </span>
+                                {this.state.result ?
+                                    <span className="h5 measure-pass">Passed!</span>
+                                    :
+                                    <span className="h5 measure-fail">Failed!</span>
+                                }
+                            </div>
+
+
                             {/* if voting is open, then the delegate can vote */}
                             {this.state.open ?
                                 <div>
-                                    <button onClick={this.castYes}>Vote Yes</button>
-                                    <button onClick={this.castNo}>Vote No</button>
+                                    <button className="btn btn-outline-success mr-2 mb-2 px-3" onClick={this.castYes}>Vote Yes <i className="far fa-thumbs-up"></i></button>
+                                    <button className="btn btn-outline-danger mb-2 px-3" onClick={this.castNo}>Vote No <i className="far fa-thumbs-down"></i></button>
                                 </div>
                                 :
                                 <div>
-                                    <h5>Voting Closed!</h5>
-                                    <button disabled>Vote Yes</button><button disabled>Vote No</button></div>}
+                                    <button className="btn btn-outline-secondary mr-2 mb-2 px-3" disabled>Vote Yes <i className="far fa-thumbs-up"></i></button><button className="btn btn-outline-secondary mb-2 px-3" disabled>Vote No <i className="far fa-thumbs-down"></i></button></div>}
                             <ReactTable data={this.state.voteTally} columns={columns} defaultPageSize={10} filterable
                                 defaultFilterMethod={(filter, row) => String(row[filter.id]) === filter.value} minRows={0}
                             />

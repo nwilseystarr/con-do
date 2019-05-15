@@ -1,0 +1,7 @@
+.measure-pass {
+    color: rgb(40,166,69);
+}
+
+.measure-fail {
+    color: rgb(220,53,69);
+}
