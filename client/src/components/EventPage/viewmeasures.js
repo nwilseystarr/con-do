@@ -13,7 +13,7 @@ class ViewMeasures extends Component {
       measures: []
     }
     const getMeasures = this.getMeasures.bind(this)
-    this.socket = io("localhost:3001")
+    this.socket = io("https://con-do.herokuapp.com/")
 
     this.socket.on("RECEIVE_MESSAGE", function(data){
       let eventId = data.eventId
@@ -80,9 +80,12 @@ class ViewMeasures extends Component {
     ]
       
         return (
-          <ReactTable data={this.state.measures} columns={columns} defaultPageSize={10} filterable
-          defaultFilterMethod={(filter, row) => String(row[filter.id]) === filter.value}  minRows={0} 
-          />
+          this.state.measures.length !==0 ?  
+            <ReactTable data={this.state.measures} columns={columns} defaultPageSize={10} filterable
+              defaultFilterMethod={(filter, row) => String(row[filter.id]) === filter.value}  minRows={0} 
+            />
+          :
+            <div/>   
         );
     }
 }

@@ -1,11 +1,20 @@
-/* .container{
-    height: 200px;
-    width: 50%;
-} */
+  .speech-bubble {
+	position: relative;
+	background: #f6f8fa;
+	border-radius: .4em;
+}
 
-/* .messages-div{
-    max-height: 300px;
-    width: 300px;
-    overflow: scroll;
-} */
-
+.speech-bubble:after {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 29px solid transparent;
+	border-right-color: #f6f8fa;
+	border-left: 0;
+	border-bottom: 0;
+	margin-top: -14.5px;
+	margin-left: -29px;
+}
