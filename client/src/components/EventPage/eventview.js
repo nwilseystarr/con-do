@@ -214,7 +214,7 @@ class Event extends Component {
                     // console.log(allSchools)
                     // console.log(attendance)
                     if(attendance.schoolId){
-                        return allSchools[attendance.schoolId -1].name
+                        return allSchools.filter(school => attendance.schoolId === school.id)[0].name
                     }
                     else{
                         return null

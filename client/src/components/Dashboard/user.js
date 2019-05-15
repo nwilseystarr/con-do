@@ -22,22 +22,24 @@ class UserDashboard extends Component {
         // console.log("getting user")
         API.getUser()
             .then(res =>{
-                this.setState({ id: res.data.id, name: res.data.name, country: res.data.country, school: res.data.school, role: res.data.school });
-                // const opts = {
-                //     type: 'image/jpeg',
-                //     rendererOpts: {
-                //     //   scale: 3,  
-                //       width: 300
-                //     }
-                //   }
-                // QRCode.toCanvas("" + res.data.id , opts, function(err, canvas){
-                //     if (err) throw (err)
-                    
-                //     let container = document.getElementById('userQR')
-                //     container.appendChild(canvas)
-                // })
-                // })
-                // .catch(err => console.log(err));
+                this.setState({ id: res.data.id, name: res.data.name, country: res.data.country,  role: res.data.userType });
+                console.log(res)
+                let schoolId = res.data.schoolId
+                console.log(schoolId)
+                let committeeId = res.data.committeeId
+                API.getSchools()
+                    .then(schoolRes=>{
+                        console.log(schoolRes)
+                        this.setState({
+                            school: schoolRes.data.filter(sch => sch.id === schoolId)[0].name
+                        })
+                    })
+                API.getCommittees()
+                    .then(committeeRes=>{
+                        this.setState({
+                            committee: committeeRes.data.filter(comm => comm.id === committeeId)[0].name
+                        })
+                    })
                 const opts = {
                     type: "image/png",
                   }
@@ -60,8 +62,11 @@ class UserDashboard extends Component {
             <div className="card mt-5 border-0 text-center">
                 <div className="card-body">
                     <h1 className="display-3">{this.state.name}</h1>
-                    <p className="h3">{this.state.country}</p>
-                    <p className="h5">{this.state.school}</p>
+                    <p className="h3">{this.state.role}</p>
+                    <p className="h3">{this.state.school}</p>
+                    <p className="h4">{this.state.committee}</p>
+                    <p className="h5">{this.state.country}</p>
+                    
                     <img id="image" style={imageStyle}/>
                 </div>
             </div>

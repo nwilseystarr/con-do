@@ -195,7 +195,7 @@ class MeasureDetail extends Component {
                 id: "countryName",
                 accessor: "country",
                 filterMethod: (filter, rows) =>
-                matchSorter(rows, filter.value, { keys: ["committeeName"] }),
+                matchSorter(rows, filter.value, { keys: ["countryName"] }),
                     filterAll: true,
             },
             {
@@ -210,7 +210,7 @@ class MeasureDetail extends Component {
                     }
                 },
                 filterMethod: (filter, rows) =>
-                matchSorter(rows, filter.value, { keys: ["committeeName"] }),
+                matchSorter(rows, filter.value, { keys: ["delegateVote"] }),
                     filterAll: true,
             }
 
