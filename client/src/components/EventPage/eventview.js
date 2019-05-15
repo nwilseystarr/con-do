@@ -270,9 +270,14 @@ class Event extends Component {
                     <div>
                         <CreateMeasure attendees={this.state.attendance} eventId={this.props.match.params.id}/>
                         <h4>Attendance</h4>
-                        <ReactTable data={this.state.attendance} columns={columns} defaultPageSize={10} filterable
+                        {this.state.allSchools.length !==0 && this.state.allCommittees.length !==0 && this.state.attendance.length !== 0 ?
+                            <ReactTable data={this.state.attendance} columns={columns} defaultPageSize={10} filterable
                             defaultFilterMethod={(filter, row) => String(row[filter.id]) === filter.value}  minRows={0} 
-                        />
+                            />
+                        :
+                        <div/>
+                        }
+                        
                     </div>
                 :
                     <div/>

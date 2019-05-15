@@ -79,9 +79,13 @@ class UserSearch extends Component {
           
         <div>
             {/* results will be displayed here */}
-                {/* {this.state.users.map((user)=> <UserRecord key={user.email} name={user.name}/>)} */}
-                <ReactTable data={this.state.users} columns={columns} filterable
-                    defaultFilterMethod={(filter, row) => String(row[filter.id]) === filter.value} minRows="10" defaultPageSize="10"/>
+                {this.state.allCommittees.length !==0 && this.state.users.length !== 0 ?
+                    <ReactTable data={this.state.users} columns={columns} filterable
+                        defaultFilterMethod={(filter, row) => String(row[filter.id]) === filter.value} minRows="10" defaultPageSize="10"
+                    />
+                :
+                    <div/>
+                }
             
         </div>
      
