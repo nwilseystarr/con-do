@@ -24,7 +24,6 @@ This app is deployed using Heroku.  Click <a href="https://con-do.herokuapp.com/
 <a href="https://www.npmjs.com/package/match-sorter">Match Sorter</a><br>
 <a href="https://nodejs.org/en/">Node.js</a><br>
 <a href="http://www.passportjs.org/">Passport</a><br>
-<a href="https://www.npmjs.com/package/passport-magic-link">Passport Magic Link</a><br>
 <a href="https://www.postgresql.org/">Postgres</a><br>
 <a href="https://www.npmjs.com/package/qrcode">QRCode</a><br>
 <a href="https://www.npmjs.com/package/react-router-dom">React Router Dom</a><br>
