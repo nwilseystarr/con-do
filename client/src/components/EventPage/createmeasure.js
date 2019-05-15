@@ -64,7 +64,7 @@ class CreateMeasure extends Component {
       });
     this.emit();
     window.location.reload();
-  }
+  };
 
 
   render() {
