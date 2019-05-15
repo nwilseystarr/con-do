@@ -207,13 +207,8 @@ class MeasureDetail extends Component {
                 id: "countryName",
                 accessor: "country",
                 filterMethod: (filter, rows) =>
-<<<<<<< HEAD
-                    matchSorter(rows, filter.value, { keys: ["committeeName"] }),
-                filterAll: true,
-=======
                 matchSorter(rows, filter.value, { keys: ["countryName"] }),
                     filterAll: true,
->>>>>>> c8c3cd915099d17f57da5b44ef044ca2b6197e1c
             },
             {
                 Header: "Votes",
@@ -227,20 +222,14 @@ class MeasureDetail extends Component {
                     }
                 },
                 filterMethod: (filter, rows) =>
-<<<<<<< HEAD
-                    matchSorter(rows, filter.value, { keys: ["committeeName"] }),
-                filterAll: true,
-=======
                 matchSorter(rows, filter.value, { keys: ["delegateVote"] }),
                     filterAll: true,
->>>>>>> c8c3cd915099d17f57da5b44ef044ca2b6197e1c
             }
         ];
 
-<<<<<<< HEAD
         return (
             <div>
-                <Navbar loggedIn={this.props.loggedIn} />
+                <Navbar loggedIn={this.props.loggedIn} userType={this.props.userType}/>
                 <div className="container-fluid mt-5 pt-4">
                     <div className="row justify-content-center">
                         <div className="col-lg-10 mt-5">
@@ -269,25 +258,6 @@ class MeasureDetail extends Component {
                                     :
                                     <span className="h5 measure-fail">Failed!</span>
                                 }
-=======
-        ]
-        return(
-        <div>
-            <Navbar loggedIn={this.props.loggedIn} userType={this.props.userType}/>
-              <div className="container-fluid p-5">
-                <div className="row justify-content-center">
-                    <div className="col-lg-10 mt-5">
-                    <h3>Measure: {this.state.name} for {this.state.committeeName} during {this.state.eventName}</h3>
-                    {/* if the user is admin or staff, they can open up/ close voting */}
-                    {this.props.userType === "admin" || this.props.userType === "staff" ? 
-                        this.state.open ? 
-                            <div>
-                                <button onClick={this.closeVoting}>Close Voting</button>
-                            </div>
-                        :
-                            <div>
-                                <button onClick={this.openVoting}>Open Voting</button>
->>>>>>> c8c3cd915099d17f57da5b44ef044ca2b6197e1c
                             </div>
 
 

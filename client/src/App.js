@@ -119,13 +119,8 @@ class App extends Component {
               <Route exact path="/createuser" component={() => <UnauthorizedPage {...this.state} />} />}
 
             {this.state.userType === "admin" || this.state.userType === "advisor" ?
-<<<<<<< HEAD
-              <Route exact path="/mydelegates" component={() => <MyDelegates loggedIn={this.state.loggedIn} />} />
-              :
-=======
               <Route exact path="/mydelegates" component={() => <MyDelegates {...this.state} />} />
               : 
->>>>>>> c8c3cd915099d17f57da5b44ef044ca2b6197e1c
               <Route exact path="/mydelegates" component={() => <UnauthorizedPage {...this.state} />} />}
             }
 
