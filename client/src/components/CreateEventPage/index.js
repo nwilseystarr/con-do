@@ -106,7 +106,7 @@ class CreateEvent extends Component {
   render() {
     return (
       <div>
-        <Navbar loggedIn={this.props.loggedIn} />
+        <Navbar loggedIn={this.props.loggedIn} userType={this.props.userType}/>
         {this.props.userType === "admin" || this.props.userType === "advisor" ?
           <div className="container-fluid mt-5 mb-3 pt-5">
             <div className="row justify-content-around">

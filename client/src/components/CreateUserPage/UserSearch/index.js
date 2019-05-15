@@ -19,14 +19,14 @@ class UserSearch extends Component {
     //get all the options when the component first mounts
     componentDidMount = () => {
         API.getSchools().then(res => {
-            this.setState({ 
-                allSchools: res.data 
+            this.setState({
+                allSchools: res.data
             });
         });
 
         API.getCommittees().then(res => {
-            this.setState({ 
-                allCommittees: res.data 
+            this.setState({
+                allCommittees: res.data
             });
         });
 
@@ -79,21 +79,19 @@ class UserSearch extends Component {
                     matchSorter(rows, filter.value, { keys: ["name"] }),
                 filterAll: true,
 
-            }, 
-            {
+            }, {
                 Header: "Email",
                 accessor: "email",
                 filterMethod: (filter, rows) =>
                     matchSorter(rows, filter.value, { keys: ["email"] }),
                 filterAll: true
-            }, 
-            {
+            }, {
                 Header: "School",
                 id: "schoolName",
                 accessor: user => {
                     // console.log(user)
                     if (user.schoolId) {
-                        return allSchools[user.schoolId - 1].name
+                        return allSchools.filter(school => user.schoolId === school.id)[0].name
                     }
                     else {
                         return null
@@ -101,14 +99,13 @@ class UserSearch extends Component {
                 }, filterMethod: (filter, rows) =>
                     matchSorter(rows, filter.value, { keys: ["schoolName"] }),
                 filterAll: true,
-            }, 
-            {
+            }, {
                 Header: "Committee",
                 id: "committeeName",
                 accessor: user => {
                     // console.log(user)
                     if (user.committeeId) {
-                        return allCommittees[user.committeeId - 1].name
+                        return allCommittees.filter(committee => user.committeeId === committee.id)[0].name
                     }
                     else {
                         return null
@@ -116,15 +113,13 @@ class UserSearch extends Component {
                 }, filterMethod: (filter, rows) =>
                     matchSorter(rows, filter.value, { keys: ["committeeName"] }),
                 filterAll: true,
-            }, 
-            {
+            }, {
                 Header: "Country",
                 accessor: "country",
                 filterMethod: (filter, rows) =>
                     matchSorter(rows, filter.value, { keys: ["country"] }),
                 filterAll: true
-            }, 
-            {
+            }, {
                 Header: "Role",
                 accessor: "userType",
                 filterMethod: (filter, rows) =>
@@ -149,7 +144,7 @@ class UserSearch extends Component {
                     <div />
                 }
             </div>
-        )
+        );
     }
 }
 

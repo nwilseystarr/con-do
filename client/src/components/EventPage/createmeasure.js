@@ -10,13 +10,12 @@ class CreateMeasure extends Component {
       name: "",
       measureType: ""
     };
-
-    this.socket = io("localhost:3001");
+    this.socket = io("https://con-do.herokuapp.com/");
     this.emit = ev => {
       this.socket.emit("SEND_MESSAGE", { eventId: this.props.eventId });
     };
   };
-
+  
   handleSelect = (selected) => {
     const name = selected.name;
     const value = selected.value;

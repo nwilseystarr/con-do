@@ -203,7 +203,7 @@ class CreateUser extends Component {
   render() {
     return (
       <div>
-        <Navbar loggedIn={this.props.loggedIn} />
+        <Navbar loggedIn={this.props.loggedIn} userType={this.props.userType}/>
 
         {/* For logged in admin/advisors, input fields for FULL NAME, EMAIL, & COUNTRY are available */}
         {this.props.userType === "admin" || this.props.userType === "advisor" ?

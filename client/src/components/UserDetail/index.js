@@ -99,7 +99,7 @@ class UserDetail extends Component {
 
         return(
             <div>
-                <Navbar loggedIn={this.props.loggedIn}/>
+                <Navbar loggedIn={this.props.loggedIn} userType={this.props.userType}/>
                 <div className="card mt-5 border-0 text-center">
                 <div className="card-body">
                     <h1 className="display-3">{this.state.name}</h1>

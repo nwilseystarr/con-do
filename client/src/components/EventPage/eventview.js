@@ -225,8 +225,8 @@ class Event extends Component {
                 accessor: attendance => {
                     // console.log(allSchools)
                     // console.log(attendance)
-                    if (attendance.schoolId) {
-                        return allSchools[attendance.schoolId - 1].name
+                    if(attendance.schoolId){
+                        return allSchools.filter(school => attendance.schoolId === school.id)[0].name
                     }
                     else {
                         return null
