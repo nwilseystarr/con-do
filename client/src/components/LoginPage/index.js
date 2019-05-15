@@ -58,7 +58,7 @@ class Login extends Component {
     render() {
         return (
             <div>
-                <Navbar />
+                <Navbar loggedIn={this.props.loggedIn} userType={this.props.userType}/>
                 <div className="container-fluid mt-5 pt-3 mb-5">
                     <LoginJumbotron />
                     <div className="row justify-content-center">

@@ -16,7 +16,7 @@ class UpdatePasswordPage extends Component {
     render(){
         return(
         <div>
-            <Navbar loggedIn={this.props.loggedIn}/>
+            <Navbar loggedIn={this.props.loggedIn} userType={this.props.userType}/>
               <div className="container-fluid">
                 <div className="row justify-content-center">
                     <div className="col-lg-6 text-center mt-5">

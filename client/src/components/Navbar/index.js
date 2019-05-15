@@ -10,37 +10,12 @@ class Navbar extends Component {
     constructor() {
         super()
         this.logOut = this.logOut.bind(this)
-        this.state = {
-            userType: null
-        }
-        this.getUser = this.getUser.bind(this)
     }
     logOut = () => {
         API.logOut()
         window.location.assign("/")
     }
-
     componentDidMount = () => {
-        this.getUser()
-    }
-
-    //getting the current user based on the session.user
-    getUser = () => {
-        API.getUser()
-            .then(res => {
-                if (res.status === 200) {
-                    this.setState({
-                        id: res.data.id,
-                        email: res.data.email,
-                        name: res.data.name,
-                        userType: res.data.userType,
-                        loggedIn: true,
-                        firstLog: res.data.firstLog,
-                        schoolId: res.data.schoolId,
-                        committeeId: res.data.committeeId
-                    });
-                }
-            });
     }
 
     render() {
@@ -66,7 +41,7 @@ class Navbar extends Component {
                                     <a className="nav-link" href="/chat">Chat</a>
                                 </li>
                                 {/* Only render My Delegates Page for advisors*/}
-                                {this.state.userType === "advisor" ?
+                                {this.props.userType === "advisor" || this.props.userType ==="admin" ?
                                     <li className="nav-item mr-3">
                                         <a className="nav-link" href="/mydelegates">My Delegates</a>
                                     </li>

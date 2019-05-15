@@ -10,7 +10,7 @@ class CreateMeasure extends Component {
       name: "",
       measureType: "resolution"
     }
-    this.socket = io("localhost:3001");
+    this.socket = io("https://con-do.herokuapp.com/");
     this.emit = ev =>{
       this.socket.emit("SEND_MESSAGE", {eventId: this.props.eventId});
   }

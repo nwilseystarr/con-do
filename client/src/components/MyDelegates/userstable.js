@@ -54,7 +54,7 @@ class UserSearch extends Component {
                         accessor: user => {
                             // console.log(user)
                             if(user.committeeId){
-                                return allCommittees[user.committeeId -1].name
+                                return allCommittees.filter(committee => user.committeeId === committee.id)[0].name
                             }
                             else{
                                 return null

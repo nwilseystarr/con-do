@@ -83,7 +83,7 @@ class UserSearch extends Component {
                         accessor: user => {
                             // console.log(user)
                             if(user.schoolId){
-                                return allSchools[user.schoolId -1].name
+                                return allSchools.filter(school => user.schoolId === school.id)[0].name
                             }
                             else{
                                 return null
@@ -97,7 +97,7 @@ class UserSearch extends Component {
                         accessor: user => {
                             // console.log(user)
                             if(user.committeeId){
-                                return allCommittees[user.committeeId -1].name
+                                return allCommittees.filter(committee => user.committeeId === committee.id)[0].name
                             }
                             else{
                                 return null

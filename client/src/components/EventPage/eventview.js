@@ -214,7 +214,7 @@ class Event extends Component {
                     // console.log(allSchools)
                     // console.log(attendance)
                     if(attendance.schoolId){
-                        return allSchools[attendance.schoolId -1].name
+                        return allSchools.filter(school => attendance.schoolId === school.id)[0].name
                     }
                     else{
                         return null
@@ -237,7 +237,7 @@ class Event extends Component {
             {/* if the user is and admin, advisor, or has a committeeId that matches the event, then they can access the page */}
             {this.props.userType === "admin" || this.props.userType === "advisor" || this.props.committeeId === this.state.committeeId ?
             <div>
-            <Navbar loggedIn={this.props.loggedIn}/>
+            <Navbar loggedIn={this.props.loggedIn} userType={this.props.userType}/>
             <div className="container-fluid p-5">
             <div className="row justify-content-center">
                 <div className="col-lg-3 mt-5">

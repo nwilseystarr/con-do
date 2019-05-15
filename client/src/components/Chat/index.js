@@ -104,7 +104,7 @@ class Chat extends Component {
     render() {
         return (
             <div>
-                <Navbar loggedIn={this.props.loggedIn} />
+                <Navbar loggedIn={this.props.loggedIn} userType={this.props.userType}/>
                 <div className="container-fluid mt-5 pt-5 vw-100 mx-auto">
                     <div className="row justify-content-center">
                         <div className="col">
