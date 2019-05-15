@@ -3,7 +3,8 @@ import React, { Component } from "react";
 import Navbar from "../Navbar";
 import UserDashboard from "./user";
 import Schedule from "./schedule";
-import { scheduled } from "rxjs";
+// import { scheduled } from "rxjs";
+import "./style.css";
 
 class Dashboard extends Component {
     render() {
@@ -13,7 +14,7 @@ class Dashboard extends Component {
                 <div className="container-fluid mt-5 pt-5">
                     <div className="row">
                         <div className="col-lg-5 align-self-center">
-                            <UserDashboard />
+                            <UserDashboard {...this.props} />
                         </div>
                         <div className="col-lg-7 align-self-center mt-5">
                             <div className="container-fluid">

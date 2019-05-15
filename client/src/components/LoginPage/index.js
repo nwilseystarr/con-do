@@ -59,7 +59,7 @@ class Login extends Component {
         return (
             <div>
                 <Navbar />
-                <div className="container mt-5 pt-3">
+                <div className="container-fluid mt-5 pt-3 mb-5">
                     <LoginJumbotron />
                     <div className="row justify-content-center">
                         <div className="col-lg-6">
@@ -90,7 +90,7 @@ class Login extends Component {
                                         placeholder="Password (required)"
                                     />
                                 </div>
-                                <button className="btn btn-outline-dark px-3"
+                                <button className="btn btn-dark px-5"
                                     type="submit"
                                     name="login"
                                     onClick={this.handleFormSubmit}
