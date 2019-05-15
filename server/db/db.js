@@ -5,7 +5,7 @@ const databaseName = "condo_db";
 
 //intializes db
 const db = new Sequelize(
-  process.env.DATABASE_URL || `postgres://root:password@localhost:5432/${databaseName}`,
+  process.env.DATABASE_URL || `postgres://postgres:password@localhost:5432/${databaseName}`,
   {
     logging: false
   }

@@ -23,8 +23,8 @@ import Chat from "./components/Chat";
 
 class App extends Component {
   //the users information will be passed to the compenent via it's state
-  constructor() {
-    super()
+  constructor(props) {
+    super(props);
     this.state = {
       id: null,
       loggedIn: false,
@@ -35,19 +35,21 @@ class App extends Component {
       schoolId: null,
       committeeId: null
     }
-    this.getUser = this.getUser.bind(this)
-    this.componentDidMount = this.componentDidMount.bind(this)
-    this.updateUser = this.updateUser.bind(this)
+    this.getUser = this.getUser.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
+    this.updateUser = this.updateUser.bind(this);
   }
-  //when our compenent succesfully renders, we will try to get the information 
+  //when our component succesfully renders, we will try to get the information 
   //for the currently logged in user
   componentDidMount = () => {
-    this.getUser()
-  }
+    this.getUser();
+  };
+
   //function to be called when the user first logs in
   updateUser = (userObject) => {
-    this.setState(userObject)
-  }
+    this.setState(userObject);
+  };
+
   //getting the current user based on the session.user
   getUser = () => {
     API.getUser()
@@ -66,7 +68,9 @@ class App extends Component {
         }
       });
   }
+
   render() {
+    //declare userProps here to pass to all compononents
     let userProps = {
       userId: this.state.id,
       email: this.state.email,
@@ -76,6 +80,7 @@ class App extends Component {
       schoolId: this.state.schoolId,
       committeeId: this.state.committeeId
     }
+
     return (
       //if this is the user's first time logging in, they will need to update their password before
       //goin anywhere else
@@ -104,21 +109,21 @@ class App extends Component {
 
             {/* admin and advisor only routes. If the user is not one of these, they will be given an unauthorized page */}
             {this.state.userType === "admin" || this.state.userType === "advisor" ?
-                <Route exact path="/createevent" component={() => <CreateEvent {...this.state} />} />
+              <Route exact path="/createevent" component={() => <CreateEvent {...this.state} />} />
               :
-                <Route exact path="/createevent" component={() => <UnauthorizedPage {...this.state} />} />
+              <Route exact path="/createevent" component={() => <UnauthorizedPage {...this.state} />} />
             }
             {this.state.userType === "admin" || this.state.userType === "advisor" ?
-                <Route exact path="/createuser" component={() => <CreateUser {...this.state} />} />
+              <Route exact path="/createuser" component={() => <CreateUser {...this.state} />} />
               :
-                <Route exact path="/createuser" component={() => <UnauthorizedPage {...this.state} />} />}
-            
+              <Route exact path="/createuser" component={() => <UnauthorizedPage {...this.state} />} />}
+
             {this.state.userType === "admin" || this.state.userType === "advisor" ?
               <Route exact path="/mydelegates" component={() => <MyDelegates {...this.state} />} />
               : 
               <Route exact path="/mydelegates" component={() => <UnauthorizedPage {...this.state} />} />}
             }
-            
+
             <Route component={() => <ErrorPage loggedIn={this.state.loggedIn} />} />
 
           </Switch> :
@@ -131,8 +136,8 @@ class App extends Component {
               <Route component={() => <UnauthorizedPage {...this.state} />} />
             </Switch>
           }
-
-        </Router>);
+        </Router>
+    );
   }
 }
 

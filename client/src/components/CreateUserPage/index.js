@@ -85,19 +85,19 @@ class CreateUser extends Component {
               name: "",
               userType: "delegate",
               country: "",
-            })
+            });
             //find all events that belong to the committee the new user belongs to
             API.getEventsByCommitteeId(userRes.data.committeeId)
-              .then(eventsRes =>{
+              .then(eventsRes => {
                 //store those events in an array
-                let eventsArray = [...eventsRes.data]
+                let eventsArray = [...eventsRes.data];
                 //for each event in that array
-                eventsArray.forEach( event =>{
+                eventsArray.forEach(event => {
                   //get it's attendance array
-                  let currentAttend = event.attendance
+                  let currentAttend = event.attendance;
                   //add the new users attendance record the the attendance array
                   currentAttend.push({
-                    id: userRes.data.id, 
+                    id: userRes.data.id,
                     name: userRes.data.name,
                     email: userRes.data.email,
                     country: userRes.data.country,
@@ -108,14 +108,14 @@ class CreateUser extends Component {
                     checkedIn: false,
                     createdAt: "2019-05-07T21:14:42.120Z",
                     updatedAt: "2019-05-07T21:14:42.120Z",
-                    committeeId: userRes.data.committeeId    
+                    committeeId: userRes.data.committeeId
                   })
-                  let toSendAtt = {attendance: currentAttend}
+                  let toSendAtt = { attendance: currentAttend };
                   //push this new attendance array to the event's attendance column
-                  API.addUserToAttendance(event.id, toSendAtt)
-                  this.setState( (state)=>({updateMe: state.updateMe + 1}) )
-                })
-              })
+                  API.addUserToAttendance(event.id, toSendAtt);
+                  this.setState((state) => ({ updateMe: state.updateMe + 1 }));
+                });
+              });
           });
       }
       //if an advisor is creating the account, the will only submit certain values, the rest will be resolved in the route
@@ -126,52 +126,50 @@ class CreateUser extends Component {
           country: this.state.country,
           committeeId: this.state.committee
         })
-        .then(userRes => {
-          // console.log(userRes)
-          this.setState({
-            recentName: userRes.data.name,
-            recentEmail: userRes.data.email,
-            email: "",
-            name: "",
-            userType: "delegate",
-            country: "",
-          })
-          //find all events that belong to the committee the new user belongs to
-          API.getEventsByCommitteeId(userRes.data.committeeId)
-            .then(eventsRes =>{
-              //store those events in an array
-              let eventsArray = [...eventsRes.data]
-              //for each event in that array
-              eventsArray.forEach( event =>{
-                //get it's attendance array
-                let currentAttend = event.attendance
-                //add the new users attendance record the the attendance array
-                currentAttend.push({
-                  id: userRes.data.id, 
-                  name: userRes.data.name,
-                  email: userRes.data.email,
-                  country: userRes.data.country,
-                  firstLog: userRes.data.firstLog,
-                  password: "$2a$10$D31bHm9Cvnd6vx0mjoU8u.1yFQvO5Ezi3jQat1yzWYnKJnVci5waW",
-                  schoolId: userRes.data.schoolId,
-                  userType: userRes.data.userType,
-                  checkedIn: false,
-                  createdAt: "2019-05-07T21:14:42.120Z",
-                  updatedAt: "2019-05-07T21:14:42.120Z",
-                  committeeId: userRes.data.committeeId    
-                })
-                let toSendAtt = {attendance: currentAttend}
-                //push this new attendance array to the event's attendance column
-                API.addUserToAttendance(event.id, toSendAtt)
-                 this.setState( (state)=>({updateMe: state.updateMe + 1}) )
-              })
-            })
-        });
+          .then(userRes => {
+            // console.log(userRes)
+            this.setState({
+              recentName: userRes.data.name,
+              recentEmail: userRes.data.email,
+              email: "",
+              name: "",
+              userType: "delegate",
+              country: "",
+            });
+            //find all events that belong to the committee the new user belongs to
+            API.getEventsByCommitteeId(userRes.data.committeeId)
+              .then(eventsRes => {
+                //store those events in an array
+                let eventsArray = [...eventsRes.data];
+                //for each event in that array
+                eventsArray.forEach(event => {
+                  //get it's attendance array
+                  let currentAttend = event.attendance;
+                  //add the new users attendance record the the attendance array
+                  currentAttend.push({
+                    id: userRes.data.id,
+                    name: userRes.data.name,
+                    email: userRes.data.email,
+                    country: userRes.data.country,
+                    firstLog: userRes.data.firstLog,
+                    password: "$2a$10$D31bHm9Cvnd6vx0mjoU8u.1yFQvO5Ezi3jQat1yzWYnKJnVci5waW",
+                    schoolId: userRes.data.schoolId,
+                    userType: userRes.data.userType,
+                    checkedIn: false,
+                    createdAt: "2019-05-07T21:14:42.120Z",
+                    updatedAt: "2019-05-07T21:14:42.120Z",
+                    committeeId: userRes.data.committeeId
+                  })
+                  let toSendAtt = { attendance: currentAttend };
+                  //push this new attendance array to the event's attendance column
+                  API.addUserToAttendance(event.id, toSendAtt);
+                  this.setState((state) => ({ updateMe: state.updateMe + 1 }));
+                });
+              });
+          });
       }
-     
     }
-
-  }
+  };
 
   //handling submit for committee add
   handleAddCommittee = event => {
@@ -186,10 +184,10 @@ class CreateUser extends Component {
           this.getOptions();
         });
     }
-  }
+  };
 
   handleAddSchool = event => {
-    event.preventDefault()
+    event.preventDefault();
     if (this.state.schoolAddInput) {
       API.addSchool({ name: this.state.schoolAddInput })
         .then(res => {
@@ -198,9 +196,9 @@ class CreateUser extends Component {
             schoolAddInput: ""
           });
           this.getOptions();
-        })
+        });
     }
-  }
+  };
 
   render() {
     return (
@@ -209,10 +207,10 @@ class CreateUser extends Component {
 
         {/* For logged in admin/advisors, input fields for FULL NAME, EMAIL, & COUNTRY are available */}
         {this.props.userType === "admin" || this.props.userType === "advisor" ?
-          <div className="container mt-5 pt-5 createUserContainer">
+          <div className="container-fluid mt-5 pt-5 createUserContainer">
             <div className="row justify-content-around">
-              <div className="col-lg-8">
-                <h1 className="display-4 mb-4 mt-sm-3 text-center">Add New User</h1>
+              <div className="col border-right border-secondary">
+                <h1 className="display-4 mb-4">Add New User</h1>
                 <div>
                   {this.state.recentEmail !== "" ? <p>Account Created for {this.state.recentName}, email sent to {this.state.recentEmail}</p> : <div />}
                 </div>
@@ -400,7 +398,7 @@ class CreateUser extends Component {
                     </form>
                   }
                   <button
-                    className="btn btn-outline-dark px-3 mt-2 mb-5"
+                    className="btn btn-dark px-3 mt-2 mb-5"
                     type="submit"
                     name="createDelegate"
                     onClick={this.handleFormSubmit}
@@ -408,10 +406,11 @@ class CreateUser extends Component {
                     Add User
                   </button>
                 </form>
-                  
+
               </div>
-              <div className="col-lg-12">
-                <UserSearch key={this.state.updateMe} userType={this.props.userType} schoolId={this.props.schoolId} id={this.props.id}/>
+              <div className="col mb-5">
+                <h1 className="display-4 mb-4 pb-3">Search Users</h1>
+                <UserSearch key={this.state.updateMe} userType={this.props.userType} schoolId={this.props.schoolId} id={this.props.id} />
               </div>
             </div>
           </div>

@@ -27,9 +27,9 @@ class UnauthorizedPage extends Component {
         return (
             <div>
             <Navbar loggedIn={this.props.loggedIn} userType={this.props.userType}/>
-            <div className="container">
+            <div className="container mt-5 pt-5">
                 <div className="row">
-                    <div className="col text-center mt-5">
+                    <div className="col text-center">
                     {this.state.renderError ?  <div><h1>401</h1> <h3>Not Authorized</h3></div>: <Loading/>}
                     </div>
                 </div>

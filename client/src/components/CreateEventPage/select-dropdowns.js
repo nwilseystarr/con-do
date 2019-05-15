@@ -43,7 +43,7 @@ class Select extends Component {
     render() {
         return (
             <select
-                className="col-lg-10 col-sm-8 form-control border-top-2 border-left-2 border-right-2 border-dark rounded-0 px-0 ml-3"
+                className="col-lg-10 col-sm-8 form-control border-top-2 border-left-2 border-right-2 border-dark rounded-0 px-0"
                 value={this.state.value}
                 name={this.props.name}
                 onChange={this.handleInputChange}>

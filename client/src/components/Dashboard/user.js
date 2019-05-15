@@ -6,7 +6,7 @@ import "./style.css";
 class UserDashboard extends Component {
     constructor(props) {
         super(props);
-        this.state ={
+        this.state = {
             name: "",
             school: "",
             committee: "",
@@ -21,38 +21,40 @@ class UserDashboard extends Component {
 
     getUserInfo = () => {
         API.getUser()
-            .then(res =>{
-                this.setState({ id: res.data.id, name: res.data.name, country: res.data.country,  role: res.data.userType });
+            .then(res => {
+                this.setState({ id: res.data.id, name: res.data.name, country: res.data.country, role: res.data.userType });
                 console.log(res)
                 let schoolId = res.data.schoolId
                 console.log(schoolId)
                 let committeeId = res.data.committeeId
+                
                 API.getSchools()
-                    .then(schoolRes=>{
+                    .then(schoolRes => {
                         console.log(schoolRes)
                         this.setState({
                             school: schoolRes.data.filter(sch => sch.id === schoolId)[0].name
-                        })
-                    })
+                        });
+                    });
+                
                 API.getCommittees()
-                    .then(committeeRes=>{
+                    .then(committeeRes => {
                         this.setState({
                             committee: committeeRes.data.filter(comm => comm.id === committeeId)[0].name
-                        })
-                    })
+                        });
+                    });
+
                 const opts = {
                     type: "image/png",
-                  }
-                   
-                  QRCode.toDataURL(" "+ res.data.id, opts, function (err, url) {
-                    if (err) throw err
-                   
-                    let img = document.getElementById("image")
-                    img.src = url
-                  })
-            })     
+                };
 
-    }
+                QRCode.toDataURL(" " + res.data.id, opts, function (err, url) {
+                    if (err) throw err
+
+                    let img = document.getElementById("image");
+                    img.src = url;
+                });
+            });
+    };
 
     render() {
         let imageStyle = {
@@ -66,8 +68,8 @@ class UserDashboard extends Component {
                     <p className="h3">{this.state.school}</p>
                     <p className="h4">{this.state.committee}</p>
                     <p className="h5">{this.state.country}</p>
-                    
-                    <img id="image" style={imageStyle}/>
+
+                    <img id="image" style={imageStyle} />
                 </div>
             </div>
         );
