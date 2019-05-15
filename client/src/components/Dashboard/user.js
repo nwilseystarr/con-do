@@ -13,8 +13,6 @@ class UserDashboard extends Component {
     }
 
     getUserInfo = () => {
-<<<<<<< HEAD
-        // console.log("getting user")
         API.getUser()
             .then(res =>{
                 this.setState({ id: res.data.id, name: res.data.name, country: res.data.country,  role: res.data.userType });
@@ -46,19 +44,6 @@ class UserDashboard extends Component {
                     img.src = url
                   })
             })     
-=======
-
-        const opts = {
-            type: "image/png",
-        }
-
-        QRCode.toDataURL(" " + this.props.id, opts, function (err, url) {
-            if (err) throw err
-
-            let img = document.getElementById("image")
-            img.src = url
-        })
->>>>>>> cdca4404663413fc0689382ede19e4a9e198d5a9
 
     }
 
@@ -69,7 +54,6 @@ class UserDashboard extends Component {
         return (
             <div className="card mt-5 border-0 text-center">
                 <div className="card-body">
-<<<<<<< HEAD
                     <h1 className="display-3">{this.state.name}</h1>
                     <p className="h3">{this.state.role}</p>
                     <p className="h3">{this.state.school}</p>
@@ -77,11 +61,6 @@ class UserDashboard extends Component {
                     <p className="h5">{this.state.country}</p>
                     
                     <img id="image" style={imageStyle}/>
-=======
-                    <h1 className="display-4 user-name">{this.props.name}</h1>
-                    <h3 className="user-type">{this.props.userType}</h3>
-                    <img id="image" style={imageStyle} />
->>>>>>> cdca4404663413fc0689382ede19e4a9e198d5a9
                 </div>
             </div>
         );
