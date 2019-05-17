@@ -74,7 +74,7 @@ class CreateEvent extends Component {
         fieldValidationErrors.name = nameValid ? '' : ' is too short!';
         break;
       case "date":
-        dateValid = value.match(/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/);
+        dateValid = value.match(/(0[1-9]|1[012])[- \/.](0[1-9]|[12][0-9]|3[01])[- \/.](19|20)\d\d/);
         fieldValidationErrors.date = dateValid ? '' : ' is not formatted correctly!';
         break;
       case "location":

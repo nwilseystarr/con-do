@@ -66,7 +66,10 @@ class Schedule extends Component {
             }, {
                 id: "eventLink",
                 Header: "Event Link",
-                accessor: event => <Link to={{ pathname: `/event/${event.id}` }}>View Detail</Link>
+                accessor: event => {if (event.committeeId !== 1000) {
+                    return <Link to={{ pathname: `/event/${event.id}` }}>View Detail</Link>}
+                }
+                    
             }
         ]
 
