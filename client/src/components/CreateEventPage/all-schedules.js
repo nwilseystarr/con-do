@@ -17,7 +17,8 @@ class AllSchedules extends Component {
             location: "",
             date: "",
             start: "",
-            end: ""
+            end: "",
+            pageSize: 10
         }
         this.getEvents.bind(this);
     };
@@ -86,6 +87,8 @@ class AllSchedules extends Component {
                         columns={columns}
                         minRows={0}
                         data={this.state.array}
+                        pageSize={this.state.pageSize}
+                        onPageSizeChange={(pageSize, pageIndex) => {this.setState({pageSize: pageSize})}}  
                     />
                 :
                 <div/>

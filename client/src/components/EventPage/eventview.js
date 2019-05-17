@@ -24,7 +24,8 @@ class Event extends Component {
             recentlyCheckedIn: "",
             committeeId: "",
             allSchools: [],
-            allCommittees: []
+            allCommittees: [],
+            pageSize: 10
         };
 
         this.getEvent.bind(this);
@@ -250,7 +251,7 @@ class Event extends Component {
                 {/* if the user is and admin, advisor, or has a committeeId that matches the event, then they can access the page */}
                 {this.props.userType === "admin" || this.props.userType === "advisor" || this.props.committeeId === this.state.committeeId ?
                     <div>
-                        <Navbar loggedIn={this.props.loggedIn} />
+                        <Navbar loggedIn={this.props.loggedIn} userType={this.props.userType}/>
                         <div className="container-fluid mt-5 pt-4">
                             <div className="row justify-content-center">
                                 <div className="col-lg-3 mt-5">
@@ -302,6 +303,8 @@ class Event extends Component {
                                         {this.state.allSchools.length !== 0 && this.state.allCommittees.length !== 0 && this.state.attendance.length !== 0 ?
                                             <ReactTable data={this.state.attendance} columns={columns} defaultPageSize={10} filterable
                                                 defaultFilterMethod={(filter, row) => String(row[filter.id]) === filter.value} minRows={0}
+                                                pageSize={this.state.pageSize}
+                                                onPageSizeChange={(pageSize, pageIndex) => {this.setState({pageSize: pageSize})}}  
                                             />
                                             :
                                             <div></div>

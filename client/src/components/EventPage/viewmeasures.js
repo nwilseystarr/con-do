@@ -10,7 +10,8 @@ class ViewMeasures extends Component {
   constructor(){
     super()
     this.state = {
-      measures: []
+      measures: [],
+      pageSize: 10
     }
     const getMeasures = this.getMeasures.bind(this)
     this.socket = io("https://con-do.herokuapp.com/")
@@ -85,7 +86,9 @@ class ViewMeasures extends Component {
         return (
           this.state.measures.length !==0 ?  
             <ReactTable data={this.state.measures} columns={columns} defaultPageSize={10} filterable
-              defaultFilterMethod={(filter, row) => String(row[filter.id]) === filter.value}  minRows={0} 
+              defaultFilterMethod={(filter, row) => String(row[filter.id]) === filter.value}  minRows={0}
+              pageSize={this.state.pageSize}
+              onPageSizeChange={(pageSize, pageIndex) => {this.setState({pageSize: pageSize})}}  
             />
           :
             <div/>   

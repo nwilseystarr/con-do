@@ -23,7 +23,8 @@ class MeasureDetail extends Component {
             open: "",
             allSchools: "",
             eventName: "",
-            committeeName: ""
+            committeeName: "",
+            pageSize: 10
         };
 
         const getMeasure = this.getMeasure.bind(this);
@@ -82,10 +83,12 @@ class MeasureDetail extends Component {
                                     //if affirmative votes are more than half the votes, then the measure passed
                                     if (affirmative > (this.state.voteTally.length / 2)) {
                                         API.updateMeasure(this.state.id, { result: true });
+                                        this.setState({result: res.data.result})
                                     }
                                     //otherwise it failed
                                     else {
                                         API.updateMeasure(this.state.id, { result: false });
+                                        this.setState({result: res.data.result})
                                     }
                                 }
                             });
@@ -272,6 +275,8 @@ class MeasureDetail extends Component {
                                     <button className="btn btn-outline-secondary mr-2 mb-2 px-3" disabled>Vote Yes <i className="far fa-thumbs-up"></i></button><button className="btn btn-outline-secondary mb-2 px-3" disabled>Vote No <i className="far fa-thumbs-down"></i></button></div>}
                             <ReactTable data={this.state.voteTally} columns={columns} defaultPageSize={10} filterable
                                 defaultFilterMethod={(filter, row) => String(row[filter.id]) === filter.value} minRows={0}
+                                pageSize={this.state.pageSize}
+                                onPageSizeChange={(pageSize, pageIndex) => {this.setState({pageSize: pageSize})}}  
                             />
                         </div>
                     </div>

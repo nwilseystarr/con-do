@@ -12,7 +12,8 @@ class UserSearch extends Component {
         this.state = {
             users: [],
             allSchools: [],
-            allCommittees: []
+            allCommittees: [],
+            pageSize: 10
         };
     };
 
@@ -139,7 +140,8 @@ class UserSearch extends Component {
                 {/* results will be displayed here */}
                 {this.state.allSchools.length !== 0 && this.state.allCommittees.length !== 0 && this.state.users.length !== 0 ?
                     <ReactTable data={this.state.users} columns={columns} filterable
-                        defaultFilterMethod={(filter, row) => String(row[filter.id]) === filter.value} minRows="10" defaultPageSize="10" />
+                        defaultFilterMethod={(filter, row) => String(row[filter.id]) === filter.value}  defaultPageSize="10" pageSize={this.state.pageSize} 
+                        onPageSizeChange={(pageSize, pageIndex) => {this.setState({pageSize: pageSize})}} />
                     :
                     <div />
                 }
