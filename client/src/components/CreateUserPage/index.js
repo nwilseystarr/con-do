@@ -66,7 +66,8 @@ class CreateUser extends Component {
     const { name, value } = event.target;
     this.setState({
       [name]: value
-    });
+    },
+    () => { this.validateField(name, value) });
   };
 
   // Client-side Form Validation
@@ -146,13 +147,9 @@ class CreateUser extends Component {
                     name: userRes.data.name,
                     email: userRes.data.email,
                     country: userRes.data.country,
-                    firstLog: userRes.data.firstLog,
-                    password: "$2a$10$D31bHm9Cvnd6vx0mjoU8u.1yFQvO5Ezi3jQat1yzWYnKJnVci5waW",
                     schoolId: userRes.data.schoolId,
                     userType: userRes.data.userType,
                     checkedIn: false,
-                    createdAt: "2019-05-07T21:14:42.120Z",
-                    updatedAt: "2019-05-07T21:14:42.120Z",
                     committeeId: userRes.data.committeeId
                   })
                   let toSendAtt = { attendance: currentAttend };
