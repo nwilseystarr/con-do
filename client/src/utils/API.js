@@ -85,6 +85,7 @@ export default {
         return axios.get("/api/events/my")
     },
     getEventById: function (id) {
+        console.log(id);
         return axios.get("/api/events/" + id)
     },
     getEventsByCommitteeId: function (committeeId) {

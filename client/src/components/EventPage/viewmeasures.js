@@ -21,12 +21,15 @@ class ViewMeasures extends Component {
       
   })
   }
+
   componentDidMount = ()=>{
     this.getMeasures(this.props.eventId)
   }
+
   componentWillUnmount = ()=>{
     // clearInterval(pullEventsInterval)
   }
+  
   getMeasures = (eventId) =>{
     //pull all measures for the current event
     API.getMeasuresByEvent(eventId)
