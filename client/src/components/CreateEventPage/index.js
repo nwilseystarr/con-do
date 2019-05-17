@@ -4,7 +4,7 @@ import API from "../../utils/API";
 import Select from "./select-dropdowns";
 import Navbar from "../Navbar";
 import AllSchedules from "./all-schedules";
-import FormErrors from "../FormErrors";
+import FormErrors from "../form-errors";
 import "./style.css";
 
 class CreateEvent extends Component {

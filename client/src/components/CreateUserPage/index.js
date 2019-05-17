@@ -4,7 +4,7 @@ import API from "../../utils/API";
 import Select from "./select-dropdowns";
 import UserSearch from "./UserSearch"
 import Navbar from "../Navbar";
-import FormErrors from "../FormErrors";
+import FormErrors from "../form-errors";
 
 class CreateUser extends Component {
   //the signup state keeps track of all of the input fields in the signup form
