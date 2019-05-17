@@ -4,6 +4,7 @@ import API from "../../utils/API";
 import Select from "./select-dropdowns";
 import UserSearch from "./UserSearch"
 import Navbar from "../Navbar";
+import FormErrors from "../form-errors";
 
 class CreateUser extends Component {
   //the signup state keeps track of all of the input fields in the signup form
@@ -23,8 +24,15 @@ class CreateUser extends Component {
       recentEmail: "",
       committeeAddInput: "",
       schoolAddInput: "",
-      updateMe: 0
+      updateMe: 0,
+      formErrors: { name: "", email: "", country: "" },
+      nameValid: false,
+      emailValid: false,
+      countryValid: false,
+      formValid: false
     };
+
+    this.validateForm.bind(this);
   }
 
   //get all the options when the component first mounts
@@ -60,6 +68,43 @@ class CreateUser extends Component {
       [name]: value
     });
   };
+
+  // Client-side Form Validation
+  validateField(fieldName, value) {
+    let fieldValidationErrors = this.state.formErrors;
+    let nameValid = this.state.nameValid;
+    let emailValid = this.state.emailValid;
+    let countryValid = this.state.countryValid;
+
+    switch (fieldName) {
+      case "name":
+        nameValid = value.length >= 2;
+        fieldValidationErrors.name = nameValid ? '' : ' is too short!';
+        break;
+      case "email":
+        emailValid = value.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
+        fieldValidationErrors.email = emailValid ? '' : ' please enter a valid email!';
+        break;
+      case "country":
+        countryValid = value.length >=2;
+        fieldValidationErrors.country = countryValid ? '' : ' is too short!';
+        break;
+      default:
+        break;
+    }
+
+    this.setState({
+      formErrors: fieldValidationErrors,
+      nameValid: nameValid,
+      emailValid: emailValid,
+      countryValid: countryValid
+    }, this.validateForm);
+
+  }
+
+  validateForm() {
+    this.setState({ formValid: this.state.nameValid && this.state.emailValid && this.state.countryValid });
+  }
 
   //on submit we attempt to create a new user with the given values via the API that hits a route that queries our database
   handleFormSubmit = event => {
@@ -214,9 +259,12 @@ class CreateUser extends Component {
                 <div>
                   {this.state.recentEmail !== "" ? <p>Account Created for {this.state.recentName}, email sent to {this.state.recentEmail}</p> : <div />}
                 </div>
+                <div className="panel panel-default">
+                  <FormErrors formErrors={this.state.formErrors} />
+                </div>
                 <form>
                   <div className="form-group row input-group">
-                    <label for="nameInput" className="col-lg-2 col-sm-4 col-form-label px-0 ml-3">Full Name</label>
+                    <label htmlFor="nameInput" className="col-lg-2 col-sm-4 col-form-label px-0 ml-3">Full Name</label>
                     <input
                       value={this.state.name}
                       onChange={this.handleInputChange}
@@ -227,7 +275,7 @@ class CreateUser extends Component {
                     />
                   </div>
                   <div className="form-group row input-group">
-                    <label for="emailInput" className="col-lg-2 col-sm-4 col-form-label px-0 ml-3">Email</label>
+                    <label htmlFor="emailInput" className="col-lg-2 col-sm-4 col-form-label px-0 ml-3">Email</label>
                     <input
                       value={this.state.email}
                       onChange={this.handleInputChange}
@@ -238,7 +286,7 @@ class CreateUser extends Component {
                     />
                   </div>
                   <div className="form-group row input-group">
-                    <label for="countryInput" className="col-lg-2 col-sm-4 col-form-label px-0 ml-3">Country</label>
+                    <label htmlFor="countryInput" className="col-lg-2 col-sm-4 col-form-label px-0 ml-3">Country</label>
                     <input
                       value={this.state.country}
                       onChange={this.handleInputChange}
@@ -253,7 +301,7 @@ class CreateUser extends Component {
                   {/* if the user is an admin, they can choose the user type of the user they are creating, otherwise they will create a delegate */}
                   {this.props.userType === "admin" ?
                     <div class="form-group row input-group">
-                      <label for="userTypeSelect" className="col-lg-2 col-sm-4 col-form-label px-0 ml-3">User Type</label>
+                      <label htmlFor="userTypeSelect" className="col-lg-2 col-sm-4 col-form-label px-0 ml-3">User Type</label>
                       <select className="col-lg-10 col-sm-8 form-control border-dark rounded-0 px-0 ml-3" value={this.state.userType} onChange={this.handleInputChange} name="userType">
                         <option value="admin">Admin</option>
                         <option value="advisor">Advisor</option>
@@ -273,7 +321,7 @@ class CreateUser extends Component {
                       <form>
                         <div className="form-row align-items-center mb-3">
                           <div className="col">
-                            <label for="committeeSelect" className="col-form-label px-0">Committee</label>
+                            <label htmlFor="committeeSelect" className="col-form-label px-0">Committee</label>
                             <Select
                               name="committee"
                               id="committeeSelect"
@@ -282,7 +330,7 @@ class CreateUser extends Component {
                             />
                           </div>
                           <div className="col mr-3">
-                            <label for="committeeAddInput" className="col-form-label px-0 ml-3">Add Committee</label>
+                            <label htmlFor="committeeAddInput" className="col-form-label px-0 ml-3">Add Committee</label>
                             <div className="input-group">
                               <input
                                 value={this.state.committeeAddInput}
@@ -315,7 +363,7 @@ class CreateUser extends Component {
                             {/* if the user is an admin here's where they would choose the school that they just added OR select from db already for the user they are creating */}
                             {this.props.userType === "admin" ?
                               <div>
-                                <label for="schoolSelect" className="col-lg-2 col-sm-4 col-form-label px-0">School</label>
+                                <label htmlFor="schoolSelect" className="col-lg-2 col-sm-4 col-form-label px-0">School</label>
                                 <Select
                                   name="school"
                                   id="schoolSelect"
@@ -329,7 +377,7 @@ class CreateUser extends Component {
                             }
                           </div>
                           <div className="col mr-3">
-                            <label for="schoolAddInput" className="col-form-label px-0 ml-3">Add School</label>
+                            <label htmlFor="schoolAddInput" className="col-form-label px-0 ml-3">Add School</label>
                             <div className="input-group">
                               <input
                                 value={this.state.schoolAddInput}
@@ -361,7 +409,7 @@ class CreateUser extends Component {
                     <form>
                       <div className="form-row align-items-center mb-3">
                         <div className="col">
-                          <label for="committeeSelect" className="col-form-label px-0">Committee</label>
+                          <label htmlFor="committeeSelect" className="col-form-label px-0">Committee</label>
                           <Select
                             name="committee"
                             id="committeeSelect"
@@ -370,7 +418,7 @@ class CreateUser extends Component {
                           />
                         </div>
                         <div className="col mr-3">
-                          <label for="committeeAddInput" className="col-form-label px-0 ml-3">Add Committee</label>
+                          <label htmlFor="committeeAddInput" className="col-form-label px-0 ml-3">Add Committee</label>
                           <div className="input-group">
                             <input
                               value={this.state.committeeAddInput}
@@ -401,6 +449,7 @@ class CreateUser extends Component {
                     className="btn btn-dark px-3 mt-2 mb-5"
                     type="submit"
                     name="createDelegate"
+                    disabled={!this.state.formValid}
                     onClick={this.handleFormSubmit}
                   >
                     Add User

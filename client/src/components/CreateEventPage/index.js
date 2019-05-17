@@ -4,7 +4,7 @@ import API from "../../utils/API";
 import Select from "./select-dropdowns";
 import Navbar from "../Navbar";
 import AllSchedules from "./all-schedules";
-import FormErrors from "../FormErrors";
+import FormErrors from "../form-errors";
 import "./style.css";
 
 class CreateEvent extends Component {
@@ -24,7 +24,7 @@ class CreateEvent extends Component {
       committeeAddInput: "",
       committeeOptions: [],
       updateMe: 0,
-      formErrors: { name: "", date: "" },
+      formErrors: { name: "", date: "", location: "" },
       nameValid: false,
       dateValid: false,
       locationValid: false,
@@ -71,15 +71,16 @@ class CreateEvent extends Component {
     switch (fieldName) {
       case "name":
         nameValid = value.length >= 2;
-        fieldValidationErrors.name = nameValid ? '' : ' is too short';
+        fieldValidationErrors.name = nameValid ? '' : ' is too short!';
         break;
       case "date":
         dateValid = value.match(/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/);
-        fieldValidationErrors.date = dateValid ? '' : ' is not formatted correctly';
+        fieldValidationErrors.date = dateValid ? '' : ' is not formatted correctly!';
         break;
       case "location":
         locationValid = value.length >=2;
-        fieldValidationErrors.location = locationValid ? '' : ' is too short';
+        fieldValidationErrors.location = locationValid ? '' : ' is too short!';
+        break;
       default:
         break;
     }
@@ -159,7 +160,7 @@ class CreateEvent extends Component {
                   <FormErrors formErrors={this.state.formErrors} />
                 </div>
                 <form>
-                  <div className={`form-group row input-group ${this.errorClass(this.state.formErrors.name)}`}>
+                  <div className="form-group row input-group">
                     <label htmlFor="nameInput" className="col-lg-2 col-sm-4 col-form-label px-0 ml-3">Event Title</label>
                     <input
                       value={this.state.name}

@@ -226,7 +226,7 @@ class Event extends Component {
                 accessor: attendance => {
                     // console.log(allSchools)
                     // console.log(attendance)
-                    if(attendance.schoolId){
+                    if (attendance.schoolId) {
                         return allSchools.filter(school => attendance.schoolId === school.id)[0].name
                     }
                     else {
@@ -262,20 +262,23 @@ class Event extends Component {
                                         {/* checked in status of the current user */}
                                         <div className="btnDiv">
                                             {!this.state.checkedIn ?
-                                                <button className="btn btn-outline-danger btn-block mb-2" onClick={this.checkInButton}>Check In</button>
+                                                <div className="h5 mb-2 notChecked-status" onClick={this.checkInButton}>Not Checked In <i className="fas fa-times"></i></div>
                                                 :
-                                                <button className="btn btn-outline-secondary btn-block" disabled={true}>Checked In</button>
+                                                <div className="h5 mb-2 checkedIn-status" disabled={true}>Checked In <i className="fas fa-check"></i></div>
                                             }
 
                                             {/*if the user is not a delegate, then they can check in other users  */}
                                             {this.props.userType === "admin" || this.props.userType === "advisor" || this.props.userType === "staff" ?
                                                 <div>
                                                     <Webcam checkIn={this.checkIn} />
-                                                    <div>{this.state.recentlyCheckedIn}</div>
+                                                    <div className="checkedin-msg h6">{this.state.recentlyCheckedIn}</div>
                                                 </div>
                                                 :
                                                 <div></div>
                                             }
+
+                                            <button className="btn btn-outline-danger btn-block mt-2" onClick={() => window.location.reload()}>Stop Check In</button>
+                                            
                                         </div>
                                     </div>
                                 </div>

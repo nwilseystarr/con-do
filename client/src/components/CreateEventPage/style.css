@@ -1,3 +1,7 @@
 .col-form-label {
     font-weight: bold;
 }
+
+.panel-default {
+    color: rgb(220,53,69);
+}
