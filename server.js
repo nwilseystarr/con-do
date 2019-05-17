@@ -115,16 +115,16 @@ io.on('connection', (socket) => {
 });
 
 
-db.sync({ force: false }).then(function () {
-  // models.School.create({name: "None"})
-  // models.Committee.create({name: "None"})
-  // models.User.create(admin).catch(err=> console.log(err))
-  // models.User.create(advisor).catch(err=> console.log(err))
-  // models.User.create(staff).catch(err=> console.log(err))
-  // models.User.create(delegate).catch(err=> console.log(err))
-  // models.User.create(delegate2).catch(err=> console.log(err))
-  // models.User.create(delegate3).catch(err=> console.log(err))
-  // models.User.create(delegate4).catch(err=> console.log(err))
+db.sync({ force: true }).then(function () {
+  models.School.create({name: "None"})
+  models.Committee.create({name: "None"})
+  models.User.create(admin).catch(err=> console.log(err))
+  models.User.create(advisor).catch(err=> console.log(err))
+  models.User.create(staff).catch(err=> console.log(err))
+  models.User.create(delegate).catch(err=> console.log(err))
+  models.User.create(delegate2).catch(err=> console.log(err))
+  models.User.create(delegate3).catch(err=> console.log(err))
+  models.User.create(delegate4).catch(err=> console.log(err))
 });
 
 // Send every request to the React app
