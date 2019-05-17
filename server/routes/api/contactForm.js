@@ -1,7 +1,7 @@
 const db = require("../../db/models");
 const router = require("express").Router();
 
-// /api/contact/
+// /api/contactForm/
 router.route("/")
     .post(function (req, res) {
         db.Contact.create(req.body)
