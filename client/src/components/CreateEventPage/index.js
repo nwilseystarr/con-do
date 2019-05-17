@@ -71,15 +71,15 @@ class CreateEvent extends Component {
     switch (fieldName) {
       case "name":
         nameValid = value.length >= 2;
-        fieldValidationErrors.name = nameValid ? '' : ' is too short';
+        fieldValidationErrors.name = nameValid ? '' : ' is too short!';
         break;
       case "date":
         dateValid = value.match(/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/);
-        fieldValidationErrors.date = dateValid ? '' : ' is not formatted correctly';
+        fieldValidationErrors.date = dateValid ? '' : ' is not formatted correctly!';
         break;
       case "location":
         locationValid = value.length >=2;
-        fieldValidationErrors.location = locationValid ? '' : ' is too short';
+        fieldValidationErrors.location = locationValid ? '' : ' is too short!';
         break;
       default:
         break;

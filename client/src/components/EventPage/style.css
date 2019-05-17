@@ -26,3 +26,15 @@
 	font-weight: 600;
 	color: rgba(147, 147, 149, 0.76);
 }
+
+.checkedin-msg {
+	color: rgb(220,53,69); 
+}
+
+.notChecked-status {
+	color: rgb(220,53,69);
+}
+
+.checkedIn-status {
+	color: rgb(40,166,69);
+}
