@@ -28,11 +28,12 @@ class ContactForm extends Component {
             subject: this.state.subject,
             message: this.state.message
         });
+        //reset the form to blank
         this.setState({
-            name: this.state.name,
-            email: this.state.email,
-            subject: this.state.subject,
-            message: this.state.message
+            name: "",
+            email: "",
+            subject: "",
+            message: ""
         });
     }
 

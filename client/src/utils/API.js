@@ -138,16 +138,16 @@ export default {
         },
 
     //Chat Axios Calls
-         getMessage: function (message) {
+        getMessage: function (message) {
             return axios.get("/api/chat/", message)
-         },
-         postMessage: function (message) {
-          return axios.post("/api/chat/", message)
-          },
+        },
+        postMessage: function (message) {
+            return axios.post("/api/chat/", message)
+        },
 
     //Contact Form Axios Calls
-         postContactForm: function (name, email, subject, message) {
-        return axios.post("/api/contactForm/", name, email, subject, message)
-         },
+        postContactForm: function (name, email, subject, message) {
+            return axios.post("/api/contactForm/", name, email, subject, message)
+        },
 }
 
