@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import API from "../../utils/API";
 import "./style.css";
 
 class ContactForm extends Component {
@@ -21,6 +22,13 @@ class ContactForm extends Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
+        API.postContactForm({
+            name: this.state.name,
+            email: this.state.email,
+            subject: this.state.subject,
+            message: this.state.message
+        });
+        //reset the form to blank
         this.setState({
             name: "",
             email: "",

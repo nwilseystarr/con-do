@@ -116,11 +116,11 @@ export default {
         },
 
 
-    //Schedules 
-    getScheduleByUser: function (id) {
-        return axios.get("api/events/my", id)
-    },
-    //Measures
+    //Schedules Axios Calls
+        getScheduleByUser: function (id) {
+            return axios.get("api/events/my", id)
+        },
+    //Measures Axios Calls
         //Create
         createMeasure: function (measureData) {
             return axios.post("/api/measures/", measureData)
@@ -137,12 +137,17 @@ export default {
             return axios.put("/api/measures/" + measureId, measureBody)
         },
 
-    //Chat 
-    getMessage: function (message) {
-        return axios.get("/api/chat/", message)
-    },
-    postMessage: function (message) {
-        return axios.post("/api/chat/", message)
-    },
+    //Chat Axios Calls
+        getMessage: function (message) {
+            return axios.get("/api/chat/", message)
+        },
+        postMessage: function (message) {
+            return axios.post("/api/chat/", message)
+        },
+
+    //Contact Form Axios Calls
+        postContactForm: function (name, email, subject, message) {
+            return axios.post("/api/contactForm/", name, email, subject, message)
+        },
 }
 
