@@ -3,7 +3,8 @@ import { Redirect } from "react-router-dom";
 import API from "../../utils/API";
 import Select from "./select-dropdowns";
 import Navbar from "../Navbar";
-import AllSchedules from "./all-schedules"
+import AllSchedules from "./all-schedules";
+import FormErrors from "../FormErrors";
 import "./style.css";
 
 class CreateEvent extends Component {
@@ -22,8 +23,15 @@ class CreateEvent extends Component {
       committee: "",
       committeeAddInput: "",
       committeeOptions: [],
-      updateMe: 0
+      updateMe: 0,
+      formErrors: { name: "", date: "" },
+      nameValid: false,
+      dateValid: false,
+      locationValid: false,
+      formValid: false
     };
+
+    this.validateForm.bind(this);
   };
 
   //get all the options when the component first mounts
@@ -49,10 +57,45 @@ class CreateEvent extends Component {
 
   handleInputChange = event => {
     const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
+    this.setState({ [name]: value },
+      () => { this.validateField(name, value) });
   };
+
+  // Client-side Form Validation
+  validateField(fieldName, value) {
+    let fieldValidationErrors = this.state.formErrors;
+    let nameValid = this.state.nameValid;
+    let dateValid = this.state.dateValid;
+    let locationValid = this.state.locationValid;
+
+    switch (fieldName) {
+      case "name":
+        nameValid = value.length >= 2;
+        fieldValidationErrors.name = nameValid ? '' : ' is too short';
+        break;
+      case "date":
+        dateValid = value.match(/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/);
+        fieldValidationErrors.date = dateValid ? '' : ' is not formatted correctly';
+        break;
+      case "location":
+        locationValid = value.length >=2;
+        fieldValidationErrors.location = locationValid ? '' : ' is too short';
+      default:
+        break;
+    }
+
+    this.setState({
+      formErrors: fieldValidationErrors,
+      nameValid: nameValid,
+      dateValid: dateValid,
+      locationValid: locationValid
+    }, this.validateForm);
+
+  }
+
+  validateForm() {
+    this.setState({ formValid: this.state.nameValid && this.state.dateValid && this.state.locationValid });
+  }
 
   //on submit we attempt to create a new event with the given values via the API that hits a route that queries our database
   handleFormSubmit = event => {
@@ -106,15 +149,18 @@ class CreateEvent extends Component {
   render() {
     return (
       <div>
-        <Navbar loggedIn={this.props.loggedIn} userType={this.props.userType}/>
+        <Navbar loggedIn={this.props.loggedIn} userType={this.props.userType} />
         {this.props.userType === "admin" || this.props.userType === "advisor" ?
           <div className="container-fluid mt-5 mb-3 pt-5">
             <div className="row justify-content-around">
               <div className="col mt-4 border-right border-secondary">
                 <h1 className="display-4 mb-4">Add New Event</h1>
+                <div className="panel panel-default">
+                  <FormErrors formErrors={this.state.formErrors} />
+                </div>
                 <form>
-                  <div className="form-group row input-group">
-                    <label for="nameInput" className="col-lg-2 col-sm-4 col-form-label px-0 ml-3">Event Title</label>
+                  <div className={`form-group row input-group ${this.errorClass(this.state.formErrors.name)}`}>
+                    <label htmlFor="nameInput" className="col-lg-2 col-sm-4 col-form-label px-0 ml-3">Event Title</label>
                     <input
                       value={this.state.name}
                       onChange={this.handleInputChange}
@@ -125,7 +171,7 @@ class CreateEvent extends Component {
                     />
                   </div>
                   <div className="form-group row input-group">
-                    <label for="dateInput" className="col-lg-2 col-sm-4 col-form-label px-0 ml-3">Date</label>
+                    <label htmlFor="dateInput" className="col-lg-2 col-sm-4 col-form-label px-0 ml-3">Date</label>
                     <input
                       value={this.state.date}
                       onChange={this.handleInputChange}
@@ -136,7 +182,7 @@ class CreateEvent extends Component {
                     />
                   </div>
                   <div className="form-group row input-group">
-                    <label for="startInput" className="col-lg-2 col-sm-4 col-form-label px-0 ml-3">Start Time</label>
+                    <label htmlFor="startInput" className="col-lg-2 col-sm-4 col-form-label px-0 ml-3">Start Time</label>
                     <input
                       type="time"
                       value={this.state.start}
@@ -148,7 +194,7 @@ class CreateEvent extends Component {
                     />
                   </div>
                   <div className="form-group row input-group">
-                    <label for="endInput" className="col-lg-2 col-sm-4 col-form-label px-0 ml-3">End Time</label>
+                    <label htmlFor="endInput" className="col-lg-2 col-sm-4 col-form-label px-0 ml-3">End Time</label>
                     <input
                       type="time"
                       value={this.state.end}
@@ -160,7 +206,7 @@ class CreateEvent extends Component {
                     />
                   </div>
                   <div className="form-group row input-group">
-                    <label for="locationInput" className="col-lg-2 col-sm-4 col-form-label px-0 ml-3">Location</label>
+                    <label htmlFor="locationInput" className="col-lg-2 col-sm-4 col-form-label px-0 ml-3">Location</label>
                     <input
                       value={this.state.location}
                       onChange={this.handleInputChange}
@@ -172,7 +218,7 @@ class CreateEvent extends Component {
                   </div>
                   <div className="form-row align-items-center mb-3">
                     <div className="col">
-                      <label for="committeeSelect" className="col-form-label px-0">Committee</label>
+                      <label htmlFor="committeeSelect" className="col-form-label px-0">Committee</label>
                       <Select
                         className="ml-0"
                         name="committee"
@@ -182,7 +228,7 @@ class CreateEvent extends Component {
                       />
                     </div>
                     <div className="col mr-3">
-                      <label for="committeeAddInput" className="col-form-label px-0 ml-3">Add Committee</label>
+                      <label htmlFor="committeeAddInput" className="col-form-label px-0 ml-3">Add Committee</label>
                       <div className="input-group">
                         <input
                           value={this.state.committeeAddInput}
@@ -212,6 +258,7 @@ class CreateEvent extends Component {
                     className="btn btn-dark px-3 mt-2 mb-5"
                     type="submit"
                     name="createEvent"
+                    disabled={!this.state.formValid}
                     onClick={this.handleFormSubmit}
                   >
                     Add Event
