@@ -60,7 +60,7 @@ class AllSchedules extends Component {
             },
             {
                 id:"date",
-                Header: "date",
+                Header: "Date",
                 accessor: "date"
             },
             {
