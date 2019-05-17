@@ -1,6 +1,7 @@
 const db = require("../../db/models");
 const router = require("express").Router();
 
+// /api/chat/
 router.route("/")
     .get(function (req, res) {
         db.Chat.findAll({})

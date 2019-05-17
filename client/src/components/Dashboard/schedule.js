@@ -18,7 +18,8 @@ class Schedule extends Component {
             committee: "",
             date: "",
             start: "",
-            end: ""
+            end: "",
+            pageSize: 10
         }
         this.getSchedule.bind(this);
     };
@@ -81,6 +82,8 @@ class Schedule extends Component {
                         columns={columns}
                         minRows={0}
                         data={this.state.array}
+                        pageSize={this.state.pageSize}
+                        onPageSizeChange={(pageSize, pageIndex) => {this.setState({pageSize: pageSize})}}  
                     />
                 :
                 <div/>
