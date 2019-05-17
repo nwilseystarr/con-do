@@ -14,7 +14,8 @@ class UserSearch extends Component {
     super(props)
     this.state = {
       users: [],
-      allCommittees: [] 
+      allCommittees: [],
+      pageSize: 10
     }
   }
     
@@ -83,6 +84,8 @@ class UserSearch extends Component {
                 {this.state.allCommittees.length !==0 && this.state.users.length !== 0 ?
                     <ReactTable data={this.state.users} columns={columns} filterable
                         defaultFilterMethod={(filter, row) => String(row[filter.id]) === filter.value} minRows="10" defaultPageSize="10"
+                        pageSize={this.state.pageSize}
+                        onPageSizeChange={(pageSize, pageIndex) => {this.setState({pageSize: pageSize})}}  
                     />
                 :
                     <div/>

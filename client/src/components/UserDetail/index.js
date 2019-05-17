@@ -13,6 +13,7 @@ class UserDetail extends Component {
             name: "",
             country: "",
             school: "",
+            pageSize: 10
         };
     };
 
@@ -116,6 +117,9 @@ class UserDetail extends Component {
                                 columns={columns}
                                 minRows={0}
                                 data={this.state.userEvents}
+                                pageSize={this.state.pageSize}
+                                defaultPageSize="10"
+                                onPageSizeChange={(pageSize, pageIndex) => {this.setState({pageSize: pageSize})}}  
                             />
                             :
                             <div />

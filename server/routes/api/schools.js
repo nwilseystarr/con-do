@@ -3,16 +3,20 @@ const router = require("express").Router();
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op
 
+// /api/schools/
 router.route("/")
+    //get all schools
     .get(function(req, res){
         db.School.findAll({})
             .then(schoolData => {
                 res.send(schoolData)
             })
     })
+
+// /api/schools/queried/:query
 router.route("/queried/:query")
     .get(function(req, res){
-        // console.log(req.params.query)
+        //find all schools with a name similar to the query and return their ids
         db.School.findAll({
             attributes: ["id"],
             where: {
@@ -22,22 +26,25 @@ router.route("/queried/:query")
             }
         })
         .then(queriedSchools =>{
-            // console.log(queriedSchools)
+            
             res.send(queriedSchools)
         })
     })
+// /api/schools/:name
 router.route("/:name")
     .get(function(req, res){
+        //find a school with an exactly matching name
         db.School.findOne({
             where:{
                 name: req.params.name
             }
         }).then(schoolData => {
-            // console.log("school" + schoolData)
             res.send(schoolData) 
         });
     })
+// /api/schools/add
 router.route("/add")
+    //add a new school
     .post(function (req, res) {
         if (req.user.userType === "admin") {
             db.School.create(req.body)

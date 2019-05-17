@@ -29,7 +29,9 @@ router.route("/")
         })
         .catch(err=> console.log(err.name + " " + err.message));
     })
+// /api/users/all
 router.route("/all")
+    //get all users
     .get(function(req, res){
         db.User
         .findAll({attributes: {exclude: ["password"]},})
@@ -37,9 +39,10 @@ router.route("/all")
             res.send(usersData)
         })
     })
+// /api/users/querybyname/:query
 router.route("/querybyname/:query")
+    //get all users with  a name similar to the query
     .get(function(req, res){
-        // console.log(req.params.query)
         db.User.findAll({
             attributes: {exclude: ["password"]},
             where: {
@@ -49,10 +52,10 @@ router.route("/querybyname/:query")
             }
         })
         .then(queriedUsers =>{
-            // console.log(queriedUsers)
             res.send(queriedUsers)
         })
     })
+// /api/users/querybycommittee/:query find all users with a matching committeeId
 router.route("/querybycommittee/:query")
     .get(function(req,res){
         db.User.findAll({
@@ -66,7 +69,9 @@ router.route("/querybycommittee/:query")
             res.send(queriedUsers)
         })
     })
+// /api/querybyschool/:query
 router.route("/querybyschool/:query")
+    //find all schools with a matching schoolid
     .get(function(req,res){
         db.User.findAll({
             attributes: {exclude: ["password"]},
@@ -127,7 +132,9 @@ router.route("/login")
         let userInfo = req.user
         res.send(userInfo);
     })
+// /api/users/login/:token
 router.route("/login/:token")
+    //attempt to login a user with their json web token
     .get(function(req, res){
         var decoded = JWT.verify(req.params.token, process.env.JWT_SECRET || "chocolate-chip-cookies");
         // console.log("decoded obj", decoded);
@@ -143,7 +150,6 @@ router.route("/logout")
 // /api/users/updatepw
 router.route("/updatepassword")
     .put(function (req, res) {
-        // console.log("updating password")
         db.User
             .update(
                 req.body,
@@ -154,7 +160,6 @@ router.route("/updatepassword")
                     individualHooks: true
                 })
             .then(userObj =>{
-                // console.log(userObj);
                 res.send(userObj)
             })
     })
@@ -173,7 +178,9 @@ router.route("/:userId")
         })          
         }
     })
+// /api/users/my
 router.route("/my")
+    //if the user is an advisor it will return all users that have a matching school id
     .get(function(req, res){
         if(req.user.userType === "advisor"){
             db.User
@@ -186,6 +193,7 @@ router.route("/my")
                 res.send(schoolUsers)
             })
         }
+        //else if the user is an admin they will be given all users
         else if(req.user.userType === "admin"){
             db.User
             .findAll({attributes: {exclude: ["password"]},})
