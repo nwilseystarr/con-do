@@ -38,3 +38,11 @@
 .checkedIn-status {
 	color: rgb(40,166,69);
 }
+
+.rt-thead {
+	font-weight: bold;
+}
+
+.rt-tr-group {
+	text-align: center;
+}
