@@ -50,11 +50,6 @@ class Schedule extends Component {
                 accessor: "location"
             },
             {
-                id: "committeeId",
-                Header: "Committee",
-                accessor: "committeeId"
-            },
-            {
                 id:"date",
                 Header: "Date",
                 accessor: "date"
