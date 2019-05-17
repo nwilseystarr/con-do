@@ -6,6 +6,7 @@ const Measures = require("./measure");
 const School = require("./school");
 const User = require("./user");
 const Chat = require("./chat");
+const Contact = require("./contactForm");
 
 //exports variables for use in other files
 module.exports = {
@@ -14,5 +15,6 @@ module.exports = {
     Measures,
     School,
     User,
-    Chat
+    Chat,
+    Contact
 }
