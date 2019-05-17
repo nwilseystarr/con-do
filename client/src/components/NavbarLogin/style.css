@@ -1,0 +1,9 @@
+.navbar {
+    background-color: white;
+}
+
+.nav-link {
+    color: rgb(19,46,67);
+    font-size: 18px;
+    cursor: pointer;
+}

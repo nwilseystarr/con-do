@@ -2,7 +2,7 @@ import React, { Component } from "react";
 // import { Link } from "react-router-dom";
 import API from "../../utils/API";
 // import { derToJose } from "ecdsa-sig-formatter";
-import Navbar from "../Navbar";
+import NavbarLogin from "../NavbarLogin";
 import LoginJumbotron from "./jumbotron";
 
 class Login extends Component {
@@ -58,7 +58,7 @@ class Login extends Component {
     render() {
         return (
             <div>
-                <Navbar loggedIn={this.props.loggedIn} userType={this.props.userType}/>
+                <NavbarLogin loggedIn={this.props.loggedIn} userType={this.props.userType}/>
                 <div className="container-fluid mt-5 pt-3 mb-5">
                     <LoginJumbotron />
                     <div className="row justify-content-center">
