@@ -2,9 +2,7 @@ import React, {Component} from "react";
 import API from "../../utils/API";
 import ReactTable from "react-table";
 import matchSorter from "match-sorter";
-import {
-    BrowserRouter as Router, Link, 
-  } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 class UserSearch extends Component {
