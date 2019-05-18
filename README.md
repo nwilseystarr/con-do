@@ -34,9 +34,11 @@ yarn start
 
 ## YouTube Demo
 <!-- blank -->
-<figure class="video_container">
-  <iframe src="https://www.youtube.com/embed/VMj3Jn1hgCU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen"> </iframe>
+
+<figure class="iframe_container">
+  <iframe src="https://www.youtube.com/embed/VMj3Jn1hgCU" frameborder="0" allowfullscreen="allowfullscreen"> </iframe>
 </figure>
+
 <!-- blank -->
 
 ## Database Schema Images
