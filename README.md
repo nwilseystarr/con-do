@@ -35,9 +35,9 @@ yarn start
 ## YouTube Demo
 <!-- blank -->
 
-<figure class="iframe_container">
+<div class="iframe_container">
   <iframe src="https://www.youtube.com/embed/VMj3Jn1hgCU" frameborder="0" allowfullscreen="allowfullscreen"> </iframe>
-</figure>
+</div>
 
 <!-- blank -->
 
