@@ -8,9 +8,52 @@
 
 Currently, our app is built using Model United Nations (MUN) as a base conference example to show how our application also allows for different levels of authentication (i.e., administrators, organizers, teachers, and students).
 
-
 ## Deployment
-This app is deployed using Heroku.  Click <a href="https://con-do.herokuapp.com/">here</a> to start interacting.  
+This app is deployed using Heroku.  Click <a href="https://con-do.herokuapp.com/">here</a> to start interacting.
+
+## Getting Started
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+### Prerequisites
+Before getting started, you will need to install:
+* PostgreSQL - for instructions on how to download click <a href="https://www.postgresql.org/download/">here</a>
+* Node.js - for instructions on how to download click <a href="https://nodejs.org/en/">here</a>
+
+### Installing
+1. Clone this GitHub Repo
+2. From the root directory, run the command: 
+```
+yarn install
+```
+* <b><u>Note</u></b>: Our included scripts within  will cd into the client folder and do another ```yarn install``` for you!
+
+3. Once the ```yarn install``` is complete, run this command to get the project up and running on your local machine: 
+```
+yarn start
+```
+
+## YouTube Demo
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/VMj3Jn1hgCU" frameborder="0" allowfullscreen="true"></iframe>
+</figure>
+
+## Database Schema Images
+### Overall dbSchema:
+![Overall dbSchema](./client/public/images/dbSchema-overall.png)
+### Chat Table:
+![Chats Table](./client/public/images/dbSchema-chat.png)
+### Committee Table:
+![Committees Table](./client/public/images/dbSchema-committees.png)
+### Event Table:
+![Events Table](./client/public/images/dbSchema-events.png)
+### Measures Table:
+![Measures Table](./client/public/images/dbSchema-measures.png)
+### School Table:
+![Schools Table](./client/public/images/dbSchema-schools.png)
+### User Table:
+![Users Table](./client/public/images/dbSchema-users.png)
+
+
 
 ## Tools/Technologies Used
 <a href="https://www.npmjs.com/package/axios">Axios</a><br>
