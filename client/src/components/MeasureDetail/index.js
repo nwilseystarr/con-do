@@ -5,7 +5,7 @@ import ReactTable from "react-table";
 import matchSorter from "match-sorter";
 import io from "socket.io-client";
 import "./style.css";
-const uuidv4 = require("uuid/v4");
+// const uuidv4 = require("uuid/v4");
 
 // let pullMeasureInterval;
 

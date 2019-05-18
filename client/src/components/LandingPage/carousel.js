@@ -27,7 +27,7 @@ class Carousel extends Component {
                                     <div className="carouselCaption">
                                         <h1 className="display-2">con.DO</h1>
                                         <h2 className="border-top border-bottom border-white">The Ultimate Conference App</h2>
-                                        <a className="youtubeVid" href="/youtube"><i className="fab fa-youtube fa-5x"></i></a>
+                                        <a className="youtubeVid" href="https://www.youtube.com/watch?v=VMj3Jn1hgCU"><i className="fab fa-youtube fa-5x"></i></a>
                                     </div>
                                 </div>
                                 <div className="carousel-item">
@@ -35,7 +35,7 @@ class Carousel extends Component {
                                     <div className="carouselCaption">
                                         <h1 className="display-2">con.DO</h1>
                                         <h2 className="border-top border-bottom border-white">The Ultimate Conference App</h2>
-                                        <a className="youtubeVid" href="/youtube"><i className="fab fa-youtube fa-5x"></i></a>
+                                        <a className="youtubeVid" href="https://www.youtube.com/watch?v=VMj3Jn1hgCU"><i className="fab fa-youtube fa-5x"></i></a>
                                     </div>
                                 </div>
                                 <div className="carousel-item">
@@ -43,7 +43,7 @@ class Carousel extends Component {
                                     <div className="carouselCaption">
                                         <h1 className="display-2">con.DO</h1>
                                         <h2 className="border-top border-bottom border-white">The Ultimate Conference App</h2>
-                                        <a className="youtubeVid" href="/youtube"><i className="fab fa-youtube fa-5x"></i></a>
+                                        <a className="youtubeVid" href="https://www.youtube.com/watch?v=VMj3Jn1hgCU"><i className="fab fa-youtube fa-5x"></i></a>
                                     </div>
                                 </div>
                                 <div className="carousel-item">
@@ -51,7 +51,7 @@ class Carousel extends Component {
                                     <div className="carouselCaption">
                                         <h1 className="display-2">con.DO</h1>
                                         <h2 className="border-top border-bottom border-white">The Ultimate Conference App</h2>
-                                        <a className="youtubeVid" href="/youtube"><i className="fab fa-youtube fa-5x"></i></a>
+                                        <a className="youtubeVid" href="https://www.youtube.com/watch?v=VMj3Jn1hgCU"><i className="fab fa-youtube fa-5x"></i></a>
                                     </div>
                                 </div>
                                 <div className="carousel-item">
@@ -59,7 +59,7 @@ class Carousel extends Component {
                                     <div className="carouselCaption">
                                         <h1 className="display-2">con.DO</h1>
                                         <h2 className="border-top border-bottom border-white">The Ultimate Conference App</h2>
-                                        <a className="youtubeVid" href="/youtube"><i className="fab fa-youtube fa-5x"></i></a>
+                                        <a className="youtubeVid" href="https://www.youtube.com/watch?v=VMj3Jn1hgCU"><i className="fab fa-youtube fa-5x"></i></a>
                                     </div>
                                 </div>
                             </div>

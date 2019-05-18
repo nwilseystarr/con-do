@@ -114,7 +114,7 @@ class Event extends Component {
                     //if they are not in the vote tally, push them 
                     if (filtered.length === 0) {
                         //get the delegatesInfo from the attendance array
-                        let delegateInfo = this.state.attendance.filter(delegate => delegate.id == id);
+                        let delegateInfo = this.state.attendance.filter(delegate => delegate.id === id);
                         //if the user who attempted to check in is in the attendance array, push their info to the voteTally array
                         if (delegateInfo) {
                             votes.push({
@@ -170,7 +170,7 @@ class Event extends Component {
                     //if they are not in the vote tally, push them 
                     if (filtered.length === 0) {
                         //get the delegatesInfo from the attendance array
-                        let delegateInfo = this.state.attendance.filter(delegate => delegate.id == this.props.userId);
+                        let delegateInfo = this.state.attendance.filter(delegate => delegate.id === this.props.userId);
                         //if the user who attempted to check in is in the attendance array, push their info to the voteTally array
                         if (delegateInfo) {
                             votes.push({

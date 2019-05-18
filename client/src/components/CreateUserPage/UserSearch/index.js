@@ -36,11 +36,11 @@ class UserSearch extends Component {
                 let returnedUsers = res.data
                 if (this.props.userType === "advisor") {
                     returnedUsers = returnedUsers.filter(user => user.schoolId === this.props.schoolId)
-                    returnedUsers = returnedUsers.filter(user => user.userType != "admin")
-                    returnedUsers = returnedUsers.filter(user => user.userType != "advisor")
-                    returnedUsers = returnedUsers.filter(user => user.userType != "staff")
+                    returnedUsers = returnedUsers.filter(user => user.userType !== "admin")
+                    returnedUsers = returnedUsers.filter(user => user.userType !== "advisor")
+                    returnedUsers = returnedUsers.filter(user => user.userType !== "staff")
                 }
-                returnedUsers = returnedUsers.filter(user => user.id != this.props.id)
+                returnedUsers = returnedUsers.filter(user => user.id !== this.props.id)
                 this.setState({
                     users: returnedUsers
                 });
@@ -55,11 +55,11 @@ class UserSearch extends Component {
                         let returnedUsers = res.data;
                         if (this.props.userType === "advisor") {
                             returnedUsers = returnedUsers.filter(user => user.schoolId === this.props.schoolId)
-                            returnedUsers = returnedUsers.filter(user => user.userType != "admin")
-                            returnedUsers = returnedUsers.filter(user => user.userType != "advisor")
-                            returnedUsers = returnedUsers.filter(user => user.userType != "staff")
+                            returnedUsers = returnedUsers.filter(user => user.userType !== "admin")
+                            returnedUsers = returnedUsers.filter(user => user.userType !== "advisor")
+                            returnedUsers = returnedUsers.filter(user => user.userType !== "staff")
                         }
-                        returnedUsers = returnedUsers.filter(user => user.id != this.props.id);
+                        returnedUsers = returnedUsers.filter(user => user.id !== this.props.id);
 
                         this.setState({
                             users: returnedUsers
@@ -80,13 +80,15 @@ class UserSearch extends Component {
                     matchSorter(rows, filter.value, { keys: ["name"] }),
                 filterAll: true,
 
-            }, {
+            }, 
+            {
                 Header: "Email",
                 accessor: "email",
                 filterMethod: (filter, rows) =>
                     matchSorter(rows, filter.value, { keys: ["email"] }),
                 filterAll: true
-            }, {
+            }, 
+            {
                 Header: "School",
                 id: "schoolName",
                 accessor: user => {
@@ -100,7 +102,8 @@ class UserSearch extends Component {
                 }, filterMethod: (filter, rows) =>
                     matchSorter(rows, filter.value, { keys: ["schoolName"] }),
                 filterAll: true,
-            }, {
+            }, 
+            {
                 Header: "Committee",
                 id: "committeeName",
                 accessor: user => {
@@ -114,13 +117,15 @@ class UserSearch extends Component {
                 }, filterMethod: (filter, rows) =>
                     matchSorter(rows, filter.value, { keys: ["committeeName"] }),
                 filterAll: true,
-            }, {
+            },
+            {
                 Header: "Country",
                 accessor: "country",
                 filterMethod: (filter, rows) =>
                     matchSorter(rows, filter.value, { keys: ["country"] }),
                 filterAll: true
-            }, {
+            },
+            {
                 Header: "Role",
                 accessor: "userType",
                 filterMethod: (filter, rows) =>
