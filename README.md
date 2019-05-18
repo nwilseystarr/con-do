@@ -16,8 +16,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 Before getting started, you will need to install:
-* PostgreSQL - for instructions on how to download click <a href="https://www.postgresql.org/download/">here</a>
-* Node.js - for instructions on how to download click <a href="https://nodejs.org/en/">here</a>
+* PostgreSQL - for instructions on how to download click <a href="https://www.postgresql.org/download/">here</a>.
+* Node.js - for instructions on how to download click <a href="https://nodejs.org/en/">here</a>.
 
 ### Installing
 1. Clone this GitHub Repo
@@ -33,12 +33,7 @@ yarn start
 ```
 
 ## YouTube Demo
-<!-- blank -->
-
-<iframe src="https://www.youtube.com/embed/VMj3Jn1hgCU" frameborder="0" allowfullscreen="allowfullscreen"> </iframe>
-
-
-<!-- blank -->
+Click <a href="https://www.youtube.com/watch?v=VMj3Jn1hgCU">here</a> to view our walk-through demo of <a href="https://con-do.herokuapp.com/">Con.DO</a>.
 
 ## Database Schema Images
 ### Overall dbSchema:
