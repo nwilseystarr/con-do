@@ -85,6 +85,19 @@ class Navbar extends Component {
                                     <Link
                                         className="nav-link mr-3"
                                         activeClass="active-link"
+                                        to="demo"
+                                        smooth={true}
+                                        spy={true}
+                                        offset={-80}
+                                        duration={500}
+                                    >
+                                        Demo
+                                    </Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link
+                                        className="nav-link mr-3"
+                                        activeClass="active-link"
                                         to="aboutus"
                                         smooth={true}
                                         spy={true}
