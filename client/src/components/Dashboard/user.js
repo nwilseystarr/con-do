@@ -12,21 +12,21 @@ class UserDashboard extends Component {
             committee: "",
             country: "",
             role: ""
-        }
-    }
+        };
+    };
 
     componentDidMount() {
         this.getUserInfo();
-    }
+    };
 
     getUserInfo = () => {
         API.getUser()
             .then(res => {
                 this.setState({ id: res.data.id, name: res.data.name, country: res.data.country, role: res.data.userType });
-                console.log(res)
-                let schoolId = res.data.schoolId
-                console.log(schoolId)
-                let committeeId = res.data.committeeId
+                // console.log(res)
+                let schoolId = res.data.schoolId;
+                // console.log(schoolId)
+                let committeeId = res.data.committeeId;
                 
                 API.getSchools()
                     .then(schoolRes => {
@@ -69,7 +69,7 @@ class UserDashboard extends Component {
                     <p className="h4">{this.state.committee}</p>
                     <p className="h5">{this.state.country}</p>
 
-                    <img id="image" style={imageStyle} />
+                    <img id="image" style={imageStyle} alt="qr-rendered"/>
                 </div>
             </div>
         );

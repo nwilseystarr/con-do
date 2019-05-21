@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import API from "../../utils/API";
-import matchSorter from "match-sorter";
+// import matchSorter from "match-sorter";
 import Navbar from "../Navbar";
 import ReactTable from "react-table"
 import API from "../../utils/API"
@@ -89,7 +89,7 @@ class UserDetail extends Component {
                 id: "checkedIn",
                 Header: "Checked in?",
                 accessor: event => {
-                    let record = event.attendance.filter(record => record.id == this.state.id)[0]
+                    let record = event.attendance.filter(record => record.id === this.state.id)[0]
                     console.log(record)
                     if (record.checkedIn) {
                         return <div>YES</div>
