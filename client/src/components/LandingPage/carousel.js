@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-scroll";
 import image1 from "./people-in-row.jpg";
 import image2 from "./giant-conference.jpg";
 import image3 from "./people-in-meeting.jpg";
@@ -27,7 +28,19 @@ class Carousel extends Component {
                                     <div className="carouselCaption">
                                         <h1 className="display-2">con.DO</h1>
                                         <h2 className="border-top border-bottom border-white">The Ultimate Conference App</h2>
-                                        <a className="youtubeVid" href="https://www.youtube.com/watch?v=VMj3Jn1hgCU"><i className="fab fa-youtube fa-5x"></i></a>
+                                        <a className="youtubeVid">
+                                            <Link
+                                                className="nav-link mr-3 pb-0 text-danger"
+                                                activeClass="active-link"
+                                                to="demo"
+                                                smooth={true}
+                                                spy={true}
+                                                offset={-80}
+                                                duration={500}
+                                            >
+                                                <i className="fab fa-youtube fa-5x"></i>
+                                            </Link>
+                                        </a>
                                     </div>
                                 </div>
                                 <div className="carousel-item">
@@ -35,7 +48,19 @@ class Carousel extends Component {
                                     <div className="carouselCaption">
                                         <h1 className="display-2">con.DO</h1>
                                         <h2 className="border-top border-bottom border-white">The Ultimate Conference App</h2>
-                                        <a className="youtubeVid" href="https://www.youtube.com/watch?v=VMj3Jn1hgCU"><i className="fab fa-youtube fa-5x"></i></a>
+                                        <a className="youtubeVid">
+                                            <Link
+                                                className="nav-link mr-3 pb-0 text-danger"
+                                                activeClass="active-link"
+                                                to="demo"
+                                                smooth={true}
+                                                spy={true}
+                                                offset={-80}
+                                                duration={500}
+                                            >
+                                                <i className="fab fa-youtube fa-5x"></i>
+                                            </Link>
+                                        </a>
                                     </div>
                                 </div>
                                 <div className="carousel-item">
@@ -43,7 +68,19 @@ class Carousel extends Component {
                                     <div className="carouselCaption">
                                         <h1 className="display-2">con.DO</h1>
                                         <h2 className="border-top border-bottom border-white">The Ultimate Conference App</h2>
-                                        <a className="youtubeVid" href="https://www.youtube.com/watch?v=VMj3Jn1hgCU"><i className="fab fa-youtube fa-5x"></i></a>
+                                        <a className="youtubeVid">
+                                            <Link
+                                                className="nav-link mr-3 pb-0 text-danger"
+                                                activeClass="active-link"
+                                                to="demo"
+                                                smooth={true}
+                                                spy={true}
+                                                offset={-80}
+                                                duration={500}
+                                            >
+                                                <i className="fab fa-youtube fa-5x"></i>
+                                            </Link>
+                                        </a>
                                     </div>
                                 </div>
                                 <div className="carousel-item">
@@ -51,7 +88,19 @@ class Carousel extends Component {
                                     <div className="carouselCaption">
                                         <h1 className="display-2">con.DO</h1>
                                         <h2 className="border-top border-bottom border-white">The Ultimate Conference App</h2>
-                                        <a className="youtubeVid" href="https://www.youtube.com/watch?v=VMj3Jn1hgCU"><i className="fab fa-youtube fa-5x"></i></a>
+                                        <a className="youtubeVid">
+                                            <Link
+                                                className="nav-link mr-3 pb-0 text-danger"
+                                                activeClass="active-link"
+                                                to="demo"
+                                                smooth={true}
+                                                spy={true}
+                                                offset={-80}
+                                                duration={500}
+                                            >
+                                                <i className="fab fa-youtube fa-5x"></i>
+                                            </Link>
+                                        </a>
                                     </div>
                                 </div>
                                 <div className="carousel-item">
@@ -59,7 +108,19 @@ class Carousel extends Component {
                                     <div className="carouselCaption">
                                         <h1 className="display-2">con.DO</h1>
                                         <h2 className="border-top border-bottom border-white">The Ultimate Conference App</h2>
-                                        <a className="youtubeVid" href="https://www.youtube.com/watch?v=VMj3Jn1hgCU"><i className="fab fa-youtube fa-5x"></i></a>
+                                        <a className="youtubeVid">
+                                            <Link
+                                                className="nav-link mr-3 pb-0 text-danger"
+                                                activeClass="active-link"
+                                                to="demo"
+                                                smooth={true}
+                                                spy={true}
+                                                offset={-80}
+                                                duration={500}
+                                            >
+                                                <i className="fab fa-youtube fa-5x"></i>
+                                            </Link>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
